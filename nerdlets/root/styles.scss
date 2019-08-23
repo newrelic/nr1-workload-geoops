@@ -1,0 +1,300 @@
+@import '~leaflet/dist/leaflet.css';
+@import "~nr1-bootstrap-theme/dist/main.css";
+
+.geoOpsContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.leaflet-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  .marker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .markerWrapper {
+      display: block;
+      height: 75%;
+      width: 75%;
+      border: none;
+      border-radius: 100%;
+
+      &.red {
+        background-color: #BF0016;
+        box-shadow: 0 0 0 2px #6F000D;
+      }
+
+      &.orange {
+        background-color: #FFD966;
+        box-shadow: 0 0 0 2px #B5780E;
+      }
+
+      &.green {
+        background-color: #10A600;
+        box-shadow: 0 0 0 2px #095E00;
+      }
+    }
+
+    &:hover {
+      position: relative;
+      z-index: 100;
+
+      .markerWrapper {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+.kpi-row {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 15%;
+}
+
+.kpi {
+  height: 100px;
+  width: 250px;
+  text-align: center;
+}
+
+.tickets {
+  width: 100%;
+}
+
+.locationColor {
+  display: inline-block;
+  width: 10px;
+  height: 100%;
+  background-color: #999;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+
+  &.red {
+    background-color: #bf0015;
+  }
+
+  &.green {
+    background-color: #10a600;
+  }
+  &.yellow {
+    background-color: #ffd94b;
+  }
+}
+
+[class*="TableCell"] {
+  padding-left: 0;
+  font-size: 11px;
+  color: #2a3434;
+}
+
+.favorited,
+.notFavorited {
+  opacity: .35;
+}
+
+[class$="TableControls"] {
+  padding: 0;
+}
+
+[class$="TableControls-search"] {
+  margin: 0;
+  width: 100%;
+}
+
+.geoOpsContainer [class*="SearchInput"] {
+  width: 100%;
+
+  input {
+    border: none;
+    box-shadow: inset 0 1px 0 0 rgba(0,0,0, .1), inset 0 -1px 0 0 rgba(0,0,0, .1);
+    border-radius: 0;
+  }
+}
+
+.infoPanel {
+  border-left: 5px solid #f7f7f8;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.infoPanelStoreId {
+  margin-bottom: 2px;
+  color: #2A3434;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+
+.infoPanelLocation {
+  color: #464E4E;
+}
+
+.infoPanelMinimizeButton {
+  background-color: #f4f6f5;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  position: absolute;
+  right: -16px;
+  top: 9px;
+
+  &:hover {
+    background-color: #ebebeb;
+    cursor: pointer;
+  }
+}
+
+.infoPanelHeader {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin-bottom: 17px;
+}
+
+.storeStatus {
+  width: 20px;
+  height: 20px;
+  background-color: #FFD966;
+  box-shadow: inset 0 0 0 2px #B5780E;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+span.infoPanelStatValue {
+  color: #464E4E;
+  font-size: 24px;
+  text-align: center;
+  display: block;
+  font-family: 'fira sans';
+  font-weight: 400;
+}
+
+.infoPanelStat {
+  text-align: center;
+  width: 50%;
+  padding: 5px 0 5px;
+  box-shadow: 1px 1px 0 #ececec, inset 0 1px 0 #ececec;
+}
+
+.infoPanelStat:nth-child(2) {
+  box-shadow: 0 1px 0 #ececec, inset 0 1px 0 #ececec;
+}
+
+.infoPanelStat:nth-child(3) {
+  box-shadow: 1px 0px 0 #ececec, 0 1px 0 #ececec;
+}
+
+.infoPanelStat:nth-child(4) {
+  box-shadow: 0 1px 0 #ececec;
+}
+
+span.infoPanelStatLabel {
+  color: #464E4E;
+}
+
+.infoPanelStatsTable {
+  display: flex;
+  margin-bottom:10px;
+  flex-wrap: wrap;
+}
+
+.primary-grid {
+  width: 100%;
+}
+
+.table th {
+  position: relative;
+}
+
+.react-bootstrap-table .table.locationsTable th:first-child {
+  max-width:25px;
+  padding-left: 5px;
+}
+
+.react-bootstrap-table .table.ticketsTable th:first-child {
+  min-width: 85px;
+  padding-left: 5px;
+}
+
+.caretsContainer {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 2px;
+  margin-left: 4px;
+
+  &.sorted {
+    top: 2px;
+  }
+}
+
+.caretsContainer svg:first-child {
+  margin-bottom: -4px;
+}
+
+.favoriteCol {
+  width: 40px;
+
+  span {
+    cursor: pointer;
+  }
+}
+
+.statusCell {
+  display: block;
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  &.red {
+    background-color: #BF0015;
+  }
+
+  &.yellow {
+    background-color: #FFD966;
+  }
+
+  &.green {
+    background-color: #10A600;
+  }
+}
+
+.react-bootstrap-table .table .noTitle.statusCol {
+  padding: 0;
+  position: relative;
+}
+
+.react-bootstrap-table th.sortable {
+  line-height: 36px;
+  padding: 0 10px;
+}
+
+.stateCol {
+  width: 70px;
+}
+
+.gridItem {
+  height: 100vh;
+  overflow: scroll;
+}

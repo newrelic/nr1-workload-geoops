@@ -1,0 +1,41 @@
+{
+    "private": true,
+    "name": "nr1-infra-geoops-nerdpack",
+    "description": "NR1 Nerdpack for geographically aligned infrastructure and application data (ex. Point of Sale monitoring).",
+    "version": "0.1.0",
+    "scripts": {
+        "start": "nr1 nerdpack:serve",
+        "test": "exit 0"
+    },
+    "nr1": {
+        "uuid": "52a251e1-8797-4570-bc65-3c5999778dc9",
+        "sdkVersion": 2
+    },
+    "dependencies": {
+        "dateformat": "^3.0.3",
+        "file-loader": "^4.2.0",
+        "graphql": "^14.4.2",
+        "graphql-tag": "^2.10.1",
+        "leaflet": "^1.5.1",
+        "moment": "^2.24.0",
+        "nr1-bootstrap-theme": "git@github.com:newrelic/nr1-bootstrap-theme.git",
+        "prop-types": "^15.6.2",
+        "react": "^16.6.3",
+        "react-bootstrap-table-next": "^3.1.7",
+        "react-data-table-component": "^3.0.4",
+        "react-dom": "^16.6.3",
+        "react-feather": "^2.0.3",
+        "react-flexview": "^4.0.3",
+        "react-graph-vis": "^1.0.2",
+        "react-js-banner": "^0.2.4",
+        "react-leaflet": "^2.4.0",
+        "sprintf-js": "^1.1.2",
+        "styled-components": "^4.3.2",
+        "uuid": "^3.3.3"
+    },
+    "browserslist": [
+        "last 2 versions",
+        "not ie < 11",
+        "not dead"
+    ]
+}
