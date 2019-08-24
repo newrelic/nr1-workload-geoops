@@ -3,7 +3,7 @@ const geoopsConfig = [
     id: "1af7cff8-59a4-46c3-9c95-da44bad5ba6c",
     title: "Demo Map #1",
     center: [34.089,	-83.947],
-    zoom: 5,
+    zoom: 10,
     detailWindow: "overlay", //["overlay", "card"]
     labels: {
       address: "Address",

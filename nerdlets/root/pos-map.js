@@ -18,7 +18,7 @@ export default class PoSMap extends Component {
       <div className="leaflet-wrapper">
         <Map
           center={config.center}
-          zoom={6}
+          zoom={config.zoom}
           ref={ref => {
             this.mapRef = ref;
           }}
