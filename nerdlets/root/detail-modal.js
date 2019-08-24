@@ -26,8 +26,7 @@ export default class DetailModal extends Component {
       <Modal hidden={hidden} onClose={() => { callbacks.closeModal(); }}>
         <Stack
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
-          gapType={Stack.GAP_TYPE.TIGHT}
-          className="infoPanel">
+          gapType={Stack.GAP_TYPE.TIGHT}>
           <StackItem>
             <div className="storeStatus" style={{ backgroundColor: location.status.color}}></div>
             <div className="infoPanelHeaderPrimaryInfo">

@@ -17,6 +17,7 @@ export default class EntityTable extends Component {
     super(props);
     this.statusColFormatter = this.statusColFormatter.bind(this);
     this.formatIncidentDate = this.formatIncidentDate.bind(this);
+    this.formatEntityName = this.formatEntityName.bind(this);
   }
 
   formatIncidentDate(cell, row) {
@@ -25,6 +26,10 @@ export default class EntityTable extends Component {
     } else {
       return moment(row.lastIncidentTimestamp).startOf("day").fromNow();
     }
+  }
+
+  formatEntityName(cell, row) {
+    return `${row.name} [${row.domain}:${row.type}]`;
   }
 
   _openEntity(row) {
@@ -54,6 +59,7 @@ export default class EntityTable extends Component {
       {
         dataField: "name",
         text: config.labels.entityName,
+        formatter: this.formatEntityName,
         sort: true,
         sortCaret: sortCaret,
         events: {
