@@ -2,39 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import BootstrapTable from "react-bootstrap-table-next";
 import geoopsConfig from "../../geoopsConfig";
-import { ChevronUp, ChevronDown } from "react-feather";
 import { Icon } from "nr1";
+import { sortCaret } from './utils';
 import moment from 'moment';
-
-const noOrderCarets = (
-  <div className="caretsContainer">
-    <ChevronUp color="rgba(0,0,0, .3)" size={12} />
-    <ChevronDown color="rgba(0,0,0, .3)" size={12} />
-  </div>
-);
-
-const ascCaret = (
-  <div className="caretsContainer sorted">
-    <ChevronUp color="rgba(0,0,0, .8)" size={12} />
-  </div>
-);
-
-const descCaret = (
-  <div className="caretsContainer sorted">
-    <ChevronDown color="rgba(0,0,0, .8)" size={12} />
-  </div>
-);
-
-const sortCaret = (order /*, column*/) => {
-  if (!order) {
-    return noOrderCarets;
-  } else if (order === "asc") {
-    return ascCaret;
-  } else if (order === "desc") {
-    return descCaret;
-  }
-  return null;
-};
 
 export default class LocationTable extends Component {
   static propTypes = {
@@ -142,7 +112,7 @@ export default class LocationTable extends Component {
 
   favoriteColFormatter(cell, row) {
     //eslint-disable-line
-    console.debug(row);
+    //console.debug(row);
     if (row.favorite) {
       return (
           <Icon

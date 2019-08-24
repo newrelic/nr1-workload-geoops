@@ -9,6 +9,7 @@ const geoopsConfig = [
       address: "Address",
       locationId: "Store ID",
       locationName: "Store",
+      entityName: "Entity",
       lastIncident: "Last Incident",
       municipatility: "City",
       region: "State",

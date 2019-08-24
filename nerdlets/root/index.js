@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import geoopsConfig from "../../geoopsConfig";
 import LocationTable from "./location-table";
-import { Grid, GridItem, Spinner, navigation } from "nr1";
+import { Grid, GridItem, Spinner, Modal, Button } from "nr1";
 import PoSMap from './pos-map';
 import Data from './data';
+import DetailModal from './detail-modal';
 
 export default class GeoOpsNerdlet extends Component {
   static propTypes = {
@@ -15,21 +16,28 @@ export default class GeoOpsNerdlet extends Component {
     super(props);
     this.state = {
       configId: geoopsConfig[0].id,
-      data: null
+      data: null,
+      hidden: true,
+      location: null
     };
     this.callbacks = {
       onClick: this.onClick.bind(this),
       setData: this.setData.bind(this),
-      setFavorite: this.setFavorite.bind(this)
+      setFavorite: this.setFavorite.bind(this),
+      closeModal: this.closeModal.bind(this)
     }
     this.dataProcess = new Data({ demoMode: true, configId: this.state.configId, refreshTimeout: 60000, callbacks: this.callbacks});
+  }
+
+  closeModal() {
+    this.setState({ hidden: true, location: null });
   }
 
   setFavorite(id) {
     const { data } = this.state;
     const location = data.find(l => l.id == id);
     location.favorite = !location.favorite;
-    console.debug(`Setting location ${id} to a favorite status of ${location.favorite}`)
+    //console.debug(`Setting location ${id} to a favorite status of ${location.favorite}`)
     this.setState({ data: data });
   }
 
@@ -38,21 +46,12 @@ export default class GeoOpsNerdlet extends Component {
     this.setState({data});
   }
 
-  onClick(point) {
-    const { configId } = this.state;
-    const config = geoopsConfig.find(c => c.id == configId);
-    switch (config.detailWindow) {
-      case "overlay":
-        navigation.openOverlay({
-          id: "52a251e1-8797-4570-bc65-3c5999778dc9.details-overlay",
-          urlState: { configId, locationId: point.locationId }
-        });
-        break;
-    }
+  onClick(location) {
+    this.setState({ location, hidden: false });
   }
 
   render() {
-    const { configId, data } = this.state;
+    const { configId, data, hidden, location } = this.state;
     if (!data) {
         return <div className="geoOpsContainer">
             <Spinner fillContainer />
@@ -78,6 +77,7 @@ export default class GeoOpsNerdlet extends Component {
               callbacks={this.callbacks}
               data={data}
             />
+            {location && <DetailModal {...this.state} callbacks={this.callbacks} launcherUrlState={this.props.launcherUrlState} />}
           </GridItem>
         </Grid>
     );

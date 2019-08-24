@@ -28,13 +28,14 @@ export default class PoSMap extends Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {data.map(row => {
+            const icon = generateIcon(row);
             return (
               <Marker
                 key={row.id}
                 position={[row.lat, row.lng]}
                 onClick={callbacks.onClick}
                 _did={row.locationId}
-                icon={generateIcon(row)}
+                icon={icon}
               />
             );
           })}
