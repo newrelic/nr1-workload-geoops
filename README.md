@@ -1,5 +1,7 @@
 # nr1-infra-geoops-nerdpack
 
+![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/newrelic/nr1-infra-geoops-nerdpack?include_prereleases&sort=semver)![AppVeyor](https://img.shields.io/appveyor/ci/newrelic/nr1-infra-geoops-nerdpack)[![Snyk](https://snyk.io/test/github/newrelic/nr1-infra-geoops-nerdpack/badge.svg)](https://snyk.io/test/github/hospitalrun/hospitalrun-frontend)
+
 ## Usage
 
 nr1-infra-geoops-nerdpack provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
@@ -31,6 +33,8 @@ Visit https://one.newrelic.com/?nerdpacks=local, navigate to the Nerdpack, and :
 
 # Support
 
+New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR SUPPORT, although you can report issues and contribute to the project here on GitHub.
+
 **Note: Please do not report issues with this software to New Relic Global Technical Support.**
 
 ## Community
@@ -47,3 +51,5 @@ Issues and enhancement requests can be submitted in the [Issues tab of this repo
 # Contributing
 
 Contributions are welcome (and if you submit a Enhancement Request, expect to be invited to contribute it yourself :grin:). Please review our [Contributors Guide](blob/master/CONTRIBUTING.md).
+
+Keep in mind that when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. If you'd like to execute our corporate CLA, or if you have any questions, please drop us an email at opensource@newrelic.com.
