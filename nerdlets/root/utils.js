@@ -1,3 +1,7 @@
+/*
+* Copyright 2019 New Relic Corporation. All rights reserved.
+* SPDX-License-Identifier: Apache-2.0
+ */
 import L from 'leaflet';
 import { ChevronUp, ChevronDown } from 'react-feather';
 

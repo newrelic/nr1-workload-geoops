@@ -27,16 +27,11 @@ npm install
 npm start
 ```
 
-Visit https://one.newrelic.com/?nerdpack=local, navigate to the Nerdpack, and :sparkles:
+Visit https://one.newrelic.com/?nerdpacks=local, navigate to the Nerdpack, and :sparkles:
 
 # Support
 
 **Note: Please do not report issues with this software to New Relic Global Technical Support.**
-
-
-## Issues / Enhancement Requests
-
-Issues and enhancement requests can be submitted in the [Issues tab of this repository](issues). Please search for and review the existing open issues before submitting a new issue.
 
 ## Community
 
@@ -44,6 +39,10 @@ New Relic hosts and moderates an online forum where customers can interact with 
 
 https://discuss.newrelic.com/c/build-on-new-relic/nr1-infra-geoops-nerdpack
 *(Note: URL subject to change before GA)*
+
+## Issues / Enhancement Requests
+
+Issues and enhancement requests can be submitted in the [Issues tab of this repository](issues). Please search for and review the existing open issues before submitting a new issue.
 
 # Contributing
 
