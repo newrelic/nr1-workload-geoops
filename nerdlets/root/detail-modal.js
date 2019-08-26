@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, LineChart, HeadingText, Button, StackItem, Stack } from 'nr1';
+import { Modal, LineChart, HeadingText, BlockText, Button, StackItem, Stack } from 'nr1';
 import EntityTable from './entity-table';
 import geoopsConfig from "../../geoopsConfig";
 import moment from 'moment';
@@ -18,12 +18,12 @@ export default class DetailModal extends Component {
   render() {
     const { configId, location, hidden, callbacks } = this.props;
     const config = geoopsConfig.find(c => c.id == configId);
-    const entityGuidsForNrql = location.entities.map(entity => `"${entity.guid}"`);
+    const entityGuidsForNrql = location.entities.map(entity => `'${entity.guid}'`);
     const { duration } = this.props.launcherUrlState.timeRange;
     const durationInMinutes = duration/1000/60;
     const { accountId } = config.entities.joins.INFRA.nrql;
     return (
-      <Modal hidden={hidden} onClose={() => { callbacks.closeModal(); }}>
+      <Modal hidden={hidden} onClose={() => { callbacks.closeModal(); }} style={{padding: '0 !important'}}>
         <Stack
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
           gapType={Stack.GAP_TYPE.TIGHT}>
@@ -42,18 +42,35 @@ export default class DetailModal extends Component {
               callbacks={callbacks}
             />
           </StackItem>
+          <StackItem>
+            <HeadingText type={HeadingText.TYPE.HEADING4}>CPU utilization</HeadingText>
+            <BlockText>since {moment(duration).startOf("day").fromNow()}</BlockText>
+            <LineChart
+              accountId={accountId}
+              query={`FROM SystemSample SELECT average( cpuPercent ) as 'percentCpu' WHERE entityGuid in (${entityGuidsForNrql}) FACET entityGuid, hostname TIMESERIES SINCE ${durationInMinutes} MINUTES AGO`}
+              className="chart"
+            />
+          </StackItem>
+          <StackItem>
+          <HeadingText type={HeadingText.TYPE.HEADING4}>Memory utilization</HeadingText>
+          <BlockText>since {moment(duration).startOf("day").fromNow()}</BlockText>
+            <LineChart
+              accountId={accountId}
+              query={`FROM SystemSample SELECT average( memoryUserBytes/memoryTotalBytes ) as 'percentMemory' WHERE entityGuid in (${entityGuidsForNrql}) FACET entityGuid, hostname TIMESERIES SINCE ${durationInMinutes} MINUTES AGO`}
+              className="chart"
+            />
+          </StackItem>
+          <StackItem>
+          <HeadingText type={HeadingText.TYPE.HEADING4}>Disk utilization</HeadingText>
+          <BlockText>since {moment(duration).startOf("day").fromNow()}</BlockText>
+            <LineChart
+              accountId={accountId}
+              query={`FROM SystemSample SELECT average( diskUsedPercent ) as 'percentDisk' WHERE entityGuid in (${entityGuidsForNrql}) FACET entityGuid, hostname TIMESERIES SINCE ${durationInMinutes} MINUTES AGO`}
+              className="chart"
+            />
+          </StackItem>
         </Stack>
       </Modal>
     );
   }
 }
-/*
-          <StackItem>
-            <HeadingText>CPU since {moment(duration).fromNow()}</HeadingText>
-            <LineChart
-              accountId={accountId}
-              query={`FROM SystemSample SELECT average( cpuPercent ) as 'percentCpu' WHERE entityGuid in ${entityGuidsForNrql} FACET entityGuid, hostname TIMESERIES SINCE ${durationInMinutes} MINUTES AGO`}
-            />
-          </StackItem>
-
-*/

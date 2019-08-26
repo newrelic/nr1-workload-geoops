@@ -34,7 +34,8 @@ export default class EntityTable extends Component {
 
   _openEntity(row) {
     const { guid, domain, type } = row;
-    navigation.openEntity({ id: guid, domain, type });
+    console.debug({ guid: guid, domain, type })
+    navigation.openStackedEntity({ guid: guid, domain, type });
   }
 
   tableColumns() {
