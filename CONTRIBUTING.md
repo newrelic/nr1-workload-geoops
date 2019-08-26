@@ -4,7 +4,7 @@ Contributions are always welcome. Before contributing please read the
 [code of conduct](blog/master/CODE_OF_CONDUCT.md) and [search the issue tracker](issues); your issue may have already been discussed or fixed in `master`. To contribute,
 [fork](https://help.github.com/articles/fork-a-repo/) this repository, commit your changes, and [send a Pull Request](https://help.github.com/articles/using-pull-requests/).
 
-Please note we have a [code of conduct](blog/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
+Note that our [code of conduct](blog/master/CODE_OF_CONDUCT.md) applies to all platforms and venues related to this project; please follow it in all your interactions with the project and its participants.
 
 ## Feature Requests
 
@@ -24,3 +24,7 @@ Keep in mind that when you submit your Pull Request, you'll need to sign the CLA
 
 For more information about CLAs, please check out Alex Russell’s excellent post,
 [“Why Do I Need to Sign This?”](https://infrequently.org/2008/06/why-do-i-need-to-sign-this/).
+
+# Slack
+
+For contributors and maintainers of open source projects hosted by New Relic, we host a public Slack with a channel dedicated to this project. If you are contributing to this project, you're welcome to request access to that  community space.
