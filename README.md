@@ -35,7 +35,7 @@ Visit https://one.newrelic.com/?nerdpacks=local, navigate to the Nerdpack, and :
 
 New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR SUPPORT, although you can report issues and contribute to the project here on GitHub.
 
-**Note: Please do not report issues with this software to New Relic Global Technical Support.**
+_Please do not report issues with this software to New Relic Global Technical Support._
 
 ## Community
 
