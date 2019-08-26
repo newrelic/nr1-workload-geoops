@@ -1,22 +1,50 @@
-# @REPO@
+# nr1-infra-geoops-nerdpack
+
+## Usage
+
+nr1-infra-geoops-nerdpack provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
+
+![Screenshot #1](screenshots/screenshot_01.png)
+
+## Open Source License
+
+This project is distributed under the [Apache 2 license](blob/master/LICENSE).
+
+## What do you need to make this work?
+
+1. [New Relic Infrastructure Agent(s) installed](https://newrelic.com/products/infrastructure) and the related access to [New Relic One](https://newrelic.com/platform).
+2. (Recommended) Add the customer-defined `locationId` to the `newrelic_infra.yml`. See an example [here](blob/master/examples/example_newrelic_infra.yml).
+3. (Currently) Updating (or replacing) the [geoopsConfig.js](blob/master/geoopsConfig.js) file.
 
 ## Getting started
 
-Run the following scripts:
+Clone this repository and run the following scripts:
 
-```
+```bash
+git clone https://github.com/newrelic/nr1-infra-geoops-nerdpack.git
+cd nr1-infra-geoops-nerdpack
 npm install
 npm start
 ```
 
-Visit https://one.newrelic.com/?packages=local and :sparkles:
+Visit https://one.newrelic.com/?nerdpack=local, navigate to the Nerdpack, and :sparkles:
 
-## Creating new artifacts
+# Support
 
-If you want to create new artifacts run the following command:
+**Note: Please do not report issues with this software to New Relic Global Technical Support.**
 
-```
-nr1 create
-```
 
-> Example: `nr1 create --type nerdlet --name my-nerdlet`.
+## Issues / Enhancement Requests
+
+Issues and enhancement requests can be submitted in the [Issues tab of this repository](issues). Please search for and review the existing open issues before submitting a new issue.
+
+## Community
+
+New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorer's Hub. You can find this project's topic/threads here:
+
+https://discuss.newrelic.com/c/build-on-new-relic/nr1-infra-geoops-nerdpack
+*(Note: URL subject to change before GA)*
+
+# Contributing
+
+Contributions are welcome (and if you submit a Enhancement Request, expect to be invited to contribute it yourself :grin:). Please review our [Contributors Guide](blob/master/CONTRIBUTING.md).
