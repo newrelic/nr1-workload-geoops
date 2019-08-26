@@ -51,7 +51,7 @@ export default class GeoOpsNerdlet extends Component {
   }
 
   render() {
-    const { configId, data, hidden, location } = this.state;
+    const { configId, data, location } = this.state;
     if (!data) {
         return <div className="geoOpsContainer">
             <Spinner fillContainer />
