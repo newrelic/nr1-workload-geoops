@@ -153,13 +153,18 @@
   border: none;
   border-radius: 3px 0 0 3px;
   position: absolute;
-  right: -16px;
+  right: 0px;
   top: 9px;
 
   &:hover {
     background-color: #ebebeb;
     cursor: pointer;
   }
+}
+
+.locationHeader {
+  display: flex;
+  flex-direction: row;
 }
 
 .infoPanelHeader {
@@ -172,7 +177,7 @@
 .storeStatus {
   width: 20px;
   height: 20px;
-  box-shadow: inset 0 0 0 2px #B5780E;
+  box-shadow: inset 0 0 0 2px rgb(119, 118, 117);
   border-radius: 100%;
   margin-right: 10px;
 }
@@ -306,4 +311,16 @@ span.infoPanelStatLabel {
 .chart {
   height: 150px;
   width: 300px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.entityTable {
+  width: 120%;
+  thead {
+    th {
+      line-height: 1em !important;
+      padding: 5px !important;
+    }
+  }
 }

@@ -29,13 +29,12 @@ export default class DetailModal extends Component {
         <Stack
           directionType={Stack.DIRECTION_TYPE.VERTICAL}
           gapType={Stack.GAP_TYPE.LOOSE}>
-          <StackItem>
+          <StackItem className="locationHeader">
             <div className="storeStatus" style={{ backgroundColor: location.status.color}}></div>
             <div className="infoPanelHeaderPrimaryInfo">
                 <h4 className="infoPanelStoreId">Store: {location.locationId}</h4>
-                <span className="infoPanelLocation">{config.labels.addrss}: {location.municipatility}, {location.region}</span>
+                <span className="infoPanelLocation">{config.labels.address}: {location.municipatility}, {location.region}</span>
             </div>
-            <Button className="infoPanelMinimizeButton" sizeType={Button.SIZE_TYPE.SLIM} iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT} onClick={() => {callbacks.closeModal(); }}/>
           </StackItem>
           <StackItem>
             <EntityTable
