@@ -28,6 +28,7 @@ export default class DetailModal extends Component {
     const since = moment().subtract(duration).fromNow();
     const durationInMinutes = duration/1000/60;
     const { accountId } = config.entities.joins.INFRA.nrql;
+    console.debug([infraGuidsForNrql, apmGuidsForNrql]);
     return (
       <Modal hidden={hidden} onClose={() => { callbacks.closeModal(); }} style={{padding: '0 !important'}}>
         <Stack
@@ -72,7 +73,7 @@ export default class DetailModal extends Component {
                   className="chart"
                 />
               </TabsItem>
-              <TabsItem label="Apps" itemKey={1}>
+              {apmGuidsForNrql && apmGuidsForNrql.length > 0 && <TabsItem label="Apps" itemKey={1}>
               <HeadingText type={HeadingText.TYPE.HEADING4}>Transaction count</HeadingText>
                 <BlockText>since {since}</BlockText>
                 <LineChart
@@ -93,14 +94,14 @@ export default class DetailModal extends Component {
                   query={`FROM Transaction SELECT percentage(count(*), WHERE error is true) as 'Error Rate' WHERE entityGuid in (${apmGuidsForNrql}) FACET entityGuid, appName TIMESERIES SINCE ${durationInMinutes} MINUTES AGO`}
                   className="chart"
                 />
-                <HeadingText type={HeadingText.TYPE.HEADING4}>Disk utilization</HeadingText>
+                <HeadingText type={HeadingText.TYPE.HEADING4}>Error details</HeadingText>
                 <BlockText>since {since}</BlockText>
                 <TableChart
                   accountId={accountId}
                   query={`FROM Transaction SELECT percentage(count(*), WHERE error is true) as 'Error Rate' WHERE entityGuid in (${apmGuidsForNrql}) FACET entityGuid SINCE ${durationInMinutes} MINUTES AGO`}
                   className="chart"
                 />
-              </TabsItem>
+              </TabsItem>}
             </Tabs>
           </StackItem>
         </Stack>
