@@ -62,7 +62,7 @@ export default class DetailModal extends Component {
                 <BlockText>since {since}</BlockText>
                 <LineChart
                   accountId={accountId}
-                  query={`FROM SystemSample SELECT average( memoryUserBytes/memoryTotalBytes ) as 'percentMemory' WHERE entityGuid in (${infraGuidsForNrql}) FACET entityGuid, hostname TIMESERIES SINCE ${durationInMinutes} MINUTES AGO`}
+                  query={`FROM SystemSample SELECT average(memoryUsedBytes/memoryTotalBytes)*100 as 'percentMemory' WHERE entityGuid in (${infraGuidsForNrql}) FACET entityGuid, hostname TIMESERIES SINCE ${durationInMinutes} MINUTES AGO`}
                   className="chart"
                 />
                 <HeadingText type={HeadingText.TYPE.HEADING4}>Disk utilization</HeadingText>

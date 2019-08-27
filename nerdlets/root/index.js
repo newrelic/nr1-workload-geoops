@@ -6,7 +6,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import geoopsConfig from "../../geoopsConfig";
 import LocationTable from "./location-table";
-import { Grid, GridItem, Spinner, Modal, Button } from "nr1";
+import { Grid, GridItem, Spinner } from "nr1";
 import PoSMap from './pos-map';
 import Data from './data';
 import DetailModal from './detail-modal';

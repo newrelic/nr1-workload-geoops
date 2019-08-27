@@ -37,7 +37,7 @@ export default class PoSMap extends Component {
               <Marker
                 key={row.id}
                 position={[row.lat, row.lng]}
-                onClick={callbacks.onClick}
+                onClick={() => { callbacks.onClick(row); }}
                 _did={row.locationId}
                 icon={icon}
               />
