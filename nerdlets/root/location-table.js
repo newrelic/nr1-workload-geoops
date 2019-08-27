@@ -141,7 +141,14 @@ export default class LocationTable extends Component {
       <BootstrapTable
         keyField="id"
         headerClasses="header-row"
-        data={data}
+        data={data.sort((a, b) => {
+          if (a.favorite) {
+            return -1;
+          } else if (b.favorite) {
+            return 1;
+          }
+          return 0;
+        })}
         columns={this.tableColumns()}
         classes="locationsTable"
         bordered={false}

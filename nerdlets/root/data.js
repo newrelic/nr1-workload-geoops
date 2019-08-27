@@ -45,9 +45,9 @@ export default class Data {
   start() {
     const { refreshTimeout, callbacks } = this.options;
     clearTimeout(this.timeout);
-    this._refreshData().then(data => {
+    this._refreshData().then(({ data, favorites }) => {
       if (this.refreshState) {
-        callbacks.setData(data);
+        callbacks.setData(data, favorites);
       }
       //console.debug(`Calling setTimeout for ${refreshTimeout}`);
       this.timeout = setTimeout(() => { this.start() }, refreshTimeout);
@@ -58,10 +58,7 @@ export default class Data {
     const query = `{
       actor {
         nerdStorage {
-          collection(collection: "v0-geoops-favorites") {
-            document
-            id
-          }
+          document(collection: "v0-infra-geoops", documentId: "favorites")
         }
         entities(guids: [${entityGuids.map(guid => `"${guid}"`)}]) {
           domain
@@ -94,8 +91,8 @@ export default class Data {
       const entityGuids = demoMode ? this._demoModeGuids(config) : this._joinLogicGuids(config);
       //console.debug(entityGuids);
       NerdGraphQuery.query({ query: gql`${this._entityAndAlertGql(entityGuids)}`}).then(({ data }) => {
-        //console.debug(data);
-        const favorites = data.actor.nerdStorage.collection[0];
+        console.debug(data);
+        const favorites = data.actor.nerdStorage.document;
         const points = [];
         config.locations.forEach(l => {
           const point = Object.assign({}, l);
@@ -110,7 +107,7 @@ export default class Data {
           }
           points.push(point);
         });
-        resolve(points.sort((a, b) => a.favorite ? 1 : b.favorite ? -1 : 0));
+        resolve({ data: points.sort((a, b) => a.favorite ? 1 : b.favorite ? -1 : 0), favorites });
       });
     });
   }
