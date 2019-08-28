@@ -319,12 +319,36 @@ span.infoPanelStatLabel {
   margin-top: 10px;
 }
 
-.entityTable {
-  width: 120%;
-  thead {
-    th {
-      line-height: 1em !important;
-      padding: 5px !important;
+.entityModal {
+  width: 400px;
+}
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-width: 350px;
+  & > div {
+    margin: 10px;
+    width: 100%;
+    overflow-y: scroll;
+  }
+  .headingContainer {
+    display: flex;
+    flex-direction: row;
+    min-height: 55px;
+  }
+  .entityTableContainer {
+    max-height: 250px;
+  }
+  .entityTabsContainer {
+    max-height: 50%;
+  }
+  .entityTable {
+    thead {
+      th {
+        line-height: 1em !important;
+        padding: 5px !important;
+      }
     }
   }
 }

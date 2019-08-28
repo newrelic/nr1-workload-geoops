@@ -108,11 +108,23 @@ export default class EntityTable extends Component {
 
   render() {
     const { entities } = this.props;
+    console.debug(entities);
     return (
       <BootstrapTable
         keyField="guid"
         headerClasses="header-row"
-        data={entities}
+        data={entities.sort((a, b) => {
+          if (a.alertSeverity == 'CRITICAL') {
+            return -1;
+          } else if (b.alertSeverity == 'CRITICAL') {
+            return 1;
+          } else if (a.alertSeverity == 'WARNING') {
+            return -1;
+          } else if (b.alertSeverity == 'WARNING') {
+            return 1;
+          }
+          return 0;
+        })}
         columns={this.tableColumns()}
         classes="entityTable"
         bordered={false}

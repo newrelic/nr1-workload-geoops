@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, LineChart, TableChart, HeadingText, BlockText, Button, StackItem, Stack, Tabs, TabsItem } from 'nr1';
+import { Modal, LineChart, TableChart, HeadingText, BlockText, Tabs, TabsItem } from 'nr1';
 import EntityTable from './entity-table';
 import geoopsConfig from "../../geoopsConfig";
 import moment from 'moment';
@@ -30,25 +30,23 @@ export default class DetailModal extends Component {
     const { accountId } = config.entities.joins.INFRA.nrql;
     console.debug([infraGuidsForNrql, apmGuidsForNrql]);
     return (
-      <Modal hidden={hidden} onClose={() => { callbacks.closeModal(); }} style={{padding: '0 !important'}}>
-        <Stack
-          directionType={Stack.DIRECTION_TYPE.VERTICAL}
-          gapType={Stack.GAP_TYPE.LOOSE}>
-          <StackItem className="locationHeader">
+      <Modal className="entityModal" hidden={hidden} onClose={() => { callbacks.closeModal(); }} style={{padding: '0 !important'}}>
+        <div className="modalContainer">
+          <div className="headingContainer">
             <div className="storeStatus" style={{ backgroundColor: location.status.color}}></div>
             <div className="infoPanelHeaderPrimaryInfo">
                 <h4 className="infoPanelStoreId">Store: {location.locationId}</h4>
                 <span className="infoPanelLocation">{config.labels.address}: {location.municipatility}, {location.region}</span>
             </div>
-          </StackItem>
-          <StackItem>
+          </div>
+          <div className="entityTableContainer">
             <EntityTable
               entities={location.entities}
               configId={configId}
               callbacks={callbacks}
             />
-          </StackItem>
-          <StackItem>
+          </div>
+          <div className="entityTabsContainer">
             <Tabs defaultSelectedItem={0}>
               <TabsItem label="Devices" itemKey={0}>
                 <HeadingText type={HeadingText.TYPE.HEADING4}>CPU utilization</HeadingText>
@@ -103,8 +101,8 @@ export default class DetailModal extends Component {
                 />
               </TabsItem>}
             </Tabs>
-          </StackItem>
-        </Stack>
+          </div>
+        </div>
       </Modal>
     );
   }
