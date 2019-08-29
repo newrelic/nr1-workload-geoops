@@ -15,8 +15,8 @@ This project is distributed under the [Apache 2 license](blob/master/LICENSE).
 ## What do you need to make this work?
 
 1. [New Relic Infrastructure Agent(s) installed](https://newrelic.com/products/infrastructure) and the related access to [New Relic One](https://newrelic.com/platform).
-2. (Recommended) Add the customer-defined `locationId` to the `newrelic_infra.yml`. See an example [here](blob/master/examples/example_newrelic_infra.yml).
-3. (Currently) Updating (or replacing) the [geoopsConfig.js](blob/master/geoopsConfig.js) file.
+2. (Recommended) Add the customer-defined `locationId` to the `newrelic_infra.yml`. See an example [here](examples/example_newrelic_infra.yml).
+3. (Currently) Updating (or replacing) the [geoopsConfig.js](geoopsConfig.js) file.
 
 ## Getting started
 
@@ -46,10 +46,10 @@ https://discuss.newrelic.com/c/build-on-new-relic/nr1-infra-geoops-nerdpack
 
 ## Issues / Enhancement Requests
 
-Issues and enhancement requests can be submitted in the [Issues tab of this repository](issues). Please search for and review the existing open issues before submitting a new issue.
+Issues and enhancement requests can be submitted in the [Issues tab of this repository](../../issues). Please search for and review the existing open issues before submitting a new issue.
 
 # Contributing
 
-Contributions are welcome (and if you submit a Enhancement Request, expect to be invited to contribute it yourself :grin:). Please review our [Contributors Guide](blob/master/CONTRIBUTING.md).
+Contributions are welcome (and if you submit a Enhancement Request, expect to be invited to contribute it yourself :grin:). Please review our [Contributors Guide](CONTRIBUTING.md).
 
 Keep in mind that when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. If you'd like to execute our corporate CLA, or if you have any questions, please drop us an email at opensource@newrelic.com.
