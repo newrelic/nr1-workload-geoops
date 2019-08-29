@@ -27,10 +27,10 @@ const geoopsConfig = [
           }
         },
         APM: {
-          associationType: ["nrqlToEntitySearch"], //other array options: "relationships"
+          associationType: ["relationships"], //other array options: "nrqlToEntitySearch" "relationships"
           nrql: {
             accountId: 2220678,
-            query: "FROM Transaction SELECT latest(timestamp) FACET entityGuid, appName WHERE locationId in (%1)"
+            query: "FROM Transaction SELECT latest(timestamp) FACET entityGuid, appName WHERE locationId in (%1) or entityGuid in (%2)"
           }
         }
       }
