@@ -1,16 +1,16 @@
-# nr1-infra-geoops-nerdpack
+# nr1-infra-geoops
 
-![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/newrelic/nr1-infra-geoops-nerdpack?include_prereleases&sort=semver) ![AppVeyor](https://img.shields.io/appveyor/ci/newrelic/nr1-infra-geoops-nerdpack) [![Snyk](https://snyk.io/test/github/newrelic/nr1-infra-geoops-nerdpack/badge.svg)](https://snyk.io/test/github/hospitalrun/hospitalrun-frontend)
+![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/newrelic/nr1-infra-geoops?include_prereleases&sort=semver) ![AppVeyor](https://img.shields.io/appveyor/ci/newrelic/nr1-infra-geoops) [![Snyk](https://snyk.io/test/github/newrelic/nr1-infra-geoops-nerdpack/badge.svg)](https://snyk.io/test/github/newrelic/nr1-infra-geoops)
 
 ## Usage
 
-nr1-infra-geoops-nerdpack provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
+nr1-infra-geoops provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
 
 ![Screenshot #1](screenshots/screenshot_01.png)
 
 ## Open Source License
 
-This project is distributed under the [Apache 2 license](blob/master/LICENSE).
+This project is distributed under the [Apache 2 license](LICENSE).
 
 ## What do you need to make this work?
 
@@ -23,8 +23,8 @@ This project is distributed under the [Apache 2 license](blob/master/LICENSE).
 Clone this repository and run the following scripts:
 
 ```bash
-git clone https://github.com/newrelic/nr1-infra-geoops-nerdpack.git
-cd nr1-infra-geoops-nerdpack
+git clone https://github.com/newrelic/nr1-infra-geoops.git
+cd nr1-infra-geoops
 npm install
 npm start
 ```
@@ -41,7 +41,7 @@ _Please do not report issues with this software to New Relic Global Technical Su
 
 New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorer's Hub. You can find this project's topic/threads here:
 
-https://discuss.newrelic.com/c/build-on-new-relic/nr1-infra-geoops-nerdpack
+https://discuss.newrelic.com/c/build-on-new-relic/nr1-infra-geoops
 *(Note: URL subject to change before GA)*
 
 ## Issues / Enhancement Requests
