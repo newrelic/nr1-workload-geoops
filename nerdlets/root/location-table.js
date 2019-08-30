@@ -19,6 +19,7 @@ export default class LocationTable extends Component {
 
   constructor(props) {
     super(props);
+    //console.debug(props);
     this.statusColFormatter = this.statusColFormatter.bind(this);
     this.favoriteColFormatter = this.favoriteColFormatter.bind(this);
     this.formatIncidentDate = this.formatIncidentDate.bind(this);
@@ -103,7 +104,9 @@ export default class LocationTable extends Component {
   }
 
   statusColFormatter(cell, row) {
-    if (row.status.color === "red") {
+    if (row.status.color === "darkred") {
+      return <span className="statusCell darkred" />;
+    } else if (row.status.color === "red") {
       return <span className="statusCell red" />;
     } else if (row.status.color === "yellow") {
       return <span className="statusCell yellow" />;
@@ -137,6 +140,7 @@ export default class LocationTable extends Component {
 
   render() {
     const { data } = this.props;
+    console.debug(data);
     return (
       <BootstrapTable
         keyField="id"

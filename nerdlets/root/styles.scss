@@ -30,6 +30,11 @@
       border: none;
       border-radius: 100%;
 
+      &.darkred {
+        background-color: darkred;
+        box-shadow: 0 0 0 2px #6F000D;
+      }
+
       &.red {
         background-color: #BF0016;
         box-shadow: 0 0 0 2px #6F000D;
@@ -90,6 +95,10 @@
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
+
+  &.darkred {
+    background-color: darkred;
+  }
 
   &.red {
     background-color: #bf0015;
@@ -279,6 +288,10 @@ span.infoPanelStatLabel {
   top: 0;
   bottom: 0;
   left: 0;
+
+  &.darkred {
+    background-color: darkred;
+  }
 
   &.red {
     background-color: #BF0015;
