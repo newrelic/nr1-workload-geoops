@@ -25,6 +25,7 @@ Clone this repository and run the following scripts:
 ```bash
 git clone https://github.com/newrelic/nr1-infra-geoops.git
 cd nr1-infra-geoops
+nr1 nerdpack:uuid -gf
 npm install
 npm start
 ```
