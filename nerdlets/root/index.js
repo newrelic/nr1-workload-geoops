@@ -73,7 +73,7 @@ export default class GeoOpsNerdlet extends Component {
     const { configId, data, location } = this.state;
     if (!data) {
         return <div className="geoOpsContainer">
-            <Spinner fillContainer />
+            <Spinner/>
         </div>
     }
 

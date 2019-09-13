@@ -47,8 +47,8 @@ export default class DetailModal extends Component {
             />
           </div>
           <div className="entityTabsContainer">
-            <Tabs defaultSelectedItem={0}>
-              <TabsItem label="Devices" itemKey={0}>
+            <Tabs defaultValue={0}>
+              <TabsItem label="Devices" value={0}>
                 <HeadingText type={HeadingText.TYPE.HEADING4}>CPU utilization</HeadingText>
                 <BlockText>since {since}</BlockText>
                 <LineChart
@@ -71,7 +71,7 @@ export default class DetailModal extends Component {
                   className="chart"
                 />
               </TabsItem>
-              {apmGuidsForNrql && apmGuidsForNrql.length > 0 && <TabsItem label="Apps" itemKey={1}>
+              {apmGuidsForNrql && apmGuidsForNrql.length > 0 && <TabsItem label="Apps" value={1}>
               <HeadingText type={HeadingText.TYPE.HEADING4}>Transaction count</HeadingText>
                 <BlockText>since {since}</BlockText>
                 <LineChart
