@@ -92,7 +92,7 @@ export default class Data {
       //console.debug(entityGuids);
       NerdGraphQuery.query({ query: gql`${this._entityAndAlertGql(entityGuids)}`}).then(({ data }) => {
         console.debug(data);
-        const favorites = data.actor.nerdStorage.document;
+        const favorites = data.actor.nerdStorage.document.favorites;
         const points = [];
         config.locations.forEach(l => {
           const point = Object.assign({}, l);
