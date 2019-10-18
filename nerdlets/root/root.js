@@ -57,16 +57,22 @@ export default class GeoOpsNerdlet extends Component {
     const location = data.find(l => l.id == id);
     location.favorite = !location.favorite;
     //console.debug(`Setting location ${id} to a favorite status of ${location.favorite}`)
-    this.setState({ data: data, favorites });
+    this.setState({ data, favorites });
   }
 
   setData(data, favorites) {
     //console.debug("Setting data", data);
-    this.setState({data, favorites});
+    this.setState({ data, favorites: favorites ? favorites : [] });
   }
 
   onClick(location) {
     this.setState({ location, hidden: false });
+  }
+
+  componentWillUnmount() {
+    if (this.dataProcess) {
+      this.dataProcess.stop();
+    }
   }
 
   render() {

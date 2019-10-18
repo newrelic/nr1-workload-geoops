@@ -33,6 +33,11 @@ export default class Data {
     this.refreshState = false;
   }
 
+  stop() {
+    this.refreshState = false;
+    clearTimeout(this.timeout);
+  }
+
   /**
    * Logic:
    * - lookup all the locationId values for the selected config
@@ -92,7 +97,7 @@ export default class Data {
       //console.debug(entityGuids);
       NerdGraphQuery.query({ query: gql`${this._entityAndAlertGql(entityGuids)}`}).then(({ data }) => {
         console.debug(data);
-        const favorites = data.actor.nerdStorage.document.favorites;
+        const favorites = data.actor.nerdStorage.document ? data.actor.nerdStorage.document.favorites : [];
         const points = [];
         config.locations.forEach(l => {
           const point = Object.assign({}, l);
