@@ -1,18 +1,18 @@
 /*
-* Copyright 2019 New Relic Corporation. All rights reserved.
-* SPDX-License-Identifier: Apache-2.0
+ * Copyright 2019 New Relic Corporation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Map, TileLayer, Marker } from "react-leaflet";
-import { generateIcon } from "./utils";
-import geoopsConfig from "../../geoopsConfig";
+import { Map, TileLayer, Marker } from 'react-leaflet';
+import { generateIcon } from './utils';
+import geoopsConfig from '../../geoopsConfig';
 
 export default class PoSMap extends Component {
   static propTypes = {
     configId: PropTypes.any.isRequired,
     data: PropTypes.array.isRequired,
-    callbacks: PropTypes.object.isRequired
+    callbacks: PropTypes.object.isRequired,
   };
 
   render() {
@@ -37,7 +37,9 @@ export default class PoSMap extends Component {
               <Marker
                 key={row.id}
                 position={[row.lat, row.lng]}
-                onClick={() => { callbacks.onClick(row); }}
+                onClick={() => {
+                  callbacks.onClick(row);
+                }}
                 _did={row.locationId}
                 icon={icon}
               />
@@ -45,6 +47,6 @@ export default class PoSMap extends Component {
           })}
         </Map>
       </div>
-    )
+    );
   }
 }

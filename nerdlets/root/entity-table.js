@@ -1,12 +1,12 @@
 /*
-* Copyright 2019 New Relic Corporation. All rights reserved.
-* SPDX-License-Identifier: Apache-2.0
+ * Copyright 2019 New Relic Corporation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
  */
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import BootstrapTable from "react-bootstrap-table-next";
-import geoopsConfig from "../../geoopsConfig";
-import { navigation } from "nr1";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import BootstrapTable from 'react-bootstrap-table-next';
+import geoopsConfig from '../../geoopsConfig';
+import { navigation } from 'nr1';
 import { sortCaret } from './utils';
 import moment from 'moment';
 
@@ -14,7 +14,7 @@ export default class EntityTable extends Component {
   static propTypes = {
     entities: PropTypes.array.isRequired,
     configId: PropTypes.any.isRequired,
-    callbacks: PropTypes.object.isRequired
+    callbacks: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -26,9 +26,11 @@ export default class EntityTable extends Component {
 
   formatIncidentDate(cell, row) {
     if (row.lastIncidentTimestamp <= 0) {
-      return "N/A";
+      return 'N/A';
     } else {
-      return moment(row.lastIncidentTimestamp).startOf("day").fromNow();
+      return moment(row.lastIncidentTimestamp)
+        .startOf('day')
+        .fromNow();
     }
   }
 
@@ -38,7 +40,7 @@ export default class EntityTable extends Component {
 
   _openEntity(row) {
     const { guid, domain, type } = row;
-    console.debug({ entityGuid: guid, domain, type })
+    console.debug({ entityGuid: guid, domain, type });
     navigation.openStackedEntity(guid);
   }
 
@@ -49,20 +51,20 @@ export default class EntityTable extends Component {
 
     const tableColumns = [
       {
-        dataField: "status.color",
-        text: "",
+        dataField: 'status.color',
+        text: '',
         sort: true,
         formatter: this.statusColFormatter,
-        classes: "noTitle statusCol",
+        classes: 'noTitle statusCol',
         sortCaret: sortCaret,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this._openEntity(row);
           },
-        }
+        },
       },
       {
-        dataField: "name",
+        dataField: 'name',
         text: config.labels.entityName,
         formatter: this.formatEntityName,
         sort: true,
@@ -71,10 +73,10 @@ export default class EntityTable extends Component {
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this._openEntity(row);
           },
-        }
+        },
       },
       {
-        dataField: "lastIncidentTimestamp",
+        dataField: 'lastIncidentTimestamp',
         formatter: this.formatIncidentDate,
         text: config.labels.lastIncident,
         sort: true,
@@ -87,19 +89,19 @@ export default class EntityTable extends Component {
               this._openEntity(row);
             }
           },
-        }
-      }
+        },
+      },
     ];
     return tableColumns;
   }
 
   statusColFormatter(cell, row) {
     const { alertSeverity } = row;
-    if (alertSeverity === "CRITICAL") {
+    if (alertSeverity === 'CRITICAL') {
       return <span className="statusCell red" />;
-    } else if (alertSeverity === "WARNING") {
+    } else if (alertSeverity === 'WARNING') {
       return <span className="statusCell yellow" />;
-    } else if (alertSeverity === "NOT_ALERTING") {
+    } else if (alertSeverity === 'NOT_ALERTING') {
       return <span className="statusCell green" />;
     }
 
