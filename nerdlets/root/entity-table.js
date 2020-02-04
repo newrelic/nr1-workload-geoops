@@ -13,8 +13,8 @@ import moment from 'moment';
 export default class EntityTable extends Component {
   static propTypes = {
     entities: PropTypes.array.isRequired,
-    configId: PropTypes.any.isRequired,
-    callbacks: PropTypes.object.isRequired
+    configId: PropTypes.string.isRequired
+    // callbacks: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -40,6 +40,7 @@ export default class EntityTable extends Component {
 
   _openEntity(row) {
     const { guid, domain, type } = row;
+    // eslint-disable-next-line no-console
     console.debug({ entityGuid: guid, domain, type });
     navigation.openStackedEntity(guid);
   }
@@ -58,6 +59,7 @@ export default class EntityTable extends Component {
         classes: 'noTitle statusCol',
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this._openEntity(row);
           }
@@ -70,6 +72,7 @@ export default class EntityTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this._openEntity(row);
           }
@@ -82,6 +85,7 @@ export default class EntityTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             if (row.lastIncident && row.lastIncident.violationUrl) {
               window.open(row.lastIncident.violationUrl);
@@ -110,7 +114,7 @@ export default class EntityTable extends Component {
 
   render() {
     const { entities } = this.props;
-    console.debug(entities);
+    // console.debug(entities);
     return (
       <BootstrapTable
         keyField="guid"

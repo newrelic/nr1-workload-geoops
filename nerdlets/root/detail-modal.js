@@ -19,8 +19,8 @@ import moment from 'moment';
 
 export default class DetailModal extends Component {
   static propTypes = {
-    configId: PropTypes.any.isRequired,
-    data: PropTypes.array.isRequired,
+    configId: PropTypes.string.isRequired,
+    // data: PropTypes.array.isRequired,
     hidden: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     callbacks: PropTypes.object.isRequired,
@@ -42,6 +42,7 @@ export default class DetailModal extends Component {
       .fromNow();
     const durationInMinutes = duration / 1000 / 60;
     const { accountId } = config.entities.joins.INFRA.nrql;
+    // eslint-disable-next-line no-console
     console.debug([infraGuidsForNrql, apmGuidsForNrql]);
     return (
       <Modal

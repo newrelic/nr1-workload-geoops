@@ -23,7 +23,7 @@ export default class GeoOpsNerdlet extends Component {
       data: null,
       hidden: true,
       location: null,
-      favorites: null
+      favorites: []
     };
     this.callbacks = {
       onClick: this.onClick.bind(this),
@@ -39,19 +39,26 @@ export default class GeoOpsNerdlet extends Component {
     });
   }
 
+  componentWillUnmount() {
+    if (this.dataProcess) {
+      this.dataProcess.stop();
+    }
+  }
+
   closeModal() {
     this.setState({ hidden: true, location: null });
   }
 
   setFavorite(id) {
-    const { data } = this.state;
-    let favorites = this.state.favorites ? this.state.favorites : [];
+    const { data, favorites } = this.state;
+    let newFavorites = [];
     const favorite = favorites.find(f => f === id);
     if (favorite) {
-      favorites = favorites.filter(f => f != id);
+      newFavorites = favorites.filter(f => f !== id);
     } else {
-      favorites.push(id);
+      newFavorites.push(id);
     }
+    // eslint-disable-next-line no-console
     console.debug(`Writing ${favorites}`);
     UserStorageMutation.mutate({
       actionType: UserStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
@@ -59,10 +66,10 @@ export default class GeoOpsNerdlet extends Component {
       documentId: 'favorites',
       document: { favorites }
     });
-    const location = data.find(l => l.id == id);
+    const location = data.find(l => l.id === id);
     location.favorite = !location.favorite;
     // console.debug(`Setting location ${id} to a favorite status of ${location.favorite}`)
-    this.setState({ data, favorites });
+    this.setState({ data, favorites: newFavorites });
   }
 
   setData(data, favorites) {
@@ -72,12 +79,6 @@ export default class GeoOpsNerdlet extends Component {
 
   onClick(location) {
     this.setState({ location, hidden: false });
-  }
-
-  componentWillUnmount() {
-    if (this.dataProcess) {
-      this.dataProcess.stop();
-    }
   }
 
   render() {

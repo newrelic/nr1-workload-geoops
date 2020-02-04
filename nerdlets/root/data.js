@@ -92,7 +92,7 @@ export default class Data {
   _refreshData() {
     return new Promise(resolve => {
       const { configId, demoMode } = this.options;
-      const config = geoopsConfig.find(c => c.id == configId);
+      const config = geoopsConfig.find(c => c.id === configId);
       // console.debug(config);
       const entityGuids = demoMode
         ? this._demoModeGuids(config)
@@ -103,6 +103,7 @@ export default class Data {
           ${this._entityAndAlertGql(entityGuids)}
         `
       }).then(({ data }) => {
+        // eslint-disable-next-line no-console
         console.debug(data);
         const favorites = data.actor.nerdStorage.document
           ? data.actor.nerdStorage.document.favorites
@@ -118,14 +119,18 @@ export default class Data {
             ? point.lastIncident.openedAt
             : 0;
           point.favorite =
-            favorites && favorites.find(favorite => favorite == point.id);
+            favorites && favorites.find(favorite => favorite === point.id);
           if (!point.favorite) {
             point.favorite = false;
           }
           points.push(point);
         });
+
         resolve({
-          data: points.sort((a, b) => (a.favorite ? 1 : b.favorite ? -1 : 0)),
+          data: points.sort((a, b) => {
+            // eslint-disable-next-line no-nested-ternary
+            return a.favorite ? 1 : b.favorite ? -1 : 0;
+          }),
           favorites
         });
       });
@@ -229,7 +234,9 @@ export default class Data {
    * WIP
    */
   _joinLogicGuids(config) {
+    // eslint-disable-next-line no-unused-vars
     const locationIds = config.locations.map(l => l.locationId);
+    // eslint-disable-next-line no-unused-vars
     const { joins, additionalEntityTypes } = config;
   }
 }
