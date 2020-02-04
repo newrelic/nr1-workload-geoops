@@ -97,11 +97,11 @@ export default class EntityTable extends Component {
 
   statusColFormatter(cell, row) {
     const { alertSeverity } = row;
-    if (alertSeverity ==== 'CRITICAL') {
+    if (alertSeverity === 'CRITICAL') {
       return <span className="statusCell red" />;
-    } else if (alertSeverity ==== 'WARNING') {
+    } else if (alertSeverity === 'WARNING') {
       return <span className="statusCell yellow" />;
-    } else if (alertSeverity ==== 'NOT_ALERTING') {
+    } else if (alertSeverity === 'NOT_ALERTING') {
       return <span className="statusCell green" />;
     }
 

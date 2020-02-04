@@ -13,6 +13,7 @@ import moment from 'moment';
 export default class LocationTable extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
+    // eslint-disable-next-line react/forbid-prop-types
     configId: PropTypes.any.isRequired,
     callbacks: PropTypes.object.isRequired
   };
@@ -57,6 +58,7 @@ export default class LocationTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this.props.callbacks.setFavorite(row.id);
           }
@@ -68,6 +70,7 @@ export default class LocationTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this.props.callbacks.onClick(row);
           }
@@ -80,6 +83,7 @@ export default class LocationTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             if (row.lastIncident && row.lastIncident.violationUrl) {
               window.open(row.lastIncident.violationUrl);
@@ -96,6 +100,7 @@ export default class LocationTable extends Component {
         classes: 'stateCol',
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this.props.callbacks.onClick(row);
           }
@@ -106,13 +111,13 @@ export default class LocationTable extends Component {
   }
 
   statusColFormatter(cell, row) {
-    if (row.status.color ==== 'darkred') {
+    if (row.status.color === 'darkred') {
       return <span className="statusCell darkred" />;
-    } else if (row.status.color ==== 'red') {
+    } else if (row.status.color === 'red') {
       return <span className="statusCell red" />;
-    } else if (row.status.color ==== 'yellow') {
+    } else if (row.status.color === 'yellow') {
       return <span className="statusCell yellow" />;
-    } else if (row.status.color ==== 'green') {
+    } else if (row.status.color === 'green') {
       return <span className="statusCell green" />;
     }
 
@@ -120,8 +125,6 @@ export default class LocationTable extends Component {
   }
 
   favoriteColFormatter(cell, row) {
-    //eslint-disable-line
-    // console.debug(row);
     if (row.favorite) {
       return (
         <Icon
@@ -142,7 +145,7 @@ export default class LocationTable extends Component {
 
   render() {
     const { data } = this.props;
-    console.debug(data);
+
     return (
       <BootstrapTable
         keyField="id"

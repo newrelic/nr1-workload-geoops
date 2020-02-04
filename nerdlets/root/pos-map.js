@@ -10,6 +10,7 @@ import geoopsConfig from '../../geoopsConfig';
 
 export default class PoSMap extends Component {
   static propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     configId: PropTypes.any.isRequired,
     data: PropTypes.array.isRequired,
     callbacks: PropTypes.object.isRequired

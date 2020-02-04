@@ -92,7 +92,7 @@ export default class Data {
   _refreshData() {
     return new Promise(resolve => {
       const { configId, demoMode } = this.options;
-      const config = geoopsConfig.find(c => c.id === configId);
+      const config = geoopsConfig.find(c => c.id == configId);
       // console.debug(config);
       const entityGuids = demoMode
         ? this._demoModeGuids(config)
@@ -118,7 +118,7 @@ export default class Data {
             ? point.lastIncident.openedAt
             : 0;
           point.favorite =
-            favorites && favorites.find(favorite => favorite === point.id);
+            favorites && favorites.find(favorite => favorite == point.id);
           if (!point.favorite) {
             point.favorite = false;
           }
