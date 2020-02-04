@@ -46,7 +46,7 @@ export default class GeoOpsNerdlet extends Component {
   setFavorite(id) {
     const { data } = this.state;
     let favorites = this.state.favorites ? this.state.favorites : [];
-    const favorite = favorites.find(f => f == id);
+    const favorite = favorites.find(f => f === id);
     if (favorite) {
       favorites = favorites.filter(f => f != id);
     } else {
@@ -59,7 +59,7 @@ export default class GeoOpsNerdlet extends Component {
       documentId: 'favorites',
       document: { favorites }
     });
-    const location = data.find(l => l.id == id);
+    const location = data.find(l => l.id === id);
     location.favorite = !location.favorite;
     // console.debug(`Setting location ${id} to a favorite status of ${location.favorite}`)
     this.setState({ data, favorites });

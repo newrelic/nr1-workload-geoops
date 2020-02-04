@@ -38,7 +38,7 @@ export default class LocationTable extends Component {
   tableColumns() {
     const { configId } = this.props;
     // we need the labels object in the config to assign column headers
-    const config = geoopsConfig.find(c => c.id == configId);
+    const config = geoopsConfig.find(c => c.id === configId);
 
     const tableColumns = [
       {
@@ -106,13 +106,13 @@ export default class LocationTable extends Component {
   }
 
   statusColFormatter(cell, row) {
-    if (row.status.color === 'darkred') {
+    if (row.status.color ==== 'darkred') {
       return <span className="statusCell darkred" />;
-    } else if (row.status.color === 'red') {
+    } else if (row.status.color ==== 'red') {
       return <span className="statusCell red" />;
-    } else if (row.status.color === 'yellow') {
+    } else if (row.status.color ==== 'yellow') {
       return <span className="statusCell yellow" />;
-    } else if (row.status.color === 'green') {
+    } else if (row.status.color ==== 'green') {
       return <span className="statusCell green" />;
     }
 

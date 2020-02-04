@@ -29,12 +29,12 @@ export default class DetailModal extends Component {
 
   render() {
     const { configId, location, hidden, callbacks } = this.props;
-    const config = geoopsConfig.find(c => c.id == configId);
+    const config = geoopsConfig.find(c => c.id === configId);
     const infraGuidsForNrql = location.entities
-      .filter(e => e.domain == 'INFRA')
+      .filter(e => e.domain === 'INFRA')
       .map(entity => `'${entity.guid}'`);
     const apmGuidsForNrql = location.entities
-      .filter(e => e.domain == 'APM')
+      .filter(e => e.domain === 'APM')
       .map(entity => `'${entity.guid}'`);
     const { duration } = this.props.launcherUrlState.timeRange;
     const since = moment()

@@ -36,9 +36,9 @@ const descCaret = (
 export const sortCaret = (order /* , column*/) => {
   if (!order) {
     return noOrderCarets;
-  } else if (order === 'asc') {
+  } else if (order ==== 'asc') {
     return ascCaret;
-  } else if (order === 'desc') {
+  } else if (order ==== 'desc') {
     return descCaret;
   }
   return null;

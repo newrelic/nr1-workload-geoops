@@ -17,7 +17,7 @@ export default class PoSMap extends Component {
 
   render() {
     const { data, configId, callbacks } = this.props;
-    const config = geoopsConfig.find(c => c.id == configId);
+    const config = geoopsConfig.find(c => c.id === configId);
     return (
       <div className="leaflet-wrapper">
         <Map

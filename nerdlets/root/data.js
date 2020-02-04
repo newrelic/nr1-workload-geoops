@@ -92,7 +92,7 @@ export default class Data {
   _refreshData() {
     return new Promise(resolve => {
       const { configId, demoMode } = this.options;
-      const config = geoopsConfig.find(c => c.id == configId);
+      const config = geoopsConfig.find(c => c.id === configId);
       // console.debug(config);
       const entityGuids = demoMode
         ? this._demoModeGuids(config)
@@ -118,7 +118,7 @@ export default class Data {
             ? point.lastIncident.openedAt
             : 0;
           point.favorite =
-            favorites && favorites.find(favorite => favorite == point.id);
+            favorites && favorites.find(favorite => favorite === point.id);
           if (!point.favorite) {
             point.favorite = false;
           }
@@ -170,17 +170,17 @@ export default class Data {
   }
 
   _rollupStatus(point) {
-    if (!point.entities || point.entities.length == 0) {
+    if (!point.entities || point.entities.length === 0) {
       return {
         color: 'grey',
         status: 0
       };
     }
     const obj = {
-      CRITICAL: point.entities.filter(e => e.alertSeverity == 'CRITICAL'),
-      WARNING: point.entities.filter(e => e.alertSeverity == 'WARNING'),
+      CRITICAL: point.entities.filter(e => e.alertSeverity === 'CRITICAL'),
+      WARNING: point.entities.filter(e => e.alertSeverity === 'WARNING'),
       NOT_ALERTING: point.entities.filter(
-        e => e.alertSeverity == 'NOT_ALERTING'
+        e => e.alertSeverity === 'NOT_ALERTING'
       )
     };
     if (obj.CRITICAL && obj.CRITICAL.length > 1) {

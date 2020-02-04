@@ -47,7 +47,7 @@ export default class EntityTable extends Component {
   tableColumns() {
     const { configId } = this.props;
     // we need the labels object in the config to assign column headers
-    const config = geoopsConfig.find(c => c.id == configId);
+    const config = geoopsConfig.find(c => c.id === configId);
 
     const tableColumns = [
       {
@@ -97,11 +97,11 @@ export default class EntityTable extends Component {
 
   statusColFormatter(cell, row) {
     const { alertSeverity } = row;
-    if (alertSeverity === 'CRITICAL') {
+    if (alertSeverity ==== 'CRITICAL') {
       return <span className="statusCell red" />;
-    } else if (alertSeverity === 'WARNING') {
+    } else if (alertSeverity ==== 'WARNING') {
       return <span className="statusCell yellow" />;
-    } else if (alertSeverity === 'NOT_ALERTING') {
+    } else if (alertSeverity ==== 'NOT_ALERTING') {
       return <span className="statusCell green" />;
     }
 
@@ -116,13 +116,13 @@ export default class EntityTable extends Component {
         keyField="guid"
         headerClasses="header-row"
         data={entities.sort((a, b) => {
-          if (a.alertSeverity == 'CRITICAL') {
+          if (a.alertSeverity === 'CRITICAL') {
             return -1;
-          } else if (b.alertSeverity == 'CRITICAL') {
+          } else if (b.alertSeverity === 'CRITICAL') {
             return 1;
-          } else if (a.alertSeverity == 'WARNING') {
+          } else if (a.alertSeverity === 'WARNING') {
             return -1;
-          } else if (b.alertSeverity == 'WARNING') {
+          } else if (b.alertSeverity === 'WARNING') {
             return 1;
           }
           return 0;
