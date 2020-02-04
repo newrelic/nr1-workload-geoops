@@ -1,8 +1,8 @@
 /*
-* Copyright 2019 New Relic Corporation. All rights reserved.
-* SPDX-License-Identifier: Apache-2.0
+ * Copyright 2019 New Relic Corporation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
  */
-/*{
+/* {
   id: 0,
   status: "red",
   favorite: false,
@@ -11,9 +11,9 @@
   state: "MD"
 },*/
 import { NerdGraphQuery } from 'nr1';
-import geoopsConfig from "../../geoopsConfig";
+import geoopsConfig from '../../geoopsConfig';
 import gql from 'graphql-tag';
-//import sprintf from 'sprintf-js';
+// import sprintf from 'sprintf-js';
 
 /**
  * This is where the magic happens. See the logic in the start method.
@@ -21,7 +21,6 @@ import gql from 'graphql-tag';
  * alongside, alertStatus and lastIncident data from an entity NerdGraph query.
  */
 export default class Data {
-
   constructor(options) {
     this.options = options;
     this.refreshState = true;
@@ -54,8 +53,10 @@ export default class Data {
       if (this.refreshState) {
         callbacks.setData(data, favorites);
       }
-      //console.debug(`Calling setTimeout for ${refreshTimeout}`);
-      this.timeout = setTimeout(() => { this.start() }, refreshTimeout);
+      // console.debug(`Calling setTimeout for ${refreshTimeout}`);
+      this.timeout = setTimeout(() => {
+        this.start();
+      }, refreshTimeout);
     });
   }
 
@@ -83,8 +84,8 @@ export default class Data {
           accountId
         }
       }
-    }`
-    //console.debug(query);
+    }`;
+    // console.debug(query);
     return query;
   }
 
@@ -92,27 +93,41 @@ export default class Data {
     return new Promise(resolve => {
       const { configId, demoMode } = this.options;
       const config = geoopsConfig.find(c => c.id == configId);
-      //console.debug(config);
-      const entityGuids = demoMode ? this._demoModeGuids(config) : this._joinLogicGuids(config);
-      //console.debug(entityGuids);
-      NerdGraphQuery.query({ query: gql`${this._entityAndAlertGql(entityGuids)}`}).then(({ data }) => {
+      // console.debug(config);
+      const entityGuids = demoMode
+        ? this._demoModeGuids(config)
+        : this._joinLogicGuids(config);
+      // console.debug(entityGuids);
+      NerdGraphQuery.query({
+        query: gql`
+          ${this._entityAndAlertGql(entityGuids)}
+        `
+      }).then(({ data }) => {
         console.debug(data);
-        const favorites = data.actor.nerdStorage.document ? data.actor.nerdStorage.document.favorites : [];
+        const favorites = data.actor.nerdStorage.document
+          ? data.actor.nerdStorage.document.favorites
+          : [];
         const points = [];
         config.locations.forEach(l => {
-          const point = Object.assign({}, l);
+          const point = { ...l };
           point.entities = this._resolveEntities(point, data);
           point.status = this._rollupStatus(point);
           point.statusColor = point.status.color;
           point.lastIncident = this._rollupLastIncident(point);
-          point.lastIncidentTimestamp = point.lastIncident ? point.lastIncident.openedAt : 0;
-          point.favorite = favorites && favorites.find(favorite => favorite == point.id);
+          point.lastIncidentTimestamp = point.lastIncident
+            ? point.lastIncident.openedAt
+            : 0;
+          point.favorite =
+            favorites && favorites.find(favorite => favorite == point.id);
           if (!point.favorite) {
             point.favorite = false;
           }
           points.push(point);
         });
-        resolve({ data: points.sort((a, b) => a.favorite ? 1 : b.favorite ? -1 : 0), favorites });
+        resolve({
+          data: points.sort((a, b) => (a.favorite ? 1 : b.favorite ? -1 : 0)),
+          favorites
+        });
       });
     });
   }
@@ -128,7 +143,9 @@ export default class Data {
           entityGuids = entityGuids.concat(guids);
         }
       });
-      return dataSet.actor.entities.filter(entity => entityGuids.includes(entity.guid));
+      return dataSet.actor.entities.filter(entity =>
+        entityGuids.includes(entity.guid)
+      );
     } else {
       return [];
     }
@@ -141,9 +158,13 @@ export default class Data {
         if (!mostRecentIncident && entity.recentAlertViolations.length > 0) {
           mostRecentIncident = entity.recentAlertViolations[0];
         } else if (entity.recentAlertViolations.length > 0) {
-          mostRecentIncident = mostRecentIncident.openedAt > entity.recentAlertViolations[0].openedAt ? mostRecentIncident : entity.recentAlertViolations[0];
+          mostRecentIncident =
+            mostRecentIncident.openedAt >
+            entity.recentAlertViolations[0].openedAt
+              ? mostRecentIncident
+              : entity.recentAlertViolations[0];
         }
-      })
+      });
     }
     return mostRecentIncident;
   }
@@ -151,35 +172,37 @@ export default class Data {
   _rollupStatus(point) {
     if (!point.entities || point.entities.length == 0) {
       return {
-        color: "grey",
+        color: 'grey',
         status: 0
-      }
+      };
     }
     const obj = {
       CRITICAL: point.entities.filter(e => e.alertSeverity == 'CRITICAL'),
       WARNING: point.entities.filter(e => e.alertSeverity == 'WARNING'),
-      NOT_ALERTING: point.entities.filter(e => e.alertSeverity == 'NOT_ALERTING')
+      NOT_ALERTING: point.entities.filter(
+        e => e.alertSeverity == 'NOT_ALERTING'
+      )
     };
     if (obj.CRITICAL && obj.CRITICAL.length > 1) {
       return {
-        color: "darkred",
+        color: 'darkred',
         status: 4
-      }
+      };
     } else if (obj.CRITICAL && obj.CRITICAL.length > 0) {
       return {
-        color: "red",
+        color: 'red',
         status: 3
-      }
+      };
     } else if (obj.WARNING && obj.WARNING.length > 0) {
       return {
-        color: "yellow",
+        color: 'yellow',
         status: 2
-      }
+      };
     } else {
       return {
-        color: "green",
+        color: 'green',
         status: 1
-      }
+      };
     }
   }
 
@@ -191,9 +214,9 @@ export default class Data {
     let guids = [];
     config.locations.forEach(l => {
       const keys = Object.keys(l.demoMode);
-      //console.debug([keys, l]);
+      // console.debug([keys, l]);
       keys.forEach(k => {
-        //console.debug([k, l.demoMode[k]]);
+        // console.debug([k, l.demoMode[k]]);
         if (l.demoMode[k] != null) {
           guids = guids.concat(l.demoMode[k]);
         }
@@ -206,8 +229,7 @@ export default class Data {
    * WIP
    */
   _joinLogicGuids(config) {
-    const locationIds = config.locations.map(l => l.locationId );
+    const locationIds = config.locations.map(l => l.locationId);
     const { joins, additionalEntityTypes } = config;
-
   }
 }
