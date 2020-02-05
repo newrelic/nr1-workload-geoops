@@ -13,13 +13,14 @@ import moment from 'moment';
 export default class LocationTable extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
+    // eslint-disable-next-line react/forbid-prop-types
     configId: PropTypes.any.isRequired,
-    callbacks: PropTypes.object.isRequired,
+    callbacks: PropTypes.object.isRequired
   };
 
   constructor(props) {
     super(props);
-    //console.debug(props);
+    // console.debug(props);
     this.statusColFormatter = this.statusColFormatter.bind(this);
     this.favoriteColFormatter = this.favoriteColFormatter.bind(this);
     this.formatIncidentDate = this.formatIncidentDate.bind(this);
@@ -37,8 +38,8 @@ export default class LocationTable extends Component {
 
   tableColumns() {
     const { configId } = this.props;
-    //we need the labels object in the config to assign column headers
-    const config = geoopsConfig.find(c => c.id == configId);
+    // we need the labels object in the config to assign column headers
+    const config = geoopsConfig.find(c => c.id === configId);
 
     const tableColumns = [
       {
@@ -47,7 +48,7 @@ export default class LocationTable extends Component {
         sort: true,
         formatter: this.statusColFormatter,
         classes: 'noTitle statusCol',
-        sortCaret: sortCaret,
+        sortCaret: sortCaret
       },
       {
         dataField: 'favorite',
@@ -57,10 +58,11 @@ export default class LocationTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this.props.callbacks.setFavorite(row.id);
-          },
-        },
+          }
+        }
       },
       {
         dataField: 'locationName',
@@ -68,10 +70,11 @@ export default class LocationTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this.props.callbacks.onClick(row);
-          },
-        },
+          }
+        }
       },
       {
         dataField: 'lastIncidentTimestamp',
@@ -80,14 +83,15 @@ export default class LocationTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             if (row.lastIncident && row.lastIncident.violationUrl) {
               window.open(row.lastIncident.violationUrl);
             } else {
               this.props.callbacks.onClick(row);
             }
-          },
-        },
+          }
+        }
       },
       {
         dataField: 'region',
@@ -96,11 +100,12 @@ export default class LocationTable extends Component {
         classes: 'stateCol',
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this.props.callbacks.onClick(row);
-          },
-        },
-      },
+          }
+        }
+      }
     ];
     return tableColumns;
   }
@@ -120,8 +125,6 @@ export default class LocationTable extends Component {
   }
 
   favoriteColFormatter(cell, row) {
-    //eslint-disable-line
-    //console.debug(row);
     if (row.favorite) {
       return (
         <Icon
@@ -142,7 +145,7 @@ export default class LocationTable extends Component {
 
   render() {
     const { data } = this.props;
-    console.debug(data);
+
     return (
       <BootstrapTable
         keyField="id"

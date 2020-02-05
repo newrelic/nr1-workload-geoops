@@ -10,14 +10,15 @@ import geoopsConfig from '../../geoopsConfig';
 
 export default class PoSMap extends Component {
   static propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     configId: PropTypes.any.isRequired,
     data: PropTypes.array.isRequired,
-    callbacks: PropTypes.object.isRequired,
+    callbacks: PropTypes.object.isRequired
   };
 
   render() {
     const { data, configId, callbacks } = this.props;
-    const config = geoopsConfig.find(c => c.id == configId);
+    const config = geoopsConfig.find(c => c.id === configId);
     return (
       <div className="leaflet-wrapper">
         <Map

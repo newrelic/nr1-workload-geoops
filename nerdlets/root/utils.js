@@ -1,7 +1,4 @@
-/*
- * Copyright 2019 New Relic Corporation. All rights reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
+import React from 'react';
 import L from 'leaflet';
 import { ChevronUp, ChevronDown } from 'react-feather';
 
@@ -10,7 +7,7 @@ export const generateIcon = mark => {
   return L.divIcon({
     className: 'marker',
     iconSize: [10, 10],
-    html: `<span class="markerWrapper ${color}"></span>`,
+    html: `<span class="markerWrapper ${color}"></span>`
   });
 };
 
@@ -33,7 +30,7 @@ const descCaret = (
   </div>
 );
 
-export const sortCaret = (order /*, column*/) => {
+export const sortCaret = (order /* , column*/) => {
   if (!order) {
     return noOrderCarets;
   } else if (order === 'asc') {

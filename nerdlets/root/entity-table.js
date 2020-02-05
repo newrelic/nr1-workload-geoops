@@ -13,8 +13,8 @@ import moment from 'moment';
 export default class EntityTable extends Component {
   static propTypes = {
     entities: PropTypes.array.isRequired,
-    configId: PropTypes.any.isRequired,
-    callbacks: PropTypes.object.isRequired,
+    configId: PropTypes.string.isRequired
+    // callbacks: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -40,14 +40,15 @@ export default class EntityTable extends Component {
 
   _openEntity(row) {
     const { guid, domain, type } = row;
+    // eslint-disable-next-line no-console
     console.debug({ entityGuid: guid, domain, type });
     navigation.openStackedEntity(guid);
   }
 
   tableColumns() {
     const { configId } = this.props;
-    //we need the labels object in the config to assign column headers
-    const config = geoopsConfig.find(c => c.id == configId);
+    // we need the labels object in the config to assign column headers
+    const config = geoopsConfig.find(c => c.id === configId);
 
     const tableColumns = [
       {
@@ -58,10 +59,11 @@ export default class EntityTable extends Component {
         classes: 'noTitle statusCol',
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this._openEntity(row);
-          },
-        },
+          }
+        }
       },
       {
         dataField: 'name',
@@ -70,10 +72,11 @@ export default class EntityTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             this._openEntity(row);
-          },
-        },
+          }
+        }
       },
       {
         dataField: 'lastIncidentTimestamp',
@@ -82,15 +85,16 @@ export default class EntityTable extends Component {
         sort: true,
         sortCaret: sortCaret,
         events: {
+          // eslint-disable-next-line no-unused-vars
           onClick: (e, column, columnIndex, row, rowIndex) => {
             if (row.lastIncident && row.lastIncident.violationUrl) {
               window.open(row.lastIncident.violationUrl);
             } else {
               this._openEntity(row);
             }
-          },
-        },
-      },
+          }
+        }
+      }
     ];
     return tableColumns;
   }
@@ -110,19 +114,19 @@ export default class EntityTable extends Component {
 
   render() {
     const { entities } = this.props;
-    console.debug(entities);
+    // console.debug(entities);
     return (
       <BootstrapTable
         keyField="guid"
         headerClasses="header-row"
         data={entities.sort((a, b) => {
-          if (a.alertSeverity == 'CRITICAL') {
+          if (a.alertSeverity === 'CRITICAL') {
             return -1;
-          } else if (b.alertSeverity == 'CRITICAL') {
+          } else if (b.alertSeverity === 'CRITICAL') {
             return 1;
-          } else if (a.alertSeverity == 'WARNING') {
+          } else if (a.alertSeverity === 'WARNING') {
             return -1;
-          } else if (b.alertSeverity == 'WARNING') {
+          } else if (b.alertSeverity === 'WARNING') {
             return 1;
           }
           return 0;

@@ -11,7 +11,7 @@ import {
   HeadingText,
   BlockText,
   Tabs,
-  TabsItem,
+  TabsItem
 } from 'nr1';
 import EntityTable from './entity-table';
 import geoopsConfig from '../../geoopsConfig';
@@ -19,22 +19,22 @@ import moment from 'moment';
 
 export default class DetailModal extends Component {
   static propTypes = {
-    configId: PropTypes.any.isRequired,
-    data: PropTypes.array.isRequired,
+    configId: PropTypes.string.isRequired,
+    // data: PropTypes.array.isRequired,
     hidden: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     callbacks: PropTypes.object.isRequired,
-    launcherUrlState: PropTypes.object.isRequired,
+    launcherUrlState: PropTypes.object.isRequired
   };
 
   render() {
     const { configId, location, hidden, callbacks } = this.props;
-    const config = geoopsConfig.find(c => c.id == configId);
+    const config = geoopsConfig.find(c => c.id === configId);
     const infraGuidsForNrql = location.entities
-      .filter(e => e.domain == 'INFRA')
+      .filter(e => e.domain === 'INFRA')
       .map(entity => `'${entity.guid}'`);
     const apmGuidsForNrql = location.entities
-      .filter(e => e.domain == 'APM')
+      .filter(e => e.domain === 'APM')
       .map(entity => `'${entity.guid}'`);
     const { duration } = this.props.launcherUrlState.timeRange;
     const since = moment()
@@ -42,6 +42,7 @@ export default class DetailModal extends Component {
       .fromNow();
     const durationInMinutes = duration / 1000 / 60;
     const { accountId } = config.entities.joins.INFRA.nrql;
+    // eslint-disable-next-line no-console
     console.debug([infraGuidsForNrql, apmGuidsForNrql]);
     return (
       <Modal
@@ -57,7 +58,7 @@ export default class DetailModal extends Component {
             <div
               className="storeStatus"
               style={{ backgroundColor: location.status.color }}
-            ></div>
+            />
             <div className="infoPanelHeaderPrimaryInfo">
               <h4 className="infoPanelStoreId">Store: {location.locationId}</h4>
               <span className="infoPanelLocation">

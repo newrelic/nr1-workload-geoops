@@ -2,7 +2,7 @@
  * Copyright 2019 New Relic Corporation. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-/*{
+/* {
   id: 0,
   status: "red",
   favorite: false,
@@ -13,7 +13,7 @@
 import { NerdGraphQuery } from 'nr1';
 import geoopsConfig from '../../geoopsConfig';
 import gql from 'graphql-tag';
-//import sprintf from 'sprintf-js';
+// import sprintf from 'sprintf-js';
 
 /**
  * This is where the magic happens. See the logic in the start method.
@@ -53,7 +53,7 @@ export default class Data {
       if (this.refreshState) {
         callbacks.setData(data, favorites);
       }
-      //console.debug(`Calling setTimeout for ${refreshTimeout}`);
+      // console.debug(`Calling setTimeout for ${refreshTimeout}`);
       this.timeout = setTimeout(() => {
         this.start();
       }, refreshTimeout);
@@ -85,31 +85,32 @@ export default class Data {
         }
       }
     }`;
-    //console.debug(query);
+    // console.debug(query);
     return query;
   }
 
   _refreshData() {
     return new Promise(resolve => {
       const { configId, demoMode } = this.options;
-      const config = geoopsConfig.find(c => c.id == configId);
-      //console.debug(config);
+      const config = geoopsConfig.find(c => c.id === configId);
+      // console.debug(config);
       const entityGuids = demoMode
         ? this._demoModeGuids(config)
         : this._joinLogicGuids(config);
-      //console.debug(entityGuids);
+      // console.debug(entityGuids);
       NerdGraphQuery.query({
         query: gql`
           ${this._entityAndAlertGql(entityGuids)}
-        `,
+        `
       }).then(({ data }) => {
+        // eslint-disable-next-line no-console
         console.debug(data);
         const favorites = data.actor.nerdStorage.document
           ? data.actor.nerdStorage.document.favorites
           : [];
         const points = [];
         config.locations.forEach(l => {
-          const point = Object.assign({}, l);
+          const point = { ...l };
           point.entities = this._resolveEntities(point, data);
           point.status = this._rollupStatus(point);
           point.statusColor = point.status.color;
@@ -118,15 +119,19 @@ export default class Data {
             ? point.lastIncident.openedAt
             : 0;
           point.favorite =
-            favorites && favorites.find(favorite => favorite == point.id);
+            favorites && favorites.find(favorite => favorite === point.id);
           if (!point.favorite) {
             point.favorite = false;
           }
           points.push(point);
         });
+
         resolve({
-          data: points.sort((a, b) => (a.favorite ? 1 : b.favorite ? -1 : 0)),
-          favorites,
+          data: points.sort((a, b) => {
+            // eslint-disable-next-line no-nested-ternary
+            return a.favorite ? 1 : b.favorite ? -1 : 0;
+          }),
+          favorites
         });
       });
     });
@@ -170,38 +175,38 @@ export default class Data {
   }
 
   _rollupStatus(point) {
-    if (!point.entities || point.entities.length == 0) {
+    if (!point.entities || point.entities.length === 0) {
       return {
         color: 'grey',
-        status: 0,
+        status: 0
       };
     }
     const obj = {
-      CRITICAL: point.entities.filter(e => e.alertSeverity == 'CRITICAL'),
-      WARNING: point.entities.filter(e => e.alertSeverity == 'WARNING'),
+      CRITICAL: point.entities.filter(e => e.alertSeverity === 'CRITICAL'),
+      WARNING: point.entities.filter(e => e.alertSeverity === 'WARNING'),
       NOT_ALERTING: point.entities.filter(
-        e => e.alertSeverity == 'NOT_ALERTING'
-      ),
+        e => e.alertSeverity === 'NOT_ALERTING'
+      )
     };
     if (obj.CRITICAL && obj.CRITICAL.length > 1) {
       return {
         color: 'darkred',
-        status: 4,
+        status: 4
       };
     } else if (obj.CRITICAL && obj.CRITICAL.length > 0) {
       return {
         color: 'red',
-        status: 3,
+        status: 3
       };
     } else if (obj.WARNING && obj.WARNING.length > 0) {
       return {
         color: 'yellow',
-        status: 2,
+        status: 2
       };
     } else {
       return {
         color: 'green',
-        status: 1,
+        status: 1
       };
     }
   }
@@ -214,9 +219,9 @@ export default class Data {
     let guids = [];
     config.locations.forEach(l => {
       const keys = Object.keys(l.demoMode);
-      //console.debug([keys, l]);
+      // console.debug([keys, l]);
       keys.forEach(k => {
-        //console.debug([k, l.demoMode[k]]);
+        // console.debug([k, l.demoMode[k]]);
         if (l.demoMode[k] != null) {
           guids = guids.concat(l.demoMode[k]);
         }
@@ -229,7 +234,9 @@ export default class Data {
    * WIP
    */
   _joinLogicGuids(config) {
+    // eslint-disable-next-line no-unused-vars
     const locationIds = config.locations.map(l => l.locationId);
+    // eslint-disable-next-line no-unused-vars
     const { joins, additionalEntityTypes } = config;
   }
 }
