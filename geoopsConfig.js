@@ -1,3 +1,5 @@
+/* eslint-disable spaced-comment */
+/* eslint-disable prettier/prettier */
 const geoopsConfig = [
   {
     id: "1af7cff8-59a4-46c3-9c95-da44bad5ba6c",
