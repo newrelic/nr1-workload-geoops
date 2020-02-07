@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import { Icon } from 'nr1';
 
 export default class LocationsTable extends Component {
-  statusFormatter(cell) {
+  statusFormatter() {
     return <div className={'status-color-fill'}></div>;
+  }
+
+  favoriteFormatter(cell) {
+    return (
+      <Icon
+        type={
+          cell
+            ? Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD
+            : Icon.TYPE.PROFILES__EVENTS__FAVORITE
+        }
+        color={cell ? '#FFB951' : '#d5d7d7'}
+      />
+    );
   }
 
   render() {
@@ -67,6 +81,7 @@ export default class LocationsTable extends Component {
         dataField: 'favorite',
         text: '',
         sort: true,
+        formatter: this.favoriteFormatter,
       },
       {
         dataField: 'id',
@@ -89,10 +104,8 @@ export default class LocationsTable extends Component {
       <ToolkitProvider keyField="id" data={products} columns={columns} search>
         {props => (
           <div>
-            <h3>Input something at below input field:</h3>
             <SearchBar {...props.searchProps} />
-            <hr />
-            <BootstrapTable {...props.baseProps} />
+            <BootstrapTable {...props.baseProps} bordered={false} />
           </div>
         )}
       </ToolkitProvider>

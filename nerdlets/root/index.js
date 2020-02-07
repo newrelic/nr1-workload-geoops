@@ -9,10 +9,14 @@ export default class index extends Component {
         className="primary-grid"
         spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
       >
-        <GridItem columnSpan={2}>
+        <GridItem
+          columnSpan={3}
+          fullHeight
+          className="locations-table-grid-item"
+        >
           <LocationsTable />
         </GridItem>
-        <GridItem className="primary-content-container" columnSpan={10}>
+        <GridItem className="primary-content-container" columnSpan={9}>
           hi
         </GridItem>
       </Grid>
