@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import DefineLocations from './DefineLocations';
+import MapLocationData from './MapLocationData';
 
 import {
   MAP_UI_SCHEMA,
@@ -104,9 +105,15 @@ export default class GettingStarted extends React.PureComponent {
           </>
         )}
 
+        {/* TO DO - Handle mapLocations here or inside MapLocationData? */}
         {activeStep.order === 3 && (
           <>
             <h2>Provide data for locations</h2>
+            <MapLocationData
+              accountId={accountId}
+              map={map}
+              mapLocations={[]}
+            />
           </>
         )}
 
