@@ -1,7 +1,7 @@
 {
     "schemaType": "LAUNCHER",
-    "id": "my-launcher",
+    "id": "geo-ops",
     "description": "Aligning infrastructure and application data around physical locations.",
     "displayName": "Geo Ops",
-    "rootNerdletId": "root"
+    "rootNerdletId": "geo-ops-nerdlet"
 }

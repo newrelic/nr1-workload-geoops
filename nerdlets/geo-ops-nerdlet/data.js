@@ -103,8 +103,6 @@ export default class Data {
           ${this._entityAndAlertGql(entityGuids)}
         `
       }).then(({ data }) => {
-        // eslint-disable-next-line no-console
-        // console.debug(data);
         const favorites = data.actor.nerdStorage.document
           ? data.actor.nerdStorage.document.favorites
           : [];
@@ -227,9 +225,7 @@ export default class Data {
 
     config.locations.forEach(l => {
       const keys = Object.keys(l.demoMode);
-      // console.debug([keys, l]);
       keys.forEach(k => {
-        // console.debug([k, l.demoMode[k]]);
         if (l.demoMode[k] != null) {
           guids = guids.concat(l.demoMode[k]);
         }

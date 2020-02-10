@@ -10,25 +10,47 @@
 
 import uuid from "uuid";
 
+const LAT_LNG_SCHEMA = {
+  "lat": {
+    "type": "number",
+      "title": "Latitude",
+      "minimum": -90,
+      "maximum": 90
+  },
+  "lng": {
+    "type": "number",
+      "title": "Longitude",
+      "minimum": -180,
+      "maximum": 180
+  }
+};
+
 export const MAP_COLLECTION_ID = "v1-maps-collection";
+export const LOCATION_COLLECTION_ID = "v1-locations-collection";
 export const MAP_LOCATION_COLLECTION_ID = "v1-map-location-collection";
 export const MAP_LOCATION_METRIC_COLLECTION_ID = "v1-map-location-metric";
 export const mapLocationCollection = ({ mapGuid }) => `${MAP_LOCATION_COLLECTION_ID}-${mapGuid}`;
+
+export const MAP_UI_SCHEMA = {
+  "guid": { "ui:widget": "hidden" },
+}
 
 export const MAP_JSON_SCHEMA = {
   "id": "map",
   "description": "Map",
   "type": "object",
-  "required": ["guid"],
+  "required": [],
   "properties": {
     "guid": {
       "type": "string"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "title": "Title"
     },
     "centerLat": {
       "type": "number",
+      "title": "Center Point Latitude",
 
       // World
       // "minimum": -90,
@@ -40,6 +62,7 @@ export const MAP_JSON_SCHEMA = {
     },
     "centerLng": {
       "type": "number",
+      "title": "Center Point Longitude",
 
       // World
       // "minimum": -180,
@@ -51,6 +74,7 @@ export const MAP_JSON_SCHEMA = {
     },
     "zoom": {
       "type": "number",
+      "title": "Default Zoom Level",
       "minimum": 0,
       "maximum": 12
     }
@@ -61,55 +85,84 @@ export const MAP_DEFAULTS = () => ({
   "guid": uuid()
 });
 
+export const LOCATION_UI_SCHEMA = {
+  "guid": { "ui:widget": "hidden" },
+}
+
 export const LOCATION_JSON_SCHEMA = {
   "description": "Location",
   "type": "object",
-  "required": ["guid"],
+  "required": [],
   "properties": {
     "guid": {
       "type": "string"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "title": "Title"
     },
-    "lat": {
-      "type": "string"
+    "description": {
+      "type": "string",
+      "title": "Description"
     },
-    "lng": {
-      "type": "string"
-    },
+    ...LAT_LNG_SCHEMA,
     "municipality": {
-      "type": "string"
+      "type": "string",
+      "title": "Municipality"
     },
     "region": {
-      "type": "string"
+      "type": "string",
+      "title": "Region"
     },
     "country": {
-      "type": "string"
+      "type": "string",
+      "title": "Country"
     },
     "postalCode": {
-      "type": "string"
+      "type": "string",
+      "title": "Postal Code"
     }
   }
 };
 
+export const MAP_LOCATION_UI_SCHEMA = {
+  "guid": { "ui:widget": "hidden" },
+  "map": { "ui:widget": "select" }
+}
+
 export const MAP_LOCATION_JSON_SCHEMA = {
   "description": "Map",
   "type": "object",
-  "required": ["guid"],
+  "required": [],
   "properties": {
     "guid": {
       "type": "string"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "title": "Title"
     },
-    "mapGuid": {
-      "type": "string"
+    "map": {
+      "type": "string",
+      "title": "Map",
+      // Dynamically modifying the schema to provide dropdown options seems to be the only way to achieve this functionality
+      // https://github.com/rjsf-team/react-jsonschema-form/issues/809
+      // "enum": 
+      // "enumNames":
+    },
+    "location": {
+      "type": "string",
+      "title": "Location",
+      // Dynamically modifying the schema to provide dropdown options seems to be the only way to achieve this functionality
+      // https://github.com/rjsf-team/react-jsonschema-form/issues/809
+      // "enum": 
+      // "enumNames":
     },
     "query": {
-      "type": "string"
+      "type": "string",
+      "title": "NRQL"
     },
+    // TO DO - https://react-jsonschema-form.readthedocs.io/en/latest/form-customization/#multiple-choice-list
     "entities": {
       "type": "array",
       "title": "Related Entities",
@@ -123,7 +176,11 @@ export const MAP_LOCATION_JSON_SCHEMA = {
             "type": "string"
           }
         }
-      }
+      },
+      // Dynamically modifying the schema to provide dropdown options seems to be the only way to achieve this functionality
+      // https://github.com/rjsf-team/react-jsonschema-form/issues/809
+      // "enum": 
+      // "enumNames":
     }
   }
 };

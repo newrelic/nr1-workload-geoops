@@ -9,10 +9,11 @@ export default class JsonSchemaForm extends React.PureComponent {
       .isRequired,
     guid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     schema: PropTypes.object.isRequired,
+    uiSchema: PropTypes.object,
     defaultValues: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    getDocument: PropTypes.func,
-    writeDocument: PropTypes.func,
-    onWrite: PropTypes.func.isRequired,
+    getDocument: PropTypes.func.isRequired,
+    writeDocument: PropTypes.func.isRequired,
+    onWrite: PropTypes.func,
     onError: PropTypes.func
     // TO DO - pass through event handlers for onChange/onSubmit/onError?
   };
@@ -52,7 +53,6 @@ export default class JsonSchemaForm extends React.PureComponent {
     const { accountId, guid, getDocument } = this.props;
 
     if (guid) {
-      // eslint-disable-next-line no-unused-vars
       const { data, errors } = await getDocument({ accountId, guid });
       // console.log(data);
       // console.log(errors);
@@ -73,7 +73,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   async handleOnSubmit({ formData }) {
     const { accountId, writeDocument } = this.props;
 
-    const { data, error, loading } = await writeDocument({
+    const { data, error } = await writeDocument({
       accountId,
       document: formData
     });
@@ -87,19 +87,22 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   render() {
-    const { schema } = this.props;
+    const { schema, uiSchema } = this.props;
     const { document, errors } = this.state;
 
     return (
       <>
         <Form
           schema={schema}
+          uiSchema={uiSchema}
           formData={document}
           onChange={this.handleOnChange}
           onSubmit={this.handleOnSubmit}
           onError={this.handleOnError}
         />
-        {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
+        {errors && errors.length > 0 && (
+          <pre>{JSON.stringify(errors, null, 2)}</pre>
+        )}
       </>
     );
   }

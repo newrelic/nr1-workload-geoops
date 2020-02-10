@@ -7,7 +7,12 @@ import {
 } from '../constants';
 
 // Fetch all MapLocations
-export const getMapLocations = ({ accountId }) => {
+export const getMapLocations = ({ accountId, fixtureData = false }) => {
+  if (fixtureData) {
+    return Promise.resolve({
+      data: []
+    });
+  }
   return AccountStorageQuery.query({
     collection: MAP_LOCATION_COLLECTION_ID,
     accountId: accountId
@@ -25,7 +30,8 @@ export const getMapLocation = ({ accountId, guid }) => {
 
 // Create or Update a map
 export const writeMapLocation = ({ accountId, document }) => {
-  if (!document.mapGuid) {
+  console.log(document);
+  if (!document.map) {
     throw new Error(
       'Error creating Map Location - you must assign it to a Map'
     );
@@ -35,15 +41,13 @@ export const writeMapLocation = ({ accountId, document }) => {
     document.guid = uuid();
   }
 
-  const collection = `${MAP_LOCATION_COLLECTION_ID}-${document.mapGuid}`;
-
   // TO DO
   // Add method to validate the contents of the MapLocation object
 
   return AccountStorageMutation.mutate({
     accountId,
     actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
-    collection: mapLocationCollection({ mapGuid: document.mapGuid }), // Stored per-map
+    collection: mapLocationCollection({ mapGuid: document.map }), // Stored per-map
     documentId: document.guid, // MapLocation object guid
     document
   });
@@ -51,7 +55,8 @@ export const writeMapLocation = ({ accountId, document }) => {
 
 // Delete a map
 export const deleteMapLocation = ({ accountId, document }) => {
-  const { guid = false, mapGuid = false } = document;
+  const { guid = false, map = false } = document;
+  const mapGuid = map;
 
   if (!mapGuid) {
     throw new Error(
@@ -66,7 +71,7 @@ export const deleteMapLocation = ({ accountId, document }) => {
   return AccountStorageMutation.mutate({
     accountId,
     actionType: AccountStorageMutation.ACTION_TYPE.DELETE_DOCUMENT,
-    collection: mapLocationCollection({ mapGuidmapGuid }), // Stored per-map
+    collection: mapLocationCollection({ mapGuid }), // Stored per-map
     documentId: guid
   });
 };
