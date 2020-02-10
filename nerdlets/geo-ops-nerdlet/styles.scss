@@ -2,10 +2,20 @@
  * Copyright 2019 New Relic Corporation. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+
+// External Libs
 @import '~leaflet/dist/leaflet.css';
 @import "~nr1-bootstrap-theme/dist/main.css";
 @import '~@newrelic/nr1-community/dist/index.css';
-@import '../shared/styles.scss';
+
+// Main (UI/View) components
+@import './GettingStarted.scss';
+@import './DefineLocations.scss';
+
+// Shared components
+@import '../shared/components/JsonSchemaForm.scss';
+@import '../shared/components/LocationsTable.scss';
+@import '../shared/components/GettingStartedSteps.scss';
 
 .geoOpsContainer {
   display: flex;
@@ -367,145 +377,5 @@ span.infoPanelStatLabel {
         padding: 5px !important;
       }
     }
-  }
-}
-
-td[class*='status-'] {
-  padding: 0;
-  overflow: hidden;
-}
-
-.locations-table-grid-item {
-  background-color: #fff;
-  box-shadow: 0px 1px 0px rgba(0, 75, 82, 0.17), 0px 3px 2px rgba(0, 49, 54, 0.05), 0px 1px 3px rgba(0, 134, 148, 0.08), 0px 8px 17px rgba(88, 114, 117, 0.25);
-}
-
-.react-bootstrap-table {
-  td {
-    border: none;
-    vertical-align: bottom;
-    color: #464e4e;
-  }
-
-  .ic-Icon {
-    position: relative;
-    bottom: 4px;
-  }
-
-  th:not(.u-unstyledTh) {
-    background-color: #fff;
-    border: none;
-    color: #2a3434;
-    font-size: 11px;
-    font-weight: 400;
-    box-shadow: 0 1px 0 #f4f5f5;
-    letter-spacing: .5px;
-
-    &:hover {
-      cursor: pointer;
-      background-color: #fafbfb;
-    }
-
-    &:first-child {
-      padding: 0;
-    }
-    
-    &:nth-child(2) {
-      padding-right: 0;
-      width: 40px;
-    }
-
-    &.sortable {
-      line-height: 37px;
-    }
-  }
-
-  span.caret {
-    display: inline-block;
-    width: 8px;
-    height: 5px;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACISURBVHgBnZBBEkAgGIUfFha4CzdxA7mJm+BExg3coZ0FJmqo/mryZpqaet/XFOBLVXX3+JUHPuWIlOiwV5KRMDAR3RZ5vmHfV7fADTslWQRMSpIA3Mt5JM4YOJ8TFEWNNF1ImPNJXsBIyXE0z6IsB+PHmVUWe9+OYLS8EgZXlMSCVcRzQjE6FxZZMq4kDT30AAAAAElFTkSuQmCC');
-    opacity: .75;
-    background-size: 100%;
-    background-repeat: no-repeat;
-
-  }
-  
-  .dropup span.caret {
-    transform: rotate(180deg);
-  }
-
-  .order,
-  .react-bootstrap-table-sort-order {
-    position: relative;
-    width: 10px;
-    display: inline-block;
-    height: 25px;
-    margin-left: 5px;
-    
-    .dropdown {
-      position: absolute;
-      bottom: -9px;
-      opacity: .2;
-    }
-
-    .dropup {
-      position: absolute;
-      bottom: -17px;
-      opacity: .2;
-    }
-  }
-
-  .react-bootstrap-table-sort-order .caret {
-    position: absolute;
-    bottom: 2px;
-  }
-}
-
-.status-color-fill {
-  width: 8px;
-  height: calc(100% + 1px);
-
-  .status-ok & {
-    background-color: #11a600;
-  }
-
-  .status-warning & {
-    background-color: #ffd966;
-  }
-
-  .status-critical & {
-    background-color: #bf0016;
-  }
-}
-
-.react-bootstrap-table tr td {
-  box-shadow: 0 -1px 0 #f4f5f5;
-  font-size: 12px;
-  color: #2a3434;
-}
-
-tr:nth-child(2n) > td:not(.u-unstyledTd) {
-  background-color: #ffffff;
-}
-
-.search-label {
-  width: 100%;
-  margin-bottom: 0;
-
-  input:not(.u-unstyledInput):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(.AABKAC-wnd-TextField-input) {
-    height: 40px;
-    padding-left: 34px;
-    background-color: #fff;
-    border-radius: 0;
-    box-shadow: inset 0 -1px 0 #f4f5f5;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAdCAYAAAC9pNwMAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMZSURBVHgBvVfNTlpBFD4zFySamOILtPgE1T5A/XkC2hdQ61JIRetWwG1TUYkLN4VuXTQ+gdDuG2HropJubSJJCQYv955+Z4SUUnovV0q/hMzMvTPnm5lzz3cOijyQy+cXHaK4VmqBmGOkVBRtHW2NiSqa+UMqmSzTA6D+RugqlcbLRfID85Vqt5dTqVSNAkD3P9g/Pk6zUiVDitMxc9ZhXlK2PbOVSChpZYx3m/jVcPpZDoe/5rCOAkD1k8JY5v4gnN1OJjNei3OFArmNRkbhdmQJ2mxqYyNLQYhB+hpsB3JKXN0Srq4yjIHT01OqXV/Ph5jPMXwE329tJxIHfusMcS6Xi+G6rqTvMr94k0yeUQAUcPLvjcaSpZSQ38Adz/x8bnzshEKZzi6KQUkFa2trZE1OlnFbhxjOuOHwrt8ajdNGES4rZmTbQ/lnEFLr66wcx6zHAeJi12u+xmkXpQPflIOGRC/wYdFEOFwXOxhGXcuKe83X2N2c6TF/ohHRikRIMVdlH9hJjHyIY50t12lERFotRKEhJq31Y6+5vwTEdUcmDgINn9SkAx/N0Yi4m5oSQ0+k77ruN/IhNkIB2XlKI2Ki2RTfLtybUxdec7XVbpfR1kWb/ULAC6VSie5sO9ZNLBARz49VI4Tq+KKNaCDw06JCD8GXy0vlWJZJFCJExq4XsZnYbkvg32DBpkif6G8QnJycwMF38Y4QMYRoz2+NIRbhYNc1k6G3H0X0c0OeXDbZbDbnYei9jBFOe8MI0W9p8V0+301x8nVmQxMTWbq95enpaVpdXTXqBMNULBaNPsvmuNnM4GG6Q+qbSgcS95DvmneS6IkOMalKjlOhSKROrVaULGuOtX6OmNk05VAPqVz7D1y7X7IZXPpImgyFzjuyp7wMiDYjlWZ3UHsdHR2RDc8prffxvIC8/CoQcRdvUXtZRCskMd5X7KH9jELwbKen2JOQqlQqs91Ne5F7Ej8EA8hL2rZf9ofXPyceRI5HFxCU5V7ysRAPQz42Yj/ysRJ7kY+d+A9ylMDyz+O/EHfJq9VqDEITlZr9J1WCrT+pCM/qAAAAAElFTkSuQmCC');
-    background-repeat: no-repeat;
-    background-position: 11px 14px;
-    background-size: 14px 14px;
-  }
-  
-  input:not(.u-unstyledInput):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(.AABKAC-wnd-TextField-input)::placeholder {
-    color: #8e9494;
   }
 }

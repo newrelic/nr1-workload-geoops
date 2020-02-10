@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash.get';
 import cloneDeep from 'lodash.clonedeep';
 
 import { Button, Grid, GridItem, Modal } from 'nr1';
-import JsonSchemaForm from '../shared/components/json-schema-form';
+import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 
 import {
   MAP_UI_SCHEMA,
@@ -49,7 +48,7 @@ export default class GeoMapEdit extends React.PureComponent {
     map: PropTypes.object,
     maps: PropTypes.array,
     locations: PropTypes.array,
-    mapLocations: PropTypes.array,
+    // mapLocations: PropTypes.array,
     callbacks: PropTypes.object
   };
 
@@ -133,7 +132,7 @@ export default class GeoMapEdit extends React.PureComponent {
   }
 
   render() {
-    const { accountId, maps, locations, callbacks } = this.props;
+    const { accountId, maps, locations } = this.props;
     // const { setParentState } = callbacks;
 
     const {
