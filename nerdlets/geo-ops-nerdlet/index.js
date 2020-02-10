@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Grid, GridItem } from 'nr1';
 import LocationsTable from '../components/LocationsTable';
+import GeoOpsNerdlet from './geo-ops-nerdlet';
 
-export default class index extends Component {
+export default class index extends PureComponent {
   render() {
     return (
       <Grid
@@ -17,7 +18,7 @@ export default class index extends Component {
           <LocationsTable />
         </GridItem>
         <GridItem className="primary-content-container" columnSpan={9}>
-          hi
+          <GeoOpsNerdlet />
         </GridItem>
       </Grid>
     );

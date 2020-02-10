@@ -20,7 +20,6 @@ import moment from 'moment';
 export default class DetailModal extends Component {
   static propTypes = {
     configId: PropTypes.string.isRequired,
-    // data: PropTypes.array.isRequired,
     hidden: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     callbacks: PropTypes.object.isRequired,

@@ -13,30 +13,35 @@
     "eslint-fix": "eslint nerdlets/ --fix"
   },
   "nr1": {
-    "uuid": "8002bf70-a66d-4b61-a1ee-e529687de45f",
+    "uuid": "40e251de-1278-49dd-9ce0-9a09006e79f4",
     "sdkVersion": 2
   },
   "dependencies": {
+    "@newrelic/nr1-community": "^1.0.1",
     "dateformat": "^3.0.3",
     "file-loader": "^4.2.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "leaflet": "^1.5.1",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.get": "^4.4.2",
     "moment": "^2.24.0",
     "nr1-bootstrap-theme": "git@github.com:newrelic/nr1-bootstrap-theme.git",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-bootstrap-table-next": "^3.1.7",
+    "react-bootstrap-table2-toolkit": "^2.1.1",
     "react-data-table-component": "^3.0.4",
     "react-dom": "^16.6.3",
     "react-feather": "^2.0.3",
     "react-flexview": "^4.0.3",
     "react-graph-vis": "^1.0.2",
     "react-js-banner": "^0.2.4",
+    "react-jsonschema-form": "^1.8.1",
     "react-leaflet": "^2.4.0",
     "sprintf-js": "^1.1.2",
     "styled-components": "^4.3.2",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.0",

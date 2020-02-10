@@ -103,28 +103,29 @@ export default class Data {
           ${this._entityAndAlertGql(entityGuids)}
         `
       }).then(({ data }) => {
-        // eslint-disable-next-line no-console
-        console.debug(data);
         const favorites = data.actor.nerdStorage.document
           ? data.actor.nerdStorage.document.favorites
           : [];
         const points = [];
-        config.locations.forEach(l => {
-          const point = { ...l };
-          point.entities = this._resolveEntities(point, data);
-          point.status = this._rollupStatus(point);
-          point.statusColor = point.status.color;
-          point.lastIncident = this._rollupLastIncident(point);
-          point.lastIncidentTimestamp = point.lastIncident
-            ? point.lastIncident.openedAt
-            : 0;
-          point.favorite =
-            favorites && favorites.find(favorite => favorite === point.id);
-          if (!point.favorite) {
-            point.favorite = false;
-          }
-          points.push(point);
-        });
+
+        if (config && config.locations) {
+          config.locations.forEach(l => {
+            const point = { ...l };
+            point.entities = this._resolveEntities(point, data);
+            point.status = this._rollupStatus(point);
+            point.statusColor = point.status.color;
+            point.lastIncident = this._rollupLastIncident(point);
+            point.lastIncidentTimestamp = point.lastIncident
+              ? point.lastIncident.openedAt
+              : 0;
+            point.favorite =
+              favorites && favorites.find(favorite => favorite === point.id);
+            if (!point.favorite) {
+              point.favorite = false;
+            }
+            points.push(point);
+          });
+        }
 
         resolve({
           data: points.sort((a, b) => {
@@ -217,11 +218,14 @@ export default class Data {
    */
   _demoModeGuids(config) {
     let guids = [];
+
+    if (!config || !config.locations) {
+      return guids;
+    }
+
     config.locations.forEach(l => {
       const keys = Object.keys(l.demoMode);
-      // console.debug([keys, l]);
       keys.forEach(k => {
-        // console.debug([k, l.demoMode[k]]);
         if (l.demoMode[k] != null) {
           guids = guids.concat(l.demoMode[k]);
         }

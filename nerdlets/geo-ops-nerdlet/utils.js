@@ -3,7 +3,9 @@ import L from 'leaflet';
 import { ChevronUp, ChevronDown } from 'react-feather';
 
 export const generateIcon = mark => {
-  const color = mark.status.color;
+  // const color = mark.status.color || 'red';
+  const color = 'green';
+
   return L.divIcon({
     className: 'marker',
     iconSize: [10, 10],

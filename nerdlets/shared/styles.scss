@@ -1,0 +1,14 @@
+/*
+ * Overrides and customizations to reactjsonschema-form
+ * Links:
+ * https://github.com/rjsf-team/react-jsonschema-form
+ * https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/#custom-array-field-buttons
+ * https://rjsf-team.github.io/react-jsonschema-form/
+ */
+
+// Override glyphicon buttons for managing array items
+i.glyphicon { display: none; }
+.btn-add::after { content: 'Add'; }
+.array-item-move-up::after { content: 'Move Up'; }
+.array-item-move-down::after { content: 'Move Down'; }
+.array-item-remove::after { content: 'Remove'; }
