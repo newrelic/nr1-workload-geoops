@@ -39,7 +39,7 @@ export const MAP_JSON_SCHEMA = {
   "id": "map",
   "description": "Map",
   "type": "object",
-  "required": [],
+  "required": ["guid", "title"],
   "properties": {
     "guid": {
       "type": "string"
@@ -47,6 +47,10 @@ export const MAP_JSON_SCHEMA = {
     "title": {
       "type": "string",
       "title": "Title"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
     },
     "centerLat": {
       "type": "number",
