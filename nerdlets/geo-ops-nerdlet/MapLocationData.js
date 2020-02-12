@@ -2,10 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
 
-import { writeMapLocation } from '../shared/services/map-location';
+import JsonSchemaForm from '../shared/components/JsonSchemaForm';
+import EntitySearchFormInput from '../shared/components/EntitySearchFormInput';
+
+import {
+  MAP_LOCATION_UI_SCHEMA,
+  MAP_LOCATION_JSON_SCHEMA
+} from '../shared/constants';
+
+import {
+  getMapLocation,
+  writeMapLocation
+} from '../shared/services/map-location';
 
 export default class MapLocationData extends React.PureComponent {
   static propTypes = {
+    accountId: PropTypes.number,
     map: PropTypes.object,
     mapLocations: PropTypes.array,
     onMapLocationChange: PropTypes.func
@@ -40,6 +52,12 @@ export default class MapLocationData extends React.PureComponent {
   }
 
   render() {
+    const { accountId } = this.props;
+    const { selectedMapLocation } = this.state;
+
+    // Tell react-jsonschema-form to utilize EntitySearchFormInput for the property of 'entities'
+    const fields = { entities: EntitySearchFormInput };
+
     return (
       <>
         <h2>Provide Location Data</h2>
@@ -55,6 +73,21 @@ export default class MapLocationData extends React.PureComponent {
         {/* 2 */}
         {/* Entity Search/Associate component with a callback for onChange/onSelect etc. */}
         {/* <RelatedEntities entities={selectMapLocation.relatedEntities} onChange={this.onRelatedEntityChange}/> */}
+        <JsonSchemaForm
+          accountId={accountId}
+          guid={
+            selectedMapLocation
+              ? selectedMapLocation.guid || selectedMapLocation.document.guid
+              : false
+          }
+          schema={MAP_LOCATION_JSON_SCHEMA}
+          uiSchema={MAP_LOCATION_UI_SCHEMA}
+          fields={fields}
+          defaultValues={false}
+          getDocument={getMapLocation}
+          writeDocument={writeMapLocation}
+          onWrite={({ data, errors }) => console.log([data, errors])}
+        />
       </>
     );
   }

@@ -1,20 +1,75 @@
 import React, { Component } from 'react';
 
-import { Grid, GridItem, Spinner } from 'nr1';
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  Grid,
+  GridItem,
+  Spinner,
+  StackItem
+} from 'nr1';
 
 import { EmptyState } from '@newrelic/nr1-community';
 
 import GeoMap from './geo-map';
-import GeoMapEdit from './geo-map-edit';
-import { nerdStorageRequest } from '../shared/utils';
+// import GeoMapEdit from './geo-map-edit';
+import Toolbar from '../shared/components/Toolbar';
+import LocationsTable from '../shared/components/LocationsTable';
 
+import { nerdStorageRequest } from '../shared/utils';
 import { getMaps } from '../shared/services/map';
 import { getLocations } from '../shared/services/location';
 import { getMapLocations } from '../shared/services/map-location';
 
-// import { getWorkload, getWorkloads } from '../shared/services/workloads';
+// import {
+//   getWorkload,
+//   getWorkloads,
+//   proxyGetWorkloadResponse,
+//   proxyGetWorkloadsResponse
+// } from '../shared/services/workloads';
 
-export default class GeoOpsNerdlet extends Component {
+const LeftToolbar = () => {
+  return (
+    <>
+      <StackItem className="toolbar-item has-separator">
+        <Button>Back to main view</Button>
+      </StackItem>
+      <StackItem className="toolbar-item has-separator">
+        <Dropdown label="Account" title="Choose an Account">
+          <DropdownItem>Account 1</DropdownItem>
+          <DropdownItem>Account 2</DropdownItem>
+          <DropdownItem>Account 3</DropdownItem>
+        </Dropdown>
+      </StackItem>
+      <StackItem className="toolbar-item has-separator">
+        <Dropdown label="Map" title="Choose a map">
+          <DropdownItem>Map 1</DropdownItem>
+          <DropdownItem>Map 2</DropdownItem>
+          <DropdownItem>Map 3</DropdownItem>
+        </Dropdown>
+      </StackItem>
+      <StackItem className="toolbar-item has-separator">
+        Create a map to begin
+      </StackItem>
+    </>
+  );
+};
+
+const RightToolbar = () => {
+  return (
+    <>
+      <StackItem className="">
+        <Button>New Map</Button>
+      </StackItem>
+      <StackItem className="">
+        <Button>Settings</Button>
+      </StackItem>
+    </>
+  );
+};
+
+export default class ViewMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -129,16 +184,6 @@ export default class GeoOpsNerdlet extends Component {
     await this.loadLocations();
     await this.loadMapLocations();
 
-    // TO DO - Move this into the <GeoMap> component, this should get loaded by looking at each MapLocation's "related entities"
-    // const workloads = await getWorkloads({ accountId });
-    // console.debug(workloads);
-    // const workload = await getWorkload({
-    //   accountId,
-    //   id: 48,
-    //   fixtureData: true
-    // });
-    // debugger;
-
     this.setState({ isLoading: false });
   }
 
@@ -203,34 +248,49 @@ export default class GeoOpsNerdlet extends Component {
     // console.debug(mapLocations);
     return (
       <>
-        <Grid className="primary-grid">
+        <Toolbar left={<LeftToolbar />} right={<RightToolbar />} />;
+        <Grid
+          className="primary-grid"
+          spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
+        >
           <GridItem
-            columnSpan={12}
-            collapseGapBefore
-            collapseGapAfter
-            className="gridItem"
+            columnSpan={3}
+            fullHeight
+            className="locations-table-grid-item"
           >
-            {this.renderErrors()}
+            <LocationsTable />
+          </GridItem>
+          <GridItem className="primary-content-container" columnSpan={9}>
+            <Grid className="primary-grid">
+              <GridItem
+                columnSpan={12}
+                collapseGapBefore
+                collapseGapAfter
+                className="gridItem"
+              >
+                {this.renderErrors()}
 
-            {selectedMap && (
-              <>
-                <GeoMapEdit
+                {selectedMap && (
+                  <>
+                    {/* <GeoMapEdit
                   accountId={accountId}
                   map={selectedMap}
                   maps={maps}
                   locations={locations}
                   callbacks={this.callbacks}
-                />
-                <GeoMap
-                  accountId={accountId}
-                  map={selectedMap}
-                  mapLocations={mapLocations}
-                  callbacks={this.callbacks}
-                />
-              </>
-            )}
+                /> */}
+                    <GeoMap
+                      accountId={accountId}
+                      map={selectedMap}
+                      mapLocations={mapLocations}
+                      callbacks={this.callbacks}
+                    />
+                  </>
+                )}
 
-            {!selectedMap && <EmptyState />}
+                {!selectedMap && <EmptyState />}
+              </GridItem>
+            </Grid>
           </GridItem>
         </Grid>
       </>

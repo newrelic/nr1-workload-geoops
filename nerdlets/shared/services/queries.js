@@ -47,3 +47,55 @@ query ($accountId: Int!, $id: Int!) {
   }
 }
 `;
+
+/*
+ * Sample response:
+ [
+    {
+      domain: 'NR1',
+      entityType: 'WORKLOAD_ENTITY',
+      type: 'WORKLOAD'
+    },
+    {
+      domain: 'SYNTH',
+      entityType: 'SYNTHETIC_MONITOR_ENTITY',
+      type: 'MONITOR'
+    },
+    {
+      domain: 'BROWSER',
+      entityType: 'BROWSER_APPLICATION_ENTITY',
+      type: 'APPLICATION'
+    }
+  ]
+*/
+export const LIST_ENTITY_TYPES = `
+{
+  actor {
+    entitySearch(query: null) {
+      types {
+        domain
+        type
+        entityType
+      }
+    }
+  }
+}
+`;
+
+export const ENTITY_SEARCH_BY_TYPE = `
+query($query: String!) {
+  actor {
+    entitySearch(query: $query) {
+      results {
+        entities {
+          name
+          guid
+          accountId
+          domain
+          type
+        }
+      }
+    }
+  }
+}
+`;

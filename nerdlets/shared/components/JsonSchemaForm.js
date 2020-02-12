@@ -10,6 +10,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     guid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     schema: PropTypes.object.isRequired,
     uiSchema: PropTypes.object,
+    fields: PropTypes.object,
     defaultValues: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     getDocument: PropTypes.func.isRequired,
     writeDocument: PropTypes.func.isRequired,
@@ -64,9 +65,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     }
   }
 
-  // TO DO - figure out how to handle this
   handleOnChange({ formData }) {
-    // console.log(formData);
     this.setState({ document: formData });
   }
 
@@ -78,8 +77,14 @@ export default class JsonSchemaForm extends React.PureComponent {
       document: formData
     });
 
-    // TO DO - Can we rely on data.nerdStorageWriteDocument
-    this.props.onWrite({ document: data.nerdStorageWriteDocument, error });
+    // TO DO - Can we rely on the response from the mutation to always be in data.nerdStorageWriteDocument?
+
+    // Note: The mutation response from NerdStorage is different than fetching from NerdStorage
+    // We wrap the response in document so that we gain some consistency in the way we access
+    this.props.onWrite({
+      document: { document: data.nerdStorageWriteDocument },
+      error
+    });
   }
 
   handleOnError(errors) {
@@ -87,7 +92,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   render() {
-    const { schema, uiSchema } = this.props;
+    const { schema, uiSchema, fields } = this.props;
     const { document, errors } = this.state;
 
     return (
@@ -95,6 +100,7 @@ export default class JsonSchemaForm extends React.PureComponent {
         <Form
           schema={schema}
           uiSchema={uiSchema}
+          fields={fields}
           formData={document}
           onChange={this.handleOnChange}
           onSubmit={this.handleOnSubmit}
