@@ -40,12 +40,12 @@ export default class GeoMap extends Component {
       closeModal: this.closeModal.bind(this)
     };
 
-    this.dataProcess = new Data({
-      demoMode: true,
-      mapGuid: this.state.configId,
-      refreshTimeout: 60000,
-      callbacks: this.callbacks
-    });
+    // this.dataProcess = new Data({
+    //   demoMode: true,
+    //   mapGuid: this.state.configId,
+    //   refreshTimeout: 60000,
+    //   callbacks: this.callbacks
+    // });
   }
 
   async componentDidMount() {

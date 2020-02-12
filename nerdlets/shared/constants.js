@@ -131,7 +131,9 @@ export const LOCATION_JSON_SCHEMA = {
 
 export const MAP_LOCATION_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
-  "map": { "ui:widget": "select" }
+  "entities": { "ui:field": "entities" }
+  // ,
+  // "map": { "ui:widget": "select" }
 }
 
 export const MAP_LOCATION_JSON_SCHEMA = {
