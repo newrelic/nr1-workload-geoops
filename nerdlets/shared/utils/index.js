@@ -1,9 +1,43 @@
 import { NerdGraphQuery } from 'nr1';
 
-export const nerdStorageRequest = async function({ dataFetcher, params }) {
-  const { data, errors } = await dataFetcher(params);
+/*
+ * TO DO - This pattern of making a request per account to NerdStorage is likely
+ * common in 1st party apps, we should look at how they do it and if we can utilize similar methodology.
+ */
+export const nerdStorageRequest = async function({ service, params }) {
+  const result = await service(params);
 
-  return { data, errors };
+  let response;
+
+  // Aggregate errors and data from multiple requests
+  if (Array.isArray(result)) {
+    response = result.reduce(
+      (finalValue, currentValue) => {
+        const data = currentValue.data;
+        const errors = Array.isArray(currentValue.errors)
+          ? currentValue.errors
+          : [];
+        return {
+          // data: [...finalValue.data, currentValue.data],
+          data: finalValue.data.concat(data),
+          errors: finalValue.errors.concat(errors)
+        };
+      },
+      {
+        data: [],
+        errors: []
+      }
+    );
+    response = {
+      data: response.data,
+      errors: response.errors.length > 0 ? response.errors : null
+    };
+  } else {
+    response = result;
+  }
+
+  // console.log([response]);
+  return response;
 };
 
 export const nerdGraphQuery = async function({

@@ -1,9 +1,22 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cloneDeep from 'lodash.clonedeep';
 
-import { Button, Dropdown, DropdownItem, Grid, GridItem, StackItem } from 'nr1';
-import { EmptyState } from '@newrelic/nr1-community';
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  Grid,
+  GridItem,
+  Spinner,
+  StackItem
+} from 'nr1';
+
+import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
 import Toolbar from '../shared/components/Toolbar';
+
+import { nerdStorageRequest } from '../shared/utils';
+import { getMaps, deleteMap } from '../shared/services/map';
 
 const LeftToolbar = ({ onClick }) => {
   return (
@@ -43,18 +56,79 @@ export default class index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      //
+      maps: [],
+      isLoading: true,
+      loadingErrors: false
     };
   }
 
+  async componentDidMount() {
+    await this.loadMaps();
+  }
+
+  async loadMaps() {
+    this.setState({ isLoading: true });
+
+    // Maps
+    const {
+      data: maps = [],
+      errors: loadingErrors = null
+    } = await nerdStorageRequest({
+      service: getMaps,
+      errorState: 'loadingMaps',
+      params: {}
+    });
+
+    this.setState({
+      isLoading: false,
+      maps,
+      loadingErrors: loadingErrors || false
+    });
+  }
+
   render() {
+    const { isLoading, loadingErrors, maps } = this.state;
+
+    if (isLoading) {
+      return <Spinner />;
+    }
+
+    // TO DO - Fix NerdGraphError component in nr1-community
+    // if (!isLoading && loadingErrors) {
+    //   if (Array.isArray(loadingErrors)) {
+    //     return loadingErrors.map((error, index) => {
+    //       return <NerdGraphError key={index} error={error} />;
+    //     });
+    //   } else {
+    //     return <NerdGraphError key={index} error={loadingErrors} />;
+    //   }
+    // }
+    if (!isLoading && loadingErrors) {
+      return <pre>{JSON.stringify(loadingErrors, null, 2)}</pre>;
+    }
+
+    const mapGridItems = maps.map(m => {
+      return (
+        <GridItem columnSpan={4} key={m.document.guid}>
+          <EmptyState
+            heading={m.document.title || m.document.guid}
+            buttonText="Edit Map"
+            buttonOnClick={() => this.props.navigation.edit({ guid: m.guid })}
+            // buttonOnClick={() =>
+            //   deleteMap({ accountId: 630060, mapGuid: m.guid })
+            // }
+          />
+        </GridItem>
+      );
+    });
+
     return (
       <>
         <Toolbar
           left={<LeftToolbar onClick={this.props.navigation.back} />}
           right={<RightToolbar />}
         />
-        ;
+
         <Grid
           className="primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
@@ -65,33 +139,7 @@ export default class index extends PureComponent {
             className="locations-table-grid-item"
           >
             <Grid>
-              <GridItem columnSpan={4}>
-                <EmptyState
-                  heading="Map 2"
-                  buttonText="Edit Map"
-                  buttonOnClick={() =>
-                    this.props.navigation.edit({ guid: 'asdf-asdf-asdf-asdf' })
-                  }
-                />
-              </GridItem>
-              <GridItem columnSpan={4}>
-                <EmptyState
-                  heading="Map 2"
-                  buttonText="Edit Map"
-                  buttonOnClick={() =>
-                    this.props.navigation.edit({ guid: 'asdf-asdf-asdf-asdf' })
-                  }
-                />
-              </GridItem>
-              <GridItem columnSpan={4}>
-                <EmptyState
-                  heading="Map 3"
-                  buttonText="Edit Map"
-                  buttonOnClick={() =>
-                    this.props.navigation.edit({ guid: 'asdf-asdf-asdf-asdf' })
-                  }
-                />
-              </GridItem>
+              {mapGridItems}
               <GridItem columnSpan={4}>
                 <EmptyState
                   heading="+"

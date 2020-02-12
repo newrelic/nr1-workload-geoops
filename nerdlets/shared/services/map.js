@@ -1,13 +1,39 @@
+import uuid from 'uuid/v4';
+import get from 'lodash.get';
+
 import { AccountStorageQuery, AccountStorageMutation } from 'nr1';
 
-import uuid from 'uuid/v4';
+import { getAccounts } from './account';
+import { deleteMapLocationCollection } from './map-location';
+
 import { MAP_COLLECTION_ID } from '../constants';
 
+/*
+ * TO DO:
+ *  1. Detect a lot of accounts, greater than... 50, and do something different in the UI
+ *  2. Add accountId to map object
+ */
 // Fetch all maps
 export const getMaps = ({ accountId }) => {
-  return AccountStorageQuery.query({
-    collection: MAP_COLLECTION_ID,
-    accountId: accountId
+  if (accountId) {
+    return AccountStorageQuery.query({
+      collection: MAP_COLLECTION_ID,
+      accountId: accountId
+    });
+  }
+
+  return getAccounts().then(({ data, errors }) => {
+    if (errors && errors.length > 0) {
+      // return { data, errors };
+      return Promise.resolve({ data, errors });
+    }
+
+    const accounts = get(data, 'actor.accounts', []);
+    const promises = accounts.map(a => {
+      return getMaps({ accountId: a.id });
+    });
+
+    return Promise.all(promises);
   });
 };
 
@@ -39,15 +65,22 @@ export const writeMap = ({ accountId, document }) => {
 };
 
 // Delete a map
-export const deleteMap = ({ accountId, guid }) => {
-  if (!guid) {
+export const deleteMap = ({ accountId, mapGuid }) => {
+  if (!mapGuid) {
     throw new Error('Error deleting map, guid not provided');
   }
 
-  return AccountStorageMutation.mutate({
+  const deleteMapLocations = deleteMapLocationCollection({
+    accountId,
+    mapGuid
+  });
+
+  const deleteMap = AccountStorageMutation.mutate({
     accountId,
     actionType: AccountStorageMutation.ACTION_TYPE.DELETE_DOCUMENT,
     collection: MAP_COLLECTION_ID,
-    documentId: guid
+    documentId: mapGuid
   });
+
+  return Promise.all([deleteMapLocations, deleteMap]);
 };

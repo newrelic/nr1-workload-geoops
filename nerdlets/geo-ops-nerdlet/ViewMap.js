@@ -18,7 +18,6 @@ import Toolbar from '../shared/components/Toolbar';
 import LocationsTable from '../shared/components/LocationsTable';
 
 import { nerdStorageRequest } from '../shared/utils';
-import { getMaps } from '../shared/services/map';
 import { getLocations } from '../shared/services/location';
 import { getMapLocations } from '../shared/services/map-location';
 
@@ -79,13 +78,11 @@ export default class ViewMap extends Component {
       selectedMap: null,
 
       // Data
-      maps: [],
-      locations: [],
       mapLocations: [],
 
       // Loading
       isLoading: true,
-      mapsLoading: true,
+      mapLoading: true,
       locationsLoading: true,
       mapLocationsLoading: true,
 
@@ -103,31 +100,6 @@ export default class ViewMap extends Component {
 
   async componentDidMount() {
     await this.load();
-  }
-
-  async loadMaps({ userSettings }) {
-    const { accountId } = this.state;
-    this.setState({ isLoading: true });
-
-    // Maps
-    const { data: maps, errors: mapLoadingErrors } = await nerdStorageRequest({
-      dataFetcher: getMaps,
-      errorState: 'loadingMaps',
-      params: { accountId }
-    });
-
-    // Favor user's default map setting over the first map found
-    const userDefaultMap = userSettings.defaultMapGuid
-      ? [].find(m => m.document.guid === userSettings.defaultMapGuid)
-      : false;
-    const selectedMap = userDefaultMap || maps[0].document;
-
-    this.setState({
-      mapsLoading: false,
-      maps,
-      mapLoadingErrors,
-      selectedMap
-    });
   }
 
   async loadLocations() {
@@ -223,12 +195,9 @@ export default class ViewMap extends Component {
   render() {
     const {
       accountId,
-      maps,
-      locations,
       mapLocations,
 
       isLoading,
-      mapsLoading,
       locationsLoading,
       mapLocationsLoading,
       selectedMap
@@ -237,7 +206,6 @@ export default class ViewMap extends Component {
     if (isLoading) {
       return (
         <div className="geoOpsContainer">
-          {mapsLoading && <h2>Loading maps...</h2>}
           {locationsLoading && <h2>Loading locations...</h2>}
           {mapLocationsLoading && <h2>Loading additional data...</h2>}
           <Spinner />
@@ -275,7 +243,6 @@ export default class ViewMap extends Component {
                     {/* <GeoMapEdit
                   accountId={accountId}
                   map={selectedMap}
-                  maps={maps}
                   locations={locations}
                   callbacks={this.callbacks}
                 /> */}
