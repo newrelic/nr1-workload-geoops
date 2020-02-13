@@ -33,7 +33,7 @@ export default class index extends PureComponent {
 
     return (
       <>
-        <Toolbar left={<LeftToolbar />} right={null} />;
+        <Toolbar left={<LeftToolbar />} right={null} />
         <Grid
           className="primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
