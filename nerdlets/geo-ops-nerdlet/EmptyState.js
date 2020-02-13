@@ -72,6 +72,7 @@ export default class index extends PureComponent {
                   <Button
                     type={Button.TYPE.PRIMARY}
                     sizeType={Button.SIZE_TYPE.LARGE}
+                    onClick={this.props.navigation.next}
                   >
                     Get Started
                   </Button>
