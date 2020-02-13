@@ -16,6 +16,7 @@ const Toolbar = function({ left, right }) {
         <Stack
           gapType={Stack.GAP_TYPE.NONE}
           fullWidth
+          fullHeight
           verticalType={Stack.VERTICAL_TYPE.FILL}
         >
           {left || (

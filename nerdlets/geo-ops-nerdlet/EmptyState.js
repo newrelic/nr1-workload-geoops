@@ -9,7 +9,7 @@ const LeftToolbar = () => {
   return (
     <>
       <StackItem className="toolbar-item">
-        <span>Create a map to begin</span>
+        <span className="welcome-message">Create a map to begin</span>
       </StackItem>
     </>
   );
