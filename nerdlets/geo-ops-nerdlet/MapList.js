@@ -1,9 +1,21 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Dropdown, DropdownItem, Grid, GridItem, StackItem } from 'nr1';
-import { EmptyState } from '@newrelic/nr1-community';
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  Grid,
+  GridItem,
+  Spinner,
+  StackItem
+} from 'nr1';
+
+import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
 import Toolbar from '../shared/components/Toolbar';
+
+import { nerdStorageRequest } from '../shared/utils';
+import { getMaps, deleteMap } from '../shared/services/map';
 
 const LeftToolbar = ({ onClick }) => {
   return (
@@ -43,18 +55,99 @@ export default class index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      //
+      maps: [],
+      isLoading: true,
+      loadingErrors: false
     };
   }
 
+  async componentDidMount() {
+    await this.loadMaps();
+  }
+
+  async loadMaps() {
+    this.setState({ isLoading: true });
+
+    // Maps
+    const {
+      data: maps = [],
+      errors: loadingErrors = null
+    } = await nerdStorageRequest({
+      service: getMaps,
+      errorState: 'loadingMaps',
+      params: {}
+    });
+
+    this.setState({
+      isLoading: false,
+      maps,
+      loadingErrors: loadingErrors || false
+    });
+  }
+
+  async deleteMap({ map }) {
+    console.log(map);
+    const { maps } = this.state;
+
+    try {
+      await deleteMap({ map });
+    } catch (e) {
+      console.log(e);
+    }
+
+    this.setState({
+      maps: maps.filter(m => m.document.guid !== map.guid)
+    });
+  }
+
   render() {
+    const { isLoading, loadingErrors, maps } = this.state;
+
+    if (isLoading) {
+      return <Spinner />;
+    }
+
+    // TO DO - Fix NerdGraphError component in nr1-community
+    // if (!isLoading && loadingErrors) {
+    //   if (Array.isArray(loadingErrors)) {
+    //     return loadingErrors.map((error, index) => {
+    //       return <NerdGraphError key={index} error={error} />;
+    //     });
+    //   } else {
+    //     return <NerdGraphError key={index} error={loadingErrors} />;
+    //   }
+    // }
+    if (!isLoading && loadingErrors) {
+      return <pre>{JSON.stringify(loadingErrors, null, 2)}</pre>;
+    }
+
+    const mapGridItems = maps.map(m => {
+      const { document: map } = m;
+
+      return (
+        <GridItem columnSpan={4} key={map.guid}>
+          <EmptyState
+            heading={map.title || map.guid}
+            buttonText="Edit Map"
+            buttonOnClick={() => this.props.navigation.edit({ guid: map.guid })}
+            // heading={map.guid}
+            // buttonText="Delete Map"
+            // buttonOnClick={() => this.deleteMap({ map: map })}
+          />
+          <Button onClick={() => this.deleteMap({ map: map })}>
+            Delete Map
+          </Button>
+        </GridItem>
+      );
+    });
+
     return (
       <>
         <Toolbar
           left={<LeftToolbar onClick={this.props.navigation.back} />}
           right={<RightToolbar />}
         />
-        ;
+
         <Grid
           className="primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
@@ -65,33 +158,7 @@ export default class index extends PureComponent {
             className="locations-table-grid-item"
           >
             <Grid>
-              <GridItem columnSpan={4}>
-                <EmptyState
-                  heading="Map 2"
-                  buttonText="Edit Map"
-                  buttonOnClick={() =>
-                    this.props.navigation.edit({ guid: 'asdf-asdf-asdf-asdf' })
-                  }
-                />
-              </GridItem>
-              <GridItem columnSpan={4}>
-                <EmptyState
-                  heading="Map 2"
-                  buttonText="Edit Map"
-                  buttonOnClick={() =>
-                    this.props.navigation.edit({ guid: 'asdf-asdf-asdf-asdf' })
-                  }
-                />
-              </GridItem>
-              <GridItem columnSpan={4}>
-                <EmptyState
-                  heading="Map 3"
-                  buttonText="Edit Map"
-                  buttonOnClick={() =>
-                    this.props.navigation.edit({ guid: 'asdf-asdf-asdf-asdf' })
-                  }
-                />
-              </GridItem>
+              {mapGridItems}
               <GridItem columnSpan={4}>
                 <EmptyState
                   heading="+"

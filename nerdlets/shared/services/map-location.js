@@ -53,7 +53,7 @@ export const writeMapLocation = ({ accountId, document }) => {
   });
 };
 
-// Delete a map
+// Delete a single map location
 export const deleteMapLocation = ({ accountId, document }) => {
   const { guid = false, map = false } = document;
   const mapGuid = map;
@@ -73,5 +73,14 @@ export const deleteMapLocation = ({ accountId, document }) => {
     actionType: AccountStorageMutation.ACTION_TYPE.DELETE_DOCUMENT,
     collection: mapLocationCollection({ mapGuid }), // Stored per-map
     documentId: guid
+  });
+};
+
+// Delete entire collection of map locations
+export const deleteMapLocationCollection = ({ accountId, mapGuid }) => {
+  return AccountStorageQuery.query({
+    accountId: accountId,
+    collection: mapLocationCollection({ mapGuid }),
+    actionType: AccountStorageMutation.ACTION_TYPE.DELETE_COLLECTION
   });
 };
