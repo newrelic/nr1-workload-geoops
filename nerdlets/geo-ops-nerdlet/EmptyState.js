@@ -39,9 +39,10 @@ export default class index extends PureComponent {
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <GridItem
-            columnSpan={2}
+            columnSpan={3}
             fullHeight
             className="locations-table-grid-item"
+            collapseGapAfter
           >
             <EmptyState
               heading="No Locations"
@@ -50,7 +51,7 @@ export default class index extends PureComponent {
               buttonOnClick={this.props.navigation.next}
             />
           </GridItem>
-          <GridItem className="primary-content-container" columnSpan={10}>
+          <GridItem className="primary-content-container" columnSpan={9}>
             <div className="leaflet-wrapper">
               <Map center={startingCenter} zoomControl zoom={startingZoom}>
                 {/*
