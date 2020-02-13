@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, GridItem, StackItem } from 'nr1';
+import { Grid, GridItem, Stack, StackItem, Button } from 'nr1';
 import { Map, TileLayer } from 'react-leaflet';
 import { EmptyState } from '@newrelic/nr1-community';
 import Toolbar from '../shared/components/Toolbar';
@@ -51,9 +51,33 @@ export default class index extends PureComponent {
               buttonOnClick={this.props.navigation.next}
             />
           </GridItem>
-          <GridItem className="primary-content-container" columnSpan={9}>
+          <GridItem
+            className="primary-content-container welcome-page-map"
+            columnSpan={9}
+          >
             <div className="leaflet-wrapper">
-              <Map center={startingCenter} zoomControl zoom={startingZoom}>
+              <Stack
+                className="get-started-popover-container"
+                horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
+                verticalType={Stack.VERTICAL_TYPE.CENTER}
+              >
+                <StackItem className="get-started-popover">
+                  <h3>Get started by creating a map</h3>
+                  <p>
+                    It looks like you haven’t yet set up your first map. Get
+                    started below and we’ll walk you through how to get your
+                    first map up and running!
+                  </p>
+                  <hr />
+                  <Button
+                    type={Button.TYPE.PRIMARY}
+                    sizeType={Button.SIZE_TYPE.LARGE}
+                  >
+                    Get Started
+                  </Button>
+                </StackItem>
+              </Stack>
+              <Map center={startingCenter} zoomControl zoom={5}>
                 {/*
                   For funsies, try swapping out the TileLayer url to:
                   https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png
