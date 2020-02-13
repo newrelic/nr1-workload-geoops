@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import cloneDeep from 'lodash.clonedeep';
 
 import {
   Button,
@@ -86,6 +85,21 @@ export default class index extends PureComponent {
     });
   }
 
+  async deleteMap({ map }) {
+    console.log(map);
+    const { maps } = this.state;
+
+    try {
+      await deleteMap({ map });
+    } catch (e) {
+      console.log(e);
+    }
+
+    this.setState({
+      maps: maps.filter(m => m.document.guid !== map.guid)
+    });
+  }
+
   render() {
     const { isLoading, loadingErrors, maps } = this.state;
 
@@ -108,16 +122,21 @@ export default class index extends PureComponent {
     }
 
     const mapGridItems = maps.map(m => {
+      const { document: map } = m;
+
       return (
-        <GridItem columnSpan={4} key={m.document.guid}>
+        <GridItem columnSpan={4} key={map.guid}>
           <EmptyState
-            heading={m.document.title || m.document.guid}
+            heading={map.title || map.guid}
             buttonText="Edit Map"
-            buttonOnClick={() => this.props.navigation.edit({ guid: m.guid })}
-            // buttonOnClick={() =>
-            //   deleteMap({ accountId: 630060, mapGuid: m.guid })
-            // }
+            buttonOnClick={() => this.props.navigation.edit({ guid: map.guid })}
+            // heading={map.guid}
+            // buttonText="Delete Map"
+            // buttonOnClick={() => this.deleteMap({ map: map })}
           />
+          <Button onClick={() => this.deleteMap({ map: map })}>
+            Delete Map
+          </Button>
         </GridItem>
       );
     });

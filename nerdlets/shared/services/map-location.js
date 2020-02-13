@@ -76,6 +76,7 @@ export const deleteMapLocation = ({ accountId, document }) => {
   });
 };
 
+// Delete entire collection of map locations
 export const deleteMapLocationCollection = ({ accountId, mapGuid }) => {
   return AccountStorageQuery.query({
     accountId: accountId,

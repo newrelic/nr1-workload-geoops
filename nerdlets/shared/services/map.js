@@ -1,4 +1,3 @@
-import uuid from 'uuid/v4';
 import get from 'lodash.get';
 
 import { AccountStorageQuery, AccountStorageMutation } from 'nr1';
@@ -49,8 +48,11 @@ export const getMap = ({ accountId, guid }) => {
 // Create or Update a map
 export const writeMap = ({ accountId, document }) => {
   if (!document.guid) {
-    document.guid = uuid();
+    throw new Error('No map guid provided');
+    // document.guid = uuid();
   }
+
+  document.accountId = accountId;
 
   // TO DO
   // Add method to validate the contents of the map object
@@ -65,21 +67,28 @@ export const writeMap = ({ accountId, document }) => {
 };
 
 // Delete a map
-export const deleteMap = ({ accountId, mapGuid }) => {
-  if (!mapGuid) {
-    throw new Error('Error deleting map, guid not provided');
+export const deleteMap = ({ map }) => {
+  // TO DO - Remove static origami account id
+  const { accountId = 630060, guid } = map;
+
+  if (!accountId) {
+    throw new Error('Error deleting map, map has no accountId');
+  }
+
+  if (!guid) {
+    throw new Error('Error deleting map, map has no guid');
   }
 
   const deleteMapLocations = deleteMapLocationCollection({
     accountId,
-    mapGuid
+    mapGuid: guid
   });
 
   const deleteMap = AccountStorageMutation.mutate({
     accountId,
     actionType: AccountStorageMutation.ACTION_TYPE.DELETE_DOCUMENT,
     collection: MAP_COLLECTION_ID,
-    documentId: mapGuid
+    documentId: guid
   });
 
   return Promise.all([deleteMapLocations, deleteMap]);
