@@ -20,3 +20,13 @@ i.glyphicon { display: none; }
 .form-input-col-6 {
   width: 50%;
 }
+
+.form-input-col-3 {
+  display: inline-block;
+  width: 32%;
+  margin-right: 14px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
