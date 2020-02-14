@@ -1,6 +1,6 @@
 .toolbar-item {
     display: flex;
-    
+
     .welcome-message {
         font-size: 1.25em;
         color: #8e9494;
@@ -12,7 +12,7 @@
 }
 
 [class*='style_empty-state'] {
-  height: calc(100% - 32px);
+    height: calc(100% - 32px);
 }
 
 .get-started-popover-container {

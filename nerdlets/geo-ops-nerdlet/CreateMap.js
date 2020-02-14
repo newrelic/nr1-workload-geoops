@@ -114,7 +114,7 @@ export default class CreateMap extends React.PureComponent {
           Map List
         </Button>
         <Grid
-          className="primary-grid"
+          className="primary-grid getting-started-primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <GridItem
