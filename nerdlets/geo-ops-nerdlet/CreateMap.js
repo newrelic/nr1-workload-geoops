@@ -49,7 +49,7 @@ export default class CreateMap extends React.PureComponent {
     super(props);
     this.state = {
       steps,
-      activeStep: steps.find(s => s.order === 2),
+      activeStep: steps.find(s => s.order === 1),
       map: props.map,
 
       locations: [],
