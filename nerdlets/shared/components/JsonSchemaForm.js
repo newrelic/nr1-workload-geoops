@@ -27,10 +27,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     super(props);
 
     this.state = {
-      document:
-        props.defaultValues && typeof props.defaultValues === 'function'
-          ? props.defaultValues()
-          : {},
+      document: this.initializeForm({ defaultValues: props.defaultValues }),
       errors: []
     };
 
@@ -54,6 +51,12 @@ export default class JsonSchemaForm extends React.PureComponent {
     return false;
   }
 
+  initializeForm({ defaultValues }) {
+    return defaultValues && typeof defaultValues === 'function'
+      ? defaultValues()
+      : {};
+  }
+
   async load() {
     const { accountId, guid, getDocument } = this.props;
 
@@ -74,7 +77,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   async handleOnSubmit({ formData }) {
-    const { accountId, writeDocument } = this.props;
+    const { accountId, writeDocument, defaultValues } = this.props;
 
     const { data, error } = await writeDocument({
       accountId,
@@ -88,6 +91,10 @@ export default class JsonSchemaForm extends React.PureComponent {
     this.props.onWrite({
       document: { document: data.nerdStorageWriteDocument },
       error
+    });
+
+    this.setState({
+      document: this.initializeForm({ defaultValues })
     });
   }
 
