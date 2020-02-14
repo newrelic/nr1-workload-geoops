@@ -8,7 +8,9 @@
 // }
 
 [class*="Dropdown-label"],
-[class*="TextField-label"] {
+[class*="TextField-label"],
+label.control-label {
+    margin-bottom: 0;
   padding-bottom: 4px;
   padding-top: 0;
   font-size: 14px;
@@ -21,7 +23,8 @@
 }
 
 button[class*="Dropdown-trigger"],
-[class*="TextField-input"] {
+[class*="TextField-input"],
+input:not(.u-unstyledInput):not([type=button]):not([type=submit]):not([type=reset]):not([type=checkbox]):not([type=radio]):not(.AABMAC-wnd-TextField-input).form-control {
   min-width: 128px;
   min-height: 32px;
   justify-content: space-between;
