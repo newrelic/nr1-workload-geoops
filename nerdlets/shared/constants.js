@@ -9,6 +9,7 @@
 /* eslint quotes: ["error", "double"]*/
 
 import uuid from "uuid";
+import { FormInputFullWidth, FormInputTwoColumn } from "./components/react-jsonschema-form"
 
 const LAT_LNG_SCHEMA = {
   "lat": {
@@ -91,6 +92,12 @@ export const MAP_DEFAULTS = () => ({
 
 export const LOCATION_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
+  "title": { "ui:FieldTemplate": FormInputFullWidth },
+  "description": { "ui:FieldTemplate": FormInputFullWidth },
+  "municipality": { "ui:FieldTemplate": FormInputTwoColumn },
+  "region": { "ui:FieldTemplate": FormInputTwoColumn },
+  "country": { "ui:FieldTemplate": FormInputTwoColumn },
+  "postalCode": { "ui:FieldTemplate": FormInputTwoColumn },
 }
 
 export const LOCATION_JSON_SCHEMA = {

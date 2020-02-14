@@ -3,7 +3,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import { Icon } from 'nr1';
 
-export default class LocationsTable extends Component {
+export default class MapLocationTable extends Component {
   statusFormatter() {
     return <div className="status-color-fill" />;
   }

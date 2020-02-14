@@ -15,7 +15,7 @@ import { EmptyState } from '@newrelic/nr1-community';
 import GeoMap from './geo-map';
 // import GeoMapEdit from './geo-map-edit';
 import Toolbar from '../shared/components/Toolbar';
-import LocationsTable from '../shared/components/LocationsTable';
+import MapLocationTable from '../shared/components/MapLocationTable';
 
 import { nerdStorageRequest } from '../shared/utils';
 import { getLocations } from '../shared/services/location';
@@ -110,7 +110,7 @@ export default class ViewMap extends Component {
       data: locations,
       errors: locationLoadingErrors
     } = await nerdStorageRequest({
-      dataFetcher: getLocations,
+      service: getLocations,
       errorState: 'loadingLocations',
       params: { accountId, fixtureData: true }
     });
@@ -131,7 +131,7 @@ export default class ViewMap extends Component {
       data: mapLocations,
       errors: mapLocationLoadingErrors
     } = await nerdStorageRequest({
-      dataFetcher: getMapLocations,
+      service: getMapLocations,
       errorState: 'loadingMapLocations',
       params: { accountId }
     });
@@ -226,7 +226,7 @@ export default class ViewMap extends Component {
             fullHeight
             className="locations-table-grid-item"
           >
-            <LocationsTable />
+            <MapLocationTable />
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={9}>
             <Grid className="primary-grid">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Button, Dropdown, DropdownItem, Grid, GridItem, StackItem } from 'nr1';
 import { EmptyState } from '@newrelic/nr1-community';
-import LocationsTable from '../shared/components/LocationsTable';
+import MapLocationTable from '../shared/components/MapLocationTable';
 import Toolbar from '../shared/components/Toolbar';
 
 const LeftToolbar = ({ navigation }) => {
@@ -82,7 +82,7 @@ export default class index extends PureComponent {
             fullHeight
             className="locations-table-grid-item"
           >
-            <LocationsTable />
+            <MapLocationTable />
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={10}>
             {/* Edit Map Data */}

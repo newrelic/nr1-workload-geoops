@@ -17,8 +17,8 @@ export default class index extends PureComponent {
       // We've queried for all Accounts and all Maps and found none
       emptyState: true,
 
-      //
-      createMap: false, // Getting Started and Create new map
+      // Getting Started and Create new map
+      createMap: false,
 
       // View Map
       viewMap: false,
@@ -34,8 +34,8 @@ export default class index extends PureComponent {
        */
 
       accountId: 630060,
+
       // TO DO - Does Map selection live this high in the tree so we can pass it into Getting Started?
-      // eslint-disable-next-line react/no-unused-state
       selectedMap: null
     };
   }
@@ -47,7 +47,8 @@ export default class index extends PureComponent {
       viewMap,
       mapList,
       editMap,
-      accountId
+      accountId,
+      selectedMap
     } = this.state;
 
     if (emptyState) {
@@ -62,17 +63,14 @@ export default class index extends PureComponent {
     }
 
     if (createMap) {
-      // TO DO - Add ability to pass down a specific step to the wizard
       return (
         <CreateMap
           accountId={accountId}
+          map={selectedMap}
           onMapChange={({ map }) => {
             // eslint-disable-next-line no-alert
             alert("You've created a new map and stored it in Account Storage!");
-            // eslint-disable-next-line no-console
-            console.log('Map updated');
-            // eslint-disable-next-line no-console
-            console.log(JSON.stringify(map, null, 2));
+            this.setState({ selectedMap: map });
           }}
           navigation={{
             next: () => this.setState({ createMap: false, mapList: true }),
@@ -90,10 +88,16 @@ export default class index extends PureComponent {
             back: () => this.setState({ emptyState: false, createMap: true }),
             create: () => this.setState({ mapList: false, createMap: true }),
             edit: ({ guid }) => {
-              console.log(guid);
               // const map = maps.find(m => m.document.guid === guid);
 
               this.setState({ mapList: false, editMap: true });
+            },
+            editWizard: ({ map }) => {
+              this.setState({
+                mapList: false,
+                createMap: true,
+                selectedMap: map
+              });
             }
           }}
         />

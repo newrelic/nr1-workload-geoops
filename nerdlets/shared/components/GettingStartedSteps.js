@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Step = function({ title, isActive }) {
   const activeClass = 'active-step';
-  const label = !isActive ? title : `${title} (Active)`;
+  const label = !isActive ? title : `${title}`;
 
   return (
     <li className={`get-started-step ${isActive ? activeClass : ''}`}>

@@ -8,10 +8,14 @@ export default class JsonSchemaForm extends React.PureComponent {
     accountId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
       .isRequired,
     guid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+
+    /* react-jsonschema-form pass-throughs */
     schema: PropTypes.object.isRequired,
     uiSchema: PropTypes.object,
+    FieldTemplate: PropTypes.element,
     fields: PropTypes.object,
     defaultValues: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+
     getDocument: PropTypes.func.isRequired,
     writeDocument: PropTypes.func.isRequired,
     onWrite: PropTypes.func,
@@ -92,7 +96,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   render() {
-    const { schema, uiSchema, fields } = this.props;
+    const { schema, uiSchema, FieldTemplate, fields } = this.props;
     const { document, errors } = this.state;
 
     return (
@@ -100,6 +104,7 @@ export default class JsonSchemaForm extends React.PureComponent {
         <Form
           schema={schema}
           uiSchema={uiSchema}
+          FieldTemplate={FieldTemplate}
           fields={fields}
           formData={document}
           onChange={this.handleOnChange}

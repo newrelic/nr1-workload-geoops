@@ -1,17 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { LOCATION_UI_SCHEMA, LOCATION_JSON_SCHEMA } from '../shared/constants';
+import { Spinner } from 'nr1';
+
+import {
+  LOCATION_UI_SCHEMA,
+  LOCATION_JSON_SCHEMA,
+  LOCATION_DEFAULTS
+} from '../shared/constants';
 
 import { EmptyState } from '@newrelic/nr1-community';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
+
 import { getLocation, writeLocation } from '../shared/services/location';
 import { writeMapLocation } from '../shared/services/map-location';
 
 export default class DefineLocations extends React.PureComponent {
   static propTypes = {
     accountId: PropTypes.number,
-    map: PropTypes.object.isRequired
+    map: PropTypes.object.isRequired,
+    onLocationWrite: PropTypes.func,
+    locations: PropTypes.array,
+    locationsLoading: PropTypes.bool
   };
 
   constructor(props) {
@@ -24,26 +34,47 @@ export default class DefineLocations extends React.PureComponent {
   }
 
   // As they add locations we need to associate them with _this_ map
-  // eslint-disable-next-line no-unused-vars
-  async onWrite({ data, errors }) {
-    // TO DO - Handle errors when adding new Locations
+  // We do so by creating a MapLocation object for each
 
+  async onWrite({ document, error: locationWriteError }) {
+    const { document: location } = document;
+    const {
+      data: mapLocation,
+      error: mapLocationWriteError
+    } = await this.writeMapLocation({ location });
+
+    this.props.onLocationWrite({
+      location: { data: location, error: locationWriteError },
+      mapLocation: {
+        data: mapLocation.nerdStorageWriteDocument,
+        error: mapLocationWriteError
+      }
+    });
+  }
+
+  async writeMapLocation({ location }) {
     const { accountId, map } = this.props;
 
-    // TO DO:
-
-    // Get an empty/default MapLocation object
+    // TO DO: Get an empty/default MapLocation object
+    // i.e. For a given json-schema how do we get a default object
     const mapLocation = {};
 
-    // Add location reference:
-    mapLocation.location = data.guid || data.document.guid;
-    mapLocation.map = map.guid || map.document.guid;
+    if (!location.guid || !map.guid) {
+      throw new Error('Error: missing location or map guids');
+    }
+    // TO DO - Do we embed the location or just a guid referencing it?
+    mapLocation.location = location.guid;
+    mapLocation.map = map.guid;
 
-    await writeMapLocation({ accountId, document: mapLocation });
+    return writeMapLocation({
+      accountId,
+      document: mapLocation
+    });
   }
 
   render() {
-    const { accountId } = this.props;
+    const { accountId, locations, locationsLoading } = this.props;
+
     //
     return (
       <>
@@ -59,18 +90,28 @@ export default class DefineLocations extends React.PureComponent {
           guid={false}
           schema={LOCATION_JSON_SCHEMA}
           uiSchema={LOCATION_UI_SCHEMA}
-          defaultValues={false}
+          defaultValues={LOCATION_DEFAULTS}
           getDocument={getLocation}
           writeDocument={writeLocation}
           onWrite={this.onWrite}
+          onError={errors => console.log(errors)}
         />
 
         {/* Column 2 */}
-        <EmptyState
-          heading="Location List"
-          description="List locations and provide delete functionality"
-          callToAction={false}
-        />
+
+        {locationsLoading && <Spinner />}
+
+        {!locationsLoading && locations.length === 0 && (
+          <EmptyState
+            heading="Location List"
+            description="List locations and provide delete functionality"
+            callToAction={false}
+          />
+        )}
+
+        {!locationsLoading && locations.length === 0 && (
+          <pre>{JSON.stringify(locations, null, 2)}</pre>
+        )}
       </>
     );
   }
