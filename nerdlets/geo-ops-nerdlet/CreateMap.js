@@ -49,18 +49,25 @@ export default class CreateMap extends React.PureComponent {
     super(props);
     this.state = {
       steps,
-      activeStep: steps.find(s => s.order === 1),
+      activeStep: steps.find(s => s.order === 2),
       map: props.map,
+
       locations: [],
       locationsLoading: false,
-      locationLoadingErrors: []
+      locationsLoadingErrors: [],
+
+      mapLocations: [],
+      mapLocationsLoading: false,
+      mapLocationsLoadingErrors: []
     };
 
     this.onAddEditMap = this.onAddEditMap.bind(this);
+    this.onLocationWrite = this.onLocationWrite.bind(this);
   }
 
   componentDidMount() {
     this.loadLocations();
+    this.loadMapLocations();
   }
 
   // Based on the current way we're recreating each component on
@@ -80,22 +87,54 @@ export default class CreateMap extends React.PureComponent {
   // }
 
   async loadLocations() {
-    const { accountId } = this.state;
+    const { accountId, map } = this.props;
+
+    if (map && map.accountId && map.accountId !== accountId) {
+      console.warn(
+        "The selected map's accountId is different from the selected accountId. This might be unexpected behavior."
+      );
+    }
+
     this.setState({ locationsLoading: true });
     // Locations
     const {
       data: locations,
-      errors: locationLoadingErrors
+      errors: locationsLoadingErrors
     } = await nerdStorageRequest({
       service: getLocations,
-      errorState: 'loadingLocations',
       params: { accountId }
     });
 
     this.setState({
       locations,
       locationsLoading: false,
-      locationLoadingErrors
+      locationsLoadingErrors
+    });
+  }
+
+  async loadMapLocations() {
+    const { accountId, map } = this.props;
+
+    if (map && map.accountId && map.accountId !== accountId) {
+      console.warn(
+        "The selected map's accountId is different from the selected accountId. This might be unexpected behavior."
+      );
+    }
+
+    this.setState({ mapLocationsLoading: true });
+
+    const {
+      data: mapLocations,
+      errors: mapLocationsLoadingErrors
+    } = await nerdStorageRequest({
+      service: getLocations,
+      params: { accountId }
+    });
+
+    this.setState({
+      mapLocations,
+      mapLocationsLoading: false,
+      mapLocationsLoadingErrors
     });
   }
 
@@ -116,9 +155,52 @@ export default class CreateMap extends React.PureComponent {
 
   // Bubble up both the location and the mapLocation from DefineLocations
   onLocationWrite({ location, mapLocation }) {
-    // console.log(JSON.stringify(result, null, 2));
-    // const { data: newLocation } = location;
-    // const { data: newMapLocation } = mapLocation;
+    // TO DO - Handle errors from updating each
+
+    this.addOrUpdate({ collectionName: 'locations', item: location.data });
+    this.addOrUpdate({
+      collectionName: 'mapLocations',
+      item: mapLocation.data
+    });
+  }
+
+  /*
+   * field is a local state array that needs updated in an immutable way
+   * item is an un-nested nerdstore document that needs wrapped in { id: foo, document: item }
+   */
+  addOrUpdate({ collectionName, item }) {
+    const { [collectionName]: collection } = this.state;
+
+    const itemIndex = collection.findIndex(i => i.document.guid === item.guid);
+
+    const newDocument = { id: item.guid, document: item };
+
+    // Update in place
+    if (itemIndex > 0) {
+      const updatedCollection = [...collection].splice(
+        itemIndex,
+        1,
+        newDocument
+      );
+
+      const newState = {
+        [collectionName]: updatedCollection
+      };
+
+      this.setState(newState);
+
+      return;
+    }
+
+    // Append
+    this.setState(prevState => {
+      return {
+        [collectionName]: [
+          ...prevState[collectionName],
+          { id: item.guid, document: item }
+        ]
+      };
+    });
   }
 
   // Given a step, determine the "next" one
@@ -144,7 +226,10 @@ export default class CreateMap extends React.PureComponent {
       steps,
       locations,
       locationsLoading,
-      locationLoadingErrors
+      locationsLoadingErrors,
+      mapLocations,
+      mapLocationsLoading,
+      mapLocationsLoadingErrors
     } = this.state;
 
     const startingCenter = [39.5, -98.35];
@@ -199,6 +284,7 @@ export default class CreateMap extends React.PureComponent {
                   onLocationWrite={this.onLocationWrite}
                   locations={locations}
                   locationsLoading={locationsLoading}
+                  locationsLoadingErrors={locationsLoadingErrors}
                 />
               </>
             )}
@@ -210,7 +296,9 @@ export default class CreateMap extends React.PureComponent {
                 <MapLocationData
                   accountId={accountId}
                   map={map}
-                  mapLocations={[]}
+                  mapLocations={mapLocations}
+                  mapLocationsLoading={mapLocationsLoading}
+                  mapLocationsLoadingErrors={mapLocationsLoadingErrors}
                 />
               </>
             )}

@@ -30,7 +30,6 @@ export const getMapLocation = ({ accountId, guid }) => {
 
 // Create or Update a map
 export const writeMapLocation = ({ accountId, document }) => {
-  console.log(document);
   if (!document.map) {
     throw new Error(
       'Error creating Map Location - you must assign it to a Map'

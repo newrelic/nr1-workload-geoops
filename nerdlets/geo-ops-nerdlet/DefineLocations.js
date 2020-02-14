@@ -9,11 +9,12 @@ import {
   LOCATION_DEFAULTS
 } from '../shared/constants';
 
-import { EmptyState } from '@newrelic/nr1-community';
+import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 
 import { getLocation, writeLocation } from '../shared/services/location';
 import { writeMapLocation } from '../shared/services/map-location';
+import LocationTable from '../shared/components/LocationTable';
 
 export default class DefineLocations extends React.PureComponent {
   static propTypes = {
@@ -21,7 +22,8 @@ export default class DefineLocations extends React.PureComponent {
     map: PropTypes.object.isRequired,
     onLocationWrite: PropTypes.func,
     locations: PropTypes.array,
-    locationsLoading: PropTypes.bool
+    locationsLoading: PropTypes.bool,
+    locationLoadingErrors: PropTypes.array
   };
 
   constructor(props) {
@@ -73,15 +75,17 @@ export default class DefineLocations extends React.PureComponent {
   }
 
   render() {
-    const { accountId, locations, locationsLoading } = this.props;
+    const {
+      accountId,
+      locations,
+      locationsLoading,
+      locationLoadingErrors
+    } = this.props;
 
-    //
     return (
       <>
         <h2>File Upload</h2>
-
         <hr />
-
         <h2>Define locations manually</h2>
 
         {/* Column 1 */}
@@ -98,9 +102,17 @@ export default class DefineLocations extends React.PureComponent {
         />
 
         {/* Column 2 */}
-
         {locationsLoading && <Spinner />}
 
+        {/* Errors */}
+        {/* {!locationsLoading &&
+          locationLoadingErrors &&
+          locationLoadingErrors.length > 0 &&
+          locationLoadingErrors.map((error, index) => {
+            return <NerdGraphError key={index} error={error} />;
+          })} */}
+
+        {/* Empty state */}
         {!locationsLoading && locations.length === 0 && (
           <EmptyState
             heading="Location List"
@@ -109,8 +121,10 @@ export default class DefineLocations extends React.PureComponent {
           />
         )}
 
-        {!locationsLoading && locations.length === 0 && (
-          <pre>{JSON.stringify(locations, null, 2)}</pre>
+        {/* List of locations */}
+        {!locationsLoading && locations.length > 0 && (
+          <LocationTable locations={locations} />
+          // <pre>{JSON.stringify(locations, null, 2)}</pre>
         )}
       </>
     );
