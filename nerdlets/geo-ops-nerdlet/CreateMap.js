@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
 
-import { Button, Grid, GridItem, StackItem } from 'nr1';
+import { Button, Grid, GridItem } from 'nr1';
 
 import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import DefineLocations from './DefineLocations';
 import MapLocationData from './MapLocationData';
-import Toolbar from '../shared/components/Toolbar';
 
 import {
   MAP_UI_SCHEMA,
@@ -24,26 +23,6 @@ const steps = [
   { order: 3, title: '3. Provide Data For Locations' },
   { order: 4, title: '4. Canada' }
 ];
-
-// TO DO - Remove Toolbar from CreateMap
-const RightToolbar = ({ navigation }) => {
-  return (
-    <>
-      <StackItem className="">
-        <Button
-          onClick={navigation.next}
-          type={Button.TYPE.PRIMARY}
-          iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
-        >
-          Map List
-        </Button>
-      </StackItem>
-    </>
-  );
-};
-RightToolbar.propTypes = {
-  navigation: PropTypes.object
-};
 
 /*
  * Usage:
@@ -126,7 +105,14 @@ export default class CreateMap extends React.PureComponent {
 
     return (
       <>
-        <Toolbar right={<RightToolbar navigation={navigation} />} />
+        <Button
+          onClick={navigation.next}
+          type={Button.TYPE.PRIMARY}
+          iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
+          className="temporary-all-maps-btn"
+        >
+          Map List
+        </Button>
         <Grid
           className="primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
@@ -135,8 +121,8 @@ export default class CreateMap extends React.PureComponent {
             columnSpan={6}
             fullHeight
             className="locations-table-grid-item"
+            collapseGapAfter
           >
-            <h2>Steps</h2>
             <GettingStartedSteps steps={steps} activeStep={activeStep} />
 
             {activeStep.order === 1 && (
