@@ -126,8 +126,10 @@ export default class CreateMap extends React.PureComponent {
             <GettingStartedSteps steps={steps} activeStep={activeStep} />
 
             {activeStep.order === 1 && (
-              <>
-                <h2>Create a map</h2>
+              <div className="get-started-step-contents">
+                <h2 className="get-started-step-contents-header">
+                  Create a map
+                </h2>
                 <JsonSchemaForm
                   accountId={accountId}
                   guid={map ? map.document.guid : false}
@@ -138,7 +140,7 @@ export default class CreateMap extends React.PureComponent {
                   writeDocument={writeMap}
                   onWrite={this.onAddEditMap}
                 />
-              </>
+              </div>
             )}
 
             {activeStep.order === 2 && (
