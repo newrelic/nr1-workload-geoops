@@ -5,7 +5,11 @@ const Step = function({ title, isActive }) {
   const activeClass = 'active-step';
   const label = !isActive ? title : `${title} (Active)`;
 
-  return <li className={isActive ? activeClass : null}>{label}</li>;
+  return (
+    <li className={`get-started-step ${isActive ? activeClass : ''}`}>
+      <span>{label}</span>
+    </li>
+  );
 };
 Step.propTypes = {
   title: PropTypes.string,
@@ -15,7 +19,7 @@ Step.propTypes = {
 const GettingStartedSteps = function({ steps, activeStep }) {
   return (
     <>
-      <ul>
+      <ul className="get-started-steps-container">
         {steps.map((s, index) => (
           <Step
             key={index}
