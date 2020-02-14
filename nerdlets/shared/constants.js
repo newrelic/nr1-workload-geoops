@@ -96,7 +96,7 @@ export const LOCATION_UI_SCHEMA = {
 export const LOCATION_JSON_SCHEMA = {
   "description": "Location",
   "type": "object",
-  "required": [],
+  "required": ["guid", "title", "lat", "lng"],
   "properties": {
     "guid": {
       "type": "string"
@@ -129,6 +129,10 @@ export const LOCATION_JSON_SCHEMA = {
   }
 };
 
+export const LOCATION_DEFAULTS = () => ({
+  "guid": uuid()
+});
+
 export const MAP_LOCATION_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
   "entities": { "ui:field": "entities" }
@@ -139,7 +143,7 @@ export const MAP_LOCATION_UI_SCHEMA = {
 export const MAP_LOCATION_JSON_SCHEMA = {
   "description": "Map",
   "type": "object",
-  "required": [],
+  "required": ["guid", "title", "map", "location"],
   "properties": {
     "guid": {
       "type": "string"
