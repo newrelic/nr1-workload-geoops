@@ -110,7 +110,7 @@ export default class ViewMap extends Component {
       data: locations,
       errors: locationLoadingErrors
     } = await nerdStorageRequest({
-      dataFetcher: getLocations,
+      service: getLocations,
       errorState: 'loadingLocations',
       params: { accountId, fixtureData: true }
     });
@@ -131,7 +131,7 @@ export default class ViewMap extends Component {
       data: mapLocations,
       errors: mapLocationLoadingErrors
     } = await nerdStorageRequest({
-      dataFetcher: getMapLocations,
+      service: getMapLocations,
       errorState: 'loadingMapLocations',
       params: { accountId }
     });
