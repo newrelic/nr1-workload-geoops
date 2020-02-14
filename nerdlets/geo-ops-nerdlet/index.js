@@ -98,7 +98,9 @@ export default class index extends PureComponent {
                 createMap: true,
                 selectedMap: map
               });
-            }
+            },
+            viewMap: ({ map }) =>
+              this.setState({ mapList: false, viewMap: true, selectedMap: map })
           }}
         />
       );
@@ -117,7 +119,7 @@ export default class index extends PureComponent {
     }
 
     if (viewMap) {
-      return <ViewMap />;
+      return <ViewMap selectedMap={selectedMap} />;
     }
   }
 }

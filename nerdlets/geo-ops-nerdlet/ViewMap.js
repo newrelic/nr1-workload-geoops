@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Button,
@@ -35,7 +36,7 @@ const LeftToolbar = () => {
         <Button>Back to main view</Button>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
-        <Dropdown label="Account" title="Choose an Account">
+        <Dropdown title="Choose an Account">
           <DropdownItem>Account 1</DropdownItem>
           <DropdownItem>Account 2</DropdownItem>
           <DropdownItem>Account 3</DropdownItem>
@@ -47,9 +48,6 @@ const LeftToolbar = () => {
           <DropdownItem>Map 2</DropdownItem>
           <DropdownItem>Map 3</DropdownItem>
         </Dropdown>
-      </StackItem>
-      <StackItem className="toolbar-item has-separator">
-        Create a map to begin
       </StackItem>
     </>
   );
@@ -69,13 +67,17 @@ const RightToolbar = () => {
 };
 
 export default class ViewMap extends Component {
+  static propTypes = {
+    selectedMap: PropTypes.object
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       // TO DO - Check on nr1 AccountDropdown, if still too far off, use nr1-community
       accountId: 630060,
 
-      selectedMap: null,
+      selectedMap: props.selectedMap || null,
 
       // Data
       mapLocations: [],
@@ -146,11 +148,11 @@ export default class ViewMap extends Component {
 
     // TO DO
     // Fetch user default settings, like which map to start with
-    const userSettings = {
-      defaultMapGuid: false
-    };
+    // const userSettings = {
+    //   defaultMapGuid: false
+    // };
 
-    await this.loadMaps({ userSettings });
+    // await this.loadMaps({ userSettings });
     await this.loadLocations();
     await this.loadMapLocations();
 
@@ -238,12 +240,6 @@ export default class ViewMap extends Component {
 
                 {selectedMap && (
                   <>
-                    {/* <GeoMapEdit
-                  accountId={accountId}
-                  map={selectedMap}
-                  locations={locations}
-                  callbacks={this.callbacks}
-                /> */}
                     <GeoMap
                       accountId={accountId}
                       map={selectedMap}

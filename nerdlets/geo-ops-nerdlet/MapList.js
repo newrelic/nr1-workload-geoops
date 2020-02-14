@@ -8,6 +8,7 @@ import {
   Grid,
   GridItem,
   Spinner,
+  Stack,
   StackItem
 } from 'nr1';
 
@@ -24,7 +25,7 @@ const LeftToolbar = ({ onClick }) => {
         <Button onClick={onClick}>Back to main view</Button>
       </StackItem>
       <StackItem>
-        <Dropdown label="Account" title="Choose an Account">
+        <Dropdown title="Choose an Account">
           <DropdownItem>Account 1</DropdownItem>
           <DropdownItem>Account 2</DropdownItem>
           <DropdownItem>Account 3</DropdownItem>
@@ -130,10 +131,23 @@ export default class index extends PureComponent {
             buttonText="Edit Map"
             buttonOnClick={() => this.props.navigation.edit({ guid: map.guid })}
           />
-          <Button onClick={() => this.deleteMap({ map })}>Delete Map</Button>
-          <Button onClick={() => this.props.navigation.editWizard({ map })}>
-            Guided Configuration
-          </Button>
+          <Stack horizontalType={Stack.HORIZONTAL_TYPE.FILL_EVENLY}>
+            <StackItem>
+              <Button onClick={() => this.deleteMap({ map })}>
+                Delete Map
+              </Button>
+            </StackItem>
+            <StackItem>
+              <Button onClick={() => this.props.navigation.editWizard({ map })}>
+                Guided Configuration
+              </Button>
+            </StackItem>
+            <StackItem>
+              <Button onClick={() => this.props.navigation.viewMap({ map })}>
+                View Map
+              </Button>
+            </StackItem>
+          </Stack>
         </GridItem>
       );
     });
