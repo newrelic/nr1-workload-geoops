@@ -74,7 +74,6 @@ export default class index extends PureComponent {
       errors: loadingErrors = null
     } = await nerdStorageRequest({
       service: getMaps,
-      errorState: 'loadingMaps',
       params: {}
     });
 
