@@ -130,12 +130,10 @@ export default class index extends PureComponent {
             heading={map.title || map.guid}
             buttonText="Edit Map"
             buttonOnClick={() => this.props.navigation.edit({ guid: map.guid })}
-            // heading={map.guid}
-            // buttonText="Delete Map"
-            // buttonOnClick={() => this.deleteMap({ map: map })}
           />
-          <Button onClick={() => this.deleteMap({ map: map })}>
-            Delete Map
+          <Button onClick={() => this.deleteMap({ map })}>Delete Map</Button>
+          <Button onClick={() => this.props.navigation.editWizard({ map })}>
+            Guided Configuration
           </Button>
         </GridItem>
       );
