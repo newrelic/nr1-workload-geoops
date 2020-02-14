@@ -9,6 +9,8 @@ import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import DefineLocations from './DefineLocations';
 import MapLocationData from './MapLocationData';
 
+import { nerdStorageRequest } from '../shared/utils';
+
 import {
   MAP_UI_SCHEMA,
   MAP_JSON_SCHEMA,
@@ -16,6 +18,7 @@ import {
 } from '../shared/constants';
 
 import { getMap, writeMap } from '../shared/services/map';
+import { getLocations } from '../shared/services/location';
 
 const steps = [
   { order: 1, title: '1. Create a map' },
@@ -47,19 +50,53 @@ export default class CreateMap extends React.PureComponent {
     this.state = {
       steps,
       activeStep: steps.find(s => s.order === 1),
-      map: null
+      map: props.map,
+      locations: [],
+      locationsLoading: false,
+      locationLoadingErrors: []
     };
 
     this.onAddEditMap = this.onAddEditMap.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.map && this.props.map) {
-      if (prevProps.map.guid !== this.props.map.guid) {
-        // eslint-disable-next-line react/no-did-update-set-state
-        this.setState({ map: this.props.map });
-      }
-    }
+  componentDidMount() {
+    this.loadLocations();
+  }
+
+  // Based on the current way we're recreating each component on
+  // top-level page navigation this isn't necessary, but it will be/could be an optimization
+  // componentDidUpdate(prevProps) {
+  //   // null (no map) -> map
+  //   if (prevProps.map === null && this.props.map) {
+  //     // eslint-disable-next-line react/no-did-update-set-state
+  //     this.setState({ map: this.props.map });
+  //   }
+
+  //   if (prevProps.map && this.props.map) {
+  //     if (prevProps.map.guid !== this.props.map.guid) {
+  //       this.setState({ map: this.props.map });
+  //     }
+  //   }
+  // }
+
+  async loadLocations() {
+    const { accountId } = this.state;
+    this.setState({ locationsLoading: true });
+    // Locations
+    const {
+      data: locations,
+      errors: locationLoadingErrors
+    } = await nerdStorageRequest({
+      service: getLocations,
+      errorState: 'loadingLocations',
+      params: { accountId }
+    });
+
+    this.setState({
+      locations,
+      locationsLoading: false,
+      locationLoadingErrors
+    });
   }
 
   onAddEditMap({ document, error }) {
@@ -70,15 +107,18 @@ export default class CreateMap extends React.PureComponent {
     // eslint-disable-next-line no-console
     console.log([document, error]);
 
-    // Do we need to wrap the mutation response to get a consistent looking map document?
-    // i.e. { document: { guid }} vs. { guid }
-    const map = { document };
-
-    this.props.onMapChange({ map });
+    this.props.onMapChange({ map: document });
     this.setState({
-      map,
+      map: document,
       activeStep: this.nextStep({ step: activeStep })
     });
+  }
+
+  // Bubble up both the location and the mapLocation from DefineLocations
+  onLocationWrite({ location, mapLocation }) {
+    // console.log(JSON.stringify(result, null, 2));
+    // const { data: newLocation } = location;
+    // const { data: newMapLocation } = mapLocation;
   }
 
   // Given a step, determine the "next" one
@@ -98,7 +138,14 @@ export default class CreateMap extends React.PureComponent {
 
   render() {
     const { accountId, navigation } = this.props;
-    const { activeStep, map, steps } = this.state;
+    const {
+      activeStep,
+      map,
+      steps,
+      locations,
+      locationsLoading,
+      locationLoadingErrors
+    } = this.state;
 
     const startingCenter = [39.5, -98.35];
     const startingZoom = 4;
@@ -132,7 +179,7 @@ export default class CreateMap extends React.PureComponent {
                 </h2>
                 <JsonSchemaForm
                   accountId={accountId}
-                  guid={map ? map.document.guid : false}
+                  guid={map ? map.guid : false}
                   schema={MAP_JSON_SCHEMA}
                   uiSchema={MAP_UI_SCHEMA}
                   defaultValues={MAP_DEFAULTS}
@@ -143,10 +190,16 @@ export default class CreateMap extends React.PureComponent {
               </div>
             )}
 
-            {activeStep.order === 2 && (
+            {activeStep.order === 2 && map && (
               <>
                 <h2>Define Locations</h2>
-                <DefineLocations accountId={accountId} map={map} />
+                <DefineLocations
+                  accountId={accountId}
+                  map={map}
+                  onLocationWrite={this.onLocationWrite}
+                  locations={locations}
+                  locationsLoading={locationsLoading}
+                />
               </>
             )}
 
