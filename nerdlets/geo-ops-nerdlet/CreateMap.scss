@@ -10,8 +10,12 @@ div.getting-started-primary-grid {
 }
 
 .get-started-step-contents {
+    display: flex;
     width: 90%;
+    height: calc(100% - 83px);
     margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .get-started-step-contents-header {

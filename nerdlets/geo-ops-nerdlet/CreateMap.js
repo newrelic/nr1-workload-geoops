@@ -174,9 +174,9 @@ export default class CreateMap extends React.PureComponent {
 
             {activeStep.order === 1 && (
               <div className="get-started-step-contents">
-                <h2 className="get-started-step-contents-header">
+                <h1 className="get-started-step-contents-header">
                   Create a map
-                </h2>
+                </h1>
                 <JsonSchemaForm
                   accountId={accountId}
                   guid={map ? map.guid : false}

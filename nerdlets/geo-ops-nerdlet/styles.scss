@@ -25,6 +25,10 @@
   height: calc(100% - 74px);
 }
 
+.field-description {
+  display: none;
+}
+
 .geoOpsContainer {
   display: flex;
   flex-direction: row;
