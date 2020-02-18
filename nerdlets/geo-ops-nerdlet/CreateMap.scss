@@ -42,3 +42,13 @@ div.get-started-step-contents-CTAs {
 .form-group #root {
     background-color: transparent;
 }
+
+.location-table {
+    max-width: 47%;
+    max-height: 300px;
+    position: absolute;
+    right: 1.5%;
+    bottom: 2.75%;
+    z-index: 1000;
+    overflow: scroll;
+}

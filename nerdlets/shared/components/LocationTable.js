@@ -81,7 +81,7 @@ export default class MapLocationTable extends Component {
     return (
       <ToolkitProvider keyField="guid" data={data} columns={columns} search>
         {props => (
-          <div>
+          <div className="location-table">
             <SearchBar {...props.searchProps} />
             <BootstrapTable {...props.baseProps} bordered={false} />
           </div>

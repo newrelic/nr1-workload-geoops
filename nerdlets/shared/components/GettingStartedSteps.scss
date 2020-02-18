@@ -16,7 +16,6 @@
   &.completed,
   &.active-step {
     color: #fff;
-    background-color: #007e8a;
 
     &:before,
     &:after {
@@ -26,15 +25,18 @@
 
   &:first-child {
     margin-right: 12px;
+    background-color: #007e8a;
+    color: #fff;
+    border-radius: 3px 0 0 3px;
 
     &:before,
     &:after {
       left: 5px;
+      background-color: #007e8a;
     }
 
     &.completed,
     &.active-step {
-      background-color: #007e8a;
       border-radius: 3px 0 0 3px;
     }
   }
