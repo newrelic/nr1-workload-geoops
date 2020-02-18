@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
 
-import { Button, Grid, GridItem } from 'nr1';
+import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
 
 import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
@@ -63,6 +63,7 @@ export default class CreateMap extends React.PureComponent {
 
     this.onAddEditMap = this.onAddEditMap.bind(this);
     this.onLocationWrite = this.onLocationWrite.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
@@ -218,6 +219,10 @@ export default class CreateMap extends React.PureComponent {
     return nextStep;
   }
 
+  submitForm() {
+    this.form.submitButton.click();
+  }
+
   render() {
     const { accountId, navigation } = this.props;
     const {
@@ -258,21 +263,53 @@ export default class CreateMap extends React.PureComponent {
             <GettingStartedSteps steps={steps} activeStep={activeStep} />
 
             {activeStep.order === 1 && (
-              <div className="get-started-step-contents">
-                <h1 className="get-started-step-contents-header">
-                  Create a map
-                </h1>
-                <JsonSchemaForm
-                  accountId={accountId}
-                  guid={map ? map.guid : false}
-                  schema={MAP_JSON_SCHEMA}
-                  uiSchema={MAP_UI_SCHEMA}
-                  defaultValues={MAP_DEFAULTS}
-                  getDocument={getMap}
-                  writeDocument={writeMap}
-                  onWrite={this.onAddEditMap}
-                />
-              </div>
+              <Stack
+                verticalType={Stack.HORIZONTAL_TYPE.CENTER}
+                className="get-started-step-contents"
+              >
+                <StackItem className="get-started-step-contents-header-container">
+                  <h1 className="get-started-step-contents-header">
+                    Create a map
+                  </h1>
+                </StackItem>
+                <StackItem className="get-started-step-contents-form-container">
+                  <JsonSchemaForm
+                    accountId={accountId}
+                    guid={map ? map.guid : false}
+                    schema={MAP_JSON_SCHEMA}
+                    uiSchema={MAP_UI_SCHEMA}
+                    defaultValues={MAP_DEFAULTS}
+                    getDocument={getMap}
+                    writeDocument={writeMap}
+                    onWrite={this.onAddEditMap}
+                    ref={form => (this.form = form)}
+                  />
+                </StackItem>
+                <StackItem className="get-started-step-contents-CTA-container">
+                  <Stack
+                    verticalType={Stack.VERTICAL_TYPE.CENTER}
+                    className="get-started-step-contents-CTAs"
+                  >
+                    <StackItem>
+                      <Button
+                        sizeType={Button.SIZE_TYPE.LARGE}
+                        type={Button.TYPE.SECONDARY}
+                      >
+                        Cancel
+                      </Button>
+                    </StackItem>
+                    <StackItem>
+                      <Button
+                        sizeType={Button.SIZE_TYPE.LARGE}
+                        type={Button.TYPE.PRIMARY}
+                        onClick={this.submitForm}
+                      >
+                        Continue
+                      </Button>
+                    </StackItem>
+                  </Stack>
+                </StackItem>
+              </Stack>
             )}
 
             {activeStep.order === 2 && map && (

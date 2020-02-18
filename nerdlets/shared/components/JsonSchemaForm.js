@@ -117,7 +117,15 @@ export default class JsonSchemaForm extends React.PureComponent {
           onChange={this.handleOnChange}
           onSubmit={this.handleOnSubmit}
           onError={this.handleOnError}
-        />
+        >
+          <button
+            type="submit"
+            ref={btn => {
+              this.submitButton = btn;
+            }}
+            className="hidden"
+          />
+        </Form>
         {errors && errors.length > 0 && (
           <pre>{JSON.stringify(errors, null, 2)}</pre>
         )}
