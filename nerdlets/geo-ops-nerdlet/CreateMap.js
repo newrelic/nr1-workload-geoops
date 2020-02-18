@@ -64,6 +64,7 @@ export default class CreateMap extends React.PureComponent {
     this.onAddEditMap = this.onAddEditMap.bind(this);
     this.onLocationWrite = this.onLocationWrite.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.changeActiveStep = this.changeActiveStep.bind(this);
   }
 
   componentDidMount() {
@@ -223,6 +224,24 @@ export default class CreateMap extends React.PureComponent {
     this.form.submitButton.click();
   }
 
+  changeActiveStep(destinationStep) {
+    this.setState({
+      activeStep: steps.find(s => s.order === destinationStep),
+      map: {
+        document: {
+          accountId: 630060,
+          centerLat: 22,
+          centerLng: -97,
+          description:
+            'Nulla quis tortor orci. Etiam at risus et justo dignissim.',
+          guid: 'f0271857-a864-4a4b-a765-6255b52e0029',
+          title: 'test mappy',
+          zoom: 5
+        }
+      }
+    });
+  }
+
   render() {
     const { accountId, navigation } = this.props;
     const {
@@ -260,7 +279,11 @@ export default class CreateMap extends React.PureComponent {
             className="locations-table-grid-item"
             collapseGapAfter
           >
-            <GettingStartedSteps steps={steps} activeStep={activeStep} />
+            <GettingStartedSteps
+              steps={steps}
+              activeStep={activeStep}
+              tempNavigation={step => this.changeActiveStep(step)}
+            />
 
             {activeStep.order === 1 && (
               <Stack
