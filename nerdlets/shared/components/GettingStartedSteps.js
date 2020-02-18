@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Step = function({ title, isActive, onClick }) {
+const Step = function({ title, isActive, onClick, isCompleted }) {
   const activeClass = 'active-step';
   const label = !isActive ? title : `${title}`;
 
   return (
     <li
       onClick={onClick}
-      className={`get-started-step ${isActive ? activeClass : ''}`}
+      className={`get-started-step ${isActive ? activeClass : ''} ${
+        isCompleted ? 'completed-get-started-step' : ''
+      }`}
     >
       <span>{label}</span>
     </li>
@@ -17,7 +19,8 @@ const Step = function({ title, isActive, onClick }) {
 Step.propTypes = {
   title: PropTypes.string,
   isActive: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  isCompleted: PropTypes.bool
 };
 
 const GettingStartedSteps = function({ steps, activeStep, tempNavigation }) {
@@ -29,6 +32,7 @@ const GettingStartedSteps = function({ steps, activeStep, tempNavigation }) {
             key={index}
             title={s.title}
             isActive={s.order === activeStep.order}
+            isCompleted={s.order < activeStep.order}
             onClick={() => tempNavigation(s.order)}
           />
         ))}

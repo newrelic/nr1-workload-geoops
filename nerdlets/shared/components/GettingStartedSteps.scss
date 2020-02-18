@@ -13,7 +13,7 @@
   color: #005054;
   margin-right: 6px;
 
-  &.completed,
+  &.completed-get-started-step,
   &.active-step {
     color: #fff;
 
@@ -35,7 +35,7 @@
       background-color: #007e8a;
     }
 
-    &.completed,
+    &.completed-get-started-step,
     &.active-step {
       border-radius: 3px 0 0 3px;
     }

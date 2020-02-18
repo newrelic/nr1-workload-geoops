@@ -221,7 +221,7 @@ export default class CreateMap extends React.PureComponent {
   }
 
   submitForm() {
-    this.form.submitButton.click();
+    this.createMapForm.submitButton.click();
   }
 
   changeActiveStep(destinationStep) {
@@ -305,7 +305,7 @@ export default class CreateMap extends React.PureComponent {
                     getDocument={getMap}
                     writeDocument={writeMap}
                     onWrite={this.onAddEditMap}
-                    ref={form => (this.form = form)}
+                    ref={createMapForm => (this.createMapForm = createMapForm)}
                   />
                 </StackItem>
                 <StackItem className="get-started-step-contents-CTA-container">
@@ -336,31 +336,97 @@ export default class CreateMap extends React.PureComponent {
             )}
 
             {activeStep.order === 2 && map && (
-              <>
-                <h2>Define Locations</h2>
-                <DefineLocations
-                  accountId={accountId}
-                  map={map}
-                  onLocationWrite={this.onLocationWrite}
-                  locations={locations}
-                  locationsLoading={locationsLoading}
-                  locationsLoadingErrors={locationsLoadingErrors}
-                />
-              </>
+              <Stack
+                verticalType={Stack.HORIZONTAL_TYPE.CENTER}
+                className="get-started-step-contents"
+              >
+                <StackItem className="get-started-step-contents-header-container">
+                  <h1 className="get-started-step-contents-header">
+                    Define Locations
+                  </h1>
+                </StackItem>
+                <StackItem className="get-started-step-contents-form-container">
+                  <DefineLocations
+                    accountId={accountId}
+                    map={map}
+                    onLocationWrite={this.onLocationWrite}
+                    locations={locations}
+                    locationsLoading={locationsLoading}
+                    locationsLoadingErrors={locationsLoadingErrors}
+                  />
+                </StackItem>
+                <StackItem className="get-started-step-contents-CTA-container">
+                  <Stack
+                    verticalType={Stack.VERTICAL_TYPE.CENTER}
+                    className="get-started-step-contents-CTAs"
+                  >
+                    <StackItem>
+                      <Button
+                        sizeType={Button.SIZE_TYPE.LARGE}
+                        type={Button.TYPE.SECONDARY}
+                      >
+                        Cancel
+                      </Button>
+                    </StackItem>
+                    <StackItem>
+                      <Button
+                        sizeType={Button.SIZE_TYPE.LARGE}
+                        type={Button.TYPE.PRIMARY}
+                        onClick={this.submitForm}
+                      >
+                        Continue
+                      </Button>
+                    </StackItem>
+                  </Stack>
+                </StackItem>
+              </Stack>
             )}
 
             {/* TO DO - Handle mapLocations here or inside MapLocationData? */}
             {activeStep.order === 3 && (
-              <>
-                <h2>Provide data for locations</h2>
-                <MapLocationData
-                  accountId={accountId}
-                  map={map}
-                  mapLocations={mapLocations}
-                  mapLocationsLoading={mapLocationsLoading}
-                  mapLocationsLoadingErrors={mapLocationsLoadingErrors}
-                />
-              </>
+              <Stack
+                verticalType={Stack.HORIZONTAL_TYPE.CENTER}
+                className="get-started-step-contents"
+              >
+                <StackItem className="get-started-step-contents-header-container">
+                  <h1 className="get-started-step-contents-header">
+                    Provide data for locations
+                  </h1>
+                </StackItem>
+                <StackItem className="get-started-step-contents-form-container">
+                  <MapLocationData
+                    accountId={accountId}
+                    map={map}
+                    mapLocations={mapLocations}
+                    mapLocationsLoading={mapLocationsLoading}
+                    mapLocationsLoadingErrors={mapLocationsLoadingErrors}
+                  />
+                </StackItem>
+                <StackItem className="get-started-step-contents-CTA-container">
+                  <Stack
+                    verticalType={Stack.VERTICAL_TYPE.CENTER}
+                    className="get-started-step-contents-CTAs"
+                  >
+                    <StackItem>
+                      <Button
+                        sizeType={Button.SIZE_TYPE.LARGE}
+                        type={Button.TYPE.SECONDARY}
+                      >
+                        Cancel
+                      </Button>
+                    </StackItem>
+                    <StackItem>
+                      <Button
+                        sizeType={Button.SIZE_TYPE.LARGE}
+                        type={Button.TYPE.PRIMARY}
+                        onClick={this.submitForm}
+                      >
+                        Continue
+                      </Button>
+                    </StackItem>
+                  </Stack>
+                </StackItem>
+              </Stack>
             )}
 
             {activeStep.order === 4 && (
