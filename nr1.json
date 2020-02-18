@@ -1,0 +1,6 @@
+{
+  "schemaType": "NERDPACK",
+  "id": "40e251de-1278-49dd-9ce0-9a09006e79f4",
+  "displayName": "nr1-infra-geoops",
+  "description": "NR1 Nerdpack for geographically aligned infrastructure and application data (ex. Point of Sale monitoring)."
+}

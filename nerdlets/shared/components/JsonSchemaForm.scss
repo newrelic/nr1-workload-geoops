@@ -18,7 +18,17 @@ i.glyphicon { display: none; }
 }
 
 .form-input-col-6 {
-  width: 50%;
+  display: inline-block;
+  width: 49%;
+  margin-right: 2%;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:nth-child(even) {
+    margin-right: 0;
+  }
 }
 
 .form-input-col-3 {

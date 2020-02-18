@@ -99,6 +99,8 @@ export const LOCATION_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
   "title": { "ui:FieldTemplate": FormInputFullWidth },
   "description": { "ui:FieldTemplate": FormInputFullWidth },
+  "lat": { "ui:FieldTemplate": FormInputTwoColumn },
+  "lng": { "ui:FieldTemplate": FormInputTwoColumn },
   "municipality": { "ui:FieldTemplate": FormInputTwoColumn },
   "region": { "ui:FieldTemplate": FormInputTwoColumn },
   "country": { "ui:FieldTemplate": FormInputTwoColumn },
