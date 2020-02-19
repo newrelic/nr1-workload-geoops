@@ -42,21 +42,18 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   async componentDidMount() {
-    console.log('Component mounting...');
     await this.load();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.guid !== prevProps.guid) {
       if (this.props.guid) {
-        console.log(prevProps.guid);
-        console.log(this.props.guid);
-        // this.load();
+        this.load();
       }
       return true;
     }
 
-    // return false;
+    return false;
   }
 
   initializeForm({ defaultValues }) {
@@ -69,8 +66,6 @@ export default class JsonSchemaForm extends React.PureComponent {
     const { accountId, guid, getDocument } = this.props;
 
     if (guid) {
-      console.log('Have guid');
-      console.log(guid);
       const { data, errors } = await getDocument({ accountId, guid });
       // console.log(data);
       // console.log(errors);
@@ -83,7 +78,6 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   handleOnChange({ formData }) {
-    console.log('When all does onChange fire...?');
     this.setState({ document: formData });
   }
 
