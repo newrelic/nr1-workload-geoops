@@ -16,10 +16,34 @@
   &.completed-get-started-step,
   &.active-step {
     color: #fff;
+    transition: all .05s ease-out;
 
     &:before,
     &:after {
       background-color: #007e8a;
+      box-shadow: 0 1px 3px #00505454, 0 5px 15px 5px #00888f14;
+    }
+  }
+
+  &.completed-get-started-step {
+    &:hover {
+      transform: translateY(-1px);
+      cursor: pointer;
+    }
+
+    &:hover:before,
+    &:hover:after {
+      box-shadow: 0 2px 3px #00505446, 0 6px 15px 5px #00888f1d;
+      cursor: pointer;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+    
+    &:active:before,
+    &:active:after {
+      box-shadow: 0 0 3px #00505446, 0 4px 15px 5px #00888f1d;
     }
   }
 
@@ -28,11 +52,29 @@
     background-color: #007e8a;
     color: #fff;
     border-radius: 3px 0 0 3px;
+    box-shadow: 0 1px 3px #00505454, 0 5px 15px 5px #00888f14;
 
     &:before,
     &:after {
       left: 5px;
       background-color: #007e8a;
+      box-shadow: none;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 3px #00505446, 0 6px 15px 5px #00888f1d;
+      cursor: pointer;
+
+      &:before,
+      &:after {
+        box-shadow: none;
+      }
+     }
+    
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 0 3px #00505446, 0 4px 15px 5px #00888f1d;
     }
 
     &.completed-get-started-step,

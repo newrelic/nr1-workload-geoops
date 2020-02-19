@@ -107,6 +107,7 @@ export default class DefineLocations extends React.PureComponent {
           writeDocument={writeLocation}
           onWrite={this.onWrite}
           onError={errors => console.log(errors)}
+          className="define-locations-form"
         />
 
         {/* Column 2 */}

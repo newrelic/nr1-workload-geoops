@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'nr1';
 
 import Form from 'react-jsonschema-form';
 
@@ -8,6 +9,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     accountId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
       .isRequired,
     guid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    className: PropTypes.string,
 
     /* react-jsonschema-form pass-throughs */
     schema: PropTypes.object.isRequired,
@@ -103,7 +105,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   render() {
-    const { schema, uiSchema, FieldTemplate, fields } = this.props;
+    const { schema, uiSchema, FieldTemplate, fields, className } = this.props;
     const { document, errors } = this.state;
 
     return (
@@ -117,14 +119,18 @@ export default class JsonSchemaForm extends React.PureComponent {
           onChange={this.handleOnChange}
           onSubmit={this.handleOnSubmit}
           onError={this.handleOnError}
+          className={className}
         >
-          <button
-            type="submit"
+          <Button
+            type={Button.TYPE.PRIMARY}
             ref={btn => {
               this.submitButton = btn;
             }}
             className="hidden"
-          />
+            iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
+          >
+            Add location
+          </Button>
         </Form>
         {errors && errors.length > 0 && (
           <pre>{JSON.stringify(errors, null, 2)}</pre>
