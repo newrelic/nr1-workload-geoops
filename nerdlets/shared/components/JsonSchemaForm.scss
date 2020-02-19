@@ -39,4 +39,8 @@ i.glyphicon { display: none; }
   &:last-child {
     margin-right: 0;
   }
+  
+  &:nth-child(3n+7) {
+    margin-right: 0;
+  }
 }

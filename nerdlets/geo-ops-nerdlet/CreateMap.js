@@ -23,8 +23,7 @@ import { getLocations } from '../shared/services/location';
 const steps = [
   { order: 1, title: '1. Create a map' },
   { order: 2, title: '2. Define Locations' },
-  { order: 3, title: '3. Provide Data For Locations' },
-  { order: 4, title: '4. Canada' }
+  { order: 3, title: '3. Map Entities to Locations' }
 ];
 
 /*
@@ -326,6 +325,10 @@ export default class CreateMap extends React.PureComponent {
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
                         onClick={this.submitForm}
+                        iconType={
+                          Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT
+                        }
+                        className="getting-started-continue-button"
                       >
                         Continue
                       </Button>
@@ -364,8 +367,11 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.SECONDARY}
+                        iconType={
+                          Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT
+                        }
                       >
-                        Cancel
+                        Back
                       </Button>
                     </StackItem>
                     <StackItem>
@@ -373,6 +379,10 @@ export default class CreateMap extends React.PureComponent {
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
                         onClick={this.submitForm}
+                        iconType={
+                          Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT
+                        }
+                        className="getting-started-continue-button"
                       >
                         Continue
                       </Button>
@@ -390,7 +400,7 @@ export default class CreateMap extends React.PureComponent {
               >
                 <StackItem className="get-started-step-contents-header-container">
                   <h1 className="get-started-step-contents-header">
-                    Provide data for locations
+                    Map entities to locations
                   </h1>
                 </StackItem>
                 <StackItem className="get-started-step-contents-form-container">
@@ -411,8 +421,11 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.SECONDARY}
+                        iconType={
+                          Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT
+                        }
                       >
-                        Cancel
+                        Back
                       </Button>
                     </StackItem>
                     <StackItem>
@@ -427,12 +440,6 @@ export default class CreateMap extends React.PureComponent {
                   </Stack>
                 </StackItem>
               </Stack>
-            )}
-
-            {activeStep.order === 4 && (
-              <>
-                <h2>Done</h2>
-              </>
             )}
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={6}>

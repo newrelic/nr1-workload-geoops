@@ -84,9 +84,17 @@ export default class DefineLocations extends React.PureComponent {
 
     return (
       <>
-        <h2>File Upload</h2>
-        <hr />
-        <h2>Define locations manually</h2>
+        <h4>File Upload</h4>
+        <p>
+          JSON file formatted to <a href="#">this specification</a>. We
+          recommend this method for providing locations.
+        </p>
+        <hr className="or-sep" />
+        <h4>Define locations manually</h4>
+        <p>
+          Either provide the data for the fields below, or click a point on the
+          map to the right.
+        </p>
 
         {/* Column 1 */}
         <JsonSchemaForm

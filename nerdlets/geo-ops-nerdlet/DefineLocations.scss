@@ -1,0 +1,26 @@
+.get-started-step-contents-form-container h4 {
+    text-align: center;
+
+    &+p {
+        text-align: center;
+        color: #8e9494;
+    }
+}
+
+.or-sep {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 36px 0;
+
+    &:before {
+        content: "or";
+        background-color: #fff;
+        padding: 0 8px;
+        text-align: Center;
+        position: relative;
+        bottom: 2px;
+        color: #8e9494;
+        font-style: italic;
+    }
+}

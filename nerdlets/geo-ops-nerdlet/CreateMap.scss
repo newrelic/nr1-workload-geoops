@@ -18,8 +18,9 @@ div.get-started-step-contents {
     flex-direction: column;
 }
 
-.get-started-step-contents-header {
+.get-started-step-contents-header:not(.u-unstyledH1) {
     text-align: center;
+    font-weight: 400;
 }
 
 .get-started-step-contents-form-container {
@@ -51,4 +52,15 @@ div.get-started-step-contents-CTAs {
     bottom: 2.75%;
     z-index: 1000;
     overflow: scroll;
+}
+
+.getting-started-continue-button {
+    flex-direction: row-reverse;
+
+    span.ic-Icon {
+        margin-left: 8px;
+        margin-right: 0;
+        position: relative;
+        bottom: 1px;
+    }
 }
