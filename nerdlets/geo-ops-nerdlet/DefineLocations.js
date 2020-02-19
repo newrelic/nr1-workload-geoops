@@ -115,7 +115,6 @@ export default class DefineLocations extends React.PureComponent {
           <Button
             type={Button.TYPE.PRIMARY}
             onClick={() => this.addLocationForm.current.submit()}
-            className="hidden"
             iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
           >
             Add location
