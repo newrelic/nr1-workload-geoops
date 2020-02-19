@@ -36,10 +36,16 @@ export default class index extends PureComponent {
       accountId: 630060,
 
       // TO DO - Does Map selection live this high in the tree so we can pass it into Getting Started?
-      selectedMap: null
+      selectedMap: null,
+      activeStep: null
     };
   }
 
+  /*
+   * Notes:
+   *   This form of conditional rendering using multiple return statements with navigation callbacks will cause each component to unmount and re-mount on a "route" change.
+   *   This has tradeoffs, which we may re-evaluate at some point in the future.
+   */
   render() {
     const {
       emptyState,
@@ -48,7 +54,8 @@ export default class index extends PureComponent {
       mapList,
       editMap,
       accountId,
-      selectedMap
+      selectedMap,
+      activeStep
     } = this.state;
 
     if (emptyState) {
@@ -67,10 +74,11 @@ export default class index extends PureComponent {
         <CreateMap
           accountId={accountId}
           map={selectedMap}
+          activeStep={activeStep}
           onMapChange={({ map }) => {
             // eslint-disable-next-line no-alert
             alert("You've created a new map and stored it in Account Storage!");
-            this.setState({ selectedMap: map });
+            this.setState({ selectedMap: map.document });
           }}
           navigation={{
             next: () => this.setState({ createMap: false, mapList: true }),
@@ -92,11 +100,12 @@ export default class index extends PureComponent {
 
               this.setState({ mapList: false, editMap: true });
             },
-            editWizard: ({ map }) => {
+            editWizard: ({ map, activeStep }) => {
               this.setState({
                 mapList: false,
                 createMap: true,
-                selectedMap: map
+                selectedMap: map,
+                activeStep
               });
             },
             viewMap: ({ map }) =>

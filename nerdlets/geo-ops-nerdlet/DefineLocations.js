@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Spinner } from 'nr1';
+import { Button, Spinner } from 'nr1';
 
 import {
   LOCATION_UI_SCHEMA,
@@ -32,6 +32,7 @@ export default class DefineLocations extends React.PureComponent {
       //
     };
 
+    this.addLocationForm = React.createRef();
     this.onWrite = this.onWrite.bind(this);
   }
 
@@ -89,6 +90,7 @@ export default class DefineLocations extends React.PureComponent {
           JSON file formatted to <a href="#">this specification</a>. We
           recommend this method for providing locations.
         </p>
+        <input type="file" className="json-file-upload" />
         <hr className="or-sep" />
         <h4>Define locations manually</h4>
         <p>
@@ -98,6 +100,7 @@ export default class DefineLocations extends React.PureComponent {
 
         {/* Column 1 */}
         <JsonSchemaForm
+          ref={this.addLocationForm}
           accountId={accountId}
           guid={false}
           schema={LOCATION_JSON_SCHEMA}
@@ -108,7 +111,16 @@ export default class DefineLocations extends React.PureComponent {
           onWrite={this.onWrite}
           onError={errors => console.log(errors)}
           className="define-locations-form"
-        />
+        >
+          <Button
+            type={Button.TYPE.PRIMARY}
+            onClick={() => this.addLocationForm.current.submit()}
+            className="hidden"
+            iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
+          >
+            Add location
+          </Button>
+        </JsonSchemaForm>
 
         {/* Column 2 */}
         {locationsLoading && <Spinner />}

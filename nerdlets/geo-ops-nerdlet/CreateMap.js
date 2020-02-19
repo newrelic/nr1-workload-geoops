@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
+// import { AccountDropdown } from '@newrelic/nr1-community';
 
 import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
 
@@ -41,14 +42,19 @@ export default class CreateMap extends React.PureComponent {
     // Optional - pick up where they left off with a specific map
     // We "map" this onto local state
     map: PropTypes.object,
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    activeStep: PropTypes.number
   };
 
   constructor(props) {
     super(props);
+
+    const defaultFirstStep = steps.find(s => s.order === 1);
+    const activeStep = steps.find(s => s.order === props.activeStep);
+
     this.state = {
       steps,
-      activeStep: steps.find(s => s.order === 1),
+      activeStep: activeStep || defaultFirstStep,
       map: props.map,
 
       locations: [],
@@ -62,8 +68,9 @@ export default class CreateMap extends React.PureComponent {
 
     this.onAddEditMap = this.onAddEditMap.bind(this);
     this.onLocationWrite = this.onLocationWrite.bind(this);
-    this.submitForm = this.submitForm.bind(this);
     this.changeActiveStep = this.changeActiveStep.bind(this);
+
+    this.createMapForm = React.createRef();
   }
 
   componentDidMount() {
@@ -141,17 +148,16 @@ export default class CreateMap extends React.PureComponent {
 
   onAddEditMap({ document, error }) {
     const { activeStep } = this.state;
+    const nextStep = this.nextStep({ step: activeStep });
 
     // TO DO - Expose error about adding/editing
 
     // eslint-disable-next-line no-console
     console.log([document, error]);
 
-    this.props.onMapChange({ map: document });
-    this.setState({
-      map: document,
-      activeStep: this.nextStep({ step: activeStep })
-    });
+    this.setState({ map: document, activeStep: nextStep }, () =>
+      this.props.onMapChange({ map: document, activeStep: nextStep })
+    );
   }
 
   // Bubble up both the location and the mapLocation from DefineLocations
@@ -219,10 +225,6 @@ export default class CreateMap extends React.PureComponent {
     return nextStep;
   }
 
-  submitForm() {
-    this.createMapForm.submitButton.click();
-  }
-
   changeActiveStep(destinationStep) {
     this.setState({
       activeStep: steps.find(s => s.order === destinationStep),
@@ -257,6 +259,8 @@ export default class CreateMap extends React.PureComponent {
 
     const startingCenter = [39.5, -98.35];
     const startingZoom = 4;
+
+    // MAP_UI_SCHEMA.accountId['ui:field'] = AccountDropdown;
 
     return (
       <>
@@ -304,7 +308,8 @@ export default class CreateMap extends React.PureComponent {
                     getDocument={getMap}
                     writeDocument={writeMap}
                     onWrite={this.onAddEditMap}
-                    ref={createMapForm => (this.createMapForm = createMapForm)}
+                    onError={errors => console.log('Form errors: ', errors)}
+                    ref={this.createMapForm}
                   />
                 </StackItem>
                 <StackItem className="get-started-step-contents-CTA-container">
@@ -324,7 +329,7 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
-                        onClick={this.submitForm}
+                        onClick={() => this.createMapForm.current.submit()}
                         iconType={
                           Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT
                         }
@@ -341,7 +346,7 @@ export default class CreateMap extends React.PureComponent {
             {activeStep.order === 2 && map && (
               <Stack
                 verticalType={Stack.HORIZONTAL_TYPE.CENTER}
-                className="get-started-step-contents"
+                className="get-started-step-contents step-define-locations"
               >
                 <StackItem className="get-started-step-contents-header-container">
                   <h1 className="get-started-step-contents-header">

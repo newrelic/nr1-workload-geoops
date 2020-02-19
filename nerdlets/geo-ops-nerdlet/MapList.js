@@ -138,7 +138,11 @@ export default class index extends PureComponent {
               </Button>
             </StackItem>
             <StackItem>
-              <Button onClick={() => this.props.navigation.editWizard({ map })}>
+              <Button
+                onClick={() =>
+                  this.props.navigation.editWizard({ map, activeStep: 2 })
+                }
+              >
                 Guided Configuration
               </Button>
             </StackItem>

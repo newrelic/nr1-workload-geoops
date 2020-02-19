@@ -34,6 +34,7 @@ export const mapLocationCollection = ({ mapGuid }) => `${MAP_LOCATION_COLLECTION
 
 export const MAP_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
+  "accountId": {},
   "title": { "ui:FieldTemplate": FormInputFullWidth },
   "description": { "ui:FieldTemplate": FormInputFullWidth },
   "centerLat": { "ui:FieldTemplate": FormInputThreeColumn },
@@ -52,7 +53,7 @@ export const MAP_JSON_SCHEMA = {
     },
     "title": {
       "type": "string",
-      "title": "Title"
+      "title": "Name your map"
     },
     "description": {
       "type": "string",
@@ -87,7 +88,10 @@ export const MAP_JSON_SCHEMA = {
       "title": "Default Zoom Level",
       "minimum": 0,
       "maximum": 12
-    }
+    },
+    "accountId": {
+      "type": "number"
+    },
   }
 };
 
@@ -149,9 +153,7 @@ export const LOCATION_DEFAULTS = () => ({
 
 export const MAP_LOCATION_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
-  "entities": { "ui:field": "entities" }
-  // ,
-  // "map": { "ui:widget": "select" }
+  // "entities": { "ui:field": "entities" }
 }
 
 export const MAP_LOCATION_JSON_SCHEMA = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'nr1';
 
 import Form from 'react-jsonschema-form';
 
 export default class JsonSchemaForm extends React.PureComponent {
   static propTypes = {
+    children: PropTypes.element,
     accountId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
       .isRequired,
     guid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -36,21 +36,27 @@ export default class JsonSchemaForm extends React.PureComponent {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.handleOnError = this.handleOnError.bind(this);
+
+    this.form = React.createRef();
+    this.submit = this.submit.bind(this);
   }
 
   async componentDidMount() {
+    console.log('Component mounting...');
     await this.load();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.guid !== prevProps.guid) {
       if (this.props.guid) {
-        this.load();
+        console.log(prevProps.guid);
+        console.log(this.props.guid);
+        // this.load();
       }
       return true;
     }
 
-    return false;
+    // return false;
   }
 
   initializeForm({ defaultValues }) {
@@ -63,6 +69,8 @@ export default class JsonSchemaForm extends React.PureComponent {
     const { accountId, guid, getDocument } = this.props;
 
     if (guid) {
+      console.log('Have guid');
+      console.log(guid);
       const { data, errors } = await getDocument({ accountId, guid });
       // console.log(data);
       // console.log(errors);
@@ -75,6 +83,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   handleOnChange({ formData }) {
+    console.log('When all does onChange fire...?');
     this.setState({ document: formData });
   }
 
@@ -104,8 +113,19 @@ export default class JsonSchemaForm extends React.PureComponent {
     this.props.onError(errors);
   }
 
+  submit() {
+    this.form.current.submit();
+  }
+
   render() {
-    const { schema, uiSchema, FieldTemplate, fields, className } = this.props;
+    const {
+      children,
+      schema,
+      uiSchema,
+      FieldTemplate,
+      fields,
+      className
+    } = this.props;
     const { document, errors } = this.state;
 
     return (
@@ -120,17 +140,9 @@ export default class JsonSchemaForm extends React.PureComponent {
           onSubmit={this.handleOnSubmit}
           onError={this.handleOnError}
           className={className}
+          ref={this.form}
         >
-          <Button
-            type={Button.TYPE.PRIMARY}
-            ref={btn => {
-              this.submitButton = btn;
-            }}
-            className="hidden"
-            iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
-          >
-            Add location
-          </Button>
+          {children}
         </Form>
         {errors && errors.length > 0 && (
           <pre>{JSON.stringify(errors, null, 2)}</pre>
