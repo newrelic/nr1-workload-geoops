@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,6 +18,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     FieldTemplate: PropTypes.element,
     fields: PropTypes.object,
     defaultValues: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    formData: PropTypes.object,
 
     getDocument: PropTypes.func.isRequired,
     writeDocument: PropTypes.func.isRequired,
@@ -51,6 +53,15 @@ export default class JsonSchemaForm extends React.PureComponent {
         this.load();
       }
       return true;
+    }
+
+    if (this.props.formData !== prevProps.formData) {
+      this.setState(prevState => ({
+        document: {
+          ...prevState.document,
+          ...this.props.formData
+        }
+      }));
     }
 
     return false;
