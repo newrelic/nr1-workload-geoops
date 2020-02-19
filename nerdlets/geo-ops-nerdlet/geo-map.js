@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Map, TileLayer, Marker } from 'react-leaflet';
-import { UserStorageMutation } from 'nr1';
+import { Modal, UserStorageMutation } from 'nr1';
+import get from 'lodash.get';
 
 import Data from './data';
 // eslint-disable-next-line no-unused-vars
@@ -19,7 +20,10 @@ export default class GeoMap extends Component {
   static propTypes = {
     accountId: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
-    callbacks: PropTypes.object.isRequired,
+    onMarkerClick: PropTypes.func,
+    onMapClick: PropTypes.func,
+    // callbacks: PropTypes.object.isRequired,
+    locations: PropTypes.array,
     mapLocations: PropTypes.array
   };
 
@@ -33,12 +37,11 @@ export default class GeoMap extends Component {
       favorites: []
     };
 
-    this.callbacks = {
-      setData: this.setData.bind(this),
-      onClick: this.onClick.bind(this),
-      setFavorite: this.setFavorite.bind(this),
-      closeModal: this.closeModal.bind(this)
-    };
+    this.setData = this.setData.bind(this);
+    this.setFavorite = this.setFavorite.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.handleMapClick = this.handleMapClick.bind(this);
+    this.handleMarkerClick = this.handleMarkerClick.bind(this);
 
     // this.dataProcess = new Data({
     //   demoMode: true,
@@ -95,8 +98,16 @@ export default class GeoMap extends Component {
     this.setState({ data, favorites: favorites || [] });
   }
 
-  onClick(selectedLocation) {
-    this.setState({ selectedLocation, hidden: false });
+  handleMapClick(e) {
+    const { onMapClick } = this.props;
+    onMapClick({ e });
+  }
+
+  handleMarkerClick(e) {
+    const { onMarkerClick } = this.props;
+    const document = get(e, 'target.options.document', false);
+    this.setState({ selectedLocation: document, hidden: false });
+    onMarkerClick({ e, document });
   }
 
   closeModal() {
@@ -115,7 +126,7 @@ export default class GeoMap extends Component {
   }
 
   render() {
-    const { map, callbacks, mapLocations } = this.props;
+    const { map, mapLocations, locations } = this.props;
     const { errors, hidden, selectedLocation } = this.state;
     const hasErrors = (errors && errors.length > 0) || false;
 
@@ -132,23 +143,50 @@ export default class GeoMap extends Component {
         <div className="leaflet-wrapper">
           {hasErrors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
           {!hasErrors && (
-            <Map center={startingCenter} zoomControl zoom={startingZoom}>
+            <Map
+              center={startingCenter}
+              zoomControl
+              zoom={startingZoom}
+              onClick={this.handleMapClick}
+            >
               <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              {mapLocations.length > 0 &&
+              {locations &&
+                locations.length > 0 &&
+                locations.map(location => {
+                  const { document } = location;
+                  const { guid, lat, lng } = document;
+                  const icon = generateIcon(document);
+
+                  if (!(lat && lng)) {
+                    return null;
+                  }
+
+                  return (
+                    <Marker
+                      key={guid}
+                      position={[lat, lng]}
+                      onClick={this.handleMarkerClick}
+                      _did={guid}
+                      icon={icon}
+                      document={document}
+                    />
+                  );
+                })}
+              {mapLocations &&
+                mapLocations.length > 0 &&
                 mapLocations.map(row => {
                   const icon = generateIcon(row);
                   return (
                     <Marker
                       key={row.id}
                       position={[row.lat, row.lng]}
-                      onClick={() => {
-                        callbacks.onClick(row);
-                      }}
+                      onClick={this.handleMarkerClick}
                       _did={row.locationId}
                       icon={icon}
+                      document={document}
                     />
                   );
                 })}
@@ -159,11 +197,18 @@ export default class GeoMap extends Component {
         {/* Modals */}
         {/* TODO - Location Detail */}
         {selectedLocation && (
-          <DetailModal
-            location={selectedLocation}
+          <Modal
             hidden={hidden}
-            callbacks={this.callbacks}
-          />
+            onClose={() => this.setState({ hidden: true })}
+          >
+            <pre>{JSON.stringify(selectedLocation, null, 2)}</pre>
+          </Modal>
+
+          // <DetailModal
+          //   location={selectedLocation}
+          //   hidden={hidden}
+          //   callbacks={this.callbacks}
+          // />
         )}
       </>
     );

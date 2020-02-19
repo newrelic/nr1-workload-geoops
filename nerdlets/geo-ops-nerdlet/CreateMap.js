@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import GeoMap from './geo-map';
 import { Map, TileLayer } from 'react-leaflet';
 // import { AccountDropdown } from '@newrelic/nr1-community';
 
@@ -63,12 +64,14 @@ export default class CreateMap extends React.PureComponent {
 
       mapLocations: [],
       mapLocationsLoading: false,
-      mapLocationsLoadingErrors: []
+      mapLocationsLoadingErrors: [],
+      selectedLatLng: false
     };
 
     this.onAddEditMap = this.onAddEditMap.bind(this);
     this.onLocationWrite = this.onLocationWrite.bind(this);
     this.changeActiveStep = this.changeActiveStep.bind(this);
+    this.onMapClick = this.onMapClick.bind(this);
 
     this.createMapForm = React.createRef();
   }
@@ -171,6 +174,13 @@ export default class CreateMap extends React.PureComponent {
     });
   }
 
+  onMapClick({ e }) {
+    const { lat, lng } = e.latlng;
+    this.setState({
+      selectedLatLng: [lat, lng]
+    });
+  }
+
   /*
    * field is a local state array that needs updated in an immutable way
    * item is an un-nested nerdstore document that needs wrapped in { id: foo, document: item }
@@ -254,7 +264,8 @@ export default class CreateMap extends React.PureComponent {
       locationsLoadingErrors,
       mapLocations,
       mapLocationsLoading,
-      mapLocationsLoadingErrors
+      mapLocationsLoadingErrors,
+      selectedLatLng
     } = this.state;
 
     const startingCenter = [39.5, -98.35];
@@ -361,6 +372,7 @@ export default class CreateMap extends React.PureComponent {
                     locations={locations}
                     locationsLoading={locationsLoading}
                     locationsLoadingErrors={locationsLoadingErrors}
+                    selectedLatLng={selectedLatLng}
                   />
                 </StackItem>
                 <StackItem className="get-started-step-contents-CTA-container">
@@ -383,7 +395,11 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
-                        onClick={this.submitForm}
+                        onClick={() =>
+                          this.setState({
+                            activeStep: this.nextStep({ step: activeStep })
+                          })
+                        }
                         iconType={
                           Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT
                         }
@@ -447,14 +463,34 @@ export default class CreateMap extends React.PureComponent {
             )}
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={6}>
-            <div className="leaflet-wrapper">
-              <Map center={startingCenter} zoomControl zoom={startingZoom}>
-                <TileLayer
-                  attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-              </Map>
-            </div>
+            {activeStep.order === 1 && (
+              <div className="leaflet-wrapper">
+                <Map center={startingCenter} zoomControl zoom={startingZoom}>
+                  <TileLayer
+                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                </Map>
+              </div>
+            )}
+            {activeStep.order === 2 && map && (
+              <GeoMap
+                accountId={accountId}
+                map={map}
+                locations={locations}
+                onMarkerClick={marker => console.log(marker)}
+                onMapClick={this.onMapClick}
+              />
+            )}
+            {activeStep.order === 3 && map && (
+              <GeoMap
+                accountId={accountId}
+                map={map}
+                mapLocations={mapLocations}
+                onMarkerClick={marker => console.log(marker)}
+                onMapClick={this.onMapClick}
+              />
+            )}
           </GridItem>
         </Grid>
       </>

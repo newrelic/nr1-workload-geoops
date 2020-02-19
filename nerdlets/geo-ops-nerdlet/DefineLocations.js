@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -23,7 +24,9 @@ export default class DefineLocations extends React.PureComponent {
     onLocationWrite: PropTypes.func,
     locations: PropTypes.array,
     locationsLoading: PropTypes.bool,
-    locationLoadingErrors: PropTypes.array
+    locationLoadingErrors: PropTypes.array,
+    // TO DO - custom validation for an array containing [ lat, lng ]
+    selectedLatLng: PropTypes.oneOfType([PropTypes.array, PropTypes.bool])
   };
 
   constructor(props) {
@@ -34,6 +37,21 @@ export default class DefineLocations extends React.PureComponent {
 
     this.addLocationForm = React.createRef();
     this.onWrite = this.onWrite.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.selectedLatLng &&
+      this.props.selectedLatLng !== prevProps.selectedLatLng
+    ) {
+      this.setState(prevState => ({
+        formData: {
+          ...prevState.formData,
+          lat: this.props.selectedLatLng[0],
+          lng: this.props.selectedLatLng[1]
+        }
+      }));
+    }
   }
 
   // As they add locations we need to associate them with _this_ map
@@ -83,6 +101,8 @@ export default class DefineLocations extends React.PureComponent {
       locationLoadingErrors
     } = this.props;
 
+    const { formData } = this.state;
+
     return (
       <>
         <h4>File Upload</h4>
@@ -106,6 +126,7 @@ export default class DefineLocations extends React.PureComponent {
           schema={LOCATION_JSON_SCHEMA}
           uiSchema={LOCATION_UI_SCHEMA}
           defaultValues={LOCATION_DEFAULTS}
+          formData={formData}
           getDocument={getLocation}
           writeDocument={writeLocation}
           onWrite={this.onWrite}
