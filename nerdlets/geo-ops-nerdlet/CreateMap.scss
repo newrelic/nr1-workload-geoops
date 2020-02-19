@@ -21,6 +21,7 @@ div.get-started-step-contents {
 .get-started-step-contents-header:not(.u-unstyledH1) {
     text-align: center;
     font-weight: 400;
+    margin-bottom: 24px;
 }
 
 .get-started-step-contents-form-container {
@@ -30,7 +31,15 @@ div.get-started-step-contents {
 .get-started-step-contents-CTA-container {
     width: 100%;
     background-color: #FAFBFB;
-    box-shadow: 0px -1px 0px #F4F5F5;
+    box-shadow: 0 -1px 0 #F4F5F5;
+    
+    .step-define-locations & {
+        position: sticky;
+        width: 100%;
+        margin-left: 0;
+        bottom: 0;
+        box-shadow: 0 -1px 0 #e3e4e4, 0 -3px rgba(0,0,0, .015), 0 -5px 10px rgba(0,0,0, .05);
+    }   
 }
 
 div.get-started-step-contents-CTAs {

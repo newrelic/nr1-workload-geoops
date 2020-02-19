@@ -437,7 +437,6 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
-                        onClick={this.submitForm}
                       >
                         Continue
                       </Button>
