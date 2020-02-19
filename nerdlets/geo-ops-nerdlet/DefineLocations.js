@@ -89,6 +89,7 @@ export default class DefineLocations extends React.PureComponent {
           JSON file formatted to <a href="#">this specification</a>. We
           recommend this method for providing locations.
         </p>
+        <input type="file" className="json-file-upload" />
         <hr className="or-sep" />
         <h4>Define locations manually</h4>
         <p>

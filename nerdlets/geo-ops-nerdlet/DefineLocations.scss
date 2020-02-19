@@ -24,3 +24,22 @@
         font-style: italic;
     }
 }
+
+.define-locations-form {
+    padding: 24px;
+    border-radius: 4px;
+    background-color: #FAFBFB;
+    border: 1px solid #E3E4E4;
+}
+
+input[type="file"].json-file-upload:not(.u-unstyledInput):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(.AABNAC-wnd-TextField-input) {
+    border: 2px dashed #d5d7d7; 
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #8e9494;
+}

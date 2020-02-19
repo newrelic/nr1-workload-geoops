@@ -341,7 +341,7 @@ export default class CreateMap extends React.PureComponent {
             {activeStep.order === 2 && map && (
               <Stack
                 verticalType={Stack.HORIZONTAL_TYPE.CENTER}
-                className="get-started-step-contents"
+                className="get-started-step-contents step-define-locations"
               >
                 <StackItem className="get-started-step-contents-header-container">
                   <h1 className="get-started-step-contents-header">
@@ -432,7 +432,6 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
-                        onClick={this.submitForm}
                       >
                         Continue
                       </Button>
