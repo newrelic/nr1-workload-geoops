@@ -177,14 +177,21 @@ export default class GeoMap extends Component {
                 })}
               {mapLocations &&
                 mapLocations.length > 0 &&
-                mapLocations.map(row => {
-                  const icon = generateIcon(row);
+                mapLocations.map(item => {
+                  const { document } = item;
+                  const { guid, lat, lng, location } = document;
+                  const icon = generateIcon(document);
+
+                  if (!(lat && lng)) {
+                    return null;
+                  }
+
                   return (
                     <Marker
-                      key={row.id}
-                      position={[row.lat, row.lng]}
+                      key={guid}
+                      position={[lat, lng]}
                       onClick={this.handleMarkerClick}
-                      _did={row.locationId}
+                      _did={location}
                       icon={icon}
                       document={document}
                     />
