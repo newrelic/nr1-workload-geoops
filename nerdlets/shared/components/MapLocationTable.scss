@@ -4,11 +4,16 @@ td[class*='status-'] {
 }
 
 .locations-table-grid-item {
+  overflow: scroll;
   background-color: #fff;
   box-shadow: 0px 1px 0px rgba(0, 75, 82, 0.17), 0px 3px 2px rgba(0, 49, 54, 0.05), 0px 1px 3px rgba(0, 134, 148, 0.08), 0px 8px 17px rgba(88, 114, 117, 0.25);
 }
 
 .react-bootstrap-table {
+  .table {
+    margin-bottom: 0;
+  }
+
   td {
     border: none;
     vertical-align: bottom;
@@ -18,6 +23,12 @@ td[class*='status-'] {
   .ic-Icon {
     position: relative;
     bottom: 4px;
+  } 
+
+  thead {
+    position: sticky;
+    top: 0;
+    left: 0;
   }
 
   th:not(.u-unstyledTh) {
@@ -28,14 +39,11 @@ td[class*='status-'] {
     font-weight: 400;
     box-shadow: 0 1px 0 #f4f5f5;
     letter-spacing: .5px;
+    padding: 0 .75rem;
 
     &:hover {
       cursor: pointer;
       background-color: #fafbfb;
-    }
-
-    &:first-child {
-      padding: 0;
     }
     
     &:nth-child(2) {
@@ -120,6 +128,9 @@ tr:nth-child(2n) > td:not(.u-unstyledTd) {
 .search-label {
   width: 100%;
   margin-bottom: 0;
+  position: sticky;
+  top: 0;
+  left: 0;
 
   input:not(.u-unstyledInput):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(.AABKAC-wnd-TextField-input) {
     height: 40px;
@@ -135,5 +146,11 @@ tr:nth-child(2n) > td:not(.u-unstyledTd) {
   
   input:not(.u-unstyledInput):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(.AABKAC-wnd-TextField-input)::placeholder {
     color: #8e9494;
+  }
+}
+
+input:not(.u-unstyledInput):not([type=button]):not([type=submit]):not([type=reset]):not([type=checkbox]):not([type=radio]):not(.AABMAC-wnd-TextField-input).form-control {
+  &:hover, &:active {
+    border: none;
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
 
-import { Button, Grid, GridItem, Modal } from 'nr1';
+import { Stack, StackItem, Button, Grid, GridItem, Modal } from 'nr1';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 
 import {

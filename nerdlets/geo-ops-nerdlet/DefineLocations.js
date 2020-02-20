@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Spinner } from 'nr1';
+import { Button, Spinner, Stack, StackItem } from 'nr1';
 
 import {
   LOCATION_UI_SCHEMA,
@@ -133,13 +133,17 @@ export default class DefineLocations extends React.PureComponent {
           onError={errors => console.log(errors)}
           className="define-locations-form"
         >
-          <Button
-            type={Button.TYPE.PRIMARY}
-            onClick={() => this.addLocationForm.current.submit()}
-            iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
-          >
-            Add location
-          </Button>
+          <Stack fullWidth horizontalType={Stack.HORIZONTAL_TYPE.CENTER}>
+            <StackItem>
+              <Button
+                type={Button.TYPE.PRIMARY}
+                onClick={() => this.addLocationForm.current.submit()}
+                iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
+              >
+                Add location
+              </Button>
+            </StackItem>
+          </Stack>
         </JsonSchemaForm>
 
         {/* Column 2 */}
