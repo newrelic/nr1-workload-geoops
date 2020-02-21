@@ -153,6 +153,8 @@ export const LOCATION_DEFAULTS = () => ({
 
 export const MAP_LOCATION_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
+  "title": { "ui:FieldTemplate": FormInputTwoColumn },
+  "map": { "ui:FieldTemplate": FormInputTwoColumn },
   // "entities": { "ui:field": "entities" }
 }
 
