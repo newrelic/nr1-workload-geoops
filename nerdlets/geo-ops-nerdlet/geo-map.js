@@ -109,11 +109,8 @@ export default class GeoMap extends Component {
     const hasErrors = (errors && errors.length > 0) || false;
 
     const startingCenter =
-      map.lat && map.lng ? [map.lat, map.lng] : [10.5731, -7.5898];
-    const startingZoom = map.zoom || 3;
-
-    console.log(`Map center is: ${startingCenter}`);
-    console.log(`Map zoom is: ${startingZoom}`);
+      center || (map.lat && map.lng ? [map.lat, map.lng] : [10.5731, -7.5898]);
+    const startingZoom = zoom || map.zoom || 3;
 
     return (
       <>
