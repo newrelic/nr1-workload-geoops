@@ -26,8 +26,12 @@ i.glyphicon { display: none; }
     margin-right: 0;
   }
 
-  &:nth-child(even) {
+  &:nth-child(2n+1) {
     margin-right: 0;
+  }
+  
+  &:nth-child(1) {
+    margin-right: 2%;
   }
 }
 

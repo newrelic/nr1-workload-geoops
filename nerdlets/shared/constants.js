@@ -122,14 +122,23 @@ export const LOCATION_JSON_SCHEMA = {
   }
 };
 
+export const MAP_LOCATION_UI_SCHEMA = {
+  "guid": { "ui:widget": "hidden" },
+  "externalId": { "ui:widget": "hidden" },
+  "title": { "ui:FieldTemplate": FormInputTwoColumn },
+  "map": { "ui:FieldTemplate": FormInputTwoColumn },
+  "location": {...LOCATION_UI_SCHEMA}
+  // "entities": { "ui:field": "entities" }
+}
+
 export const MAP_LOCATION_DEFAULTS = () => ({
   "guid": uuid()
 });
 
-export const MAP_LOCATION_UI_SCHEMA = {
+export const DEFINE_LOCATIONS_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
   "externalId": { "ui:widget": "hidden" },
-  // "title": { "ui:FieldTemplate": FormInputTwoColumn },
+  "title": { "ui:FieldTemplate": FormInputFullWidth },
   "map": { "ui:FieldTemplate": FormInputTwoColumn },
   "location": {...LOCATION_UI_SCHEMA}
   // "entities": { "ui:field": "entities" }

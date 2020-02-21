@@ -6,7 +6,7 @@ import cloneDeep from 'lodash.clonedeep';
 import { Button, Modal, Spinner, Stack, StackItem } from 'nr1';
 
 import {
-  MAP_LOCATION_UI_SCHEMA,
+  DEFINE_LOCATIONS_UI_SCHEMA,
   MAP_LOCATION_JSON_SCHEMA,
   MAP_LOCATION_DEFAULTS
 } from '../shared/constants';
@@ -37,7 +37,7 @@ export default class DefineLocations extends React.PureComponent {
     this.state = {
       isValidatingFile: false,
       files: [],
-      uiSchema: this.transformUiSchema(MAP_LOCATION_UI_SCHEMA),
+      uiSchema: this.transformUiSchema(DEFINE_LOCATIONS_UI_SCHEMA),
       schema: this.transformSchema(MAP_LOCATION_JSON_SCHEMA),
       formData: { map: props.map.guid }
     };
