@@ -81,9 +81,9 @@ ul.map-entities-location-list {
   padding: 0 8px;
   height: 40px;
   border-bottom: 1px solid #edeeee;
-  line-height: 37px;
+  line-height: 40px;
 
-  &:hover {
+  &:not(.completed):hover {
     background-color: #fafbfb;
     cursor: pointer;
 
@@ -98,6 +98,11 @@ ul.map-entities-location-list {
   font-size: 14px;
   font-weight: 600;
   color: #2A3434;
+
+  .completed & {
+    color: #b9bdbd;
+    text-decoration: line-through;
+  }
 }
 
 div[class*='wnd-Stack'].map-entities-location-list-item-description {
@@ -106,6 +111,11 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   &:before {
     content: " - "
   }
+
+  .completed & {
+    color: #b9bdbd;
+    text-decoration: line-through;
+  }
 } 
 
 .map-entities-location-list-item-check {
@@ -113,6 +123,16 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   height: 22px;
   border-radius: 100px;
   box-shadow: inset 0 0 0 2px #d5d7d7;
+
+  .completed &,
+  .completed:hover & {
+    background-color: #007e8a;
+    box-shadow: none;
+    background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAVCAYAAABYHP4bAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACqSURBVHgB7dTNDYMwDAVgj9AROkI3ajZpN+gIHaGjMEJH4ML/5WEjkCxkBFJsTjzJJ0g+R7FCFBgAN4pOD7w6oAjFBGlZkArDNKIx8oyFSNXAm7xyIech/OP9yDhmI1z/vdnfQrjSYUQt+rojJXe/QkwsC1EnStYmDfCR7wPwzEaWVMCDNy6NJ+TnhuxhrojGNu4McxOJvGJM4YRIE+QdjYUhGmOkCEU8MwJ6WU8SrbeehQAAAABJRU5ErkJggg==');
+    background-size: 50%;
+    background-position: 5px center;
+    background-repeat: no-repeat;
+  }
 }
 
 .map-entities-to-locations-container .rjsf {

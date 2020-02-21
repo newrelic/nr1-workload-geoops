@@ -106,12 +106,12 @@ export default class MapLocationData extends React.PureComponent {
             </StackItem>
           </Stack>
           <ul className="map-entities-location-list">
-            <li className="map-entities-location-list-item">
+            <li className="map-entities-location-list-item completed">
               <Stack
                 verticalType={Stack.VERTICAL_TYPE.CENTER}
                 className="map-entities-location-list-item-content"
               >
-                <StackItem className="map-entities-location-list-item-check">
+                <StackItem>
                   <div className="map-entities-location-list-item-check" />
                 </StackItem>
                 <StackItem className="map-entities-location-list-item-title">
@@ -127,7 +127,7 @@ export default class MapLocationData extends React.PureComponent {
                 verticalType={Stack.VERTICAL_TYPE.CENTER}
                 className="map-entities-location-list-item-content"
               >
-                <StackItem className="map-entities-location-list-item-check">
+                <StackItem>
                   <div className="map-entities-location-list-item-check" />
                 </StackItem>
                 <StackItem className="map-entities-location-list-item-title">
@@ -143,7 +143,7 @@ export default class MapLocationData extends React.PureComponent {
                 verticalType={Stack.VERTICAL_TYPE.CENTER}
                 className="map-entities-location-list-item-content"
               >
-                <StackItem className="map-entities-location-list-item-check">
+                <StackItem>
                   <div className="map-entities-location-list-item-check" />
                 </StackItem>
                 <StackItem className="map-entities-location-list-item-title">
