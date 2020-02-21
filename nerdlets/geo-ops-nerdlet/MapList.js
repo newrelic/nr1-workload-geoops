@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
 import {
   Button,
   Dropdown,
@@ -17,8 +16,10 @@ import Toolbar from '../shared/components/Toolbar';
 
 import { nerdStorageRequest } from '../shared/utils';
 import { getMaps, deleteMap } from '../shared/services/map';
+import { deleteLocations } from '../shared/services/location';
+import { deleteMapLocationCollection } from '../shared/services/map-location';
 
-const LeftToolbar = ({ onClick }) => {
+const LeftToolbar = ({ onClick, accountId }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
@@ -58,7 +59,8 @@ export default class index extends PureComponent {
     this.state = {
       maps: [],
       isLoading: true,
-      loadingErrors: false
+      loadingErrors: false,
+      accountId: 630060 // TO DO - Remove
     };
   }
 
@@ -151,6 +153,18 @@ export default class index extends PureComponent {
                 View Map
               </Button>
             </StackItem>
+            <StackItem>
+              <Button
+                onClick={async () =>
+                  deleteMapLocationCollection({
+                    accountId: this.state.accountId,
+                    mapGuid: map.guid
+                  })
+                }
+              >
+                Delete Markers
+              </Button>
+            </StackItem>
           </Stack>
         </GridItem>
       );
@@ -159,7 +173,12 @@ export default class index extends PureComponent {
     return (
       <>
         <Toolbar
-          left={<LeftToolbar onClick={this.props.navigation.back} />}
+          left={
+            <LeftToolbar
+              onClick={this.props.navigation.back}
+              accountId={this.state.accountId}
+            />
+          }
           right={<RightToolbar />}
         />
 

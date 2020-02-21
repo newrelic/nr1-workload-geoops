@@ -7,14 +7,19 @@ import {
 } from '../constants';
 
 // Fetch all MapLocations
-export const getMapLocations = ({ accountId, fixtureData = false }) => {
+export const getMapLocations = ({
+  accountId,
+  document,
+  fixtureData = false
+}) => {
   if (fixtureData) {
     return Promise.resolve({
       data: []
     });
   }
+
   return AccountStorageQuery.query({
-    collection: MAP_LOCATION_COLLECTION_ID,
+    collection: mapLocationCollection({ mapGuid: document.guid }),
     accountId: accountId
   });
 };
@@ -59,7 +64,7 @@ export const deleteMapLocation = ({ accountId, document }) => {
 
   if (!mapGuid) {
     throw new Error(
-      'Error creating Map Location - you must assign it to a Map'
+      'Error deleting Map Location - you must assign it to a Map'
     );
   }
 
@@ -77,7 +82,7 @@ export const deleteMapLocation = ({ accountId, document }) => {
 
 // Delete entire collection of map locations
 export const deleteMapLocationCollection = ({ accountId, mapGuid }) => {
-  return AccountStorageQuery.query({
+  return AccountStorageMutation.mutate({
     accountId: accountId,
     collection: mapLocationCollection({ mapGuid }),
     actionType: AccountStorageMutation.ACTION_TYPE.DELETE_COLLECTION

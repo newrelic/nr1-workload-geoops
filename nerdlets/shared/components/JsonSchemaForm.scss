@@ -44,3 +44,9 @@ i.glyphicon { display: none; }
     margin-right: 0;
   }
 }
+
+// Alternatively we could implement a custom titles widget
+// https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/#custom-titles
+form .form-group legend {
+  display: none;
+}

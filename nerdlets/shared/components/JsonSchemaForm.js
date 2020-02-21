@@ -23,8 +23,13 @@ export default class JsonSchemaForm extends React.PureComponent {
     getDocument: PropTypes.func.isRequired,
     writeDocument: PropTypes.func.isRequired,
     onWrite: PropTypes.func,
-    onError: PropTypes.func
-    // TO DO - pass through event handlers for onChange/onSubmit/onError?
+    onError: PropTypes.func,
+
+    // Event handlers to tie into underlying form
+    onChange: PropTypes.func
+
+    // onSubmit: PropTypes.func,
+    // onError: PropTypes.func
   };
 
   constructor(props) {
@@ -89,7 +94,13 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   handleOnChange({ formData }) {
+    const { onChange } = this.props;
+
     this.setState({ document: formData });
+
+    if (onChange && typeof onChange === 'function') {
+      onChange({ formData });
+    }
   }
 
   async handleOnSubmit({ formData }) {
@@ -115,7 +126,11 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   handleOnError(errors) {
-    this.props.onError(errors);
+    const { onError } = this.props;
+
+    if (onError && typeof onError === 'function') {
+      onError(errors);
+    }
   }
 
   submit() {

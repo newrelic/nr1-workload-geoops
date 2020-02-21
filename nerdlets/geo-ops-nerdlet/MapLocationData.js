@@ -59,6 +59,10 @@ export default class MapLocationData extends React.PureComponent {
     // Tell react-jsonschema-form to utilize EntitySearchFormInput for the property of 'entities'
     const fields = { entities: EntitySearchFormInput };
 
+    // TO DO - Make adjustment to schema for this specific form - make title a two-column input
+    // import { FormInputTwoColumn } from "./components/react-jsonschema-form"
+    // MAP_LOCATION_UI_SCHEMA.title = { 'ui:FieldTemplate': FormInputTwoColumn };
+
     return (
       <>
         <h4>Provide Location Data</h4>

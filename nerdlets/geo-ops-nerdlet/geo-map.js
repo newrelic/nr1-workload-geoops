@@ -5,12 +5,12 @@ import { Map, TileLayer, Marker } from 'react-leaflet';
 import { Modal, UserStorageMutation } from 'nr1';
 import get from 'lodash.get';
 
-import Data from './data';
+// import Data from './data';
 // eslint-disable-next-line no-unused-vars
 import DetailModal from './detail-modal';
 import { generateIcon } from './utils';
 
-import { getMapLocations } from '../shared/services/map-location';
+// import { getMapLocations } from '../shared/services/map-location';
 
 // import geoopsConfig from '../../geoopsConfig';
 // const config = geoopsConfig[0];
@@ -18,13 +18,15 @@ import { getMapLocations } from '../shared/services/map-location';
 
 export default class GeoMap extends Component {
   static propTypes = {
-    accountId: PropTypes.number.isRequired,
+    // accountId: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
     onMarkerClick: PropTypes.func,
     onMapClick: PropTypes.func,
-    // callbacks: PropTypes.object.isRequired,
-    locations: PropTypes.array,
-    mapLocations: PropTypes.array
+    mapLocations: PropTypes.array,
+
+    // Leaflet pass-throughs
+    center: PropTypes.array,
+    zoom: PropTypes.number
   };
 
   constructor(props) {
@@ -49,19 +51,6 @@ export default class GeoMap extends Component {
     //   refreshTimeout: 60000,
     //   callbacks: this.callbacks
     // });
-  }
-
-  async componentDidMount() {
-    await this.loadMapLocations();
-  }
-
-  async componentDidUpdate(prevProps) {
-    if (
-      prevProps.map !== this.props.map ||
-      prevProps.accountId !== this.props.accountId
-    ) {
-      await this.loadMapLocations();
-    }
   }
 
   componentWillUnmount() {
@@ -100,7 +89,7 @@ export default class GeoMap extends Component {
 
   handleMapClick(e) {
     const { onMapClick } = this.props;
-    onMapClick({ e });
+    onMapClick(e);
   }
 
   handleMarkerClick(e) {
@@ -114,28 +103,17 @@ export default class GeoMap extends Component {
     this.setState({ hidden: true, selectedLocation: null });
   }
 
-  async loadMapLocations() {
-    const { accountId, map } = this.props;
-    // console.log(accountId);
-    const { data, errors } = await getMapLocations({
-      accountId,
-      mapGuid: map.guid
-    });
-
-    this.setState({ data, errors });
-  }
-
   render() {
-    const { map, mapLocations, locations } = this.props;
+    const { map, mapLocations, center, zoom } = this.props;
     const { errors, hidden, selectedLocation } = this.state;
     const hasErrors = (errors && errors.length > 0) || false;
 
     const startingCenter =
-      map.centerLat && map.centerLng
-        ? [map.centerLat, map.centerLng]
-        : [10.5731, -7.5898];
-    const startingZoom = map.zoom || 2;
-    // debugger;
+      map.lat && map.lng ? [map.lat, map.lng] : [10.5731, -7.5898];
+    const startingZoom = map.zoom || 3;
+
+    console.log(`Map center is: ${startingCenter}`);
+    console.log(`Map zoom is: ${startingZoom}`);
 
     return (
       <>
@@ -153,47 +131,31 @@ export default class GeoMap extends Component {
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              {locations &&
-                locations.length > 0 &&
-                locations.map(location => {
-                  const { document } = location;
-                  const { guid, lat, lng } = document;
-                  const icon = generateIcon(document);
-
-                  if (!(lat && lng)) {
-                    return null;
-                  }
-
-                  return (
-                    <Marker
-                      key={guid}
-                      position={[lat, lng]}
-                      onClick={this.handleMarkerClick}
-                      _did={guid}
-                      icon={icon}
-                      document={document}
-                    />
-                  );
-                })}
               {mapLocations &&
                 mapLocations.length > 0 &&
                 mapLocations.map(item => {
-                  const { document } = item;
-                  const { guid, lat, lng, location } = document;
-                  const icon = generateIcon(document);
+                  const { document: mapLocation } = item;
+                  const { guid, location = false } = mapLocation;
+
+                  if (!location) {
+                    return null;
+                  }
+
+                  const { lat, lng } = location;
 
                   if (!(lat && lng)) {
                     return null;
                   }
 
+                  const icon = generateIcon(mapLocation);
                   return (
                     <Marker
                       key={guid}
                       position={[lat, lng]}
                       onClick={this.handleMarkerClick}
-                      _did={location}
+                      _did={mapLocation}
                       icon={icon}
-                      document={document}
+                      document={mapLocation}
                     />
                   );
                 })}

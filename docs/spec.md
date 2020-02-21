@@ -52,13 +52,13 @@ The new Workloads feature in NewRelic seem to be a natural fit for the groupings
       "type": "string",
       "title": "Description",
     },
-    "centerLat": {
+    "lat": {
       "type": "number",
       "title": "Center Point Latitude",
       "minimum": -90,
       "maximum": 90
     },
-    "centerLng": {
+    "lng": {
       "type": "number",
       "title": "Center Point Longitude",
       "minimum": -180,
@@ -143,13 +143,15 @@ Note: Should be flexible enough long-term to allow for any Entity, initially we'
       "type": "string",
       "title": "Title"
     },
+    "externalId": {
+      "type": ["string", "number"]
+    },
     "map": {
       "type": "string",
       "title": "Map",
     },
     "location": {
-      "type": "string",
-      "title": "Location",
+      <Location Object>
     },
     "query": {
       "type": "string",

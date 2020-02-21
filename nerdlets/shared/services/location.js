@@ -68,3 +68,12 @@ export const deleteLocation = ({ accountId, guid }) => {
     documentId: guid
   });
 };
+
+// Delete a Location
+export const deleteLocations = ({ accountId }) => {
+  return AccountStorageMutation.mutate({
+    accountId,
+    actionType: AccountStorageMutation.ACTION_TYPE.DELETE_COLLECTION,
+    collection: LOCATION_COLLECTION_ID
+  });
+};

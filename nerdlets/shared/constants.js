@@ -8,7 +8,8 @@
 /* eslint quote-props: ["error", "always"]*/
 /* eslint quotes: ["error", "double"]*/
 
-import uuid from "uuid";
+import cloneDeep from "lodash.clonedeep";
+import uuid from "uuid/v4";
 import { FormInputFullWidth, FormInputTwoColumn, FormInputThreeColumn } from "./components/react-jsonschema-form"
 
 const LAT_LNG_SCHEMA = {
@@ -37,8 +38,8 @@ export const MAP_UI_SCHEMA = {
   "accountId": {},
   "title": { "ui:FieldTemplate": FormInputFullWidth },
   "description": { "ui:FieldTemplate": FormInputFullWidth },
-  "centerLat": { "ui:FieldTemplate": FormInputThreeColumn },
-  "centerLng": { "ui:FieldTemplate": FormInputThreeColumn },
+  "lat": { "ui:FieldTemplate": FormInputThreeColumn },
+  "lng": { "ui:FieldTemplate": FormInputThreeColumn },
   "zoom": { "ui:FieldTemplate": FormInputThreeColumn },
 }
 
@@ -59,33 +60,11 @@ export const MAP_JSON_SCHEMA = {
       "type": "string",
       "title": "Description",
     },
-    "centerLat": {
-      "type": "number",
-      "title": "Center Point Latitude",
-
-      // World
-      // "minimum": -90,
-      // "maximum": 90
-
-      // USA
-      "minimum": 19.50139,
-      "maximum": 64.85694
-    },
-    "centerLng": {
-      "type": "number",
-      "title": "Center Point Longitude",
-
-      // World
-      // "minimum": -180,
-      // "maximum": 180
-
-      // USA
-      "minimum": -161.75583,
-      "maximum": -68.01197
-    },
+    ...cloneDeep(LAT_LNG_SCHEMA),
     "zoom": {
       "type": "number",
       "title": "Default Zoom Level",
+      "default": 4,
       "minimum": 0,
       "maximum": 12
     },
@@ -114,20 +93,16 @@ export const LOCATION_UI_SCHEMA = {
 export const LOCATION_JSON_SCHEMA = {
   "description": "Location",
   "type": "object",
-  "required": ["guid", "title", "lat", "lng"],
+  "required": ["lat", "lng"],
   "properties": {
     "guid": {
       "type": "string"
-    },
-    "title": {
-      "type": "string",
-      "title": "Title"
     },
     "description": {
       "type": "string",
       "title": "Description"
     },
-    ...LAT_LNG_SCHEMA,
+    ...cloneDeep(LAT_LNG_SCHEMA),
     "municipality": {
       "type": "string",
       "title": "Municipality"
@@ -147,14 +122,16 @@ export const LOCATION_JSON_SCHEMA = {
   }
 };
 
-export const LOCATION_DEFAULTS = () => ({
+export const MAP_LOCATION_DEFAULTS = () => ({
   "guid": uuid()
 });
 
 export const MAP_LOCATION_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
-  "title": { "ui:FieldTemplate": FormInputTwoColumn },
+  "externalId": { "ui:widget": "hidden" },
+  // "title": { "ui:FieldTemplate": FormInputTwoColumn },
   "map": { "ui:FieldTemplate": FormInputTwoColumn },
+  "location": {...LOCATION_UI_SCHEMA}
   // "entities": { "ui:field": "entities" }
 }
 
@@ -165,6 +142,9 @@ export const MAP_LOCATION_JSON_SCHEMA = {
   "properties": {
     "guid": {
       "type": "string"
+    },
+    "externalId": {
+      "type": ["string", "number"]
     },
     "title": {
       "type": "string",
@@ -178,14 +158,7 @@ export const MAP_LOCATION_JSON_SCHEMA = {
       // "enum": 
       // "enumNames":
     },
-    "location": {
-      "type": "string",
-      "title": "Location",
-      // Dynamically modifying the schema to provide dropdown options seems to be the only way to achieve this functionality
-      // https://github.com/rjsf-team/react-jsonschema-form/issues/809
-      // "enum": 
-      // "enumNames":
-    },
+    "location": {...cloneDeep(LOCATION_JSON_SCHEMA)},
     "query": {
       "type": "string",
       "title": "NRQL"

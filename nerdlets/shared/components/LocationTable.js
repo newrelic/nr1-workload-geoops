@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { EmptyState } from '@newrelic/nr1-community';
+
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import { Icon } from 'nr1';
 
 export default class MapLocationTable extends Component {
   static propTypes = {
-    locations: PropTypes.array
+    mapLocations: PropTypes.array
   };
 
   statusFormatter() {
@@ -27,66 +29,92 @@ export default class MapLocationTable extends Component {
     );
   }
 
-  render() {
-    const { SearchBar } = Search;
-
-    const { locations } = this.props;
-
-    // TO DO [performance] - Rework data flow so that we only have to do this mapping when we load data
-    const data = locations.map(l => l.document);
-
-    const columns = [
+  getColumns() {
+    return [
       {
-        dataField: 'guid',
+        dataField: 'document.guid',
         text: 'GUID',
         sort: true
       },
       {
-        dataField: 'title',
+        dataField: 'document.title',
         text: 'Title',
         sort: true
       },
       {
-        dataField: 'lat',
+        dataField: 'document.location.lat',
         text: 'Latitude',
         sort: true
       },
       {
-        dataField: 'lng',
+        dataField: 'document.location.lng',
         text: 'Longitude',
         sort: true
       },
       {
-        dataField: 'municipality',
+        dataField: 'document.location.municipality',
         text: 'Municipality',
         sort: true
       },
       {
-        dataField: 'region',
+        dataField: 'document.location.region',
         text: 'Region',
         sort: true
       },
       {
-        dataField: 'country',
+        dataField: 'document.location.country',
         text: 'Country',
         sort: true
       },
       {
-        dataField: 'postalCode',
+        dataField: 'document.location.postalCode',
         text: 'Postal Code',
         sort: true
       }
     ];
+  }
+
+  render() {
+    const { SearchBar } = Search;
+    const { mapLocations: data } = this.props;
+    const columns = this.getColumns();
+
+    // console.log(data);
+
+    // TO DO [performance] - Rework data flow so that we only have to do this mapping when we load data
+    // const data = mapLocations.map(l => l.document.location);
+
+    const hasData = data.length > 0;
 
     return (
-      <ToolkitProvider keyField="guid" data={data} columns={columns} search>
-        {props => (
+      <>
+        {/* Empty state */}
+        {!hasData && (
           <div className="location-table">
-            <SearchBar {...props.searchProps} />
-            <BootstrapTable {...props.baseProps} bordered={false} />
+            <EmptyState
+              heading="Location List"
+              description="Add locations on the left"
+              callToAction={false}
+            />
           </div>
         )}
-      </ToolkitProvider>
+
+        {hasData && (
+          <ToolkitProvider
+            keyField="document.guid"
+            data={data}
+            columns={columns}
+            search
+          >
+            {props => (
+              <div className="location-table">
+                <SearchBar {...props.searchProps} />
+                <BootstrapTable {...props.baseProps} bordered={false} />
+              </div>
+            )}
+          </ToolkitProvider>
+        )}
+      </>
     );
   }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import GeoMap from './geo-map';
 import { Map, TileLayer } from 'react-leaflet';
-// import { AccountDropdown } from '@newrelic/nr1-community';
 
 import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
 
@@ -20,7 +19,9 @@ import {
 } from '../shared/constants';
 
 import { getMap, writeMap } from '../shared/services/map';
-import { getLocations } from '../shared/services/location';
+import { getMapLocations } from '../shared/services/map-location';
+
+import AccountDropdown from '../shared/components/AccountDropdown';
 
 const steps = [
   { order: 1, title: '1. Create a map' },
@@ -57,19 +58,16 @@ export default class CreateMap extends React.PureComponent {
       steps,
       activeStep: activeStep || defaultFirstStep,
       map: props.map,
-
-      locations: [],
-      locationsLoading: false,
-      locationsLoadingErrors: [],
-
       mapLocations: [],
       mapLocationsLoading: false,
       mapLocationsLoadingErrors: [],
-      selectedLatLng: false
+      selectedLatLng: false,
+      mapZoomLevel: 4,
+      mapCenter: [39.5, -98.35]
     };
 
     this.onAddEditMap = this.onAddEditMap.bind(this);
-    this.onLocationWrite = this.onLocationWrite.bind(this);
+    this.onMapLocationWrite = this.onMapLocationWrite.bind(this);
     this.changeActiveStep = this.changeActiveStep.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
 
@@ -77,8 +75,11 @@ export default class CreateMap extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.loadLocations();
-    this.loadMapLocations();
+    const { map } = this.state;
+
+    if (map) {
+      this.loadMapLocations();
+    }
   }
 
   // Based on the current way we're recreating each component on
@@ -86,7 +87,6 @@ export default class CreateMap extends React.PureComponent {
   // componentDidUpdate(prevProps) {
   //   // null (no map) -> map
   //   if (prevProps.map === null && this.props.map) {
-  //     // eslint-disable-next-line react/no-did-update-set-state
   //     this.setState({ map: this.props.map });
   //   }
 
@@ -97,34 +97,9 @@ export default class CreateMap extends React.PureComponent {
   //   }
   // }
 
-  async loadLocations() {
-    const { accountId, map } = this.props;
-
-    if (map && map.accountId && map.accountId !== accountId) {
-      console.warn(
-        "The selected map's accountId is different from the selected accountId. This might be unexpected behavior."
-      );
-    }
-
-    this.setState({ locationsLoading: true });
-    // Locations
-    const {
-      data: locations,
-      errors: locationsLoadingErrors
-    } = await nerdStorageRequest({
-      service: getLocations,
-      params: { accountId }
-    });
-
-    this.setState({
-      locations,
-      locationsLoading: false,
-      locationsLoadingErrors
-    });
-  }
-
   async loadMapLocations() {
-    const { accountId, map } = this.props;
+    const { accountId } = this.props;
+    const { map } = this.state;
 
     if (map && map.accountId && map.accountId !== accountId) {
       console.warn(
@@ -138,8 +113,8 @@ export default class CreateMap extends React.PureComponent {
       data: mapLocations,
       errors: mapLocationsLoadingErrors
     } = await nerdStorageRequest({
-      service: getLocations,
-      params: { accountId }
+      service: getMapLocations,
+      params: { accountId, document: map }
     });
 
     this.setState({
@@ -164,41 +139,46 @@ export default class CreateMap extends React.PureComponent {
   }
 
   // Bubble up both the location and the mapLocation from DefineLocations
-  onLocationWrite({ location, mapLocation }) {
-    // TO DO - Handle errors from updating each
+  onMapLocationWrite({ mapLocation }) {
+    console.log(mapLocation);
 
-    this.addOrUpdate({ collectionName: 'locations', item: location.data });
+    // TO DO - Handle errors from updating each
     this.addOrUpdate({
       collectionName: 'mapLocations',
       item: mapLocation.data
     });
   }
 
-  onMapClick({ e }) {
+  onMapClick(e) {
+    const { activeStep } = this.state;
     const { lat, lng } = e.latlng;
+
+    // Specific to map click on step 1
+    if (activeStep.order === 1) {
+      this.setState({
+        mapCenter: [lat, lng]
+      });
+    }
+
     this.setState({
       selectedLatLng: [lat, lng]
     });
   }
 
   /*
-   * field is a local state array that needs updated in an immutable way
+   * collectionName is a local state array that needs updated in an immutable way
    * item is an un-nested nerdstore document that needs wrapped in { id: foo, document: item }
    */
   addOrUpdate({ collectionName, item }) {
     const { [collectionName]: collection } = this.state;
 
     const itemIndex = collection.findIndex(i => i.document.guid === item.guid);
-
     const newDocument = { id: item.guid, document: item };
 
     // Update in place
     if (itemIndex > 0) {
-      const updatedCollection = [...collection].splice(
-        itemIndex,
-        1,
-        newDocument
-      );
+      const updatedCollection = [...collection];
+      updatedCollection.splice(itemIndex, 1, newDocument);
 
       const newState = {
         [collectionName]: updatedCollection
@@ -210,14 +190,18 @@ export default class CreateMap extends React.PureComponent {
     }
 
     // Append
-    this.setState(prevState => {
-      return {
-        [collectionName]: [
+    if (itemIndex === -1) {
+      this.setState(prevState => {
+        const newCollection = [
           ...prevState[collectionName],
           { id: item.guid, document: item }
-        ]
-      };
-    });
+        ];
+
+        return {
+          [collectionName]: newCollection
+        };
+      });
+    }
   }
 
   // Given a step, determine the "next" one
@@ -241,8 +225,8 @@ export default class CreateMap extends React.PureComponent {
       map: {
         document: {
           accountId: 630060,
-          centerLat: 22,
-          centerLng: -97,
+          lat: 22,
+          lng: -97,
           description:
             'Nulla quis tortor orci. Etiam at risus et justo dignissim.',
           guid: 'f0271857-a864-4a4b-a765-6255b52e0029',
@@ -259,19 +243,16 @@ export default class CreateMap extends React.PureComponent {
       activeStep,
       map,
       steps,
-      locations,
-      locationsLoading,
-      locationsLoadingErrors,
       mapLocations,
       mapLocationsLoading,
       mapLocationsLoadingErrors,
-      selectedLatLng
+      selectedLatLng,
+      mapZoomLevel,
+      mapCenter
     } = this.state;
 
-    const startingCenter = [39.5, -98.35];
-    const startingZoom = 4;
-
-    // MAP_UI_SCHEMA.accountId['ui:field'] = AccountDropdown;
+    MAP_UI_SCHEMA.accountId['ui:field'] = AccountDropdown;
+    const mapFormData = { lat: selectedLatLng[0], lng: selectedLatLng[1] };
 
     return (
       <>
@@ -316,10 +297,16 @@ export default class CreateMap extends React.PureComponent {
                     schema={MAP_JSON_SCHEMA}
                     uiSchema={MAP_UI_SCHEMA}
                     defaultValues={MAP_DEFAULTS}
+                    formData={mapFormData}
                     getDocument={getMap}
                     writeDocument={writeMap}
                     onWrite={this.onAddEditMap}
                     onError={errors => console.log('Form errors: ', errors)}
+                    onChange={({ formData }) => {
+                      if (formData.zoom) {
+                        this.setState({ mapZoomLevel: formData.zoom });
+                      }
+                    }}
                     ref={this.createMapForm}
                   />
                 </StackItem>
@@ -368,10 +355,10 @@ export default class CreateMap extends React.PureComponent {
                   <DefineLocations
                     accountId={accountId}
                     map={map}
-                    onLocationWrite={this.onLocationWrite}
-                    locations={locations}
-                    locationsLoading={locationsLoading}
-                    locationsLoadingErrors={locationsLoadingErrors}
+                    onMapLocationWrite={this.onMapLocationWrite}
+                    mapLocations={mapLocations}
+                    mapLocationsLoading={mapLocationsLoading}
+                    mapLocationsLoadingErrors={mapLocationsLoadingErrors}
                     selectedLatLng={selectedLatLng}
                   />
                 </StackItem>
@@ -413,7 +400,6 @@ export default class CreateMap extends React.PureComponent {
               </Stack>
             )}
 
-            {/* TO DO - Handle mapLocations here or inside MapLocationData? */}
             {activeStep.order === 3 && (
               <Stack
                 verticalType={Stack.HORIZONTAL_TYPE.CENTER}
@@ -465,7 +451,12 @@ export default class CreateMap extends React.PureComponent {
           <GridItem className="primary-content-container" columnSpan={6}>
             {activeStep.order === 1 && (
               <div className="leaflet-wrapper">
-                <Map center={startingCenter} zoomControl zoom={startingZoom}>
+                <Map
+                  center={mapCenter}
+                  zoomControl
+                  zoom={mapZoomLevel}
+                  onClick={this.onMapClick}
+                >
                   <TileLayer
                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -473,22 +464,15 @@ export default class CreateMap extends React.PureComponent {
                 </Map>
               </div>
             )}
-            {activeStep.order === 2 && map && (
-              <GeoMap
-                accountId={accountId}
-                map={map}
-                locations={locations}
-                onMarkerClick={marker => console.log(marker)}
-                onMapClick={this.onMapClick}
-              />
-            )}
-            {activeStep.order === 3 && map && (
+            {(activeStep.order === 2 || activeStep.order === 3) && map && (
               <GeoMap
                 accountId={accountId}
                 map={map}
                 mapLocations={mapLocations}
                 onMarkerClick={marker => console.log(marker)}
                 onMapClick={this.onMapClick}
+                center={mapCenter}
+                zoom={mapZoomLevel}
               />
             )}
           </GridItem>

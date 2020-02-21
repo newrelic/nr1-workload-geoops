@@ -2,41 +2,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Spinner, Stack, StackItem } from 'nr1';
+import cloneDeep from 'lodash.clonedeep';
+import { Button, Modal, Spinner, Stack, StackItem } from 'nr1';
 
 import {
-  LOCATION_UI_SCHEMA,
-  LOCATION_JSON_SCHEMA,
-  LOCATION_DEFAULTS
+  MAP_LOCATION_UI_SCHEMA,
+  MAP_LOCATION_JSON_SCHEMA,
+  MAP_LOCATION_DEFAULTS
 } from '../shared/constants';
 
-import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
+import { NerdGraphError } from '@newrelic/nr1-community';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 
 import { getLocation, writeLocation } from '../shared/services/location';
 import { writeMapLocation } from '../shared/services/map-location';
 import LocationTable from '../shared/components/LocationTable';
+import MapLocationFilesUpload from './MapLocationFilesUpload';
 
 export default class DefineLocations extends React.PureComponent {
   static propTypes = {
     accountId: PropTypes.number,
     map: PropTypes.object.isRequired,
-    onLocationWrite: PropTypes.func,
-    locations: PropTypes.array,
-    locationsLoading: PropTypes.bool,
-    locationLoadingErrors: PropTypes.array,
+    onMapLocationWrite: PropTypes.func,
+    mapLocations: PropTypes.array,
+    mapLocationsLoading: PropTypes.bool,
+    mapLocationsLoadingErrors: PropTypes.array,
     // TO DO - custom validation for an array containing [ lat, lng ]
     selectedLatLng: PropTypes.oneOfType([PropTypes.array, PropTypes.bool])
   };
 
   constructor(props) {
     super(props);
+
     this.state = {
-      //
+      isValidatingFile: false,
+      files: [],
+      uiSchema: this.transformUiSchema(MAP_LOCATION_UI_SCHEMA),
+      schema: this.transformSchema(MAP_LOCATION_JSON_SCHEMA),
+      formData: { map: props.map.guid }
     };
 
     this.addLocationForm = React.createRef();
     this.onWrite = this.onWrite.bind(this);
+    this.onAddFileMapLocations = this.onAddFileMapLocations.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -47,12 +55,40 @@ export default class DefineLocations extends React.PureComponent {
       this.setState(prevState => ({
         formData: {
           ...prevState.formData,
-          lat: this.props.selectedLatLng[0],
-          lng: this.props.selectedLatLng[1]
+          location: {
+            lat: this.props.selectedLatLng[0],
+            lng: this.props.selectedLatLng[1]
+          }
         }
       }));
     }
   }
+
+  transformUiSchema(inSchema) {
+    const schema = cloneDeep(inSchema);
+
+    // Remove fields for this step
+    // const mapLocationJsonSchema = {};
+
+    return schema;
+  }
+
+  /*
+   * Remove fields that will be filled in the next step
+   */
+  transformSchema(inSchema) {
+    const schema = cloneDeep(inSchema);
+
+    delete schema.properties.query;
+    delete schema.properties.entities;
+    delete schema.properties.map;
+    delete schema.properties.location.properties.title;
+    return schema;
+  }
+
+  /*
+   * Manual definition of MapLocations
+   */
 
   // As they add locations we need to associate them with _this_ map
   // We do so by creating a MapLocation object for each
@@ -64,8 +100,7 @@ export default class DefineLocations extends React.PureComponent {
       error: mapLocationWriteError
     } = await this.writeMapLocation({ location });
 
-    this.props.onLocationWrite({
-      location: { data: location, error: locationWriteError },
+    this.props.onMapLocationWrite({
       mapLocation: {
         data: mapLocation.nerdStorageWriteDocument,
         error: mapLocationWriteError
@@ -76,32 +111,68 @@ export default class DefineLocations extends React.PureComponent {
   async writeMapLocation({ location }) {
     const { accountId, map } = this.props;
 
-    // TO DO: Get an empty/default MapLocation object
-    // i.e. For a given json-schema how do we get a default object
-    const mapLocation = {};
-
     if (!location.guid || !map.guid) {
       throw new Error('Error: missing location or map guids');
     }
-    // TO DO - Do we embed the location or just a guid referencing it?
-    mapLocation.location = location.guid;
-    mapLocation.map = map.guid;
+
+    // location.map = map.guid;
 
     return writeMapLocation({
       accountId,
-      document: mapLocation
+      document: location
     });
+  }
+
+  /*
+   * File-based additions of MapLocations
+   */
+
+  async onAddFileMapLocations({ mapLocations }) {
+    await Promise.all(
+      mapLocations.map(async ml => {
+        const {
+          data: mapLocation,
+          error: mapLocationWriteError
+        } = await this.writeMapLocation({
+          location: { ...ml, map: this.props.map.guid }
+        });
+
+        this.props.onMapLocationWrite({
+          mapLocation: {
+            data: mapLocation.nerdStorageWriteDocument,
+            error: mapLocationWriteError
+          }
+        });
+      })
+    );
+
+    this.setState({ isValidatingFile: false });
+  }
+
+  /*
+  File: {
+    name: "map-location-upload-file.json"
+    lastModified: 1582219355387
+    lastModifiedDate: Thu Feb 20 2020 12:22:35 GMT-0500 (Eastern Standard Time) {}
+    webkitRelativePath: ""
+    size: 90
+    type: "application/json"
+  }
+  */
+  fileInputOnChange(event) {
+    const fileList = event.target.files;
+    this.setState({ files: Array.from(fileList) });
   }
 
   render() {
     const {
       accountId,
-      locations,
-      locationsLoading,
-      locationLoadingErrors
+      mapLocations,
+      mapLocationsLoading,
+      mapLocationsLoadingErrors
     } = this.props;
 
-    const { formData } = this.state;
+    const { files, formData, isValidatingFile, uiSchema, schema } = this.state;
 
     return (
       <>
@@ -110,7 +181,18 @@ export default class DefineLocations extends React.PureComponent {
           JSON file formatted to <a href="#">this specification</a>. We
           recommend this method for providing locations.
         </p>
-        <input type="file" className="json-file-upload" />
+        <input
+          type="file"
+          className="json-file-upload"
+          accept=".json"
+          onChange={event => {
+            this.setState({ isValidatingFile: true });
+            this.fileInputOnChange(event);
+          }}
+          onClick={event => {
+            event.target.value = null;
+          }}
+        />
         <hr className="or-sep" />
         <h4>Define locations manually</h4>
         <p>
@@ -123,9 +205,9 @@ export default class DefineLocations extends React.PureComponent {
           ref={this.addLocationForm}
           accountId={accountId}
           guid={false}
-          schema={LOCATION_JSON_SCHEMA}
-          uiSchema={LOCATION_UI_SCHEMA}
-          defaultValues={LOCATION_DEFAULTS}
+          schema={schema}
+          uiSchema={uiSchema}
+          defaultValues={MAP_LOCATION_DEFAULTS}
           formData={formData}
           getDocument={getLocation}
           writeDocument={writeLocation}
@@ -147,7 +229,7 @@ export default class DefineLocations extends React.PureComponent {
         </JsonSchemaForm>
 
         {/* Column 2 */}
-        {locationsLoading && <Spinner />}
+        {mapLocationsLoading && <Spinner />}
 
         {/* Errors */}
         {/* {!locationsLoading &&
@@ -157,20 +239,18 @@ export default class DefineLocations extends React.PureComponent {
             return <NerdGraphError key={index} error={error} />;
           })} */}
 
-        {/* Empty state */}
-        {!locationsLoading && locations.length === 0 && (
-          <EmptyState
-            heading="Location List"
-            description="List locations and provide delete functionality"
-            callToAction={false}
-          />
-        )}
-
         {/* List of locations */}
-        {!locationsLoading && locations.length > 0 && (
-          <LocationTable locations={locations} />
-          // <pre>{JSON.stringify(locations, null, 2)}</pre>
-        )}
+        {!mapLocationsLoading && <LocationTable mapLocations={mapLocations} />}
+
+        <Modal
+          hidden={!isValidatingFile}
+          onClose={() => this.setState({ isValidatingFile: false })}
+        >
+          <MapLocationFilesUpload
+            files={files}
+            onAddFileMapLocations={this.onAddFileMapLocations}
+          />
+        </Modal>
       </>
     );
   }
