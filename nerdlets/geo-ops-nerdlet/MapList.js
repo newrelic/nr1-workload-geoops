@@ -19,24 +19,22 @@ import { getMaps, deleteMap } from '../shared/services/map';
 import { deleteLocations } from '../shared/services/location';
 import { deleteMapLocationCollection } from '../shared/services/map-location';
 
-const LeftToolbar = ({ onClick, accountId }) => {
+const LeftToolbar = ({ onBack, onGettingStarted }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
-        <Button onClick={onClick}>Back to main view</Button>
+        <Button onClick={onBack}>Back to main view</Button>
       </StackItem>
-      <StackItem>
-        <Dropdown title="Choose an Account">
-          <DropdownItem>Account 1</DropdownItem>
-          <DropdownItem>Account 2</DropdownItem>
-          <DropdownItem>Account 3</DropdownItem>
-        </Dropdown>
+      <StackItem className="toolbar-item has-separator">
+        <Button onClick={onGettingStarted}>Guided Setup</Button>
       </StackItem>
+      {/* TO DO - Filtering maps by Account/Region/etc. */}
     </>
   );
 };
 LeftToolbar.propTypes = {
-  onClick: PropTypes.func
+  onBack: PropTypes.func,
+  onGettingStarted: PropTypes.func
 };
 
 const RightToolbar = () => {
@@ -51,40 +49,15 @@ const RightToolbar = () => {
 
 export default class index extends PureComponent {
   static propTypes = {
+    maps: PropTypes.array,
     navigation: PropTypes.object
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      maps: [],
-      isLoading: true,
-      loadingErrors: false,
-      accountId: 630060 // TO DO - Remove
+      maps: props.maps || []
     };
-  }
-
-  async componentDidMount() {
-    await this.loadMaps();
-  }
-
-  async loadMaps() {
-    this.setState({ isLoading: true });
-
-    // Maps
-    const {
-      data: maps = [],
-      errors: loadingErrors = null
-    } = await nerdStorageRequest({
-      service: getMaps,
-      params: {}
-    });
-
-    this.setState({
-      isLoading: false,
-      maps,
-      loadingErrors: loadingErrors || false
-    });
   }
 
   async deleteMap({ map }) {
@@ -103,25 +76,7 @@ export default class index extends PureComponent {
   }
 
   render() {
-    const { isLoading, loadingErrors, maps } = this.state;
-
-    if (isLoading) {
-      return <Spinner />;
-    }
-
-    // TO DO - Fix NerdGraphError component in nr1-community
-    // if (!isLoading && loadingErrors) {
-    //   if (Array.isArray(loadingErrors)) {
-    //     return loadingErrors.map((error, index) => {
-    //       return <NerdGraphError key={index} error={error} />;
-    //     });
-    //   } else {
-    //     return <NerdGraphError key={index} error={loadingErrors} />;
-    //   }
-    // }
-    if (!isLoading && loadingErrors) {
-      return <pre>{JSON.stringify(loadingErrors, null, 2)}</pre>;
-    }
+    const { maps } = this.state;
 
     const mapGridItems = maps.map(m => {
       const { document: map } = m;
@@ -157,7 +112,7 @@ export default class index extends PureComponent {
               <Button
                 onClick={async () =>
                   deleteMapLocationCollection({
-                    accountId: this.state.accountId,
+                    accountId: map.accountId,
                     mapGuid: map.guid
                   })
                 }
@@ -175,8 +130,8 @@ export default class index extends PureComponent {
         <Toolbar
           left={
             <LeftToolbar
-              onClick={this.props.navigation.back}
-              accountId={this.state.accountId}
+              onBack={this.props.navigation.back}
+              onGettingStarted={this.props.navigation.gettingStarted}
             />
           }
           right={<RightToolbar />}

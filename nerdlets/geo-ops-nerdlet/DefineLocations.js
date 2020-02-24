@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import cloneDeep from 'lodash.clonedeep';
-import { Button, Modal, navigation, Spinner, Stack, StackItem } from 'nr1';
+import { Button, navigation, Spinner, Stack, StackItem } from 'nr1';
 
 import {
   DEFINE_LOCATIONS_UI_SCHEMA,
@@ -17,11 +17,9 @@ import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import { getLocation, writeLocation } from '../shared/services/location';
 import { writeMapLocation } from '../shared/services/map-location';
 import LocationTable from '../shared/components/LocationTable';
-import MapLocationFilesUpload from './MapLocationFilesUpload';
 
 export default class DefineLocations extends React.PureComponent {
   static propTypes = {
-    accountId: PropTypes.number,
     map: PropTypes.object.isRequired,
     onMapLocationWrite: PropTypes.func,
     mapLocations: PropTypes.array,
@@ -109,13 +107,12 @@ export default class DefineLocations extends React.PureComponent {
   }
 
   async writeMapLocation({ location }) {
-    const { accountId, map } = this.props;
+    const { map } = this.props;
+    const { accountId } = map;
 
     if (!location.guid || !map.guid) {
       throw new Error('Error: missing location or map guids');
     }
-
-    // location.map = map.guid;
 
     return writeMapLocation({
       accountId,
@@ -166,14 +163,15 @@ export default class DefineLocations extends React.PureComponent {
 
   render() {
     const {
-      accountId,
       map,
       mapLocations,
       mapLocationsLoading,
       mapLocationsLoadingErrors
     } = this.props;
 
-    const { files, formData, isValidatingFile, uiSchema, schema } = this.state;
+    const { formData, uiSchema, schema } = this.state;
+    const accountId = map.accountId;
+    const mapGuid = map.guid;
 
     return (
       <>
@@ -193,7 +191,7 @@ export default class DefineLocations extends React.PureComponent {
               id: 'map-location-upload',
               urlState: {
                 accountId: accountId,
-                map: map.guid
+                map: mapGuid
               }
             });
           }}
@@ -246,16 +244,6 @@ export default class DefineLocations extends React.PureComponent {
 
         {/* List of locations */}
         {!mapLocationsLoading && <LocationTable mapLocations={mapLocations} />}
-
-        <Modal
-          hidden={!isValidatingFile}
-          onClose={() => this.setState({ isValidatingFile: false })}
-        >
-          <MapLocationFilesUpload
-            files={files}
-            onAddFileMapLocations={this.onAddFileMapLocations}
-          />
-        </Modal>
       </>
     );
   }

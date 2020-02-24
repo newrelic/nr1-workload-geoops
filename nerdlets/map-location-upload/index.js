@@ -10,7 +10,6 @@ export default class MapLocationUploadNerdlet extends React.Component {
     super(props);
 
     this.state = {
-      isValidatingFile: false,
       files: []
     };
 
@@ -18,7 +17,10 @@ export default class MapLocationUploadNerdlet extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.fileInput.current.click(), 300);
+    // Warning from Google Chrome about this:
+    // File chooser dialog can only be shown with a user activation.
+    // WompWomp
+    // setTimeout(() => this.fileInput.current.click(), 300);
   }
 
   /*
@@ -41,19 +43,20 @@ export default class MapLocationUploadNerdlet extends React.Component {
       {
         id: '40e251de-1278-49dd-9ce0-9a09006e79f4.geo-ops',
         nerdlet: {
-          id: 'geo-ops-nerdlet'
+          id: '40e251de-1278-49dd-9ce0-9a09006e79f4.geo-ops-nerdlet',
+          urlState: {
+            accountId,
+            mapGuid,
+            reload: true
+          }
         }
-        // stackedNerdlets: []
       },
-      {
-        accountId,
-        mapGuid
-      }
+      { replaceHistory: true }
     );
   }
 
   render() {
-    const { files, isValidatingFile } = this.state;
+    const { files } = this.state;
 
     return (
       <>
@@ -68,7 +71,6 @@ export default class MapLocationUploadNerdlet extends React.Component {
           className="json-file-upload"
           accept=".json"
           onChange={event => {
-            this.setState({ isValidatingFile: true });
             this.fileInputOnChange(event);
           }}
           onClick={event => {
@@ -78,6 +80,8 @@ export default class MapLocationUploadNerdlet extends React.Component {
         <NerdletStateContext.Consumer>
           {nerdletState => {
             const { map: mapGuid, accountId } = nerdletState;
+
+            // TO DO - if we don't have these, because of weird user navigation - show inputs to capture these
             // console.log(mapGuid);
             // console.log(accountId);
 

@@ -68,7 +68,7 @@ const RightToolbar = () => {
 
 export default class ViewMap extends Component {
   static propTypes = {
-    selectedMap: PropTypes.object
+    map: PropTypes.object
   };
 
   constructor(props) {
@@ -77,7 +77,7 @@ export default class ViewMap extends Component {
       // TO DO - Check on nr1 AccountDropdown, if still too far off, use nr1-community
       accountId: 630060,
 
-      selectedMap: props.selectedMap || null,
+      selectedMap: props.map || null,
 
       // Data
       mapLocations: [],
@@ -85,17 +85,14 @@ export default class ViewMap extends Component {
       // Loading
       isLoading: true,
       mapLoading: true,
-      locationsLoading: true,
       mapLocationsLoading: true,
 
       // Errors
       mapLoadingErrors: [],
-      locationLoadingErrors: [],
       mapLocationLoadingErrors: []
     };
 
     this.callbacks = {
-      setParentState: this.setParentState.bind(this),
       onMapLocationChange: this.onMapLocationChange.bind(this)
     };
   }
@@ -104,36 +101,17 @@ export default class ViewMap extends Component {
     await this.load();
   }
 
-  async loadLocations() {
-    const { accountId } = this.state;
-    this.setState({ isLoading: true });
-    // Locations
-    const {
-      data: locations,
-      errors: locationLoadingErrors
-    } = await nerdStorageRequest({
-      service: getLocations,
-      params: { accountId, fixtureData: true }
-    });
-
-    this.setState({
-      locationsLoading: false,
-      locations,
-      locationLoadingErrors
-    });
-  }
-
   async loadMapLocations() {
+    const { map } = this.props;
     const { accountId } = this.state;
     this.setState({ isLoading: true });
 
-    // Map Locations
     const {
       data: mapLocations,
       errors: mapLocationLoadingErrors
     } = await nerdStorageRequest({
       service: getMapLocations,
-      params: { accountId }
+      params: { accountId, document: map }
     });
 
     this.setState({
@@ -152,15 +130,9 @@ export default class ViewMap extends Component {
     //   defaultMapGuid: false
     // };
 
-    // await this.loadMaps({ userSettings });
-    await this.loadLocations();
     await this.loadMapLocations();
 
     this.setState({ isLoading: false });
-  }
-
-  setParentState(state) {
-    this.setState({ ...state });
   }
 
   onMapLocationChange({ document }) {
@@ -174,15 +146,10 @@ export default class ViewMap extends Component {
   }
 
   renderErrors() {
-    const {
-      mapLoadingErrors,
-      locationLoadingErrors,
-      mapLocationLoadingErrors
-    } = this.state;
+    const { mapLoadingErrors, mapLocationLoadingErrors } = this.state;
 
     const errors = [
       ...(mapLoadingErrors || []),
-      ...(locationLoadingErrors || []),
       ...(mapLocationLoadingErrors || [])
     ];
 
@@ -198,22 +165,19 @@ export default class ViewMap extends Component {
       mapLocations,
 
       isLoading,
-      locationsLoading,
       mapLocationsLoading,
-      selectedMap
+      map
     } = this.state;
 
     if (isLoading) {
       return (
         <div className="geoOpsContainer">
-          {locationsLoading && <h2>Loading locations...</h2>}
-          {mapLocationsLoading && <h2>Loading additional data...</h2>}
+          {mapLocationsLoading && <h2>Loading map locations...</h2>}
           <Spinner />
         </div>
       );
     }
 
-    // console.debug(mapLocations);
     return (
       <>
         <Toolbar left={<LeftToolbar />} right={<RightToolbar />} />;
@@ -238,18 +202,19 @@ export default class ViewMap extends Component {
               >
                 {this.renderErrors()}
 
-                {selectedMap && (
+                {map && (
                   <>
                     <GeoMap
                       accountId={accountId}
-                      map={selectedMap}
+                      map={map}
                       mapLocations={mapLocations}
-                      callbacks={this.callbacks}
+                      // onMarkerClick={marker => console.log(marker)}
+                      // onMapClick={this.onMapClick}
                     />
                   </>
                 )}
 
-                {!selectedMap && <EmptyState />}
+                {!map && <EmptyState />}
               </GridItem>
             </Grid>
           </GridItem>

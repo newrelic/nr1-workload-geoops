@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'nr1';
+import { Button, Spinner } from 'nr1';
 
 import uuid from 'uuid/v4';
 import get from 'lodash.get';
@@ -26,6 +26,7 @@ export default class MapLocationFilesUpload extends React.Component {
     this.state = {
       fileErrors: null,
       fileData: [],
+      savingMapLocations: false,
       mapLocationSuccesses: [],
       mapLocationErrors: []
     };
@@ -194,6 +195,9 @@ export default class MapLocationFilesUpload extends React.Component {
 
   async onAdd({ mapLocations }) {
     const { mapGuid } = this.props;
+
+    this.setState({ savingMapLocations: true });
+
     await Promise.all(
       mapLocations.map(async ml => {
         const {
@@ -211,6 +215,10 @@ export default class MapLocationFilesUpload extends React.Component {
         });
       })
     );
+
+    this.setState({ savingMapLocations: false });
+    // TO DO - Don't auto-navigate away, show results first
+    this.props.onClose();
   }
 
   onMapLocationWrite({ mapLocation }) {
@@ -304,11 +312,16 @@ export default class MapLocationFilesUpload extends React.Component {
     const {
       fileErrors,
       fileData,
+      savingMapLocations,
       mapLocationSuccesses,
       mapLocationErrors
     } = this.state;
 
     const columns = this.getColumns();
+
+    if (savingMapLocations) {
+      return <Spinner />;
+    }
 
     return (
       <>

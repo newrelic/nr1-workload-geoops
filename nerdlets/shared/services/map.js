@@ -69,7 +69,7 @@ export const writeMap = ({ accountId, document }) => {
 // Delete a map
 export const deleteMap = ({ map }) => {
   // TO DO - Remove static origami account id
-  const { accountId = 630060, guid } = map;
+  const { accountId, guid } = map;
 
   if (!accountId) {
     throw new Error('Error deleting map, map has no accountId');

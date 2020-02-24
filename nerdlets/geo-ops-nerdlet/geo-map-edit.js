@@ -133,7 +133,6 @@ export default class GeoMapEdit extends React.PureComponent {
 
   render() {
     const { accountId, maps, locations } = this.props;
-    // const { setParentState } = callbacks;
 
     const {
       map,

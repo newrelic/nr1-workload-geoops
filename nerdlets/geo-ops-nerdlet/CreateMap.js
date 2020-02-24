@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import GeoMap from './geo-map';
 import { Map, TileLayer } from 'react-leaflet';
 
-import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
+import {
+  Button,
+  Grid,
+  GridItem,
+  NerdletStateContext,
+  Stack,
+  StackItem
+} from 'nr1';
 
 import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
@@ -38,14 +45,14 @@ const steps = [
  */
 export default class CreateMap extends React.PureComponent {
   static propTypes = {
-    accountId: PropTypes.number,
     onMapChange: PropTypes.func,
 
     // Optional - pick up where they left off with a specific map
     // We "map" this onto local state
     map: PropTypes.object,
     navigation: PropTypes.object,
-    activeStep: PropTypes.number
+    activeStep: PropTypes.number,
+    reload: PropTypes.bool
   };
 
   constructor(props) {
@@ -55,6 +62,7 @@ export default class CreateMap extends React.PureComponent {
     const activeStep = steps.find(s => s.order === props.activeStep);
 
     this.state = {
+      accountId: null,
       steps,
       activeStep: activeStep || defaultFirstStep,
       map: props.map,
@@ -82,29 +90,20 @@ export default class CreateMap extends React.PureComponent {
     }
   }
 
-  // Based on the current way we're recreating each component on
-  // top-level page navigation this isn't necessary, but it will be/could be an optimization
-  // componentDidUpdate(prevProps) {
-  //   // null (no map) -> map
-  //   if (prevProps.map === null && this.props.map) {
-  //     this.setState({ map: this.props.map });
-  //   }
-
-  //   if (prevProps.map && this.props.map) {
-  //     if (prevProps.map.guid !== this.props.map.guid) {
-  //       this.setState({ map: this.props.map });
-  //     }
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    console.log(this.props.reload);
+    if (prevProps.reload !== this.props.reload && this.props.reload) {
+      console.log('Reloading map locations');
+      this.loadMapLocations();
+    }
+  }
 
   async loadMapLocations() {
-    const { accountId } = this.props;
     const { map } = this.state;
+    const { accountId } = map;
 
-    if (map && map.accountId && map.accountId !== accountId) {
-      console.warn(
-        "The selected map's accountId is different from the selected accountId. This might be unexpected behavior."
-      );
+    if (!accountId) {
+      throw new Error('Error: map is missing accountId');
     }
 
     this.setState({ mapLocationsLoading: true });
@@ -140,7 +139,7 @@ export default class CreateMap extends React.PureComponent {
 
   // Bubble up both the location and the mapLocation from DefineLocations
   onMapLocationWrite({ mapLocation }) {
-    console.log(mapLocation);
+    // console.log(mapLocation);
 
     // TO DO - Handle errors from updating each
     this.addOrUpdate({
@@ -238,8 +237,9 @@ export default class CreateMap extends React.PureComponent {
   }
 
   render() {
-    const { accountId, navigation } = this.props;
+    const { navigation } = this.props;
     const {
+      accountId,
       activeStep,
       map,
       steps,
@@ -306,6 +306,9 @@ export default class CreateMap extends React.PureComponent {
                       if (formData.zoom) {
                         this.setState({ mapZoomLevel: formData.zoom });
                       }
+                      if (formData.accountId) {
+                        this.setState({ accountId: formData.accountId });
+                      }
                     }}
                     ref={this.createMapForm}
                   />
@@ -353,7 +356,6 @@ export default class CreateMap extends React.PureComponent {
                 </StackItem>
                 <StackItem className="get-started-step-contents-form-container">
                   <DefineLocations
-                    accountId={accountId}
                     map={map}
                     onMapLocationWrite={this.onMapLocationWrite}
                     mapLocations={mapLocations}

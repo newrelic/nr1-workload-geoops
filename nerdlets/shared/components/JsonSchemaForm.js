@@ -7,8 +7,7 @@ import Form from 'react-jsonschema-form';
 export default class JsonSchemaForm extends React.PureComponent {
   static propTypes = {
     children: PropTypes.element,
-    accountId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-      .isRequired,
+    accountId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     guid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     className: PropTypes.string,
 

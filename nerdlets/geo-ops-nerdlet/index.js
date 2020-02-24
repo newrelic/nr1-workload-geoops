@@ -1,10 +1,15 @@
 import React, { PureComponent } from 'react';
 
+import { NerdletStateContext, Spinner } from 'nr1';
+
 import EmptyState from './EmptyState';
 import CreateMap from './CreateMap';
 import ViewMap from './ViewMap';
 import MapList from './MapList';
 import EditMap from './EditMap';
+
+import { nerdStorageRequest } from '../shared/utils';
+import { getMaps } from '../shared/services/map';
 
 export default class index extends PureComponent {
   constructor(props) {
@@ -15,7 +20,7 @@ export default class index extends PureComponent {
        */
 
       // We've queried for all Accounts and all Maps and found none
-      emptyState: true,
+      emptyState: false,
 
       // Getting Started and Create new map
       createMap: false,
@@ -33,12 +38,37 @@ export default class index extends PureComponent {
        * Local State
        */
 
-      accountId: 630060,
-
       // TO DO - Does Map selection live this high in the tree so we can pass it into Getting Started?
       selectedMap: null,
-      activeStep: null
+      activeStep: null,
+      maps: [],
+      mapsLoading: true
     };
+  }
+
+  async componentDidMount() {
+    await this.loadMaps();
+  }
+
+  async loadMaps() {
+    // this.setState({ mapsLoading: true });
+
+    // Maps
+    const { data: maps = [] } = await nerdStorageRequest({
+      service: getMaps,
+      params: {}
+    });
+
+    this.setState({
+      mapsLoading: false,
+      maps,
+      emptyState: maps.length === 0,
+      mapList: maps.length > 0
+    });
+  }
+
+  onMapDelete({ map }) {
+    //
   }
 
   /*
@@ -53,12 +83,18 @@ export default class index extends PureComponent {
       viewMap,
       mapList,
       editMap,
-      accountId,
+
+      mapsLoading,
+      maps,
       selectedMap,
       activeStep
     } = this.state;
 
-    if (emptyState) {
+    if (mapsLoading) {
+      return <Spinner />;
+    }
+
+    if (!mapsLoading && emptyState) {
       return (
         <EmptyState
           navigation={{
@@ -71,26 +107,39 @@ export default class index extends PureComponent {
 
     if (createMap) {
       return (
-        <CreateMap
-          accountId={accountId}
-          map={selectedMap}
-          activeStep={activeStep}
-          onMapChange={({ map }) => {
-            // eslint-disable-next-line no-alert
-            alert("You've created a new map and stored it in Account Storage!");
-            this.setState({ selectedMap: map.document });
+        <NerdletStateContext.Consumer>
+          {nerdletState => {
+            const { reload = false } = nerdletState;
+
+            console.log(reload);
+
+            return (
+              <CreateMap
+                map={selectedMap}
+                activeStep={activeStep}
+                onMapChange={({ map }) => {
+                  // alert("You've created a new map and stored it in Account Storage!");
+                  this.setState({ selectedMap: map.document });
+                }}
+                navigation={{
+                  next: () =>
+                    this.setState({ createMap: false, mapList: true }),
+                  back: () =>
+                    this.setState({ emptyState: false, createMap: true })
+                }}
+                reload={reload || null}
+              />
+            );
           }}
-          navigation={{
-            next: () => this.setState({ createMap: false, mapList: true }),
-            back: () => this.setState({ emptyState: false, createMap: true })
-          }}
-        />
+        </NerdletStateContext.Consumer>
       );
     }
 
     if (mapList) {
       return (
         <MapList
+          maps={maps}
+          onDelete={this.onMapDelete}
           navigation={{
             next: () => this.setState({ mapList: false, editMap: true }),
             back: () => this.setState({ emptyState: false, createMap: true }),
@@ -109,7 +158,14 @@ export default class index extends PureComponent {
               });
             },
             viewMap: ({ map }) =>
-              this.setState({ mapList: false, viewMap: true, selectedMap: map })
+              this.setState({
+                mapList: false,
+                viewMap: true,
+                selectedMap: map
+              }),
+            gettingStarted: () => {
+              this.setState({ mapsLoading: false, emptyState: true });
+            }
           }}
         />
       );
@@ -128,7 +184,7 @@ export default class index extends PureComponent {
     }
 
     if (viewMap) {
-      return <ViewMap selectedMap={selectedMap} />;
+      return <ViewMap map={selectedMap} />;
     }
   }
 }

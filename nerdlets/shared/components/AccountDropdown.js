@@ -29,7 +29,7 @@ export default class AccountDropdown extends React.Component {
     const account = this.state.selected;
 
     if (account && (!prevAccount || account.id !== prevAccount.id)) {
-      this.props.onChange(account);
+      this.props.onChange(account.id);
     }
   }
 
@@ -38,8 +38,11 @@ export default class AccountDropdown extends React.Component {
   }
 
   handleLoadAccountsResponse({ accounts }) {
+    const defaultAccount = accounts[0];
+
     this.setState({
-      accounts
+      accounts,
+      selected: defaultAccount
     });
   }
 
@@ -84,8 +87,12 @@ export default class AccountDropdown extends React.Component {
     return (
       <>
         <select
-          value={selected ? selected.name : 'Choose an account'}
-          onChange={this.props.onChange}
+          value={selected ? selected.id : 'Choose an account'}
+          onChange={event => {
+            const value = event.target.value;
+            const selected = accounts.find(a => a.id === parseInt(value, 10));
+            this.setState({ selected });
+          }}
           className={className}
           style={style}
         >
