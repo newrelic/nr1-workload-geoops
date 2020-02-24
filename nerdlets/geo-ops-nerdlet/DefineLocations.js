@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import cloneDeep from 'lodash.clonedeep';
-import { Button, Modal, Spinner, Stack, StackItem } from 'nr1';
+import { Button, Modal, navigation, Spinner, Stack, StackItem } from 'nr1';
 
 import {
   DEFINE_LOCATIONS_UI_SCHEMA,
@@ -167,6 +167,7 @@ export default class DefineLocations extends React.PureComponent {
   render() {
     const {
       accountId,
+      map,
       mapLocations,
       mapLocationsLoading,
       mapLocationsLoadingErrors
@@ -185,12 +186,16 @@ export default class DefineLocations extends React.PureComponent {
           type="file"
           className="json-file-upload"
           accept=".json"
-          onChange={event => {
-            this.setState({ isValidatingFile: true });
-            this.fileInputOnChange(event);
-          }}
-          onClick={event => {
-            event.target.value = null;
+          onClick={e => {
+            e.preventDefault();
+
+            navigation.openStackedNerdlet({
+              id: 'map-location-upload',
+              urlState: {
+                accountId: accountId,
+                map: map.guid
+              }
+            });
           }}
         />
         <hr className="or-sep" />

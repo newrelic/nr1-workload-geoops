@@ -11,18 +11,23 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import Ajv from 'ajv';
 
 import { MAP_LOCATION_JSON_SCHEMA } from '../shared/constants';
+import { writeMapLocation } from '../shared/services/map-location';
 
 export default class MapLocationFilesUpload extends React.Component {
   static propTypes = {
+    accountId: PropTypes.number,
+    mapGuid: PropTypes.string,
     files: PropTypes.array,
-    onAddFileMapLocations: PropTypes.func
+    onClose: PropTypes.func
   };
 
   constructor(props) {
     super(props);
     this.state = {
       fileErrors: null,
-      fileData: []
+      fileData: [],
+      mapLocationSuccesses: [],
+      mapLocationErrors: []
     };
   }
 
@@ -34,6 +39,10 @@ export default class MapLocationFilesUpload extends React.Component {
     if (prevProps.files !== this.props.files) {
       await this.loadFiles();
     }
+  }
+
+  close() {
+    this.props.onClose();
   }
 
   async loadFiles() {
@@ -131,20 +140,112 @@ export default class MapLocationFilesUpload extends React.Component {
     return { success: true, errors: null };
   }
 
-  renderFileErrors(errors) {
-    return (
-      <>
-        {errors.map((err, index) => (
-          <pre key={index}>{JSON.stringify(err, null, 2)}</pre>
-        ))}
-      </>
+  /*
+   * collectionName is a local state array that needs updated in an immutable way
+   * item is an un-nested nerdstore document that needs wrapped in { id: foo, document: item }
+   */
+  addOrUpdate({ collectionName, item }) {
+    const { [collectionName]: collection } = this.state;
+
+    const itemIndex = collection.findIndex(i => i.document.guid === item.guid);
+    const newDocument = { id: item.guid, document: item };
+
+    // Update in place
+    if (itemIndex > 0) {
+      const updatedCollection = [...collection];
+      updatedCollection.splice(itemIndex, 1, newDocument);
+
+      const newState = {
+        [collectionName]: updatedCollection
+      };
+
+      this.setState(newState);
+
+      return;
+    }
+
+    // Append
+    if (itemIndex === -1) {
+      this.setState(prevState => {
+        const newCollection = [
+          ...prevState[collectionName],
+          { id: item.guid, document: item }
+        ];
+
+        return {
+          [collectionName]: newCollection
+        };
+      });
+    }
+  }
+
+  async writeMapLocation({ location }) {
+    const { accountId } = this.props;
+
+    if (!location.guid || !location.map) {
+      throw new Error('Error: missing location or map guids');
+    }
+
+    return writeMapLocation({
+      accountId,
+      document: location
+    });
+  }
+
+  async onAdd({ mapLocations }) {
+    const { mapGuid } = this.props;
+    await Promise.all(
+      mapLocations.map(async ml => {
+        const {
+          data: mapLocation,
+          error: mapLocationWriteError
+        } = await this.writeMapLocation({
+          location: { ...ml, map: mapGuid }
+        });
+
+        this.onMapLocationWrite({
+          mapLocation: {
+            data: mapLocation.nerdStorageWriteDocument,
+            error: mapLocationWriteError
+          }
+        });
+      })
     );
   }
 
-  render() {
-    const { SearchBar } = Search;
-    const { fileErrors, fileData } = this.state;
+  onMapLocationWrite({ mapLocation }) {
+    const { data, error } = mapLocation;
 
+    // Add to errors
+    if (error) {
+      this.addOrUpdate({
+        collectionName: 'mapLocationErrors',
+        item: data
+      });
+    }
+
+    // Add to successes
+    if (!error) {
+      this.addOrUpdate({
+        collectionName: 'mapLocationSuccesses',
+        item: data
+      });
+    }
+
+    // TO DO - We should enhance this to add success/failure to the table
+    // - this.setState() and include a status and error column of data to fileData
+    // - dynamically change the result of getColumns based on whether we've processed (tried to write map locations) a file or not
+    /*
+      this.setState({ writingMapMarkers: true }); // Put this onAdd
+      this.deleteFromCollection({
+        fileData: 'mapLocation',
+        item: mapLocation.data,
+        key: 'guid'
+      })
+    */
+  }
+
+  getColumns() {
     const columns = [
       {
         dataField: 'guid',
@@ -185,10 +286,42 @@ export default class MapLocationFilesUpload extends React.Component {
         sort: true
       }
     ];
+    return columns;
+  }
+
+  renderFileErrors(errors) {
+    return (
+      <>
+        {errors.map((err, index) => (
+          <pre key={index}>{JSON.stringify(err, null, 2)}</pre>
+        ))}
+      </>
+    );
+  }
+
+  render() {
+    const { SearchBar } = Search;
+    const {
+      fileErrors,
+      fileData,
+      mapLocationSuccesses,
+      mapLocationErrors
+    } = this.state;
+
+    const columns = this.getColumns();
 
     return (
       <>
+        {mapLocationSuccesses.length > 0 && (
+          <h2>Successfully added: {mapLocationSuccesses.length} markers.</h2>
+        )}
+
+        {mapLocationErrors.length > 0 && (
+          <h2>Errors adding: {mapLocationErrors.length} markers.</h2>
+        )}
+
         {fileErrors && this.renderFileErrors(fileErrors)}
+
         {fileData && (
           <>
             <ToolkitProvider
@@ -205,9 +338,7 @@ export default class MapLocationFilesUpload extends React.Component {
               )}
             </ToolkitProvider>
             <Button
-              onClick={() =>
-                this.props.onAddFileMapLocations({ mapLocations: fileData })
-              }
+              onClick={() => this.onAdd({ mapLocations: fileData })}
               type={Button.TYPE.PRIMARY}
               iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
             >
@@ -215,6 +346,14 @@ export default class MapLocationFilesUpload extends React.Component {
             </Button>
           </>
         )}
+
+        <Button
+          onClick={() => this.close()}
+          type={Button.TYPE.PRIMARY}
+          iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
+        >
+          Close
+        </Button>
       </>
     );
   }
