@@ -91,7 +91,6 @@ export default class CreateMap extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.reload);
     if (prevProps.reload !== this.props.reload && this.props.reload) {
       console.log('Reloading map locations');
       this.loadMapLocations();
@@ -129,18 +128,12 @@ export default class CreateMap extends React.PureComponent {
 
     // TO DO - Expose error about adding/editing
 
-    // eslint-disable-next-line no-console
-    console.log([document, error]);
-
     this.setState({ map: document, activeStep: nextStep }, () =>
       this.props.onMapChange({ map: document, activeStep: nextStep })
     );
   }
 
-  // Bubble up both the location and the mapLocation from DefineLocations
   onMapLocationWrite({ mapLocation }) {
-    // console.log(mapLocation);
-
     // TO DO - Handle errors from updating each
     this.addOrUpdate({
       collectionName: 'mapLocations',

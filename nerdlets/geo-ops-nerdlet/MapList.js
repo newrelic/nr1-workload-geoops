@@ -61,7 +61,6 @@ export default class index extends PureComponent {
   }
 
   async deleteMap({ map }) {
-    console.log(map);
     const { maps } = this.state;
 
     try {

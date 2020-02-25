@@ -18,7 +18,6 @@ import { generateIcon } from './utils';
 
 export default class GeoMap extends Component {
   static propTypes = {
-    // accountId: PropTypes.number.isRequired,
     map: PropTypes.object.isRequired,
     onMarkerClick: PropTypes.func,
     onMapClick: PropTypes.func,

@@ -38,7 +38,6 @@ export default class index extends PureComponent {
        * Local State
        */
 
-      // TO DO - Does Map selection live this high in the tree so we can pass it into Getting Started?
       selectedMap: null,
       activeStep: null,
       maps: [],
@@ -51,8 +50,6 @@ export default class index extends PureComponent {
   }
 
   async loadMaps() {
-    // this.setState({ mapsLoading: true });
-
     // Maps
     const { data: maps = [] } = await nerdStorageRequest({
       service: getMaps,
@@ -68,7 +65,6 @@ export default class index extends PureComponent {
   }
 
   onMapDelete({ map }) {
-    //
   }
 
   /*
