@@ -15,6 +15,7 @@ import {
   getMapLocation,
   writeMapLocation
 } from '../shared/services/map-location';
+import EntityTypeAhead from '../shared/components/EntityTypeAhead';
 
 export default class MapLocationData extends React.PureComponent {
   static propTypes = {
@@ -174,6 +175,8 @@ export default class MapLocationData extends React.PureComponent {
             writeDocument={writeMapLocation}
             onWrite={({ data, errors }) => console.log([data, errors])}
           />
+
+          <EntityTypeAhead />
         </div>
       </>
     );
