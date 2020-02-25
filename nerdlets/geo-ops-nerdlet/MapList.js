@@ -8,6 +8,8 @@ import Toolbar from '../shared/components/Toolbar';
 import { deleteMap } from '../shared/services/map';
 import { deleteMapLocationCollection } from '../shared/services/map-location';
 
+import { latLngToTile } from '../shared/utils';
+
 const LeftToolbar = ({ navigation }) => {
   return (
     <>
@@ -74,6 +76,14 @@ export default class MapList extends PureComponent {
 
     const mapGridItems = maps.map(m => {
       const { document: map } = m;
+
+      const { s, x, y, z } = latLngToTile({
+        latLng: [map.lat, map.lng],
+        zoom: 10 // TO DO - update to the default zoom the user sets?
+      });
+
+      const url = `https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`;
+      console.log(url);
 
       return (
         <GridItem columnSpan={4} key={map.guid}>
