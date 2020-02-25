@@ -122,9 +122,10 @@ export default class CreateMap extends React.PureComponent {
     });
   }
 
-  onAddEditMap({ document, error }) {
+  onAddEditMap({ data, error }) {
     const { activeStep } = this.state;
     const nextStep = this.nextStep({ step: activeStep });
+    const { document } = data;
 
     // TO DO - Expose error about adding/editing
 

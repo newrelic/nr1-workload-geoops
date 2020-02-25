@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 
 import { NerdletStateContext, Spinner } from 'nr1';
 
+import cloneDeep from 'lodash.clonedeep';
+
 import EmptyState from './EmptyState';
 import CreateMap from './CreateMap';
 import ViewMap from './ViewMap';
@@ -43,6 +45,9 @@ export default class index extends PureComponent {
       maps: [],
       mapsLoading: true
     };
+
+    this.onMapDelete = this.onMapDelete.bind(this);
+    this.onMapChange = this.onMapChange.bind(this);
   }
 
   async componentDidMount() {
@@ -64,7 +69,36 @@ export default class index extends PureComponent {
     });
   }
 
+  onMapChange({ map }) {
+    const { maps } = this.state;
+
+    const mapObject = { guid: map.guid, document: map };
+
+    const existing = maps.findIndex(m => map.guid === m.document.guid);
+    if (existing !== -1) {
+      const updatedMaps = [...maps];
+      updatedMaps.splice(existing, 1, mapObject);
+
+      this.setState({
+        selectedMap: mapObject,
+        maps: updatedMaps
+      });
+    } else {
+      this.setState(prevState => {
+        return {
+          maps: [...prevState.maps, mapObject]
+        };
+      });
+    }
+  }
+
   onMapDelete({ map }) {
+    this.setState(prevState => {
+      const newMaps = prevState.maps.filter(m => map.guid !== m.document.guid);
+      return {
+        maps: cloneDeep(newMaps)
+      };
+    });
   }
 
   /*
@@ -113,10 +147,7 @@ export default class index extends PureComponent {
               <CreateMap
                 map={selectedMap}
                 activeStep={activeStep}
-                onMapChange={({ map }) => {
-                  // alert("You've created a new map and stored it in Account Storage!");
-                  this.setState({ selectedMap: map.document });
-                }}
+                onMapChange={this.onMapChange}
                 navigation={{
                   next: () =>
                     this.setState({ createMap: false, mapList: true }),
@@ -135,11 +166,11 @@ export default class index extends PureComponent {
       return (
         <MapList
           maps={maps}
-          onDelete={this.onMapDelete}
+          onMapDelete={this.onMapDelete}
           navigation={{
             next: () => this.setState({ mapList: false, editMap: true }),
             back: () => this.setState({ emptyState: false, createMap: true }),
-            create: () => this.setState({ mapList: false, createMap: true }),
+            createMap: () => this.setState({ mapList: false, createMap: true }),
             edit: ({ guid }) => {
               // const map = maps.find(m => m.document.guid === guid);
 
@@ -180,7 +211,15 @@ export default class index extends PureComponent {
     }
 
     if (viewMap) {
-      return <ViewMap map={selectedMap} />;
+      return (
+        <ViewMap
+          map={selectedMap}
+          navigation={{
+            back: () => this.setState({ viewMap: false, mapList: true }),
+            createMap: () => this.setState({ viewMap: false, createMap: true })
+          }}
+        />
+      );
     }
   }
 }

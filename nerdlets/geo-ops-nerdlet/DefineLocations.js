@@ -91,8 +91,9 @@ export default class DefineLocations extends React.PureComponent {
   // As they add locations we need to associate them with _this_ map
   // We do so by creating a MapLocation object for each
 
-  async onWrite({ document, error: locationWriteError }) {
-    const { document: location } = document;
+  async onWrite({ data, error: locationWriteError }) {
+    const { document: location } = data;
+
     const {
       data: mapLocation,
       error: mapLocationWriteError

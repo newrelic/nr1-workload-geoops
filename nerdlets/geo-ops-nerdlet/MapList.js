@@ -1,56 +1,48 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  Grid,
-  GridItem,
-  Spinner,
-  Stack,
-  StackItem
-} from 'nr1';
+import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
 
 import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
 import Toolbar from '../shared/components/Toolbar';
 
-import { nerdStorageRequest } from '../shared/utils';
-import { getMaps, deleteMap } from '../shared/services/map';
-import { deleteLocations } from '../shared/services/location';
+import { deleteMap } from '../shared/services/map';
 import { deleteMapLocationCollection } from '../shared/services/map-location';
 
-const LeftToolbar = ({ onBack, onGettingStarted }) => {
+const LeftToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
-        <Button onClick={onBack}>Back to main view</Button>
+        <Button onClick={navigation.onBack}>Back to main view</Button>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
-        <Button onClick={onGettingStarted}>Guided Setup</Button>
+        <Button onClick={navigation.onGettingStarted}>Guided Setup</Button>
       </StackItem>
       {/* TO DO - Filtering maps by Account/Region/etc. */}
     </>
   );
 };
 LeftToolbar.propTypes = {
-  onBack: PropTypes.func,
-  onGettingStarted: PropTypes.func
+  navigation: PropTypes.object
 };
 
-const RightToolbar = () => {
+const RightToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="">
-        <Button>New Map</Button>
+        <Button onClick={navigation.createMap}>New Map</Button>
       </StackItem>
     </>
   );
 };
+RightToolbar.propTypes = {
+  navigation: PropTypes.object
+};
 
-export default class index extends PureComponent {
+export default class MapList extends PureComponent {
   static propTypes = {
     maps: PropTypes.array,
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    onMapDelete: PropTypes.func
   };
 
   constructor(props) {
@@ -60,21 +52,24 @@ export default class index extends PureComponent {
     };
   }
 
-  async deleteMap({ map }) {
-    const { maps } = this.state;
+  componentDidUpdate(prevProps) {
+    if (prevProps.maps !== this.props.maps) {
+      this.setState({ maps: this.props.maps });
+    }
+  }
 
+  async deleteMap({ map }) {
     try {
       await deleteMap({ map });
     } catch (e) {
       console.log(e);
     }
 
-    this.setState({
-      maps: maps.filter(m => m.document.guid !== map.guid)
-    });
+    this.props.onMapDelete({ map });
   }
 
   render() {
+    const { navigation } = this.props;
     const { maps } = this.state;
 
     const mapGridItems = maps.map(m => {
@@ -85,7 +80,7 @@ export default class index extends PureComponent {
           <EmptyState
             heading={map.title || map.guid}
             buttonText="Edit Map"
-            buttonOnClick={() => this.props.navigation.edit({ guid: map.guid })}
+            buttonOnClick={() => navigation.edit({ guid: map.guid })}
           />
           <Stack horizontalType={Stack.HORIZONTAL_TYPE.FILL_EVENLY}>
             <StackItem>
@@ -95,15 +90,13 @@ export default class index extends PureComponent {
             </StackItem>
             <StackItem>
               <Button
-                onClick={() =>
-                  this.props.navigation.editWizard({ map, activeStep: 2 })
-                }
+                onClick={() => navigation.editWizard({ map, activeStep: 2 })}
               >
                 Guided Configuration
               </Button>
             </StackItem>
             <StackItem>
-              <Button onClick={() => this.props.navigation.viewMap({ map })}>
+              <Button onClick={() => navigation.viewMap({ map })}>
                 View Map
               </Button>
             </StackItem>
@@ -127,13 +120,8 @@ export default class index extends PureComponent {
     return (
       <>
         <Toolbar
-          left={
-            <LeftToolbar
-              onBack={this.props.navigation.back}
-              onGettingStarted={this.props.navigation.gettingStarted}
-            />
-          }
-          right={<RightToolbar />}
+          left={<LeftToolbar navigation={navigation} />}
+          right={<RightToolbar navigation={navigation} />}
         />
 
         <Grid
@@ -151,7 +139,7 @@ export default class index extends PureComponent {
                 <EmptyState
                   heading="+"
                   buttonText="Create New Map"
-                  buttonOnClick={this.props.navigation.create}
+                  buttonOnClick={navigation.createMap}
                 />
               </GridItem>
             </Grid>

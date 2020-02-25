@@ -114,8 +114,9 @@ export default class JsonSchemaForm extends React.PureComponent {
 
     // Note: The mutation response from NerdStorage is different than fetching from NerdStorage
     // We wrap the response in document so that we gain some consistency in the way we access
+    const document = data.nerdStorageWriteDocument;
     this.props.onWrite({
-      document: { document: data.nerdStorageWriteDocument },
+      data: { guid: document.guid, document },
       error
     });
 
