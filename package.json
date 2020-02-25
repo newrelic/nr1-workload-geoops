@@ -26,6 +26,7 @@
     "leaflet": "^1.5.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
+    "lodash.uniq": "^4.5.0",
     "moment": "^2.24.0",
     "nr1-bootstrap-theme": "git@github.com:newrelic/nr1-bootstrap-theme.git",
     "prop-types": "^15.6.2",
