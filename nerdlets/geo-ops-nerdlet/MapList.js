@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, GridItem, Stack, StackItem, Icon } from 'nr1';
+import { Button, Grid, GridItem, StackItem } from 'nr1';
 
-import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
+import { EmptyState } from '@newrelic/nr1-community';
 import Toolbar from '../shared/components/Toolbar';
 import MapItem from './MapItem';
 
