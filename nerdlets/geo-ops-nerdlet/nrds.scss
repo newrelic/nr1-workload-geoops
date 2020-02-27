@@ -10,7 +10,8 @@
 [class*="Dropdown-label"],
 [class*="TextField-label"],
 label.control-label {
-    margin-bottom: 0;
+  display: block;
+  margin-bottom: 0;
   padding-bottom: 4px;
   padding-top: 0;
   font-size: 14px;
