@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, GridItem, StackItem } from 'nr1';
+import { Button, Grid, GridItem, StackItem, Icon } from 'nr1';
 
-import { EmptyState } from '@newrelic/nr1-community';
 import Toolbar from '../shared/components/Toolbar';
 import MapItem from './MapItem';
 
@@ -111,11 +110,25 @@ export default class MapList extends PureComponent {
             <Grid>
               {mapGridItems}
               <GridItem columnSpan={3}>
-                <EmptyState
-                  heading="+"
-                  buttonText="Create New Map"
-                  buttonOnClick={navigation.createMap}
-                />
+                <div
+                  className="add-map-item-button"
+                  onClick={navigation.createMap}
+                >
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M47.75 22.375H26V0.625H22.375V22.375H0.625V26H22.375V47.75H26V26H47.75V22.375Z"
+                      fill="#B9BDBD"
+                    />
+                  </svg>
+                </div>
               </GridItem>
             </Grid>
           </GridItem>

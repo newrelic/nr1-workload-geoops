@@ -5,8 +5,33 @@
 
 .map-grid-item {
     background: #FFFFFF;
-    box-shadow: 0px 1px 0px rgba(0, 75, 82, 0.11), 0px 3px 0px rgba(0, 49, 54, 0.04), 0px 1px 3px rgba(0, 134, 148, 0.03), 0px 4px 4px rgba(70, 107, 111, 0.05);
+    box-shadow: 
+      0px 1px 0px rgba(0, 75, 82, 0.11), 
+      0px 3px 0px rgba(0, 49, 54, 0.04), 
+      0px 1px 3px rgba(0, 134, 148, 0.03), 
+      0px 4px 4px rgba(70, 107, 111, 0.05);
     border-radius: 3px;
+    transition: all .05s ease-out;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-2px);
+      box-shadow: 
+        0px 1px 0px rgba(0, 75, 82, 0.11), 
+        0px 3px 0px rgba(0, 49, 54, 0.04), 
+        0px 3px 8px rgba(0, 134, 148, 0.085), 
+        0px 5px 5px rgba(70, 107, 111, 0.1);
+    }
+
+    // &:active {
+    //   cursor: pointer;
+    //   transform: translateY(1px);
+    //   box-shadow: 
+    //     0px 1px 0px rgba(0, 75, 82, 0.11), 
+    //     0px 3px 0px rgba(0, 49, 54, 0.04), 
+    //     0px 1px 3px rgba(0, 134, 148, 0.03), 
+    //     0px 4px 4px rgba(70, 107, 111, 0.05);
+    // }
 
     &:hover .map-grid-item-preview-hover-contents {
         opacity: 1;
@@ -46,7 +71,7 @@
     z-index: 1000;
     background-color: rgba(0,0,0, .75);
     opacity: 0;
-    transition: opacity .1s ease-out;
+    transition: opacity .05s ease-out;
 }
 
 div.map-grid-item-bottom {
@@ -118,4 +143,34 @@ h6.map-grid-item-subtitle {
 
 .service-settings-button-container {
     position: relative;
+}
+
+.add-map-item-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: 3px dashed #d5d7d7;
+  border-radius: 4px;
+  transition: all .05s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    border-color: #b9bdbd;
+    transform: translateY(-2px);
+
+    svg {
+      opacity: 1;
+    }
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+
+  svg {
+    opacity: .75;
+    transition: all .15s ease-out;
+  }
 }

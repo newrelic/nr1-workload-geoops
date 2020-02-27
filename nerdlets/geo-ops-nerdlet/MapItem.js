@@ -136,7 +136,11 @@ export default class MapItem extends PureComponent {
   render() {
     const { map, navigation } = this.props;
     return (
-      <div className="map-grid-item" key={map.guid}>
+      <div
+        className="map-grid-item"
+        key={map.guid}
+        onClick={() => this.props.navigation.edit({ guid: map.guid })}
+      >
         <section className="map-grid-item-preview">
           <GeoMap
             accountId={map.accountId}
