@@ -61,14 +61,21 @@ export default class MapItem extends PureComponent {
         <ul className="service-settings-dropdown">
           <li
             className="service-settings-dropdown-item"
-            onClick={() => navigation.editWizard({ map, activeStep: 2 })}
+            onClick={() =>
+              navigation.router({
+                to: 'createMap',
+                state: { selectedMap: map, activeStep: 2 }
+              })
+            }
           >
             <Icon type={Icon.TYPE.INTERFACE__INFO__INFO} />
             Guided Configuration
           </li>
           <li
             className="service-settings-dropdown-item"
-            onClick={() => navigation.edit({ guid: map.guid })}
+            onClick={() =>
+              navigation.router({ to: 'editMap', state: { selectedMap: map } })
+            }
           >
             <Icon type={Icon.TYPE.INTERFACE__OPERATIONS__EDIT} />
             Edit Map
@@ -109,7 +116,9 @@ export default class MapItem extends PureComponent {
       <div
         className="map-grid-item"
         key={map.guid}
-        onClick={() => this.props.navigation.viewMap({ map })}
+        onClick={() =>
+          navigation.router({ to: 'viewMap', state: { selectedMap: map } })
+        }
       >
         <section className="map-grid-item-preview">
           <GeoMap
@@ -120,7 +129,12 @@ export default class MapItem extends PureComponent {
           />
           <div className="map-grid-item-preview-hover-contents">
             <Button
-              onClick={() => this.props.navigation.viewMap({ map })}
+              onClick={() =>
+                navigation.router({
+                  to: 'viewMap',
+                  state: { selectedMap: map }
+                })
+              }
               className="map-grid-item-preview-hover-contents-button"
             >
               View map

@@ -251,7 +251,7 @@ export default class CreateMap extends React.PureComponent {
     return (
       <>
         <Button
-          onClick={navigation.next}
+          onClick={() => navigation.router({ to: 'mapList' })}
           type={Button.TYPE.PRIMARY}
           iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
           className="temporary-all-maps-btn"

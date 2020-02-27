@@ -48,7 +48,9 @@ export default class index extends PureComponent {
               heading="No Locations"
               description="To view the list of your locations and their status, create your first map and add locations to it!"
               buttonText="Get Started"
-              buttonOnClick={this.props.navigation.next}
+              buttonOnClick={() =>
+                this.props.navigation.router({ to: 'createMap' })
+              }
             />
           </GridItem>
           <GridItem
@@ -72,7 +74,9 @@ export default class index extends PureComponent {
                   <Button
                     type={Button.TYPE.PRIMARY}
                     sizeType={Button.SIZE_TYPE.LARGE}
-                    onClick={this.props.navigation.next}
+                    onClick={() =>
+                      this.props.navigation.router({ to: 'createMap' })
+                    }
                   >
                     Get Started
                   </Button>

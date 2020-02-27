@@ -11,7 +11,7 @@ const LeftToolbar = ({ navigation }) => {
     <>
       <StackItem className="toolbar-item has-separator">
         <Button
-          onClick={navigation.back}
+          onClick={() => navigation.router({ to: 'mapList' })}
           type={Button.TYPE.PLAIN}
           iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
         >
@@ -51,7 +51,10 @@ const RightToolbar = ({ navigation }) => {
         </Button>
       </StackItem>
       <StackItem className="">
-        <Button type={Button.TYPE.PRIMARY} onClick={navigation.createMap}>
+        <Button
+          type={Button.TYPE.PRIMARY}
+          onClick={() => navigation.router({ to: 'createMap' })}
+        >
           New Map
         </Button>
       </StackItem>

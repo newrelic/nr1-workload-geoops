@@ -13,6 +13,14 @@ import EditMap from './EditMap';
 import { nerdStorageRequest } from '../shared/utils';
 import { getMaps } from '../shared/services/map';
 
+const initialPages = {
+  emptyState: false,
+  createMap: false,
+  viewMap: false,
+  mapList: false,
+  editMap: false
+};
+
 export default class index extends PureComponent {
   constructor(props) {
     super(props);
@@ -21,20 +29,7 @@ export default class index extends PureComponent {
        * Top-level "pages" - a poor man's navigation "router"
        */
 
-      // We've queried for all Accounts and all Maps and found none
-      emptyState: false,
-
-      // Getting Started and Create new map
-      createMap: false,
-
-      // View Map
-      viewMap: false,
-
-      // Settings -> Map List
-      mapList: false,
-
-      // Settings -> Map List -> Edit Map/Edit Map Locations
-      editMap: false,
+      pages: { ...initialPages },
 
       /*
        * Local State
@@ -48,6 +43,7 @@ export default class index extends PureComponent {
 
     this.onMapDelete = this.onMapDelete.bind(this);
     this.onMapChange = this.onMapChange.bind(this);
+    this.route = this.route.bind(this);
   }
 
   async componentDidMount() {
@@ -64,8 +60,12 @@ export default class index extends PureComponent {
     this.setState({
       mapsLoading: false,
       maps,
-      emptyState: maps.length === 0,
-      mapList: maps.length > 0
+      selectedMap: maps[0] ? maps[0].document : null,
+      pages: {
+        ...initialPages,
+        emptyState: maps.length === 0,
+        mapList: maps.length > 0
+      }
     });
   }
 
@@ -101,24 +101,21 @@ export default class index extends PureComponent {
     });
   }
 
+  route({ to, state }) {
+    const next = { ...initialPages };
+    next[to] = true;
+    this.setState({ pages: next, ...state });
+  }
+
   /*
    * Notes:
    *   This form of conditional rendering using multiple return statements with navigation callbacks will cause each component to unmount and re-mount on a "route" change.
    *   This has tradeoffs, which we may re-evaluate at some point in the future.
    */
-  render() {
-    const {
-      emptyState,
-      createMap,
-      viewMap,
-      mapList,
-      editMap,
 
-      mapsLoading,
-      maps,
-      selectedMap,
-      activeStep
-    } = this.state;
+  render() {
+    const { pages, mapsLoading, maps, selectedMap, activeStep } = this.state;
+    const { emptyState, createMap, viewMap, mapList, editMap } = pages;
 
     if (mapsLoading) {
       return <Spinner />;
@@ -128,8 +125,7 @@ export default class index extends PureComponent {
       return (
         <EmptyState
           navigation={{
-            next: () => this.setState({ emptyState: false, createMap: true }),
-            back: () => {}
+            router: this.route
           }}
         />
       );
@@ -141,18 +137,13 @@ export default class index extends PureComponent {
           {nerdletState => {
             const { reload = false } = nerdletState;
 
-            console.log(reload);
-
             return (
               <CreateMap
                 map={selectedMap}
                 activeStep={activeStep}
                 onMapChange={this.onMapChange}
                 navigation={{
-                  next: () =>
-                    this.setState({ createMap: false, mapList: true }),
-                  back: () =>
-                    this.setState({ emptyState: false, createMap: true })
+                  router: this.route
                 }}
                 reload={reload || null}
               />
@@ -168,31 +159,7 @@ export default class index extends PureComponent {
           maps={maps}
           onMapDelete={this.onMapDelete}
           navigation={{
-            next: () => this.setState({ mapList: false, editMap: true }),
-            back: () => this.setState({ emptyState: false, createMap: true }),
-            createMap: () => this.setState({ mapList: false, createMap: true }),
-            edit: ({ guid }) => {
-              // const map = maps.find(m => m.document.guid === guid);
-
-              this.setState({ mapList: false, editMap: true });
-            },
-            editWizard: ({ map, activeStep }) => {
-              this.setState({
-                mapList: false,
-                createMap: true,
-                selectedMap: map,
-                activeStep
-              });
-            },
-            viewMap: ({ map }) =>
-              this.setState({
-                mapList: false,
-                viewMap: true,
-                selectedMap: map
-              }),
-            gettingStarted: () => {
-              this.setState({ mapsLoading: false, emptyState: true });
-            }
+            router: this.route
           }}
         />
       );
@@ -202,9 +169,7 @@ export default class index extends PureComponent {
       return (
         <EditMap
           navigation={{
-            next: () => this.setState({ editMap: false, viewMap: true }),
-            back: () => this.setState({ editMap: false, mapList: true }),
-            createMap: () => this.setState({ editMap: false, createMap: true })
+            router: this.route
           }}
         />
       );
@@ -215,8 +180,7 @@ export default class index extends PureComponent {
         <ViewMap
           map={selectedMap}
           navigation={{
-            back: () => this.setState({ viewMap: false, mapList: true }),
-            createMap: () => this.setState({ viewMap: false, createMap: true })
+            router: this.route
           }}
         />
       );

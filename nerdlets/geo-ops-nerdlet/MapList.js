@@ -16,13 +16,16 @@ const LeftToolbar = ({ navigation }) => {
         <Button
           type={Button.TYPE.PLAIN}
           iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
-          onClick={navigation.onBack}
+          onClick={() => navigation.router({ to: 'viewMap' })}
         >
           Back to main view
         </Button>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
-        <Button type={Button.TYPE.PLAIN} onClick={navigation.onGettingStarted}>
+        <Button
+          type={Button.TYPE.PLAIN}
+          onClick={() => navigation.router({ to: 'createMap' })}
+        >
           Guided Setup
         </Button>
       </StackItem>
@@ -38,7 +41,10 @@ const RightToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="">
-        <Button type={Button.TYPE.PRIMARY} onClick={navigation.createMap}>
+        <Button
+          type={Button.TYPE.PRIMARY}
+          onClick={() => navigation.router({ to: 'createMap' })}
+        >
           New Map
         </Button>
       </StackItem>
@@ -122,7 +128,7 @@ export default class MapList extends PureComponent {
               <GridItem columnSpan={3}>
                 <div
                   className="add-map-item-button"
-                  onClick={navigation.createMap}
+                  onClick={() => navigation.router({ to: 'createMap' })}
                 >
                   <svg
                     width="48"
