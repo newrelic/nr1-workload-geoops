@@ -110,13 +110,14 @@ export default class ViewMap extends Component {
   }
 
   entitiesFromMapLocations({ mapLocations }) {
-    const entities = mapLocations.reduce((previousValue, currentValue) => {
-      previousValue.push(...currentValue.document.entities);
+    const allEntities = mapLocations.reduce((previousValue, currentValue) => {
+      const entities = currentValue.document.entities || [];
+      previousValue.push(...entities);
       return previousValue;
     }, []);
-    const entityGuids = uniq(entities.map(e => e.guid));
+    const entityGuids = uniq(allEntities.map(e => e.guid));
     return {
-      entities,
+      entities: allEntities,
       entityGuids
     };
   }
