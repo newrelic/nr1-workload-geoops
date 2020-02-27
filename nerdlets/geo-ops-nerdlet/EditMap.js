@@ -72,19 +72,19 @@ export default class index extends PureComponent {
           left={<LeftToolbar navigation={navigation} />}
           right={<RightToolbar navigation={navigation} />}
         />
-        ;
+
         <Grid
-          className="primary-grid"
+          className="primary-grid edit-map-primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <GridItem
-            columnSpan={2}
+            columnSpan={3}
             fullHeight
             className="locations-table-grid-item"
           >
             <MapLocationTable />
           </GridItem>
-          <GridItem className="primary-content-container" columnSpan={10}>
+          <GridItem className="primary-content-container" columnSpan={9}>
             {/* Edit Map Data */}
 
             {/* Edit Location Data */}
