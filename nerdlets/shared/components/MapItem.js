@@ -7,36 +7,6 @@ import GeoMap from '../../geo-ops-nerdlet/geo-map';
 import { deleteMap } from '../services/map';
 import { deleteMapLocationCollection } from '../services/map-location';
 
-const LeftToolbar = ({ navigation }) => {
-  return (
-    <>
-      <StackItem className="toolbar-item has-separator">
-        <Button onClick={navigation.onBack}>Back to main view</Button>
-      </StackItem>
-      <StackItem className="toolbar-item has-separator">
-        <Button onClick={navigation.onGettingStarted}>Guided Setup</Button>
-      </StackItem>
-      {/* TO DO - Filtering maps by Account/Region/etc. */}
-    </>
-  );
-};
-LeftToolbar.propTypes = {
-  navigation: PropTypes.object
-};
-
-const RightToolbar = ({ navigation }) => {
-  return (
-    <>
-      <StackItem className="">
-        <Button onClick={navigation.createMap}>New Map</Button>
-      </StackItem>
-    </>
-  );
-};
-RightToolbar.propTypes = {
-  navigation: PropTypes.object
-};
-
 export default class MapItem extends PureComponent {
   static propTypes = {
     map: PropTypes.object,
