@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, GridItem, StackItem, Icon } from 'nr1';
+import { Button, Grid, GridItem, StackItem } from 'nr1';
 
 import Toolbar from '../shared/components/Toolbar';
-import MapItem from './MapItem';
+import MapItem from '../shared/components/MapItem';
 
 import { deleteMap } from '../shared/services/map';
 

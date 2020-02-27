@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Stack, StackItem, Icon } from 'nr1';
 
-import GeoMap from './geo-map';
+import GeoMap from '../../geo-ops-nerdlet/geo-map';
 
-import { deleteMap } from '../shared/services/map';
-import { deleteMapLocationCollection } from '../shared/services/map-location';
+import { deleteMap } from '../services/map';
+import { deleteMapLocationCollection } from '../services/map-location';
 
 const LeftToolbar = ({ navigation }) => {
   return (
