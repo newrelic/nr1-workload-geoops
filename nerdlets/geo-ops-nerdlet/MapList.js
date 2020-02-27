@@ -13,10 +13,18 @@ const LeftToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
-        <Button onClick={navigation.onBack}>Back to main view</Button>
+        <Button
+          type={Button.TYPE.PLAIN}
+          iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
+          onClick={navigation.onBack}
+        >
+          Back to main view
+        </Button>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
-        <Button onClick={navigation.onGettingStarted}>Guided Setup</Button>
+        <Button type={Button.TYPE.PLAIN} onClick={navigation.onGettingStarted}>
+          Guided Setup
+        </Button>
       </StackItem>
       {/* TO DO - Filtering maps by Account/Region/etc. */}
     </>
@@ -30,7 +38,9 @@ const RightToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="">
-        <Button onClick={navigation.createMap}>New Map</Button>
+        <Button type={Button.TYPE.PRIMARY} onClick={navigation.createMap}>
+          New Map
+        </Button>
       </StackItem>
     </>
   );

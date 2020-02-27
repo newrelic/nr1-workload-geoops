@@ -27,7 +27,13 @@ const LeftToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
-        <Button onClick={navigation.back}>Back to main view</Button>
+        <Button
+          onClick={navigation.back}
+          type={Button.TYPE.PLAIN}
+          iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
+        >
+          Back to main view
+        </Button>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
         <Dropdown title="Choose an Account">

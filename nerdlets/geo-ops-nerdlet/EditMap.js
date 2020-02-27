@@ -10,7 +10,13 @@ const LeftToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
-        <Button onClick={navigation.back}>Back to main view</Button>
+        <Button
+          onClick={navigation.back}
+          type={Button.TYPE.PLAIN}
+          iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
+        >
+          Back to main view
+        </Button>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
         <Dropdown label="Account" title="Choose an Account">
@@ -37,12 +43,17 @@ const RightToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="">
-        <Button onClick={() => console.log('Edit Locations')}>
+        <Button
+          type={Button.TYPE.PRIMARY}
+          onClick={() => console.log('Edit Locations')}
+        >
           Edit Locations
         </Button>
       </StackItem>
       <StackItem className="">
-        <Button onClick={navigation.createMap}>New Map</Button>
+        <Button type={Button.TYPE.PRIMARY} onClick={navigation.createMap}>
+          New Map
+        </Button>
       </StackItem>
     </>
   );
