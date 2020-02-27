@@ -113,7 +113,7 @@ export default class GeoMap extends Component {
 
     return (
       <>
-        <h1>{map.title}</h1>
+        {/* <h1>{map.title}</h1> */}
         <div className="leaflet-wrapper">
           {hasErrors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
           {!hasErrors && (

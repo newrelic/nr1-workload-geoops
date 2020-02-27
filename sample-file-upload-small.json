@@ -10,10 +10,12 @@
       },
       "entities": [
         {
-          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -25,10 +27,12 @@
       },
       "entities": [
         {
-          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -40,10 +44,12 @@
       },
       "entities": [
         {
-          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -55,10 +61,12 @@
       },
       "entities": [
         {
-          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -73,7 +81,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -88,7 +98,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -103,7 +115,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -118,7 +132,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -133,7 +149,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -148,7 +166,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -163,7 +183,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -178,7 +200,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -193,7 +217,9 @@
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
           "entityType": "WORKLOAD_ENTITY"
         }
-      ]
+      ],
+      "region": "USA",
+      "query": ""
     }
   ]
 }

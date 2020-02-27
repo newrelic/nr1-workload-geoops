@@ -6,6 +6,7 @@ query ($accountId: Int!) {
       workload {
         collections {
           id
+          guid
           entities {
             guid
           }

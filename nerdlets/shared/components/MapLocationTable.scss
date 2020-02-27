@@ -114,6 +114,10 @@ td[class*='status-'] {
   .status-critical & {
     background-color: #bf0016;
   }
+
+  .status-not-reporting & {
+    background-color: #8E9494;
+  }
 }
 
 .react-bootstrap-table tr td {

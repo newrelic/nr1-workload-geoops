@@ -109,7 +109,7 @@ export default class MapItem extends PureComponent {
       <div
         className="map-grid-item"
         key={map.guid}
-        onClick={() => this.props.navigation.edit({ guid: map.guid })}
+        onClick={() => this.props.navigation.viewMap({ map })}
       >
         <section className="map-grid-item-preview">
           <GeoMap
@@ -120,7 +120,7 @@ export default class MapItem extends PureComponent {
           />
           <div className="map-grid-item-preview-hover-contents">
             <Button
-              onClick={() => this.props.navigation.edit({ guid: map.guid })}
+              onClick={() => this.props.navigation.viewMap({ map })}
               className="map-grid-item-preview-hover-contents-button"
             >
               View map
