@@ -178,6 +178,7 @@ export default class index extends PureComponent {
     if (viewMap) {
       return (
         <ViewMap
+          maps={maps}
           map={selectedMap}
           navigation={{
             router: this.route

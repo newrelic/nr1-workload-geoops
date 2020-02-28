@@ -50,7 +50,7 @@ const mapByGuid = ({ data }) => {
   return map;
 };
 
-const LeftToolbar = ({ navigation }) => {
+const LeftToolbar = ({ maps, map, navigation }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
@@ -63,23 +63,30 @@ const LeftToolbar = ({ navigation }) => {
         </Button>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
-        <Dropdown title="Choose an Account">
-          <DropdownItem>Account 1</DropdownItem>
-          <DropdownItem>Account 2</DropdownItem>
-          <DropdownItem>Account 3</DropdownItem>
-        </Dropdown>
-      </StackItem>
-      <StackItem className="toolbar-item has-separator">
-        <Dropdown label="Map" title="Choose a map">
-          <DropdownItem>Map 1</DropdownItem>
-          <DropdownItem>Map 2</DropdownItem>
-          <DropdownItem>Map 3</DropdownItem>
+        <Dropdown label="Map" title={map ? map.title : 'Choose a map'}>
+          {maps.map(m => {
+            return (
+              <DropdownItem
+                key={m.document.guid}
+                onClick={() =>
+                  navigation.router({
+                    to: 'viewMap',
+                    state: { selectedMap: m.document }
+                  })
+                }
+              >
+                {m.document.title}
+              </DropdownItem>
+            );
+          })}
         </Dropdown>
       </StackItem>
     </>
   );
 };
 LeftToolbar.propTypes = {
+  maps: PropTypes.array,
+  map: PropTypes.object,
   navigation: PropTypes.object
 };
 
@@ -105,6 +112,7 @@ RightToolbar.propTypes = {
 
 export default class ViewMap extends Component {
   static propTypes = {
+    maps: PropTypes.array,
     map: PropTypes.object,
     navigation: PropTypes.object
   };
@@ -322,13 +330,13 @@ export default class ViewMap extends Component {
   }
 
   render() {
-    const { map, navigation } = this.props;
+    const { maps, map, navigation } = this.props;
 
     return (
       <>
         <Toolbar
           className="view-map-toolbar"
-          left={<LeftToolbar navigation={navigation} />}
+          left={<LeftToolbar navigation={navigation} maps={maps} map={map} />}
           right={<RightToolbar navigation={navigation} />}
         />
         <Stack
