@@ -189,6 +189,7 @@ export default class ViewMap extends Component {
         <GridItem
           columnSpan={3}
           fullHeight
+          collapseGapAfter
           className="locations-table-grid-item"
         >
           {hasMapLocations && hasEntities && (
@@ -214,27 +215,18 @@ export default class ViewMap extends Component {
           )}
         </GridItem>
         <GridItem className="primary-content-container" columnSpan={9}>
-          <Grid className="primary-grid">
-            <GridItem
-              columnSpan={12}
-              collapseGapBefore
-              collapseGapAfter
-              className="gridItem"
-            >
-              {hasMapLocations && (
-                <GeoMap
-                  map={map}
-                  mapLocations={mapLocations}
-                  entitiesMap={mapByGuid({ entities })}
-                  // onMarkerClick={marker => console.log(marker)}
-                  // onMapClick={this.onMapClick}
-                />
-              )}
-              {!hasMapLocations && (
-                <EmptyState heading="No map locations found" description="" />
-              )}
-            </GridItem>
-          </Grid>
+          {hasMapLocations && (
+            <GeoMap
+              map={map}
+              mapLocations={mapLocations}
+              entitiesMap={mapByGuid({ entities })}
+              // onMarkerClick={marker => console.log(marker)}
+              // onMapClick={this.onMapClick}
+            />
+          )}
+          {!hasMapLocations && (
+            <EmptyState heading="No map locations found" description="" />
+          )}
         </GridItem>
       </>
     );
@@ -250,7 +242,7 @@ export default class ViewMap extends Component {
           right={<RightToolbar navigation={navigation} />}
         />
         <Grid
-          className="primary-grid"
+          className="primary-grid view-map-primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <MapLocationQuery map={map}>
