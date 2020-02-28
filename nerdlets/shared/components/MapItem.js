@@ -61,28 +61,33 @@ export default class MapItem extends PureComponent {
         <ul className="service-settings-dropdown">
           <li
             className="service-settings-dropdown-item"
-            onClick={() =>
+            onClick={e => {
+              e.stopPropagation();
               navigation.router({
                 to: 'createMap',
                 state: { selectedMap: map, activeStep: 2 }
-              })
-            }
+              });
+            }}
           >
             <Icon type={Icon.TYPE.INTERFACE__INFO__INFO} />
             Guided Configuration
           </li>
           <li
             className="service-settings-dropdown-item"
-            onClick={() =>
-              navigation.router({ to: 'editMap', state: { selectedMap: map } })
-            }
+            onClick={e => {
+              e.stopPropagation();
+              navigation.router({ to: 'editMap', state: { selectedMap: map } });
+            }}
           >
             <Icon type={Icon.TYPE.INTERFACE__OPERATIONS__EDIT} />
             Edit Map
           </li>
           <li
             className="service-settings-dropdown-item destructive"
-            onClick={() => this.deleteMap({ map })}
+            onClick={e => {
+              e.stopPropagation();
+              this.deleteMap({ map });
+            }}
           >
             <Icon
               type={Icon.TYPE.INTERFACE__OPERATIONS__TRASH}
@@ -92,12 +97,13 @@ export default class MapItem extends PureComponent {
           </li>
           <li
             className="service-settings-dropdown-item destructive"
-            onClick={async () =>
+            onClick={e => {
+              e.stopPropagation();
               deleteMapLocationCollection({
                 accountId: map.accountId,
                 mapGuid: map.guid
-              })
-            }
+              });
+            }}
           >
             <Icon
               type={Icon.TYPE.INTERFACE__OPERATIONS__TRASH}
