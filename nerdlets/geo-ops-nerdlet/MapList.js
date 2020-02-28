@@ -25,7 +25,10 @@ const LeftToolbar = ({ navigation }) => {
         <Button
           type={Button.TYPE.PLAIN}
           onClick={() =>
-            navigation.router({ to: 'createMap', state: { selectedMap: null } })
+            navigation.router({
+              to: 'createMap',
+              state: { selectedMap: null, activeStep: 1 }
+            })
           }
         >
           Guided Setup
@@ -46,7 +49,10 @@ const RightToolbar = ({ navigation }) => {
         <Button
           type={Button.TYPE.PRIMARY}
           onClick={() =>
-            navigation.router({ to: 'createMap', state: { selectedMap: null } })
+            navigation.router({
+              to: 'createMap',
+              state: { selectedMap: null, activeStep: 1 }
+            })
           }
         >
           New Map
