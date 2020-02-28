@@ -24,7 +24,9 @@ const LeftToolbar = ({ navigation }) => {
       <StackItem className="toolbar-item has-separator">
         <Button
           type={Button.TYPE.PLAIN}
-          onClick={() => navigation.router({ to: 'createMap' })}
+          onClick={() =>
+            navigation.router({ to: 'createMap', state: { selectedMap: null } })
+          }
         >
           Guided Setup
         </Button>
@@ -43,7 +45,9 @@ const RightToolbar = ({ navigation }) => {
       <StackItem className="">
         <Button
           type={Button.TYPE.PRIMARY}
-          onClick={() => navigation.router({ to: 'createMap' })}
+          onClick={() =>
+            navigation.router({ to: 'createMap', state: { selectedMap: null } })
+          }
         >
           New Map
         </Button>
