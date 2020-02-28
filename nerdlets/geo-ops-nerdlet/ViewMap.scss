@@ -30,7 +30,7 @@
         height: 100%;
     }
 
-    .detail-pane-stack-item {
+    .detail-panel-stack-item {
         width: 340px;
         height: 100%;
         position: relative;
@@ -40,5 +40,14 @@
             0px 3px 2px rgba(0, 49, 54, 0.1), 
             0px 1px 3px rgba(0, 134, 148, 0.13), 
             0px 8px 17px rgba(88, 114, 117, 0.3);
+
+        &.closed {
+            display: none;
+        }
+
+        &.minimized {
+            width: 0;
+            transform: translateX(-100%);
+        }
     }
 }

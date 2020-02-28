@@ -1,5 +1,10 @@
 .detail-panel-container {
+  height: 100%;
   background-color: #fff;
+
+  .ic-Icon {
+    line-height: 10px;
+  }
 }
 
 .detail-panel-breadcrumbs-container {
@@ -105,13 +110,17 @@
   transform: skew(-35deg);
 }
 
+.minimized .detail-panel-close-button {
+  display: none;
+}
+
 .detail-panel-minimize-button {
   display: inline-block;
   width: 24px;
   height: 24px;
   position: relative;
   margin-left: 4px;
-  top: 1px;
+  top: -1px;
   border-radius: 3px 0 0 3px;
   background-color: #f4f5f5;
   
@@ -124,15 +133,112 @@
   position: relative;
   top: 3px;
   left: 9px;
+
+  .minimized & {
+    transform: rotate(180deg) translate(1px, -4px);
+  }
 }
 
 .detail-panel-visiblity-controls {
   position: absolute;
   right: 0;
-  top: 9px;
+  top: 11px;
+}
+
+a:not([href]):not([tabindex]).detail-pane-cta {
+  display: inline-block;
+  margin-right: 16px;
+  color: #007e8a;
+  transition: transform .1s ease-out;
+
+  &:hover {
+    transform: translateY(-1px)
+  }
+  
+  &:active {
+    transform: translateY(1px)
+  }
+
+  &:last-child {
+    margin-right: 0px;
+  }
+
+  .ic-Icon {
+    margin-right: 4px;
+    position: relative;
+  }
 }
 
 .detail-panel-header-top-bar-hr {
   border-top: 1px dotted rgba(0, 14, 14, 0.1);
   margin: 0 16px;
+}
+
+.detail-panel-title {
+  margin-bottom: 0;
+  padding: 16px 16px 8px;
+  position: relative;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 33px;
+    background-color: #DD5454;
+    position: absolute;
+    left: 0;
+    top: 12px;
+  }
+}
+
+.detail-panel-cta-container {
+  padding: 0 16px 16px;
+}
+
+.featured-chart-container {
+  height: 96px;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+.detail-panel-featured-chart-header {
+  margin-bottom: 0;
+  font-size: 12px;
+  color: #2a3434;
+}
+
+.detail-panel-featured-chart-comparison-stat {
+  padding: 2px 6px;
+  border-radius: 50px;
+  font-size: 10px;
+
+  &.negative {
+    color: #BF0016;
+    background-color: #FCF2F3;
+  }
+}
+
+.children-container {
+  padding: 16px;
+
+  & > [class*='wnd-Tabs'] {
+    margin: -16px;
+  }
+
+  [class*='Tabs-navigation'] {
+    margin-bottom: 0;
+    background: #FAFBFB;
+    box-shadow: 0px -1px 0px #EDEEEE, inset 0px -1px 0px #EDEEEE;
+    border-bottom: 0;
+    padding: 0 8px;
+  }
+
+  [class*='Tab-label'] {
+    font-size: 12px;
+    padding: 9px 0;
+  }
+  
+  [class*='TabContent'] {
+    padding: 16px;
+  }
 }

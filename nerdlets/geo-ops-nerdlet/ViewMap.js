@@ -12,7 +12,10 @@ import {
   Stack,
   StackItem,
   NerdGraphQuery,
-  Spinner
+  Spinner,
+  SparklineChart,
+  Tabs,
+  TabsItem
 } from 'nr1';
 
 import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
@@ -109,8 +112,16 @@ export default class ViewMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //
+      detailPanelMinimized: false,
+      detailPanelClosed: false
     };
+
+    this.handleDetailPanelMinimizeButton = this.handleDetailPanelMinimizeButton.bind(
+      this
+    );
+    this.handleDetailPanelCloseButton = this.handleDetailPanelCloseButton.bind(
+      this
+    );
   }
 
   entitiesFromMapLocations({ mapLocations }) {
@@ -174,6 +185,42 @@ export default class ViewMap extends Component {
     return result;
   }
 
+  handleDetailPanelCloseButton() {
+    this.setState({ detailPanelClosed: true });
+  }
+
+  handleDetailPanelMinimizeButton() {
+    this.setState(prevState => ({
+      detailPanelMinimized: !prevState.detailPanelMinimized
+    }));
+  }
+
+  renderFeaturedChart(map) {
+    return (
+      <>
+        <Stack
+          fullWidth
+          className="detail-panel-featured-chart-header-container"
+        >
+          <StackItem grow>
+            <h6 className="detail-panel-featured-chart-header">
+              Revenue overview
+            </h6>
+          </StackItem>
+          <StackItem>
+            <span className="detail-panel-featured-chart-comparison-stat negative">
+              14.5%
+            </span>
+          </StackItem>
+        </Stack>
+        <SparklineChart
+          accountId={map.accountId}
+          query="SELECT count(*) FROM `Synthetics` SINCE 1 MONTH AGO TIMESERIES AUTO FACET error"
+        />
+      </>
+    );
+  }
+
   renderGridItems({
     mapLocations = [],
     entities = [],
@@ -183,6 +230,7 @@ export default class ViewMap extends Component {
     const hasMapLocations = mapLocations && mapLocations.length > 0;
     const hasEntities = entities && entities.length > 0;
     const entitiesMap = mapByGuid({ data: entities });
+    const { detailPanelClosed, detailPanelMinimized } = this.state;
 
     return (
       <>
@@ -223,8 +271,51 @@ export default class ViewMap extends Component {
             <EmptyState heading="No map locations found" description="" />
           )}
         </StackItem>
-        <StackItem fullHeight className="detail-pane-stack-item">
-          <DetailPanel featuredChart="featured chart">hi</DetailPanel>
+        <StackItem
+          fullHeight
+          className={`detail-panel-stack-item ${
+            detailPanelClosed ? 'closed' : ''
+          } ${detailPanelMinimized ? 'minimized' : ''}`}
+        >
+          <DetailPanel
+            featuredChart={this.renderFeaturedChart(map)}
+            onClose={this.handleDetailPanelCloseButton}
+            onMinimize={this.handleDetailPanelMinimizeButton}
+          >
+            <Tabs>
+              <TabsItem value="tab-1" label="Recent incidents">
+                <small>
+                  Morbi malesuada nulla nec purus convallis consequat. Vivamus
+                  id mollis quam. Morbi ac commodo nulla. In condimentum orci id
+                  nisl volutpat bibendum. Quisque commodo hendrerit lorem quis
+                  egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non
+                  neque consectetur quis placerat neque lobortis.
+                </small>
+              </TabsItem>
+              <TabsItem value="tab-2" label="Metatags & data">
+                <small>
+                  Ut in nulla enim. Phasellus molestie magna non est bibendum
+                  non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut
+                  dapibus. Mauris iaculis porttitor posuere. Praesent id metus
+                  massa, ut blandit odio. Proin quis tortor orci. Etiam at risus
+                  et justo dignissim congue. Donec congue lacinia dui, a
+                  porttitor lectus condimentum laoreet. Nunc eu ullamcorper
+                  orci. Quisque eget odio ac lectus vestibulum faucibus eget in
+                  metus. In pellentesque faucibus vestibulum. Nulla at nulla
+                  justo, eget luctus tortor. Nulla facilisi. Duis aliquet
+                  egestas purus in blandit. Curabitur vulputate, ligula lacinia
+                  scelerisque tempor, lacus lacus ornare ante, ac egestas est
+                  urna sit amet arcu. Class aptent taciti sociosqu ad litora
+                  torquent per conubia.
+                </small>
+              </TabsItem>
+              <TabsItem value="tab-3" label="Revenue detail">
+                <small>
+                  Nulla quis tortor orci. Etiam at risus et justo dignissim.
+                </small>
+              </TabsItem>
+            </Tabs>
+          </DetailPanel>
         </StackItem>
       </>
     );

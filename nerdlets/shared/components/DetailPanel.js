@@ -4,36 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Icon, Stack, StackItem } from 'nr1';
 
 class Header extends React.PureComponent {
-  static propTypes = {
-    featuredChart: PropTypes.node,
-    data: PropTypes.array
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      closed: false,
-      minimized: false
-    };
-
-    this.handleCloseButton = this.handleCloseButton.bind(this);
-    this.handleMinimizeButton = this.handleMinimizeButton.bind(this);
-  }
-
-  handleCloseButton() {
-    this.setState({ closed: true });
-  }
-
-  handleMinimizeButton() {
-    this.setState(prevState => ({
-      minimized: !prevState.minimized
-    }));
-  }
-
   render() {
-    const { featuredChart } = this.props;
-
     return (
       <header className="detail-panel-header">
         <Stack className="detail-panel-header-top-bar">
@@ -49,13 +20,13 @@ class Header extends React.PureComponent {
             <Button
               sizeType={Button.SIZE_TYPE.SMALL}
               type={Button.TYPE.PLAIN}
-              onClick={this.handleCloseButton}
+              onClick={this.props.onClose}
               className="detail-panel-close-button"
               iconType={Button.ICON_TYPE.INTERFACE__SIGN__TIMES__V_ALTERNATE}
             />
             <span
               className="detail-panel-minimize-button"
-              onClick={this.handleMinimizeButton}
+              onClick={this.props.onMinimize}
             >
               <Icon
                 type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__WEIGHT_BOLD}
@@ -67,29 +38,29 @@ class Header extends React.PureComponent {
           </StackItem>
         </Stack>
         <hr className="detail-panel-header-top-bar-hr" />
-        <h3 className="detail-panel-title">I'm the title</h3>
+        <h3 className="detail-panel-title">Alexandria Park - CA47284</h3>
         <div className="detail-panel-cta-container">
-          <Button
-            className="detail-pane-view-workload-button"
-            sizeType={Button.SIZE_TYPE.SMALL}
-            type={Button.TYPE.PLAIN}
-            iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__SHOW}
-          >
+          <a className="detail-pane-view-workload-button detail-pane-cta">
+            <Icon
+              color="#007e8a"
+              type={Icon.TYPE.INTERFACE__OPERATIONS__SHOW}
+            />
             View in Workloads
-          </Button>
-          <Button
-            className="detail-pane-contact-button"
-            sizeType={Button.SIZE_TYPE.SMALL}
-            type={Button.TYPE.PLAIN}
-            iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__EMAIL}
-          >
+          </a>
+          <a className="detail-pane-contact-button detail-pane-cta">
+            <Icon
+              color="#007e8a"
+              type={Icon.TYPE.DOCUMENTS__DOCUMENTS__EMAIL}
+            />
             Contact manager
-          </Button>
+          </a>
         </div>
-        {featuredChart && (
+        {this.props.featuredChart && (
           <>
             <hr className="detail-panel-header-top-bar-hr" />
-            <div className="featured-chart-container">{featuredChart}</div>
+            <div className="featured-chart-container">
+              {this.props.featuredChart}
+            </div>
           </>
         )}
       </header>
@@ -98,15 +69,33 @@ class Header extends React.PureComponent {
 }
 
 export default class DetailPanel extends React.PureComponent {
+  static propTypes = {
+    children: PropTypes.node,
+    onClose: PropTypes.func,
+    onMinimize: PropTypes.func,
+    featuredChart: PropTypes.node,
+    className: PropTypes.string
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      closed: false,
+      minimized: false
+    };
+  }
+
   render() {
+    const { closed, minimized, className } = this.state;
     return (
-      <div className="detail-panel-container">
-        <Header
-          {...this.props}
-          defaultOnClose={this.handleCloseButton}
-          defaultOnMinimize={this.handleMinimizeButton}
-        />
-        <div className="children-container">Children here</div>
+      <div
+        className={`detail-panel-container ${closed ? 'closed' : ''} ${
+          minimized ? 'minimized' : ''
+        } ${className || ''}`}
+      >
+        <Header {...this.props} />
+        <div className="children-container">{this.props.children}</div>
       </div>
     );
   }
