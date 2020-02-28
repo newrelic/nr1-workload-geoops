@@ -12,19 +12,14 @@ import {
   Stack,
   StackItem,
   NerdGraphQuery,
-  Spinner,
-  Tabs,
-  TabsItem
+  Spinner
 } from 'nr1';
 
-import {
-  EmptyState,
-  NerdGraphError,
-  DetailPanel
-} from '@newrelic/nr1-community';
+import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
 
 import GeoMap from './geo-map';
 import Toolbar from '../shared/components/Toolbar';
+import DetailPanel from '../shared/components/DetailPanel';
 import MapLocationTable from '../shared/components/MapLocationTable';
 import MapLocationQuery from '../shared/components/MapLocationQuery';
 import { LIST_WORKLOADS } from '../shared/services/queries';
@@ -229,24 +224,7 @@ export default class ViewMap extends Component {
           )}
         </StackItem>
         <StackItem fullHeight className="detail-pane-stack-item">
-          <DetailPanel
-            title="Detail panel title"
-            description="Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis."
-            onClose={() => console.log('You clicked the close button')}
-            onMinimize={() => console.log('You clicked the minimize button')}
-          >
-            <Tabs>
-              <TabsItem value="tab-1" label="Tab 1 label">
-                Tab 1 content. Vestibulum id ligula porta felis euismod semper.
-              </TabsItem>
-              <TabsItem value="tab-2" label="Tab 2 label">
-                Tab 2 content. Nulla vitae elit libero, a pharetra augue ligula.
-              </TabsItem>
-              <TabsItem value="tab-3" label="Tab 3 label">
-                Tab 3 content. Integer posuere erat a ante venenatis dapibus.
-              </TabsItem>
-            </Tabs>
-          </DetailPanel>
+          <DetailPanel featuredChart="featured chart">hi</DetailPanel>
         </StackItem>
       </>
     );
