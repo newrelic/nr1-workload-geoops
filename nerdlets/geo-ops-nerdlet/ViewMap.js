@@ -9,14 +9,19 @@ import {
   Dropdown,
   DropdownItem,
   EntitiesByGuidsQuery,
-  Grid,
-  GridItem,
+  Stack,
+  StackItem,
   NerdGraphQuery,
   Spinner,
-  StackItem
+  Tabs,
+  TabsItem
 } from 'nr1';
 
-import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
+import {
+  EmptyState,
+  NerdGraphError,
+  DetailPanel
+} from '@newrelic/nr1-community';
 
 import GeoMap from './geo-map';
 import Toolbar from '../shared/components/Toolbar';
@@ -186,12 +191,7 @@ export default class ViewMap extends Component {
 
     return (
       <>
-        <GridItem
-          columnSpan={3}
-          fullHeight
-          collapseGapAfter
-          className="locations-table-grid-item"
-        >
+        <StackItem fullHeight className="locations-table-stack-item">
           {hasMapLocations && hasEntities && (
             <MapLocationTable
               mapLocations={mapLocations}
@@ -213,8 +213,8 @@ export default class ViewMap extends Component {
           {!hasMapLocations && (
             <EmptyState heading="No map locations found" description="" />
           )}
-        </GridItem>
-        <GridItem className="primary-content-container" columnSpan={9}>
+        </StackItem>
+        <StackItem grow className="primary-content-container">
           {hasMapLocations && (
             <GeoMap
               map={map}
@@ -227,7 +227,27 @@ export default class ViewMap extends Component {
           {!hasMapLocations && (
             <EmptyState heading="No map locations found" description="" />
           )}
-        </GridItem>
+        </StackItem>
+        <StackItem fullHeight className="detail-pane-stack-item">
+          <DetailPanel
+            title="Detail panel title"
+            description="Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis."
+            onClose={() => console.log('You clicked the close button')}
+            onMinimize={() => console.log('You clicked the minimize button')}
+          >
+            <Tabs>
+              <TabsItem value="tab-1" label="Tab 1 label">
+                Tab 1 content. Vestibulum id ligula porta felis euismod semper.
+              </TabsItem>
+              <TabsItem value="tab-2" label="Tab 2 label">
+                Tab 2 content. Nulla vitae elit libero, a pharetra augue ligula.
+              </TabsItem>
+              <TabsItem value="tab-3" label="Tab 3 label">
+                Tab 3 content. Integer posuere erat a ante venenatis dapibus.
+              </TabsItem>
+            </Tabs>
+          </DetailPanel>
+        </StackItem>
       </>
     );
   }
@@ -238,12 +258,14 @@ export default class ViewMap extends Component {
     return (
       <>
         <Toolbar
+          className="view-map-toolbar"
           left={<LeftToolbar navigation={navigation} />}
           right={<RightToolbar navigation={navigation} />}
         />
-        <Grid
+        <Stack
+          fullWidth
+          gapType={Stack.GAP_TYPE.NONE}
           className="primary-grid view-map-primary-grid"
-          spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <MapLocationQuery map={map}>
             {({ loading, errors, data: mapLocations }) => {
@@ -389,7 +411,7 @@ export default class ViewMap extends Component {
               );
             }}
           </MapLocationQuery>
-        </Grid>
+        </Stack>
       </>
     );
   }

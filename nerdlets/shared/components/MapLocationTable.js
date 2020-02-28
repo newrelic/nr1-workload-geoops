@@ -192,7 +192,7 @@ export default class MapLocationTable extends PureComponent {
       },
       {
         dataField: 'externalId',
-        text: 'Store ID',
+        text: 'ID',
         sort: true
       },
       {

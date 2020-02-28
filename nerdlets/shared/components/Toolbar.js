@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { Stack, StackItem } from 'nr1';
 
-const Toolbar = function({ left, right }) {
+const Toolbar = function({ className, left, right }) {
   return (
     <Stack
-      className="toolbar-container"
+      className={`toolbar-container ${className}`}
       fullWidth
       gapType={Stack.GAP_TYPE.NONE}
       horizontalType={Stack.HORIZONTAL_TYPE.FILL_EVENLY}
@@ -45,6 +45,7 @@ const Toolbar = function({ left, right }) {
 };
 
 Toolbar.propTypes = {
+  className: PropTypes.string,
   left: PropTypes.element,
   right: PropTypes.element
 };
