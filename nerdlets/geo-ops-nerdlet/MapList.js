@@ -133,7 +133,7 @@ export default class MapList extends PureComponent {
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <GridItem columnSpan={12} fullHeight>
-            <Grid>
+            <Grid className="map-grid">
               {mapGridItems}
               <GridItem columnSpan={3}>
                 <div
