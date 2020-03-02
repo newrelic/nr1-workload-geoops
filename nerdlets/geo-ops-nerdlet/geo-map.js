@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Map, TileLayer, Marker } from 'react-leaflet';
-import { Modal, UserStorageMutation } from 'nr1';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Stack, StackItem, Link, Modal, UserStorageMutation } from 'nr1';
 import get from 'lodash.get';
 
 // import Data from './data';
@@ -98,18 +98,22 @@ export default class GeoMap extends Component {
     onMarkerClick({ e, document });
   }
 
+  handleMarkerHover() {
+    event.relatedTarget.classList.add('active');
+  }
+
   closeModal() {
     this.setState({ hidden: true, selectedLocation: null });
   }
 
   render() {
-    const { map, mapLocations, center, zoom } = this.props;
+    const { map, mapLocations, zoom } = this.props;
     const { errors, hidden, selectedLocation } = this.state;
     const hasErrors = (errors && errors.length > 0) || false;
 
     const startingCenter =
-      center.lat && center.lng
-        ? [center.lat, center.lng]
+      map.lat && map.lng
+        ? [map.lat, map.lng]
         : false ||
           (map.lat && map.lng ? [map.lat, map.lng] : [10.5731, -7.5898]);
     const startingZoom = zoom || map.zoom || 3;
@@ -155,7 +159,44 @@ export default class GeoMap extends Component {
                       _did={mapLocation}
                       icon={icon}
                       document={mapLocation}
-                    />
+                      riseOnHover
+                      onMouseOver={e => {
+                        e.target.openPopup();
+                      }}
+                      onMouseOut={e => {
+                        e.target.closePopup();
+                      }}
+                    >
+                      <Popup>
+                        <Stack
+                          className="marker-popup-header"
+                          directionType={Stack.DIRECTION_TYPE.HORIZONTAL}
+                          fullWidth
+                        >
+                          <StackItem className="marker-popup-status-dot-container">
+                            <span className="marker-popup-status-dot" />
+                          </StackItem>
+                          <StackItem
+                            className="marker-popup-title-container"
+                            grow
+                          >
+                            <span className="marker-popup-title-label">
+                              Store:
+                            </span>{' '}
+                            <span className="marker-popup-title">CA687924</span>
+                          </StackItem>{' '}
+                          <StackItem className="marker-popup-comparison-container">
+                            <span className="marker-popup-comparison">
+                              1.04%
+                            </span>
+                          </StackItem>
+                        </Stack>
+                        <p className="marker-popup-description">
+                          Nulla quis tortor orci. Etiam at risus et justo
+                          dignissim. <Link>View workload</Link>
+                        </p>
+                      </Popup>
+                    </Marker>
                   );
                 })}
             </Map>
