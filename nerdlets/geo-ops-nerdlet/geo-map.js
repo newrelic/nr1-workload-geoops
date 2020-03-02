@@ -14,6 +14,7 @@ export default class GeoMap extends Component {
     map: PropTypes.object,
     onMarkerClick: PropTypes.func,
     onMapClick: PropTypes.func,
+    onZoomEnd: PropTypes.func,
     mapLocations: PropTypes.array,
 
     // Leaflet pass-throughs
@@ -38,6 +39,7 @@ export default class GeoMap extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
+    this.handleOnZoomEnd = this.handleOnZoomEnd.bind(this);
 
     // this.dataProcess = new Data({
     //   demoMode: true,
@@ -84,6 +86,13 @@ export default class GeoMap extends Component {
   handleMapClick(e) {
     const { onMapClick } = this.props;
     onMapClick(e);
+  }
+
+  handleOnZoomEnd(e) {
+    const { onZoomEnd = false } = this.props;
+    if (onZoomEnd) {
+      onZoomEnd(e);
+    }
   }
 
   handleMarkerClick(e) {
@@ -146,6 +155,7 @@ export default class GeoMap extends Component {
               zoomControl
               zoom={startingZoom}
               onClick={this.handleMapClick}
+              onZoomEnd={this.handleOnZoomEnd}
               whenReady={() => this.setState({ mapReady: true })}
             >
               <TileLayer
