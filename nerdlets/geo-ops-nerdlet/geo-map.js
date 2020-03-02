@@ -101,16 +101,26 @@ export default class GeoMap extends Component {
     this.setState({ hidden: true, selectedLocation: null });
   }
 
+  calculateCenter() {
+    const { center, map } = this.props;
+
+    let startingCenter = center ? center.lat && center.lng : false;
+    if (!startingCenter && map) {
+      startingCenter = map.lat && map.lng ? [map.lat, map.lng] : false;
+    }
+    if (!startingCenter) {
+      startingCenter = [10.5731, -7.5898];
+    }
+
+    return startingCenter;
+  }
+
   render() {
     const { map, mapLocations, zoom } = this.props;
     const { mapReady, errors, hidden, selectedLocation } = this.state;
     const hasErrors = (errors && errors.length > 0) || false;
 
-    const startingCenter =
-      map.lat && map.lng
-        ? [map.lat, map.lng]
-        : false ||
-          (map.lat && map.lng ? [map.lat, map.lng] : [10.5731, -7.5898]);
+    const startingCenter = this.calculateCenter();
     const startingZoom = zoom || map.zoom || 3;
 
     const leafletElement = get(this.mapRef, 'current.leafletElement', false);
