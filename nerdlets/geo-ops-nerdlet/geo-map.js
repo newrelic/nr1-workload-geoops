@@ -5,22 +5,16 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Stack, StackItem, Link, Modal, UserStorageMutation } from 'nr1';
 import get from 'lodash.get';
 
-// import Data from './data';
 // eslint-disable-next-line no-unused-vars
 import DetailModal from './detail-modal';
 import { generateIcon } from './utils';
 
-// import { getMapLocations } from '../shared/services/map-location';
-
-// import geoopsConfig from '../../geoopsConfig';
-// const config = geoopsConfig[0];
-// const testMarkers = config.locations;
-
 export default class GeoMap extends Component {
   static propTypes = {
-    map: PropTypes.object.isRequired,
+    map: PropTypes.object,
     onMarkerClick: PropTypes.func,
     onMapClick: PropTypes.func,
+    onZoomEnd: PropTypes.func,
     mapLocations: PropTypes.array,
 
     // Leaflet pass-throughs
@@ -31,18 +25,21 @@ export default class GeoMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      map: props.map,
+      // map: props.map,
       data: [],
       errors: [],
       selectedLocation: null,
-      favorites: []
+      favorites: [],
+      mapReady: false
     };
 
+    this.mapRef = React.createRef();
     this.setData = this.setData.bind(this);
     this.setFavorite = this.setFavorite.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
+    this.handleOnZoomEnd = this.handleOnZoomEnd.bind(this);
 
     // this.dataProcess = new Data({
     //   demoMode: true,
@@ -91,6 +88,13 @@ export default class GeoMap extends Component {
     onMapClick(e);
   }
 
+  handleOnZoomEnd(e) {
+    const { onZoomEnd = false } = this.props;
+    if (onZoomEnd) {
+      onZoomEnd(e);
+    }
+  }
+
   handleMarkerClick(e, mapLocation) {
     const { onMarkerClick } = this.props;
     const document = get(e, 'target.options.document', false);
@@ -106,17 +110,38 @@ export default class GeoMap extends Component {
     this.setState({ hidden: true, selectedLocation: null });
   }
 
+  calculateCenter() {
+    const { center, map } = this.props;
+
+    let startingCenter = center ? center.lat && center.lng : false;
+    if (!startingCenter && map) {
+      startingCenter = map.lat && map.lng ? [map.lat, map.lng] : false;
+    }
+    if (!startingCenter) {
+      startingCenter = [10.5731, -7.5898];
+    }
+
+    return startingCenter;
+  }
+
   render() {
     const { map, mapLocations, zoom } = this.props;
-    const { errors, hidden, selectedLocation } = this.state;
+    const { mapReady, errors, hidden, selectedLocation } = this.state;
     const hasErrors = (errors && errors.length > 0) || false;
 
-    const startingCenter =
-      map.lat && map.lng
-        ? [map.lat, map.lng]
-        : false ||
-          (map.lat && map.lng ? [map.lat, map.lng] : [10.5731, -7.5898]);
+    const startingCenter = this.calculateCenter();
     const startingZoom = zoom || map.zoom || 3;
+
+    const leafletElement = get(this.mapRef, 'current.leafletElement', false);
+    const bounds =
+      mapReady && leafletElement ? leafletElement.getBounds() : false;
+
+    const renderMarkers =
+      mapReady &&
+      leafletElement &&
+      bounds &&
+      mapLocations &&
+      mapLocations.length > 0;
 
     return (
       <>
@@ -125,17 +150,19 @@ export default class GeoMap extends Component {
           {hasErrors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
           {!hasErrors && (
             <Map
+              ref={this.mapRef}
               center={startingCenter}
               zoomControl
               zoom={startingZoom}
               onClick={this.handleMapClick}
+              onZoomEnd={this.handleOnZoomEnd}
+              whenReady={() => this.setState({ mapReady: true })}
             >
               <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              {mapLocations &&
-                mapLocations.length > 0 &&
+              {renderMarkers &&
                 mapLocations.map(item => {
                   const { document: mapLocation } = item;
                   const { guid, location = false } = mapLocation;
@@ -144,11 +171,27 @@ export default class GeoMap extends Component {
                     return null;
                   }
 
-                  const { lat, lng } = location;
+                  let { lat, lng } = location;
 
                   if (!(lat && lng)) {
                     return null;
                   }
+
+                  // TO DO - Why are some strings and others numbers?
+                  // We need to sync-up and ensure we're appropriately converting these
+                  // probably before they get to this component...
+                  if (typeof lat === 'string' || typeof lng === 'string') {
+                    lat = parseFloat(lat);
+                    lng = parseFloat(lng);
+                  }
+
+                  const latLngBounds = [lat, lng];
+                  const inBounds = bounds.contains(latLngBounds);
+
+                  if (!inBounds) {
+                    return null;
+                  }
+
                   const icon = generateIcon(mapLocation);
                   return (
                     <Marker
