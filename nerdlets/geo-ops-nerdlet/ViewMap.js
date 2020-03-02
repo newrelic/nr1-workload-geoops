@@ -121,7 +121,8 @@ export default class ViewMap extends Component {
     super(props);
     this.state = {
       detailPanelMinimized: false,
-      detailPanelClosed: false
+      detailPanelClosed: true,
+      activeMapLocation: ''
     };
 
     this.handleDetailPanelMinimizeButton = this.handleDetailPanelMinimizeButton.bind(
@@ -130,6 +131,7 @@ export default class ViewMap extends Component {
     this.handleDetailPanelCloseButton = this.handleDetailPanelCloseButton.bind(
       this
     );
+    this.openDetailPanel = this.openDetailPanel.bind(this);
   }
 
   entitiesFromMapLocations({ mapLocations }) {
@@ -191,6 +193,13 @@ export default class ViewMap extends Component {
     );
 
     return result;
+  }
+
+  openDetailPanel(mapLocation) {
+    this.setState({
+      detailPanelClosed: false,
+      activeMapLocation: mapLocation
+    });
   }
 
   handleDetailPanelCloseButton() {
@@ -271,7 +280,7 @@ export default class ViewMap extends Component {
               map={map}
               mapLocations={mapLocations}
               entitiesMap={mapByGuid({ entities })}
-              // onMarkerClick={marker => console.log(marker)}
+              onMarkerClick={mapLocation => this.openDetailPanel(mapLocation)}
               // onMapClick={this.onMapClick}
             />
           )}
@@ -289,9 +298,17 @@ export default class ViewMap extends Component {
             featuredChart={this.renderFeaturedChart(map)}
             onClose={this.handleDetailPanelCloseButton}
             onMinimize={this.handleDetailPanelMinimizeButton}
+            data={mapLocations.find(
+              location => this.state.activeMapLocation === location.document.map
+            )}
           >
             <Tabs>
-              <TabsItem value="tab-1" label="Recent incidents">
+              <TabsItem value="tab-1" label="Location JSON">
+                <pre>
+                  {JSON.stringify(this.state.activeMapLocation, null, 2)}
+                </pre>
+              </TabsItem>
+              <TabsItem value="tab-2" label="Recent incidents">
                 <small>
                   Morbi malesuada nulla nec purus convallis consequat. Vivamus
                   id mollis quam. Morbi ac commodo nulla. In condimentum orci id
@@ -300,7 +317,7 @@ export default class ViewMap extends Component {
                   neque consectetur quis placerat neque lobortis.
                 </small>
               </TabsItem>
-              <TabsItem value="tab-2" label="Metatags & data">
+              <TabsItem value="tab-3" label="Metatags & data">
                 <small>
                   Ut in nulla enim. Phasellus molestie magna non est bibendum
                   non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut
@@ -317,7 +334,7 @@ export default class ViewMap extends Component {
                   torquent per conubia.
                 </small>
               </TabsItem>
-              <TabsItem value="tab-3" label="Revenue detail">
+              <TabsItem value="tab-4" label="Revenue detail">
                 <small>
                   Nulla quis tortor orci. Etiam at risus et justo dignissim.
                 </small>

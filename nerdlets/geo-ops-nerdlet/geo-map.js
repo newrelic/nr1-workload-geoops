@@ -91,11 +91,11 @@ export default class GeoMap extends Component {
     onMapClick(e);
   }
 
-  handleMarkerClick(e) {
+  handleMarkerClick(e, mapLocation) {
     const { onMarkerClick } = this.props;
     const document = get(e, 'target.options.document', false);
     this.setState({ selectedLocation: document, hidden: false });
-    onMarkerClick({ e, document });
+    onMarkerClick(mapLocation);
   }
 
   handleMarkerHover() {
@@ -154,7 +154,7 @@ export default class GeoMap extends Component {
                     <Marker
                       key={guid}
                       position={[lat, lng]}
-                      onClick={this.handleMarkerClick}
+                      onClick={() => this.handleMarkerClick(event, mapLocation)}
                       _did={mapLocation}
                       icon={icon}
                       document={mapLocation}
@@ -205,23 +205,6 @@ export default class GeoMap extends Component {
             </Map>
           )}
         </div>
-
-        {/* Modals */}
-        {/* TODO - Location Detail */}
-        {selectedLocation && (
-          <Modal
-            hidden={hidden}
-            onClose={() => this.setState({ hidden: true })}
-          >
-            <pre>{JSON.stringify(selectedLocation, null, 2)}</pre>
-          </Modal>
-
-          // <DetailModal
-          //   location={selectedLocation}
-          //   hidden={hidden}
-          //   callbacks={this.callbacks}
-          // />
-        )}
       </>
     );
   }
