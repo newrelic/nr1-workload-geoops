@@ -110,6 +110,10 @@ export default class MapList extends PureComponent {
       const url = `https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`;
       console.log(url);
 
+      if (!map.guid) {
+        return null;
+      }
+
       return (
         <GridItem columnSpan={3} key={map.guid}>
           <MapItem

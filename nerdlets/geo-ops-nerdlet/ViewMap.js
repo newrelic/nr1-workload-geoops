@@ -65,6 +65,10 @@ const LeftToolbar = ({ maps, map, navigation }) => {
       <StackItem className="toolbar-item has-separator">
         <Dropdown label="Map" title={map ? map.title : 'Choose a map'}>
           {maps.map(m => {
+            if (!m.document.guid) {
+              return null;
+            }
+
             return (
               <DropdownItem
                 key={m.document.guid}
