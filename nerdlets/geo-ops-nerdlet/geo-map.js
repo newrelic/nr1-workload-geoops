@@ -194,8 +194,8 @@ export default class GeoMap extends Component {
                         </Stack>
                         <p className="marker-popup-description">
                           {mapLocation.location.description
-                            ? 'No description.'
-                            : mapLocation.location.description}
+                            ? mapLocation.location.description
+                            : 'No description.'}
                           <Link>View workload</Link>
                         </p>
                       </Popup>
