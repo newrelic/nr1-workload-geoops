@@ -149,7 +149,6 @@ export default class GeoMap extends Component {
                   if (!(lat && lng)) {
                     return null;
                   }
-
                   const icon = generateIcon(mapLocation);
                   return (
                     <Marker
@@ -180,10 +179,12 @@ export default class GeoMap extends Component {
                             className="marker-popup-title-container"
                             grow
                           >
-                            <span className="marker-popup-title-label">
+                            {/* <span className="marker-popup-title-label">
                               Store:
-                            </span>{' '}
-                            <span className="marker-popup-title">CA687924</span>
+                            </span>{' '} */}
+                            <span className="marker-popup-title">
+                              {mapLocation.title}
+                            </span>
                           </StackItem>{' '}
                           <StackItem className="marker-popup-comparison-container">
                             <span className="marker-popup-comparison">
@@ -192,8 +193,10 @@ export default class GeoMap extends Component {
                           </StackItem>
                         </Stack>
                         <p className="marker-popup-description">
-                          Nulla quis tortor orci. Etiam at risus et justo
-                          dignissim. <Link>View workload</Link>
+                          {mapLocation.location.description
+                            ? 'No description.'
+                            : mapLocation.location.description}
+                          <Link>View workload</Link>
                         </p>
                       </Popup>
                     </Marker>

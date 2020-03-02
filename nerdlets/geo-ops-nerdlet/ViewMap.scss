@@ -90,7 +90,7 @@ div.leaflet-pane .leaflet-popup .leaflet-popup-content {
 
 .marker-popup-header {
     height: 30px;
-    border-bottom: 1px solid #F4F5F5;
+    border-bottom: 1px solid #edeeee;
 }
 
 .marker-popup-status-dot-container {
@@ -99,7 +99,7 @@ div.leaflet-pane .leaflet-popup .leaflet-popup-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: 1px dotted #EDEEEE;
+    border-right: 1px dotted #e3e4e4;
 }
 
 .marker-popup-status-dot {
@@ -113,12 +113,13 @@ div.leaflet-pane .leaflet-popup .leaflet-popup-content {
 div.leaflet-pane .leaflet-popup .marker-popup-title-container {
     display: flex;
     height: 100%;
+    max-width: 63%;
     margin-left: 0;
     text-align: center;
     padding: 0 10px;
     justify-content: center;
     align-items: center;
-    border-right: 1px dotted #edeeee;
+    border-right: 1px dotted #e3e4e4;
     font-family: 'open sans'; 
 }
 
@@ -133,8 +134,11 @@ div.leaflet-pane .leaflet-popup .marker-popup-title-container {
 
 .marker-popup-title {
     color: #2A3434;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 div.leaflet-pane .leaflet-popup .marker-popup-comparison-container {
