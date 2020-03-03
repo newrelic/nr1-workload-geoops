@@ -1,10 +1,31 @@
 import { AccountStorageQuery, AccountStorageMutation } from 'nr1';
 
 import uuid from 'uuid/v4';
-import {
-  MAP_LOCATION_COLLECTION_ID,
-  mapLocationCollection
-} from '../constants';
+import { mapLocationCollection } from '../constants';
+
+/*
+ * NerdStorage is a document store, and only stores values as strings
+ * JSON Schema driven forms require that data be cast to the correct data type
+ *
+ * After fetching a document from NerdStorage, provide a way to "type cast"
+ * any numbers/floats/etc. to their appropriate type (from string)
+ */
+export const formatMapLocation = mapLocation => {
+  const i = mapLocation;
+  const lat = i.location.lat;
+  const lng = i.location.lng;
+
+  const formatted = {
+    ...i,
+    location: {
+      ...i.location,
+      lat: lat ? parseFloat(lat) : null,
+      lng: lng ? parseFloat(lng) : null
+    }
+  };
+
+  return formatted;
+};
 
 // Fetch all MapLocations
 export const getMapLocations = ({
