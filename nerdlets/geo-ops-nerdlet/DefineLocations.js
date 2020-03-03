@@ -215,7 +215,6 @@ export default class DefineLocations extends React.PureComponent {
           formData={formData}
           fetchDocument={null}
           writeDocument={({ formData }) => {
-            formData.guid = uuid();
             writeLocation({
               accountId: map.accountId,
               document: formData

@@ -309,7 +309,7 @@ export default class CreateMap extends React.PureComponent {
                     writeDocument={({ formData }) =>
                       writeMap({
                         accountId,
-                        documentId: map ? map.guid : uuid(),
+                        documentId: map ? map.guid : formData.guid,
                         document: formData
                       })
                     }
