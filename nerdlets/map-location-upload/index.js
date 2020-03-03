@@ -59,8 +59,8 @@ export default class MapLocationUploadNerdlet extends React.Component {
     const { files } = this.state;
 
     return (
-      <>
-        <h4>File Upload</h4>
+      <div className="map-location-upload-container">
+        <h2>File Upload</h2>
         <p>
           JSON file formatted to <a href="#">this specification</a>. We
           recommend this method for providing locations.
@@ -106,7 +106,7 @@ export default class MapLocationUploadNerdlet extends React.Component {
             );
           }}
         </NerdletStateContext.Consumer>
-      </>
+      </div>
     );
   }
 }

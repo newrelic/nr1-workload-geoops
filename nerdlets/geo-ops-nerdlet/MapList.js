@@ -54,6 +54,7 @@ const RightToolbar = ({ navigation }) => {
               state: { selectedMap: null, activeStep: 1 }
             })
           }
+          iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
         >
           New Map
         </Button>

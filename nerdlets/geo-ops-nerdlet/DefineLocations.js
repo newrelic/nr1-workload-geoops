@@ -177,27 +177,28 @@ export default class DefineLocations extends React.PureComponent {
 
     return (
       <>
-        <h4>File Upload</h4>
-        <p>
-          JSON file formatted to <a href="#">this specification</a>. We
-          recommend this method for providing locations.
-        </p>
-        <input
-          type="file"
-          className="json-file-upload"
-          accept=".json"
-          onClick={e => {
-            e.preventDefault();
+        <div className="define-locations-file-upload-container">
+          <h4>File Upload</h4>
+          <p>
+            JSON file formatted to <a href="#">this specification</a>. We
+            recommend this method for providing locations.
+          </p>
+          <Button
+            onClick={e => {
+              e.preventDefault();
 
-            navigation.openStackedNerdlet({
-              id: 'map-location-upload',
-              urlState: {
-                accountId: accountId,
-                map: mapGuid
-              }
-            });
-          }}
-        />
+              navigation.openStackedNerdlet({
+                id: 'map-location-upload',
+                urlState: {
+                  accountId: accountId,
+                  map: mapGuid
+                }
+              });
+            }}
+          >
+            Upload JSON file
+          </Button>
+        </div>
         <hr className="or-sep" />
         <h4>Define locations manually</h4>
         <p>
