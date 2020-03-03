@@ -1,21 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GeoMap from './geo-map';
-import { Map, TileLayer } from 'react-leaflet';
 
-import {
-  Button,
-  Grid,
-  GridItem,
-  NerdletStateContext,
-  Stack,
-  StackItem
-} from 'nr1';
-
+import uuid from 'uuid/v4';
+import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
 import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import DefineLocations from './DefineLocations';
 import MapLocationData from './MapLocationData';
+import GeoMap from './geo-map';
 
 import { nerdStorageRequest } from '../shared/utils';
 
@@ -62,7 +54,6 @@ export default class CreateMap extends React.PureComponent {
     const activeStep = steps.find(s => s.order === props.activeStep);
 
     this.state = {
-      accountId: null,
       steps,
       activeStep: activeStep || defaultFirstStep,
       map: props.map,
@@ -71,7 +62,8 @@ export default class CreateMap extends React.PureComponent {
       mapLocationsLoadingErrors: [],
       selectedLatLng: false,
       mapZoomLevel: 4,
-      mapCenter: [39.5, -98.35]
+      mapCenter: [39.5, -98.35],
+      mapFormData: {}
     };
 
     this.onAddEditMap = this.onAddEditMap.bind(this);
@@ -79,6 +71,7 @@ export default class CreateMap extends React.PureComponent {
     this.changeActiveStep = this.changeActiveStep.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
     this.onZoomEnd = this.onZoomEnd.bind(this);
+    this.fetchMap = this.fetchMap.bind(this);
 
     this.createMapForm = React.createRef();
   }
@@ -123,6 +116,11 @@ export default class CreateMap extends React.PureComponent {
     });
   }
 
+  async fetchMap() {
+    const { map } = this.props;
+    return getMap({ accountId: map.accountId, documentId: map.guid });
+  }
+
   onAddEditMap({ data, error }) {
     const { activeStep } = this.state;
     const nextStep = this.nextStep({ step: activeStep });
@@ -154,9 +152,15 @@ export default class CreateMap extends React.PureComponent {
       });
     }
 
-    this.setState({
-      selectedLatLng: [lat, lng]
-    });
+    this.setState(prevState => ({
+      selectedLatLng: [lat, lng],
+      mapFormData: {
+        ...prevState.mapFormData,
+        lat,
+        lng
+      }
+    }));
+  }
 
   onZoomEnd(e) {
     const zoom = e.target._animateToZoom;
@@ -252,11 +256,11 @@ export default class CreateMap extends React.PureComponent {
       mapLocationsLoadingErrors,
       selectedLatLng,
       mapZoomLevel,
-      mapCenter
+      mapCenter,
+      mapFormData
     } = this.state;
 
     MAP_UI_SCHEMA.accountId['ui:field'] = AccountDropdown;
-    const mapFormData = { lat: selectedLatLng[0], lng: selectedLatLng[1] };
 
     return (
       <>
@@ -296,25 +300,30 @@ export default class CreateMap extends React.PureComponent {
                 </StackItem>
                 <StackItem className="get-started-step-contents-form-container">
                   <JsonSchemaForm
-                    accountId={accountId}
-                    guid={map ? map.guid : false}
+                    ref={this.createMapForm}
                     schema={MAP_JSON_SCHEMA}
                     uiSchema={MAP_UI_SCHEMA}
                     defaultValues={MAP_DEFAULTS}
                     formData={mapFormData}
-                    getDocument={getMap}
-                    writeDocument={writeMap}
+                    fetchDocument={map ? this.fetchMap : null}
+                    writeDocument={({ formData }) =>
+                      writeMap({
+                        accountId,
+                        documentId: map ? map.guid : uuid(),
+                        document: formData
+                      })
+                    }
                     onWrite={this.onAddEditMap}
                     onError={errors => console.log('Form errors: ', errors)}
                     onChange={({ formData }) => {
                       if (formData.zoom) {
                         this.setState({ mapZoomLevel: formData.zoom });
                       }
+
                       if (formData.accountId) {
                         this.setState({ accountId: formData.accountId });
                       }
                     }}
-                    ref={this.createMapForm}
                   />
                 </StackItem>
                 <StackItem className="get-started-step-contents-CTA-container">

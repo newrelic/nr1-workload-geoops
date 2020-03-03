@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import uuid from 'uuid/v4';
 import cloneDeep from 'lodash.clonedeep';
 import { Button, navigation, Spinner, Stack, StackItem } from 'nr1';
 
@@ -14,7 +15,7 @@ import {
 import { NerdGraphError } from '@newrelic/nr1-community';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 
-import { getLocation, writeLocation } from '../shared/services/location';
+import { writeLocation } from '../shared/services/location';
 import { writeMapLocation } from '../shared/services/map-location';
 import LocationTable from '../shared/components/LocationTable';
 
@@ -207,14 +208,18 @@ export default class DefineLocations extends React.PureComponent {
         {/* Column 1 */}
         <JsonSchemaForm
           ref={this.addLocationForm}
-          accountId={accountId}
-          guid={false}
           schema={schema}
           uiSchema={uiSchema}
           defaultValues={MAP_LOCATION_DEFAULTS}
           formData={formData}
-          getDocument={getLocation}
-          writeDocument={writeLocation}
+          fetchDocument={null}
+          writeDocument={({ formData }) => {
+            formData.guid = uuid();
+            writeLocation({
+              accountId: map.accountId,
+              document: formData
+            });
+          }}
           onWrite={this.onWrite}
           onError={errors => console.log(errors)}
           className="define-locations-form"

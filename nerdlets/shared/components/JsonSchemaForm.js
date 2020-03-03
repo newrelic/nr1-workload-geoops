@@ -4,37 +4,69 @@ import PropTypes from 'prop-types';
 
 import Form from 'react-jsonschema-form';
 
+import { Spinner } from 'nr1';
+
 export default class JsonSchemaForm extends React.PureComponent {
+  /*
+   * Data is supplied to the form through a combination of the `formData` and
+   * `fetchDocument` props.
+   *
+   * Providing both allows for us to optionally fetch
+   * the document on form load (to avoid issues with stale objects in state),
+   * while providing the rest of the UI a way to override some of that data with
+   * user input.
+   *
+   * i.e. Any supplied `formData` will overwrite that retrieved from NerdStorage if `fetchDocument` is provided
+   * and will be the only data when `fetchDocument` isn't provided
+   */
   static propTypes = {
     children: PropTypes.element,
-    accountId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    guid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     className: PropTypes.string,
 
-    /* react-jsonschema-form pass-throughs */
+    /*
+     * react-jsonschema-form props
+     */
     schema: PropTypes.object.isRequired,
     uiSchema: PropTypes.object,
-    FieldTemplate: PropTypes.element,
-    fields: PropTypes.object,
     defaultValues: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     formData: PropTypes.object,
-
-    getDocument: PropTypes.func.isRequired,
-    writeDocument: PropTypes.func.isRequired,
-    onWrite: PropTypes.func,
     onError: PropTypes.func,
-
-    // Event handlers to tie into underlying form
-    onChange: PropTypes.func
-
+    onChange: PropTypes.func,
     // onSubmit: PropTypes.func,
-    // onError: PropTypes.func
+
+    /* Nerd Storage "service" interactions */
+
+    /*
+     * Function to call to retrieve the document from nerd storage
+     * ex. shared/services/map-location.js -> getMapLocation()
+     */
+    fetchDocument: PropTypes.func,
+
+    /*
+     * NerdStorage is a document store, and only stores values as strings
+     * JSON Schema driven forms demand that data be cast to the correct input type
+     *
+     * After fetching a document from NerdStorage, provide a hook to "type cast"
+     * any numbers/floats/etc. to their appropriate type (from string)
+     */
+    formatDocument: PropTypes.func,
+
+    /*
+     * Nerdstorage api call to save the document
+     */
+    writeDocument: PropTypes.func.isRequired,
+
+    /*
+     * Handler for the call to write the document to NerdStorage
+     */
+    onWrite: PropTypes.func
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
+      isLoading: false,
       document: this.initializeForm({ defaultValues: props.defaultValues }),
       errors: []
     };
@@ -51,45 +83,63 @@ export default class JsonSchemaForm extends React.PureComponent {
     await this.load();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.guid !== prevProps.guid) {
-      if (this.props.guid) {
-        this.load();
+  async componentDidUpdate(prevProps) {
+    const fetchDocument = this.props.fetchDocument !== prevProps.fetchDocument;
+    const formData = this.props.formData !== prevProps.formData;
+
+    if (fetchDocument || formData) {
+      if (fetchDocument) {
+        console.log('Is acting like fetchDocument prop changed..');
+        await this.load();
+      }
+
+      if (formData) {
+        this.setState(prevState => ({
+          document: {
+            ...prevState.document,
+            ...this.props.formData
+          }
+        }));
       }
       return true;
-    }
-
-    if (this.props.formData !== prevProps.formData) {
-      this.setState(prevState => ({
-        document: {
-          ...prevState.document,
-          ...this.props.formData
-        }
-      }));
     }
 
     return false;
   }
 
+  isFunc(func) {
+    if (func && typeof func === 'function') {
+      return true;
+    }
+    return false;
+  }
+
   initializeForm({ defaultValues }) {
-    return defaultValues && typeof defaultValues === 'function'
-      ? defaultValues()
-      : {};
+    return this.isFunc(defaultValues) ? defaultValues() : {};
   }
 
   async load() {
-    const { accountId, guid, getDocument } = this.props;
+    const { fetchDocument, formatDocument } = this.props;
 
-    if (guid) {
-      const { data, errors } = await getDocument({ accountId, guid });
-      // console.log(data);
-      // console.log(errors);
-
-      this.setState({
-        document: data,
-        errors
-      });
+    if (!this.isFunc(fetchDocument)) {
+      return;
     }
+
+    this.setState({ isLoading: true });
+    const { data, errors } = await fetchDocument();
+    this.setState({ isLoading: false });
+
+    // console.log(data);
+    // console.log(errors);
+
+    const formattedDocument = this.isFunc(formatDocument)
+      ? formatDocument(data)
+      : data;
+
+    this.setState({
+      document: formattedDocument,
+      errors
+    });
   }
 
   handleOnChange({ formData }) {
@@ -97,17 +147,16 @@ export default class JsonSchemaForm extends React.PureComponent {
 
     this.setState({ document: formData });
 
-    if (onChange && typeof onChange === 'function') {
+    if (this.isFunc(onChange)) {
       onChange({ formData });
     }
   }
 
   async handleOnSubmit({ formData }) {
-    const { accountId, writeDocument, defaultValues } = this.props;
+    const { writeDocument, defaultValues } = this.props;
 
     const { data, error } = await writeDocument({
-      accountId,
-      document: formData
+      formData
     });
 
     // TO DO - Can we rely on the response from the mutation to always be in data.nerdStorageWriteDocument?
@@ -128,7 +177,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   handleOnError(errors) {
     const { onError } = this.props;
 
-    if (onError && typeof onError === 'function') {
+    if (this.isFunc(onError)) {
       onError(errors);
     }
   }
@@ -138,23 +187,20 @@ export default class JsonSchemaForm extends React.PureComponent {
   }
 
   render() {
-    const {
-      children,
-      schema,
-      uiSchema,
-      FieldTemplate,
-      fields,
-      className
-    } = this.props;
-    const { document, errors } = this.state;
+    const { children, schema, uiSchema, className } = this.props;
+    const { document, errors, isLoading } = this.state;
 
     return (
       <>
+        {isLoading && <Spinner />}
+
+        {errors && errors.length > 0 && (
+          <pre>{JSON.stringify(errors, null, 2)}</pre>
+        )}
+
         <Form
           schema={schema}
           uiSchema={uiSchema}
-          FieldTemplate={FieldTemplate}
-          fields={fields}
           formData={document}
           onChange={this.handleOnChange}
           onSubmit={this.handleOnSubmit}
@@ -164,9 +210,6 @@ export default class JsonSchemaForm extends React.PureComponent {
         >
           {children}
         </Form>
-        {errors && errors.length > 0 && (
-          <pre>{JSON.stringify(errors, null, 2)}</pre>
-        )}
       </>
     );
   }
