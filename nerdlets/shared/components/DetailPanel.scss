@@ -126,6 +126,11 @@
   
   &:hover {
     cursor: pointer;
+    background-color: #e3e4e4;
+  }
+  
+  .minimized & {
+    right: 340px;
   }
 }
 
