@@ -42,7 +42,8 @@ export default class MapLocationTable extends PureComponent {
 
     return mapLocations.map(ml => {
       const { document } = ml;
-      const { externalId, region } = document;
+      const { externalId = '', location } = document;
+      const { region = '' } = location;
 
       const status = this.calculateStatus(document);
       // const lastIncident = entities.findLastIncident;
@@ -201,7 +202,7 @@ export default class MapLocationTable extends PureComponent {
         sort: true
       },
       {
-        dataField: 'region',
+        dataField: 'location.region',
         text: 'Region',
         sort: true
       }
