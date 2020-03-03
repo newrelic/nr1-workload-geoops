@@ -38,7 +38,7 @@ class Header extends React.PureComponent {
           </StackItem>
         </Stack>
         <hr className="detail-panel-header-top-bar-hr" />
-        <h3 className="detail-panel-title">Alexandria Park - CA47284</h3>
+        <h3 className="detail-panel-title">{this.props.data.title}</h3>
         <div className="detail-panel-cta-container">
           <a className="detail-pane-view-workload-button detail-pane-cta">
             <Icon
@@ -74,7 +74,8 @@ export default class DetailPanel extends React.PureComponent {
     onClose: PropTypes.func,
     onMinimize: PropTypes.func,
     featuredChart: PropTypes.node,
-    className: PropTypes.string
+    className: PropTypes.string,
+    data: PropTypes.object
   };
 
   constructor(props) {

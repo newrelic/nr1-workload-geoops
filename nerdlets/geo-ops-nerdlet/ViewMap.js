@@ -317,9 +317,7 @@ export default class ViewMap extends Component {
             featuredChart={this.renderFeaturedChart(map)}
             onClose={this.handleDetailPanelCloseButton}
             onMinimize={this.handleDetailPanelMinimizeButton}
-            data={mapLocations.find(
-              location => this.state.activeMapLocation === location.document.map
-            )}
+            data={this.state.activeMapLocation}
           >
             <Tabs>
               <TabsItem value="tab-1" label="Location JSON">
