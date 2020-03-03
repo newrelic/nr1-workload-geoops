@@ -28,12 +28,17 @@ export default class MapItem extends PureComponent {
 
   async deleteMap({ map }) {
     try {
-      await deleteMap({ map });
-      Toast.showToast({
-        title: `${startCase(this.state.deleteModalType)} deleted`,
-        description: `The map "${map.title}" has been permantely deleted`,
-        type: Toast.TYPE.NORMAL
-      });
+      const result = await deleteMap({ map });
+      if (result) {
+        if (result[1].data.nerdStorageDeleteDocument.deleted) {
+          this.props.onMapDelete({ map });
+          Toast.showToast({
+            title: `${startCase(this.state.deleteModalType)} deleted`,
+            description: `The map "${map.title}" has been permantely deleted`,
+            type: Toast.TYPE.NORMAL
+          });
+        }
+      }
     } catch (e) {
       console.log(e);
     }

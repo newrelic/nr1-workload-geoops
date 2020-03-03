@@ -125,7 +125,7 @@ export default class ViewMap extends Component {
     this.state = {
       detailPanelMinimized: false,
       detailPanelClosed: true,
-      activeMapLocation: ''
+      activeMapLocation: null
     };
 
     this.handleDetailPanelMinimizeButton = this.handleDetailPanelMinimizeButton.bind(
