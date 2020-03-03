@@ -78,6 +78,7 @@ export default class CreateMap extends React.PureComponent {
     this.onMapLocationWrite = this.onMapLocationWrite.bind(this);
     this.changeActiveStep = this.changeActiveStep.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
+    this.onZoomEnd = this.onZoomEnd.bind(this);
 
     this.createMapForm = React.createRef();
   }
@@ -156,6 +157,15 @@ export default class CreateMap extends React.PureComponent {
     this.setState({
       selectedLatLng: [lat, lng]
     });
+
+  onZoomEnd(e) {
+    const zoom = e.target._animateToZoom;
+    this.setState(prevState => ({
+      mapFormData: {
+        ...prevState,
+        zoom
+      }
+    }));
   }
 
   /*
@@ -450,6 +460,7 @@ export default class CreateMap extends React.PureComponent {
               mapLocations={mapLocations}
               onMarkerClick={marker => console.log(marker)}
               onMapClick={this.onMapClick}
+              onZoomEnd={this.onZoomEnd}
               center={mapCenter}
               zoom={mapZoomLevel}
             />
