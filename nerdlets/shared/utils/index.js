@@ -81,3 +81,15 @@ export const latLngToTile = function({ latLng, zoom }) {
     z: zoom
   };
 };
+
+export const mapByGuid = ({ data }) => {
+  if (!Array.isArray(data)) {
+    return {};
+  }
+
+  const map = data.reduce((previousValue, currentValue) => {
+    previousValue[currentValue.guid] = currentValue;
+    return previousValue;
+  }, {});
+  return map;
+};

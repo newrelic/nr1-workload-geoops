@@ -101,3 +101,92 @@ query($query: String!) {
   }
 }
 `;
+
+/*
+ * Similar in intent to <EntitiesByGuidsQuery> but hitting the `actor -> account -> entities` namespace
+ * instead of `actor -> account -> entitySearch` namespace so that we can get access
+ * to the full AlertableEntity fragment instead of just the AlertableEntityOutline
+ */
+
+/*
+ * Sample response:
+
+ {
+    "__typename": "ApmApplicationEntity",
+    "accountId": 630060,
+
+    // alertSeverity and alertViolations aren't guaranteed to be present
+    "alertSeverity": "CRITICAL",
+    "alertViolations": [
+        {
+          "alertSeverity": null,
+          "violationId": 782921508,
+          "violationUrl": "https://alerts.newrelic.com/accounts/630060/incidents/114002461/violations?id=782921508"
+        },
+        {
+          "alertSeverity": null,
+          "violationId": 782902557,
+          "violationUrl": "https://alerts.newrelic.com/accounts/630060/incidents/113999954/violations?id=782902557"
+        },
+      }
+    ],
+    "domain": "APM",
+    "entityType": "APM_APPLICATION_ENTITY",
+    "guid": "NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2",
+    "indexedAt": 1583257737544,
+    "name": "Origami Portal",
+    "reporting": true,
+    "type": "APPLICATION"
+  },
+*/
+export const ENTITIES_BY_GUIDS = `
+query EntityDetails($entityGuids: [EntityGuid]!, $includeTags: Boolean = false, $includeAlertViolations: Boolean = true, $startTime: EpochMilliseconds = 0, $endTime: EpochMilliseconds = 0) {
+  actor {
+    entities(guids: $entityGuids) {
+      ...EntityInfo
+      ...EntityTags @include(if: $includeTags)
+    }
+  }
+}
+
+fragment EntityInfo on Entity {
+  guid
+  accountId
+  domain
+  type
+  name
+  reporting
+  ... on AlertableEntity {
+    alertSeverity
+      alertViolations(endTime: $endTime, startTime: $startTime) @include(if: $includeAlertViolations) {
+        ...AlertInfo
+      }
+
+      recentAlertViolations(count: 10) @include(if: $includeAlertViolations) {
+        ...AlertInfo
+      }
+    __typename
+  }
+  __typename
+}
+
+fragment EntityTags on Entity {
+  tags {
+    key
+    values
+    __typename
+  }
+  __typename
+}
+
+fragment AlertInfo on EntityAlertViolation {
+  agentUrl
+  alertSeverity
+  closedAt
+  label
+  level
+  openedAt
+  violationId
+  violationUrl
+}
+`;
