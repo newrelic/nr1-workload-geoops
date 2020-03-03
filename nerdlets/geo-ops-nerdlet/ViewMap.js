@@ -54,15 +54,6 @@ const LeftToolbar = ({ maps, map, navigation }) => {
   return (
     <>
       <StackItem className="toolbar-item has-separator">
-        <Button
-          onClick={() => navigation.router({ to: 'mapList' })}
-          type={Button.TYPE.PLAIN}
-          iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
-        >
-          Back to main view
-        </Button>
-      </StackItem>
-      <StackItem className="toolbar-item has-separator">
         <Dropdown label="Map" title={map ? map.title : 'Choose a map'}>
           {maps.map(m => {
             if (!m.document.guid) {
@@ -98,12 +89,20 @@ const RightToolbar = ({ navigation }) => {
   return (
     <>
       <StackItem className="">
-        <Button onClick={() => navigation.router({ to: 'createMap' })}>
+        <Button
+          type={Button.TYPE.NORMAL}
+          onClick={() => navigation.router({ to: 'createMap' })}
+          iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
+        >
           New Map
         </Button>
       </StackItem>
       <StackItem className="">
-        <Button onClick={() => navigation.router({ to: 'mapList' })}>
+        <Button
+          type={Button.TYPE.NORMAL}
+          onClick={() => navigation.router({ to: 'mapList' })}
+          iconType={Button.ICON_TYPE.LOCATION__LOCATION__MAP}
+        >
           View all maps
         </Button>
       </StackItem>

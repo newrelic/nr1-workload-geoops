@@ -7,18 +7,13 @@
 .view-map-primary-grid {
     position: relative;
     overflow: hidden;
-    
+
     .locations-table-stack-item {
         width: 340px;
         height: 100%;
         position: relative;
         z-index: 1000;
         background-color: #fff;
-        box-shadow: 
-            0px 1px 0px rgba(0, 75, 82, 0.22), 
-            0px 3px 2px rgba(0, 49, 54, 0.1), 
-            0px 1px 3px rgba(0, 134, 148, 0.13), 
-            0px 8px 17px rgba(88, 114, 117, 0.3);
 
         .react-bootstrap-table {
             overflow: scroll;
@@ -32,6 +27,23 @@
     .primary-content-container {
         width: 500px;
         height: 100%;
+    }
+
+    .leaflet-wrapper:before {
+        content: "";
+        display: block;
+        z-index: 1000;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        pointer-events: none;
+        box-shadow: 
+            inset 0px 0px 0px rgba(0, 75, 82, 0.22), 
+            inset 0px 0px 2px rgba(0, 49, 54, 0.1), 
+            inset 0px 0px 3px rgba(0, 134, 148, 0.13), 
+            inset 0px 2px 17px rgba(88, 114, 117, 0.3);
     }
 
     .detail-panel-stack-item {
