@@ -1,14 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { Icon } from 'nr1';
+import get from 'lodash.get';
+import cloneDeep from 'lodash.clonedeep';
+import { NerdGraphQuery, Spinner } from 'nr1';
+import { NerdGraphError } from '@newrelic/nr1-community';
+
+import { ENTITY_SEARCH_BY_TYPE } from '../services/queries';
 
 export default class EntityTypeAhead extends React.PureComponent {
+  static propTypes = {
+    formData: PropTypes.array,
+    onChange: PropTypes.func
+  };
+
+  constructor(props) {
+    super(props);
+    // console.log(props);
+    this.state = {
+      //
+    };
+  }
+
+  entitySearchQueryVariables() {
+    // console.log(this.props);
+    // const { formData } = this.props;
+    const query = `(domain = 'NR1' and type = 'WORKLOAD')`;
+
+    // TO DO - How do we indicate all those selected already?
+
+    // if (formData && formData !== undefined && formData.length > 0) {
+    //   const ids = formData.map(v => v.guid);
+    //   console.log(ids);
+    //   if (Array.isArray(ids)) {
+    //     query = `${query} OR id IN ("${ids.join('", "')`')`}`;
+    //   }
+    // }
+
+    return {
+      query
+    };
+  }
+
   render() {
-    const options = [
-      { value: 'chocolate', label: 'Chocolate' },
-      { value: 'strawberry', label: 'Strawberry' },
-      { value: 'vanilla', label: 'Vanilla' }
-    ];
+    const { formData } = this.props;
+    const entitySearchVariables = this.entitySearchQueryVariables();
 
     const customStyles = {
       dropdownIndicator: provided => ({
@@ -63,22 +99,52 @@ export default class EntityTypeAhead extends React.PureComponent {
 
     return (
       <>
-        <div className="form-input-col-12 form-input-container">
-          <label htmlFor="entity-type-ahead" className="control-label">
-            Workloads *
-          </label>
-          <Select
-            id="entity-type-ahead"
-            isMulti
-            options={options}
-            placeholder="Select 1 or more workloads..."
-            styles={customStyles}
-            components={{
-              ClearIndicator: ClearIndicator,
-              MultiValueRemove: ClearIndicator
-            }}
-          />
-        </div>
+        <NerdGraphQuery
+          query={ENTITY_SEARCH_BY_TYPE}
+          variables={entitySearchVariables}
+        >
+          {({ loading, error, data }) => {
+            if (loading) {
+              return <Spinner />;
+            }
+
+            if (error) {
+              return <NerdGraphError error={error} />;
+            }
+
+            const items = get(data, 'actor.entitySearch.results.entities', []);
+            const options = items.map(i => ({ value: i.guid, label: i.name }));
+
+            // Hmm, how do we get the name for the currently assigned entity guids...
+
+            const currentValue = formData
+              ? formData.map(i => ({
+                  value: i.guid,
+                  label: options.find(o => o.value === i.guid).label
+                }))
+              : [];
+
+            return (
+              <div className="form-input-col-12 form-input-container">
+                <label htmlFor="entity-type-ahead" className="control-label">
+                  Workloads *
+                </label>
+                <Select
+                  id="entity-type-ahead"
+                  isMulti
+                  options={options}
+                  defaultValue={currentValue}
+                  placeholder="Select 1 or more workloads..."
+                  styles={customStyles}
+                  components={{
+                    ClearIndicator: ClearIndicator,
+                    MultiValueRemove: ClearIndicator
+                  }}
+                />
+              </div>
+            );
+          }}
+        </NerdGraphQuery>
       </>
     );
   }

@@ -91,6 +91,10 @@ ul.map-entities-location-list {
       box-shadow: inset 0 0 0 2px #b9bdbd;
     }
   }
+
+  &.active {
+    background-color: #edeeee;
+  }
 }
 
 .map-entities-location-list-item-title {

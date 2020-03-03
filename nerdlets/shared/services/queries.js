@@ -94,6 +94,7 @@ query($query: String!) {
           accountId
           domain
           type
+          entityType
         }
       }
     }

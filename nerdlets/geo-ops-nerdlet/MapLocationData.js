@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import uuid from 'uuid/v4';
 import cloneDeep from 'lodash.clonedeep';
 import { Stack, StackItem, Icon } from 'nr1';
 
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
-import EntitySearchFormInput from '../shared/components/EntitySearchFormInput';
+import { FloatInput } from '../shared/components/react-jsonschema-form';
+import EntityTypeAhead from '../shared/components/EntityTypeAhead';
 
 import {
   MAP_LOCATION_UI_SCHEMA,
@@ -12,14 +15,13 @@ import {
 } from '../shared/constants';
 
 import {
+  formatMapLocation, // Cast from document store to json schema types
   getMapLocation,
   writeMapLocation
 } from '../shared/services/map-location';
-import EntityTypeAhead from '../shared/components/EntityTypeAhead';
 
-export default class MapLocationData extends React.PureComponent {
+export default class MapLocationData extends React.Component {
   static propTypes = {
-    accountId: PropTypes.number,
     map: PropTypes.object,
     mapLocations: PropTypes.array,
     onMapLocationChange: PropTypes.func
@@ -35,8 +37,15 @@ export default class MapLocationData extends React.PureComponent {
     this.onRelatedEntityChange = this.onRelatedEntityChange.bind(this);
   }
 
-  onMapLocationSelect({ mapLocation }) {
-    this.setState({ selectedMapLocation: mapLocation });
+  onMapLocationSelect(e) {
+    const guid = e.currentTarget.getAttribute('data-guid');
+    const mapLocation = this.props.mapLocations.find(
+      ml => ml.document.guid === guid
+    );
+
+    if (mapLocation) {
+      this.setState({ selectedMapLocation: mapLocation });
+    }
   }
 
   async onRelatedEntityChange({ entities }) {
@@ -53,16 +62,60 @@ export default class MapLocationData extends React.PureComponent {
     this.props.onMapLocationChange({ data, errors });
   }
 
+  /*
+   * TO DO - How do we want to define isCompleted? Do we want to give users the ability to select this as part of a Map config?
+   */
+  isCompleted(mapLocationObject) {
+    const { document: ml } = mapLocationObject;
+
+    return ml.entities.length > 0 && ml.query !== '';
+    // return ml.entities.length > 0 || ml.query !== '';
+  }
+
   render() {
-    const { accountId } = this.props;
+    const { map, mapLocations } = this.props;
     const { selectedMapLocation } = this.state;
+    console.log(selectedMapLocation);
+    const accountId = map.document.accountId;
 
-    // Tell react-jsonschema-form to utilize EntitySearchFormInput for the property of 'entities'
-    const fields = { entities: EntitySearchFormInput };
+    const formData = selectedMapLocation
+      ? { ...selectedMapLocation.document }
+      : {};
 
-    // TO DO - Make adjustment to schema for this specific form - make title a two-column input
-    // import { FormInputTwoColumn } from "./components/react-jsonschema-form"
-    // MAP_LOCATION_UI_SCHEMA.title = { 'ui:FieldTemplate': FormInputTwoColumn };
+    /*
+     * Customize react-jsonschema-form ui
+     */
+    const uiSchema = cloneDeep(MAP_LOCATION_UI_SCHEMA);
+    // uiSchema.entities = { 'ui:field': EntitySearchFormInput };
+    uiSchema.entities = { 'ui:field': EntityTypeAhead };
+    uiSchema.location = {
+      ...uiSchema.location,
+      lat: {
+        ...uiSchema.location.lat,
+        'ui:widget': FloatInput
+      },
+      lng: {
+        ...uiSchema.location.lng,
+        'ui:widget': FloatInput
+      }
+    };
+
+    /*
+     * Calculate progress bar
+     */
+    const completedCount = mapLocations.reduce(
+      (previousValue, currentValue) => {
+        const isCompleted = this.isCompleted(currentValue);
+
+        if (isCompleted) {
+          previousValue = previousValue + 1;
+        }
+
+        return previousValue;
+      },
+      0
+    );
+    const totalCount = mapLocations.length;
 
     return (
       <>
@@ -86,7 +139,7 @@ export default class MapLocationData extends React.PureComponent {
                 <div className="map-entities-progress-bar-fill" />
               </div>
               <span className="map-entities-progress-bar-label">
-                5 of 20 completed
+                {completedCount} of {totalCount} completed
               </span>
             </StackItem>
             <StackItem className="map-entities-header-navigation-arrows">
@@ -111,72 +164,71 @@ export default class MapLocationData extends React.PureComponent {
             </StackItem>
           </Stack>
           <ul className="map-entities-location-list">
-            <li className="map-entities-location-list-item completed">
-              <Stack
-                verticalType={Stack.VERTICAL_TYPE.CENTER}
-                className="map-entities-location-list-item-content"
-              >
-                <StackItem>
-                  <div className="map-entities-location-list-item-check" />
-                </StackItem>
-                <StackItem className="map-entities-location-list-item-title">
-                  Alexandria park centre
-                </StackItem>
-                <StackItem className="map-entities-location-list-item-description">
-                  Nulla quis tortor orci. Etiam at risus et justo dignissim.
-                </StackItem>
-              </Stack>
-            </li>
-            <li className="map-entities-location-list-item">
-              <Stack
-                verticalType={Stack.VERTICAL_TYPE.CENTER}
-                className="map-entities-location-list-item-content"
-              >
-                <StackItem>
-                  <div className="map-entities-location-list-item-check" />
-                </StackItem>
-                <StackItem className="map-entities-location-list-item-title">
-                  Toronto bluegrass shopping center
-                </StackItem>
-                <StackItem className="map-entities-location-list-item-description">
-                  Nulla quis tortor orci. Etiam at risus et justo dignissim.
-                </StackItem>
-              </Stack>
-            </li>
-            <li className="map-entities-location-list-item">
-              <Stack
-                verticalType={Stack.VERTICAL_TYPE.CENTER}
-                className="map-entities-location-list-item-content"
-              >
-                <StackItem>
-                  <div className="map-entities-location-list-item-check" />
-                </StackItem>
-                <StackItem className="map-entities-location-list-item-title">
-                  Little italy drivethrough
-                </StackItem>
-                <StackItem className="map-entities-location-list-item-description">
-                  Nulla quis tortor orci. Etiam at risus et justo dignissim.
-                </StackItem>
-              </Stack>
-            </li>
-          </ul>
-          <JsonSchemaForm
-            accountId={accountId}
-            guid={
-              selectedMapLocation
-                ? selectedMapLocation.guid || selectedMapLocation.document.guid
-                : false
-            }
-            schema={MAP_LOCATION_JSON_SCHEMA}
-            uiSchema={MAP_LOCATION_UI_SCHEMA}
-            fields={fields}
-            defaultValues={false}
-            getDocument={getMapLocation}
-            writeDocument={writeMapLocation}
-            onWrite={({ data, errors }) => console.log([data, errors])}
-          />
+            {mapLocations.map(mapLocationObject => {
+              const { document: ml } = mapLocationObject;
+              const isCompleted = this.isCompleted(mapLocationObject);
 
-          <EntityTypeAhead />
+              const isActive =
+                selectedMapLocation &&
+                selectedMapLocation.document.guid === ml.guid;
+
+              const className = `map-entities-location-list-item
+              ${isCompleted ? ' completed' : ''}
+              ${isActive ? ' active' : ''}`;
+
+              const { description = false } = ml.location;
+
+              return (
+                <li
+                  key={ml.guid}
+                  className={className}
+                  onClick={this.onMapLocationSelect}
+                  data-guid={ml.guid}
+                >
+                  <Stack
+                    verticalType={Stack.VERTICAL_TYPE.CENTER}
+                    className="map-entities-location-list-item-content"
+                  >
+                    <StackItem>
+                      <div className="map-entities-location-list-item-check" />
+                    </StackItem>
+                    <StackItem className="map-entities-location-list-item-title">
+                      {ml.title}
+                    </StackItem>
+                    {description && description !== '' && (
+                      <StackItem className="map-entities-location-list-item-description">
+                        {description}
+                      </StackItem>
+                    )}
+                  </Stack>
+                </li>
+              );
+            })}
+          </ul>
+          {selectedMapLocation && (
+            <JsonSchemaForm
+              schema={MAP_LOCATION_JSON_SCHEMA}
+              uiSchema={uiSchema}
+              defaultValues={false}
+              formData={formData}
+              fetchDocument={() =>
+                getMapLocation({
+                  accountId,
+                  documentId: selectedMapLocation.document.guid,
+                  mapGuid: selectedMapLocation.document.map
+                })
+              }
+              formatDocument={formatMapLocation}
+              writeDocument={({ formData }) =>
+                writeMapLocation({
+                  accountId,
+                  documentId: selectedMapLocation.guid,
+                  document: formData
+                })
+              }
+              onWrite={({ data, errors }) => console.log([data, errors])}
+            />
+          )}
         </div>
       </>
     );
