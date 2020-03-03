@@ -268,7 +268,11 @@ export default class ViewMap extends Component {
     const hasMapLocations = mapLocations && mapLocations.length > 0;
     const hasEntities = entities && entities.length > 0;
     const entitiesMap = mapByGuid({ data: entities });
-    const { detailPanelClosed, detailPanelMinimized } = this.state;
+    const {
+      activeMapLocation,
+      detailPanelClosed,
+      detailPanelMinimized
+    } = this.state;
 
     return (
       <>
@@ -313,51 +317,51 @@ export default class ViewMap extends Component {
             detailPanelClosed ? 'closed' : ''
           } ${detailPanelMinimized ? 'minimized' : ''}`}
         >
-          <DetailPanel
-            featuredChart={this.renderFeaturedChart(map)}
-            onClose={this.handleDetailPanelCloseButton}
-            onMinimize={this.handleDetailPanelMinimizeButton}
-            data={this.state.activeMapLocation}
-          >
-            <Tabs>
-              <TabsItem value="tab-1" label="Location JSON">
-                <pre>
-                  {JSON.stringify(this.state.activeMapLocation, null, 2)}
-                </pre>
-              </TabsItem>
-              <TabsItem value="tab-2" label="Recent incidents">
-                <small>
-                  Morbi malesuada nulla nec purus convallis consequat. Vivamus
-                  id mollis quam. Morbi ac commodo nulla. In condimentum orci id
-                  nisl volutpat bibendum. Quisque commodo hendrerit lorem quis
-                  egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc non
-                  neque consectetur quis placerat neque lobortis.
-                </small>
-              </TabsItem>
-              <TabsItem value="tab-3" label="Metatags & data">
-                <small>
-                  Ut in nulla enim. Phasellus molestie magna non est bibendum
-                  non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut
-                  dapibus. Mauris iaculis porttitor posuere. Praesent id metus
-                  massa, ut blandit odio. Proin quis tortor orci. Etiam at risus
-                  et justo dignissim congue. Donec congue lacinia dui, a
-                  porttitor lectus condimentum laoreet. Nunc eu ullamcorper
-                  orci. Quisque eget odio ac lectus vestibulum faucibus eget in
-                  metus. In pellentesque faucibus vestibulum. Nulla at nulla
-                  justo, eget luctus tortor. Nulla facilisi. Duis aliquet
-                  egestas purus in blandit. Curabitur vulputate, ligula lacinia
-                  scelerisque tempor, lacus lacus ornare ante, ac egestas est
-                  urna sit amet arcu. Class aptent taciti sociosqu ad litora
-                  torquent per conubia.
-                </small>
-              </TabsItem>
-              <TabsItem value="tab-4" label="Revenue detail">
-                <small>
-                  Nulla quis tortor orci. Etiam at risus et justo dignissim.
-                </small>
-              </TabsItem>
-            </Tabs>
-          </DetailPanel>
+          {activeMapLocation && (
+            <DetailPanel
+              featuredChart={this.renderFeaturedChart(map)}
+              onClose={this.handleDetailPanelCloseButton}
+              onMinimize={this.handleDetailPanelMinimizeButton}
+              data={activeMapLocation}
+            >
+              <Tabs>
+                <TabsItem value="tab-1" label="Location JSON">
+                  <pre>{JSON.stringify(activeMapLocation, null, 2)}</pre>
+                </TabsItem>
+                <TabsItem value="tab-2" label="Recent incidents">
+                  <small>
+                    Morbi malesuada nulla nec purus convallis consequat. Vivamus
+                    id mollis quam. Morbi ac commodo nulla. In condimentum orci
+                    id nisl volutpat bibendum. Quisque commodo hendrerit lorem
+                    quis egestas. Maecenas quis tortor arcu. Vivamus rutrum nunc
+                    non neque consectetur quis placerat neque lobortis.
+                  </small>
+                </TabsItem>
+                <TabsItem value="tab-3" label="Metatags & data">
+                  <small>
+                    Ut in nulla enim. Phasellus molestie magna non est bibendum
+                    non venenatis nisl tempor. Suspendisse dictum feugiat nisl
+                    ut dapibus. Mauris iaculis porttitor posuere. Praesent id
+                    metus massa, ut blandit odio. Proin quis tortor orci. Etiam
+                    at risus et justo dignissim congue. Donec congue lacinia
+                    dui, a porttitor lectus condimentum laoreet. Nunc eu
+                    ullamcorper orci. Quisque eget odio ac lectus vestibulum
+                    faucibus eget in metus. In pellentesque faucibus vestibulum.
+                    Nulla at nulla justo, eget luctus tortor. Nulla facilisi.
+                    Duis aliquet egestas purus in blandit. Curabitur vulputate,
+                    ligula lacinia scelerisque tempor, lacus lacus ornare ante,
+                    ac egestas est urna sit amet arcu. Class aptent taciti
+                    sociosqu ad litora torquent per conubia.
+                  </small>
+                </TabsItem>
+                <TabsItem value="tab-4" label="Revenue detail">
+                  <small>
+                    Nulla quis tortor orci. Etiam at risus et justo dignissim.
+                  </small>
+                </TabsItem>
+              </Tabs>
+            </DetailPanel>
+          )}
         </StackItem>
       </>
     );
