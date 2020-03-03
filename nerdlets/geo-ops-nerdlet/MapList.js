@@ -142,7 +142,12 @@ export default class MapList extends PureComponent {
               <GridItem columnSpan={3}>
                 <div
                   className="add-map-item-button"
-                  onClick={() => navigation.router({ to: 'createMap' })}
+                  onClick={() =>
+                    navigation.router({
+                      to: 'createMap',
+                      state: { selectedMap: null, activeStep: 1 }
+                    })
+                  }
                 >
                   <svg
                     width="48"

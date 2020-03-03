@@ -242,6 +242,23 @@ export default class ViewMap extends Component {
     );
   }
 
+  renderEmptyState() {
+    const { map, navigation } = this.props;
+    return (
+      <EmptyState
+        heading="No map locations found"
+        description=""
+        buttonText="Add Locations"
+        buttonOnClick={() => {
+          navigation.router({
+            to: 'createMap',
+            state: { selectedMap: map, activeStep: 2 }
+          });
+        }}
+      />
+    );
+  }
+
   renderGridItems({
     mapLocations = [],
     entities = [],
@@ -274,9 +291,7 @@ export default class ViewMap extends Component {
             </>
           )}
 
-          {!hasMapLocations && (
-            <EmptyState heading="No map locations found" description="" />
-          )}
+          {!hasMapLocations && this.renderEmptyState()}
         </StackItem>
         <StackItem grow className="primary-content-container">
           {hasMapLocations && (
@@ -504,7 +519,7 @@ export default class ViewMap extends Component {
                     </>
                   )}
 
-                  {!map && <EmptyState />}
+                  {!map && this.renderEmptyState()}
                 </>
               );
             }}
