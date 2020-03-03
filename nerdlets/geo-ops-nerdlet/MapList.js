@@ -5,8 +5,6 @@ import { Button, Grid, GridItem, StackItem } from 'nr1';
 import Toolbar from '../shared/components/Toolbar';
 import MapItem from '../shared/components/MapItem';
 
-import { deleteMap } from '../shared/services/map';
-
 import { latLngToTile } from '../shared/utils';
 
 const RightToolbar = ({ navigation }) => {
@@ -51,16 +49,6 @@ export default class MapList extends PureComponent {
     if (prevProps.maps !== this.props.maps) {
       this.setState({ maps: this.props.maps });
     }
-  }
-
-  async deleteMap({ map }) {
-    try {
-      await deleteMap({ map });
-    } catch (e) {
-      console.log(e);
-    }
-
-    this.props.onMapDelete({ map });
   }
 
   render() {
