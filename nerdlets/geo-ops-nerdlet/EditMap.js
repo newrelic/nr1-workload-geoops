@@ -54,6 +54,7 @@ const RightToolbar = ({ navigation }) => {
         <Button
           type={Button.TYPE.PRIMARY}
           onClick={() => navigation.router({ to: 'createMap' })}
+          iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
         >
           New Map
         </Button>
