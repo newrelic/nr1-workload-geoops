@@ -5,6 +5,9 @@
 }
 
 .view-map-primary-grid {
+    position: relative;
+    overflow: hidden;
+    
     .locations-table-stack-item {
         width: 340px;
         height: 100%;

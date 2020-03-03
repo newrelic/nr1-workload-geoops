@@ -202,7 +202,8 @@ export default class ViewMap extends Component {
   openDetailPanel(mapLocation) {
     this.setState({
       detailPanelClosed: false,
-      activeMapLocation: mapLocation
+      activeMapLocation: mapLocation,
+      detailPanelMinimized: false
     });
   }
 
