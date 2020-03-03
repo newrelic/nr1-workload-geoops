@@ -37,19 +37,18 @@ export const getMaps = ({ accountId }) => {
 };
 
 // Fetch single map
-export const getMap = ({ accountId, guid }) => {
+export const getMap = ({ accountId, documentId }) => {
   return AccountStorageQuery.query({
     collection: MAP_COLLECTION_ID,
-    accountId: accountId,
-    documentId: guid
+    accountId,
+    documentId
   });
 };
 
 // Create or Update a map
-export const writeMap = ({ accountId, document }) => {
-  if (!document.guid) {
+export const writeMap = ({ accountId, documentId, document }) => {
+  if (!documentId) {
     throw new Error('No map guid provided');
-    // document.guid = uuid();
   }
 
   document.accountId = accountId;
@@ -61,14 +60,13 @@ export const writeMap = ({ accountId, document }) => {
     accountId,
     actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
     collection: MAP_COLLECTION_ID,
-    documentId: document.guid,
+    documentId,
     document
   });
 };
 
 // Delete a map
 export const deleteMap = ({ map }) => {
-  // TO DO - Remove static origami account id
   const { accountId, guid } = map;
 
   if (!accountId) {
