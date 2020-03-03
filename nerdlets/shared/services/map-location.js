@@ -25,11 +25,11 @@ export const getMapLocations = ({
 };
 
 // Fetch single map
-export const getMapLocation = ({ accountId, guid }) => {
+export const getMapLocation = ({ accountId, documentId, mapGuid }) => {
   return AccountStorageQuery.query({
-    collection: MAP_LOCATION_COLLECTION_ID,
-    accountId: accountId,
-    documentId: guid
+    collection: mapLocationCollection({ mapGuid }), // Stored per-map
+    accountId,
+    documentId
   });
 };
 
