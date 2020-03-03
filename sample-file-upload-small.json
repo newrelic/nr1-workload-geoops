@@ -5,6 +5,7 @@
       "externalId": 29,
       "title": "Elizabeth, NJ",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.6751301",
         "lng": "-74.1697393"
@@ -15,7 +16,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -23,6 +23,7 @@
       "externalId": 30,
       "title": "Paramus, NJ",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.9245349",
         "lng": "-74.07328610000002"
@@ -33,7 +34,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -41,6 +41,7 @@
       "externalId": 31,
       "title": "Las Vegas, NV",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "36.0689264",
         "lng": "-115.280825"
@@ -51,7 +52,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -59,6 +59,7 @@
       "externalId": 32,
       "title": "Brooklyn, NY",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.67197549999999",
         "lng": "-74.01146080000001"
@@ -69,7 +70,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -77,6 +77,7 @@
       "externalId": 33,
       "title": "Long Island, NY",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.7741334",
         "lng": "-73.53059309999998"
@@ -87,7 +88,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -95,6 +95,7 @@
       "externalId": 34,
       "title": "Upper East Side, NY",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.76177",
         "lng": "-73.96618"
@@ -105,7 +106,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -113,6 +113,7 @@
       "externalId": 35,
       "title": "Columbus, OH",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.1485005",
         "lng": "-82.96761170000002"
@@ -123,7 +124,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -131,6 +131,7 @@
       "externalId": 36,
       "title": "West Chester, OH",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.3154678",
         "lng": "-84.43399769999996"
@@ -141,7 +142,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -149,6 +149,7 @@
       "externalId": 37,
       "title": "Portland, OR",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "45.5712882",
         "lng": "-122.55351080000003"
@@ -159,7 +160,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -167,6 +167,7 @@
       "externalId": 38,
       "title": "Conshohocken, PA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.0951758",
         "lng": "-75.3063721"
@@ -177,7 +178,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -185,6 +185,7 @@
       "externalId": 39,
       "title": "Pittsburgh, PA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.4518981",
         "lng": "-80.16799249999997"
@@ -195,7 +196,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -203,6 +203,7 @@
       "externalId": 40,
       "title": "South Philadelphia, PA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.9170912",
         "lng": "-75.141859"
@@ -213,7 +214,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     },
     {
@@ -221,6 +221,7 @@
       "externalId": 41,
       "title": "Memphis, TN",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "35.1899914",
         "lng": "-89.79930250000001"
@@ -231,7 +232,6 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "region": "USA",
       "query": ""
     }
   ]

@@ -5,11 +5,11 @@
       "externalId": 1,
       "title": "Tempe, AZ",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "33.3406452",
         "lng": "-111.9701824"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -17,11 +17,11 @@
       "externalId": 2,
       "title": "Burbank, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "34.174558",
         "lng": "-118.303142"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -29,11 +29,11 @@
       "externalId": 3,
       "title": "Carson, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "33.84179776428456",
         "lng": "-118.2603120803833"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -41,11 +41,11 @@
       "externalId": 4,
       "title": "Costa Mesa, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "33.69092406434901",
         "lng": " -117.91640996932983"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -53,11 +53,11 @@
       "externalId": 5,
       "title": "Covina, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "34.074221611710605",
         "lng": "-117.87920236587524"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -65,11 +65,11 @@
       "externalId": 6,
       "title": "East Palo Alto, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "37.4610567",
         "lng": "-122.13937399999998"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -77,11 +77,11 @@
       "externalId": 7,
       "title": "Emeryville, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "37.8310722",
         "lng": "-122.29233629999999"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -89,11 +89,11 @@
       "externalId": 8,
       "title": "San Diego, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "32.7800402",
         "lng": "-117.12639760000002"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -101,11 +101,11 @@
       "externalId": 9,
       "title": "West Sacramento, CA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "38.5866091",
         "lng": "-121.5535246"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -113,11 +113,11 @@
       "externalId": 10,
       "title": "Centennial, CO",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.571952",
         "lng": "-104.87504189999999"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -125,11 +125,11 @@
       "externalId": 11,
       "title": "New Haven, CT",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "41.2961069",
         "lng": "-72.9198649"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -137,11 +137,11 @@
       "externalId": 12,
       "title": "Jacksonville, FL",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "30.332184",
         "lng": "-81.655651"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -149,11 +149,11 @@
       "externalId": 13,
       "title": "Miami, FL",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "25.7915476",
         "lng": "-80.38382109999998"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -161,11 +161,11 @@
       "externalId": 14,
       "title": "Orlando, FL",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "28.4830125",
         "lng": "-81.42728799999998"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -173,11 +173,11 @@
       "externalId": 15,
       "title": "Sunrise, FL",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "26.121522",
         "lng": "-80.33178680000003"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -185,11 +185,11 @@
       "externalId": 16,
       "title": "Tampa, FL",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "27.9539394",
         "lng": "-82.43173660000002"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -197,11 +197,11 @@
       "externalId": 17,
       "title": "Atlanta, GA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "33.7887958",
         "lng": "-84.40527850000001"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -209,11 +209,11 @@
       "externalId": 18,
       "title": "Bolingbrook, IL",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "41.7279305",
         "lng": "-88.03783240000001"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -221,11 +221,11 @@
       "externalId": 19,
       "title": "Schaumburg, IL",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "42.0568612",
         "lng": "-88.03617150000002"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -233,11 +233,11 @@
       "externalId": 20,
       "title": "Fishers, IN",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.954334",
         "lng": "-86.01207590000001"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -245,11 +245,11 @@
       "externalId": 21,
       "title": "Merriam, KS",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.019697",
         "lng": "-94.69092409999996"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -257,11 +257,11 @@
       "externalId": 22,
       "title": "Stoughton, MA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "42.1375763",
         "lng": "-71.0685603"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -269,11 +269,11 @@
       "externalId": 23,
       "title": "Baltimore, MD",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.3753398",
         "lng": "-76.4616532"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -281,11 +281,11 @@
       "externalId": 24,
       "title": "College Park, MD",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.0208564",
         "lng": "-76.92850609999999"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -293,11 +293,11 @@
       "externalId": 25,
       "title": "Canton, MI",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "42.324824",
         "lng": "-83.45166189999998"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -305,11 +305,11 @@
       "externalId": 26,
       "title": "Twin Cities, MN",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "44.8584007",
         "lng": "-93.24482769999997"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -317,11 +317,11 @@
       "externalId": 27,
       "title": "St. Louis, MO",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "38.6331482",
         "lng": "-90.24403719999998"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -329,11 +329,11 @@
       "externalId": 28,
       "title": "Charlotte, NC",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "35.29339179999999",
         "lng": "-80.76505550000002"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -341,11 +341,11 @@
       "externalId": 29,
       "title": "Elizabeth, NJ",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.6751301",
         "lng": "-74.1697393"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -353,11 +353,11 @@
       "externalId": 30,
       "title": "Paramus, NJ",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.9245349",
         "lng": "-74.07328610000002"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -365,11 +365,11 @@
       "externalId": 31,
       "title": "Las Vegas, NV",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "36.0689264",
         "lng": "-115.280825"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -377,11 +377,11 @@
       "externalId": 32,
       "title": "Brooklyn, NY",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.67197549999999",
         "lng": "-74.01146080000001"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -389,11 +389,11 @@
       "externalId": 33,
       "title": "Long Island, NY",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.7741334",
         "lng": "-73.53059309999998"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -401,11 +401,11 @@
       "externalId": 34,
       "title": "Upper East Side, NY",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.76177",
         "lng": "-73.96618"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -413,11 +413,11 @@
       "externalId": 35,
       "title": "Columbus, OH",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.1485005",
         "lng": "-82.96761170000002"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -425,11 +425,11 @@
       "externalId": 36,
       "title": "West Chester, OH",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.3154678",
         "lng": "-84.43399769999996"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -437,11 +437,11 @@
       "externalId": 37,
       "title": "Portland, OR",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "45.5712882",
         "lng": "-122.55351080000003"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -449,11 +449,11 @@
       "externalId": 38,
       "title": "Conshohocken, PA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.0951758",
         "lng": "-75.3063721"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -461,11 +461,11 @@
       "externalId": 39,
       "title": "Pittsburgh, PA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.4518981",
         "lng": "-80.16799249999997"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -473,11 +473,11 @@
       "externalId": 40,
       "title": "South Philadelphia, PA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "39.9170912",
         "lng": "-75.141859"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -485,11 +485,11 @@
       "externalId": 41,
       "title": "Memphis, TN",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "35.1899914",
         "lng": "-89.79930250000001"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -497,11 +497,11 @@
       "externalId": 42,
       "title": "Frisco, TX",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "33.093868",
         "lng": "-96.82122070000003"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -509,11 +509,11 @@
       "externalId": 43,
       "title": "Grand Prairie, TX",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "32.689824",
         "lng": "-97.02212"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -521,11 +521,11 @@
       "externalId": 44,
       "title": "Houston, TX",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "29.7854269",
         "lng": "-95.4722835"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -533,11 +533,11 @@
       "externalId": 45,
       "title": "Live Oak, TX",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "28.335474",
         "lng": "-98.129793"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -545,11 +545,11 @@
       "externalId": 46,
       "title": "Round Rock, TX",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "30.5569728",
         "lng": "-97.69026209999998"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -557,11 +557,11 @@
       "externalId": 47,
       "title": "Draper, UT",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "40.508693",
         "lng": "-111.893237"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -569,11 +569,11 @@
       "externalId": 48,
       "title": "Norfolk, VA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "36.87444",
         "lng": "-76.20061"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -581,11 +581,11 @@
       "externalId": 49,
       "title": "Woodbridge, VA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "38.6432536",
         "lng": "-77.289176"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -593,11 +593,11 @@
       "externalId": 50,
       "title": "Renton, WA",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "47.4424256",
         "lng": "-122.22569240000001"
       },
-      "region": "USA",
       "query": ""
     },
     {
@@ -605,6 +605,7 @@
       "externalId": 51,
       "title": "Oak Creek, WI",
       "location": {
+        "region": "USA",
         "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
         "lat": "42.88585",
         "lng": "-87.863136"
