@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Stack, StackItem, Icon } from 'nr1';
+import { Button, Stack, StackItem, Icon, Modal, HeadingText, Toast } from 'nr1';
+import { startCase } from 'lodash';
 
 import GeoMap from '../../geo-ops-nerdlet/geo-map';
 
@@ -17,7 +18,9 @@ export default class MapItem extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      settingsPopoverActive: false
+      settingsPopoverActive: false,
+      deleteModalActive: false,
+      deleteModalType: 'map'
     };
 
     this.handleSettingsPopover = this.handleSettingsPopover.bind(this);
@@ -26,10 +29,14 @@ export default class MapItem extends PureComponent {
   async deleteMap({ map }) {
     try {
       await deleteMap({ map });
+      Toast.showToast({
+        title: `${startCase(this.state.deleteModalType)} deleted`,
+        description: `The map "${map.title}" has been permantely deleted`,
+        type: Toast.TYPE.NORMAL
+      });
     } catch (e) {
       console.log(e);
     }
-
     this.props.onMapDelete({ map });
   }
 
@@ -38,6 +45,26 @@ export default class MapItem extends PureComponent {
       settingsPopoverActive: !prevState.settingsPopoverActive
     }));
     e.stopPropagation();
+  }
+
+  handleDeleteMapConfirmationButton(e, map) {
+    e.stopPropagation();
+    this.setState({ deleteModalActive: false });
+    this.deleteMap({ map });
+  }
+
+  handleDeleteLocationsConfirmationButton(e, map) {
+    e.stopPropagation();
+    this.setState({ deleteModalActive: false });
+    deleteMapLocationCollection({
+      accountId: map.accountId,
+      mapGuid: map.guid
+    });
+    Toast.showToast({
+      title: `${startCase(this.state.deleteModalType)} deleted`,
+      description: `All locations from the map "${map.title}" have been deleted.`,
+      type: Toast.TYPE.NORMAL
+    });
   }
 
   renderSettingsButton() {
@@ -86,7 +113,10 @@ export default class MapItem extends PureComponent {
             className="service-settings-dropdown-item destructive"
             onClick={e => {
               e.stopPropagation();
-              this.deleteMap({ map });
+              this.setState({
+                deleteModalActive: true,
+                deleteModalType: 'map'
+              });
             }}
           >
             <Icon
@@ -99,9 +129,9 @@ export default class MapItem extends PureComponent {
             className="service-settings-dropdown-item destructive"
             onClick={e => {
               e.stopPropagation();
-              deleteMapLocationCollection({
-                accountId: map.accountId,
-                mapGuid: map.guid
+              this.setState({
+                deleteModalActive: true,
+                deleteModalType: 'locations'
               });
             }}
           >
@@ -118,6 +148,7 @@ export default class MapItem extends PureComponent {
 
   render() {
     const { map, navigation } = this.props;
+    const { deleteModalActive, deleteModalType } = this.state;
     return (
       <div
         className="map-grid-item"
@@ -160,6 +191,52 @@ export default class MapItem extends PureComponent {
             {this.renderSettingsButton(map, navigation)}
           </StackItem>
         </Stack>
+        <Modal
+          hidden={!deleteModalActive}
+          onClose={() => this.setState({ deleteModalActive: false })}
+        >
+          <HeadingText type={HeadingText.TYPE.HEADING_2}>
+            Are you sure you want to delete{' '}
+            {deleteModalType === 'map' ? 'this map' : 'all locations'}?
+          </HeadingText>
+          <p>
+            This action cannot be undone. Please confirm whether or not you want
+            to delete{' '}
+            {deleteModalType === map
+              ? 'this map'
+              : 'all locations from this map'}
+            .
+          </p>
+
+          <Button
+            type={Button.TYPE.PRIMARY}
+            onClick={e => {
+              e.stopPropagation();
+              this.setState({ deleteModalActive: false });
+            }}
+          >
+            Cancel
+          </Button>
+          {deleteModalType === 'map' ? (
+            <Button
+              type={Button.TYPE.DESTRUCTIVE}
+              onClick={e => this.handleDeleteMapConfirmationButton(e, map)}
+              iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__TRASH}
+            >
+              Delete {deleteModalType}
+            </Button>
+          ) : (
+            <Button
+              type={Button.TYPE.DESTRUCTIVE}
+              onClick={e =>
+                this.handleDeleteLocationsConfirmationButton(e, map)
+              }
+              iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__TRASH}
+            >
+              Delete {deleteModalType}
+            </Button>
+          )}
+        </Modal>
       </div>
     );
   }

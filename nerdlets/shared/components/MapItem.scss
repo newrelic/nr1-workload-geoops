@@ -139,3 +139,26 @@ h6.map-grid-item-subtitle {
 .service-settings-button-container {
     position: relative;
 }
+
+[class*='wnd-InnerModal'] {
+  height: 100%;
+  background-color: #fff;
+}
+
+[class*='InnerModal-content'] {
+  [class*='Text--type-heading'] {
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000d0d;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  button {
+    margin-right: 8px;
+  }
+}
