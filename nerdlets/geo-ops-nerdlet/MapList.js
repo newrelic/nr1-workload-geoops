@@ -9,39 +9,6 @@ import { deleteMap } from '../shared/services/map';
 
 import { latLngToTile } from '../shared/utils';
 
-const LeftToolbar = ({ navigation }) => {
-  return (
-    <>
-      <StackItem className="toolbar-item has-separator">
-        <Button
-          type={Button.TYPE.PLAIN}
-          iconType={Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
-          onClick={() => navigation.router({ to: 'viewMap' })}
-        >
-          Back to main view
-        </Button>
-      </StackItem>
-      <StackItem className="toolbar-item has-separator">
-        <Button
-          type={Button.TYPE.PLAIN}
-          onClick={() =>
-            navigation.router({
-              to: 'createMap',
-              state: { selectedMap: null, activeStep: 1 }
-            })
-          }
-        >
-          Guided Setup
-        </Button>
-      </StackItem>
-      {/* TO DO - Filtering maps by Account/Region/etc. */}
-    </>
-  );
-};
-LeftToolbar.propTypes = {
-  navigation: PropTypes.object
-};
-
 const RightToolbar = ({ navigation }) => {
   return (
     <>
@@ -128,10 +95,7 @@ export default class MapList extends PureComponent {
 
     return (
       <>
-        <Toolbar
-          left={<LeftToolbar navigation={navigation} />}
-          right={<RightToolbar navigation={navigation} />}
-        />
+        <Toolbar right={<RightToolbar navigation={navigation} />} />
 
         <Grid
           className="primary-grid map-list-primary-grid"
