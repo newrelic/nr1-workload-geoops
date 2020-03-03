@@ -88,17 +88,6 @@ export default class MapLocationTable extends Component {
 
     return (
       <>
-        {/* Empty state */}
-        {!hasData && (
-          <div className="location-table">
-            <EmptyState
-              heading="Location List"
-              description="Add locations on the left"
-              callToAction={false}
-            />
-          </div>
-        )}
-
         {hasData && (
           <ToolkitProvider
             keyField="document.guid"
