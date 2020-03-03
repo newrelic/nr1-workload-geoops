@@ -53,7 +53,7 @@ const mapByGuid = ({ data }) => {
 const LeftToolbar = ({ maps, map, navigation }) => {
   return (
     <>
-      <StackItem className="toolbar-item has-separator">
+      <StackItem className="toolbar-item">
         <Dropdown label="Map" title={map ? map.title : 'Choose a map'}>
           {maps.map(m => {
             if (!m.document.guid) {
