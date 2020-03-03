@@ -445,32 +445,14 @@ export default class CreateMap extends React.PureComponent {
             )}
           </GridItem>
           <GridItem className="primary-content-container" columnSpan={6}>
-            {activeStep.order === 1 && (
-              <div className="leaflet-wrapper">
-                <Map
-                  center={mapCenter}
-                  zoomControl
-                  zoom={mapZoomLevel}
-                  onClick={this.onMapClick}
-                >
-                  <TileLayer
-                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                </Map>
-              </div>
-            )}
-            {(activeStep.order === 2 || activeStep.order === 3) && map && (
-              <GeoMap
-                accountId={accountId}
-                map={map}
-                mapLocations={mapLocations}
-                onMarkerClick={marker => console.log(marker)}
-                onMapClick={this.onMapClick}
-                center={mapCenter}
-                zoom={mapZoomLevel}
-              />
-            )}
+            <GeoMap
+              map={map}
+              mapLocations={mapLocations}
+              onMarkerClick={marker => console.log(marker)}
+              onMapClick={this.onMapClick}
+              center={mapCenter}
+              zoom={mapZoomLevel}
+            />
           </GridItem>
         </Grid>
       </>
