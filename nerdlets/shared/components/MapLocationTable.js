@@ -40,22 +40,30 @@ export default class MapLocationTable extends PureComponent {
   transformMapLocations() {
     const { mapLocations = [], entities } = this.props;
 
-    return mapLocations.map(ml => {
+    return mapLocations.reduce((previousValue, ml) => {
       const { document } = ml;
       const { externalId = '', location } = document;
       const { region = '' } = location;
 
+      if (!document.guid || !region) {
+        console.warn('Map Location missing data: ');
+        console.warn(document);
+        return previousValue;
+      }
+
       const status = this.calculateStatus(document);
       // const lastIncident = entities.findLastIncident;
 
-      return {
+      previousValue.push({
         status,
         favorite: false,
         externalId,
         lastIncident: '2/4/20 10:54 AM', // TO DO - does entity outline give us this?
         region
-      };
-    });
+      });
+
+      return previousValue;
+    }, []);
   }
 
   severityStatusToWeight(value) {
@@ -211,11 +219,12 @@ export default class MapLocationTable extends PureComponent {
 
   render() {
     const { SearchBar } = Search;
+    const data = this.transformMapLocations();
 
     return (
       <ToolkitProvider
         keyField="externalId"
-        data={this.transformMapLocations()}
+        data={data}
         columns={this.columns()}
         search
       >
