@@ -1,6 +1,14 @@
 div.getting-started-primary-grid {
     overflow: hidden;
     height: 100%;
+
+    button[type="submit"] {
+        display: none;
+    }
+    
+    .map-entities-to-locations-container button[type="submit"] {
+        display: block;
+    }
 }
 
 .temporary-all-maps-btn {
