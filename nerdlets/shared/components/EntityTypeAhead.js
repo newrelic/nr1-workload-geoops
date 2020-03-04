@@ -51,23 +51,42 @@ export default class EntityTypeAhead extends React.PureComponent {
         ...provided,
         transform: 'scale(.7)'
       }),
-      control: provided => ({
-        ...provided,
+      control: (provided, state) => ({
+        display: 'flex',
+        backgroundColor: '#fff',
         borderRadius: '2px',
-        borderColor: '#d5d7d7'
+        border: state.isFocused ? '1px solid #8e9494' : '1px solid #d5d7d7',
+        boxShadow: state.isFocused ? 'none' : 'none',
+        '&:hover': {
+          cursor: 'text'
+        }
       }),
-      multiValue: () => ({
+      multiValue: (provided, state) => ({
         display: 'flex',
         alignItems: 'stretch',
         height: '24px',
+        marginRight: '4px',
         borderRadius: '3px',
         backgroundColor: '#F0FCFC',
-        border: '1px solid #70ccd2'
+        border: state.isFocused ? '1px solid #70ccd2' : '1px solid #70ccd2'
       }),
       multiValueLabel: () => ({
         padding: '0 8px',
         color: '#005054',
-        fontSize: '11px'
+        fontSize: '11px',
+        lineHeight: '21px'
+      }),
+      option: (provided, state) => ({
+        ...provided,
+        backgroundColor: state.isFocused ? '#d9f0f0' : 'transparent',
+        '&:hover': {
+          backgroundColor: '#d9f0f0',
+          color: '#005054'
+        },
+        '&:active': {
+          backgroundColor: '#007e8a',
+          color: '#fff'
+        }
       })
     };
 
