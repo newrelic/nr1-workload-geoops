@@ -94,9 +94,23 @@ export default class index extends PureComponent {
 
   onMapDelete({ map }) {
     this.setState(prevState => {
-      const newMaps = prevState.maps.filter(m => map.guid !== m.document.guid);
+      const filteredMaps = prevState.maps.filter(
+        m => map.guid !== m.document.guid
+      );
+      const newMaps = cloneDeep(filteredMaps);
+
+      if (newMaps.length > 0) {
+        return {
+          maps: newMaps
+        };
+      }
+
       return {
-        maps: cloneDeep(newMaps)
+        maps: newMaps,
+        pages: {
+          ...initialPages,
+          emptyState: true
+        }
       };
     });
   }
