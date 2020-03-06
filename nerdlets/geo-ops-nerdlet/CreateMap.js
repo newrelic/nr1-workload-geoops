@@ -13,8 +13,7 @@ import { nerdStorageRequest } from '../shared/utils';
 import {
   MAP_UI_SCHEMA,
   MAP_JSON_SCHEMA,
-  MAP_DEFAULTS,
-  PACKAGE_UUID
+  MAP_DEFAULTS
 } from '../shared/constants';
 
 import { getMap, writeMap } from '../shared/services/map';
@@ -61,7 +60,7 @@ export default class CreateMap extends React.PureComponent {
       mapLocationsLoading: false,
       mapLocationsLoadingErrors: [],
       selectedLatLng: false,
-      mapZoomLevel: 4,
+      mapZoomLevel: props.map && props.map.zoom ? props.map.zoom : 4,
       mapCenter: [39.5, -98.35],
       mapFormData: {}
     };
@@ -90,6 +89,15 @@ export default class CreateMap extends React.PureComponent {
       this.props.hasNewLocations
     ) {
       this.loadMapLocations();
+    }
+
+    if (
+      this.props.map &&
+      this.props.map.zoom &&
+      prevProps.map.zoom !== this.props.map.zoom
+    ) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ mapZoomLevel: this.props.map.zoom });
     }
   }
 
@@ -456,6 +464,12 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
+                        onClick={() =>
+                          navigation.router({
+                            to: 'viewMap',
+                            state: { selectedMap: map }
+                          })
+                        }
                       >
                         Continue
                       </Button>

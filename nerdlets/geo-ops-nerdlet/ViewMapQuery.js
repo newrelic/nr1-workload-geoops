@@ -172,7 +172,7 @@ export default class ViewMapQuery extends React.PureComponent {
       ml.document.alertViolations = alertViolations;
       ml.document.recentViolations = recentAlertViolations;
 
-      console.log(ml.document);
+      // console.log(ml.document);
 
       return ml;
     });

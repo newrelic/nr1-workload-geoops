@@ -75,8 +75,7 @@ export default class MapLocationData extends React.Component {
   render() {
     const { map, mapLocations } = this.props;
     const { selectedMapLocation } = this.state;
-    console.log(selectedMapLocation);
-    const accountId = map.document.accountId;
+    const accountId = map.accountId;
 
     const formData = selectedMapLocation
       ? { ...selectedMapLocation.document }
