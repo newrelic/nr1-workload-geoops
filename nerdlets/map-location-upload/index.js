@@ -4,6 +4,7 @@ import { NerdletStateContext, navigation } from 'nr1';
 import { EmptyState } from '@newrelic/nr1-community';
 
 import MapLocationFilesUpload from '../geo-ops-nerdlet/MapLocationFilesUpload';
+import { PACKAGE_UUID } from '../shared/constants';
 
 export default class MapLocationUploadNerdlet extends React.Component {
   constructor(props) {
@@ -38,16 +39,14 @@ export default class MapLocationUploadNerdlet extends React.Component {
     this.setState({ files: Array.from(fileList) });
   }
 
-  closeFileUploadNerdlet({ mapGuid, accountId }) {
+  closeFileUploadNerdlet() {
     navigation.openLauncher(
       {
-        id: '40e251de-1278-49dd-9ce0-9a09006e79f4.geo-ops',
+        id: `${PACKAGE_UUID}.geo-ops`,
         nerdlet: {
-          id: '40e251de-1278-49dd-9ce0-9a09006e79f4.geo-ops-nerdlet',
+          id: `${PACKAGE_UUID}.geo-ops-nerdlet`,
           urlState: {
-            accountId,
-            mapGuid,
-            reload: true
+            hasNewLocations: true
           }
         }
       },
@@ -97,9 +96,7 @@ export default class MapLocationUploadNerdlet extends React.Component {
                     mapGuid={mapGuid}
                     files={files}
                     onAddFileMapLocations={this.onAddFileMapLocations}
-                    onClose={() =>
-                      this.closeFileUploadNerdlet({ mapGuid, accountId })
-                    }
+                    onClose={() => this.closeFileUploadNerdlet()}
                   />
                 )}
               </>

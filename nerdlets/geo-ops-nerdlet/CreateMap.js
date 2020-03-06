@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import uuid from 'uuid/v4';
-import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
+import { Button, Grid, GridItem, navigation, Stack, StackItem } from 'nr1';
 import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import DefineLocations from './DefineLocations';
@@ -14,7 +13,8 @@ import { nerdStorageRequest } from '../shared/utils';
 import {
   MAP_UI_SCHEMA,
   MAP_JSON_SCHEMA,
-  MAP_DEFAULTS
+  MAP_DEFAULTS,
+  PACKAGE_UUID
 } from '../shared/constants';
 
 import { getMap, writeMap } from '../shared/services/map';
@@ -44,7 +44,7 @@ export default class CreateMap extends React.PureComponent {
     map: PropTypes.object,
     navigation: PropTypes.object,
     activeStep: PropTypes.number,
-    reload: PropTypes.bool
+    hasNewLocations: PropTypes.bool
   };
 
   constructor(props) {
@@ -85,8 +85,10 @@ export default class CreateMap extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.reload !== this.props.reload && this.props.reload) {
-      console.log('Reloading map locations');
+    if (
+      prevProps.hasNewLocations !== this.props.hasNewLocations &&
+      this.props.hasNewLocations
+    ) {
       this.loadMapLocations();
     }
   }

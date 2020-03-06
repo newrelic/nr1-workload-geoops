@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { NerdletStateContext, Spinner } from 'nr1';
+import { navigation, NerdletStateContext, Spinner } from 'nr1';
 
 import cloneDeep from 'lodash.clonedeep';
 
@@ -12,6 +12,7 @@ import EditMap from './EditMap';
 
 import { nerdStorageRequest } from '../shared/utils';
 import { getMaps } from '../shared/services/map';
+import { PACKAGE_UUID } from '../shared/constants';
 
 const initialPages = {
   emptyState: false,
@@ -149,7 +150,21 @@ export default class index extends PureComponent {
       return (
         <NerdletStateContext.Consumer>
           {nerdletState => {
-            const { reload = false } = nerdletState;
+            const { hasNewLocations = false } = nerdletState;
+
+            // Reset the urlState
+            if (hasNewLocations) {
+              navigation.openLauncher(
+                {
+                  id: `${PACKAGE_UUID}.geo-ops`,
+                  nerdlet: {
+                    id: `${PACKAGE_UUID}.geo-ops-nerdlet`,
+                    urlState: {}
+                  }
+                },
+                { replaceHistory: true }
+              );
+            }
 
             return (
               <CreateMap
@@ -159,7 +174,7 @@ export default class index extends PureComponent {
                 navigation={{
                   router: this.route
                 }}
-                reload={reload || null}
+                hasNewLocations={hasNewLocations || null}
               />
             );
           }}
