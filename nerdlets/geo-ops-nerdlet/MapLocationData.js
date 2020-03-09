@@ -29,8 +29,44 @@ export default class MapLocationData extends React.Component {
 
   constructor(props) {
     super(props);
+
+    const schemaProperties = ['guid', 'entities', 'query'];
+    const schema = (() => {
+      const schema = cloneDeep(MAP_LOCATION_JSON_SCHEMA);
+      schema.properties = schemaProperties.reduce(
+        (previousValue, currentValue) => {
+          if (schema.properties[currentValue]) {
+            previousValue[currentValue] = schema.properties[currentValue];
+          }
+          return previousValue;
+        },
+        {}
+      );
+      return schema;
+    })();
+
+    /*
+     * Customize react-jsonschema-form ui
+     */
+    const uiSchema = cloneDeep(MAP_LOCATION_UI_SCHEMA);
+    // uiSchema.entities = { 'ui:field': EntitySearchFormInput };
+    uiSchema.entities = { 'ui:field': EntityTypeAhead };
+    uiSchema.location = {
+      ...uiSchema.location,
+      lat: {
+        ...uiSchema.location.lat,
+        'ui:widget': FloatInput
+      },
+      lng: {
+        ...uiSchema.location.lng,
+        'ui:widget': FloatInput
+      }
+    };
+
     this.state = {
-      selectedMapLocation: null
+      selectedMapLocation: null,
+      schema,
+      uiSchema
     };
 
     this.onMapLocationSelect = this.onMapLocationSelect.bind(this);
@@ -74,30 +110,14 @@ export default class MapLocationData extends React.Component {
 
   render() {
     const { map, mapLocations } = this.props;
-    const { selectedMapLocation } = this.state;
+    const { schema, selectedMapLocation, uiSchema } = this.state;
     const accountId = map.accountId;
+
+    console.log(selectedMapLocation);
 
     const formData = selectedMapLocation
       ? { ...selectedMapLocation.document }
       : {};
-
-    /*
-     * Customize react-jsonschema-form ui
-     */
-    const uiSchema = cloneDeep(MAP_LOCATION_UI_SCHEMA);
-    // uiSchema.entities = { 'ui:field': EntitySearchFormInput };
-    uiSchema.entities = { 'ui:field': EntityTypeAhead };
-    uiSchema.location = {
-      ...uiSchema.location,
-      lat: {
-        ...uiSchema.location.lat,
-        'ui:widget': FloatInput
-      },
-      lng: {
-        ...uiSchema.location.lng,
-        'ui:widget': FloatInput
-      }
-    };
 
     /*
      * Calculate progress bar
@@ -128,13 +148,6 @@ export default class MapLocationData extends React.Component {
           location
         </p>
 
-        {/* 1 */}
-        {/* Map location list with an onSelect callback */}
-        {/* <MapLocationList onSelect={this.onMapLocationSelect} */}
-
-        {/* 2 */}
-        {/* Entity Search/Associate component with a callback for onChange/onSelect etc. */}
-        {/* <RelatedEntities entities={selectMapLocation.relatedEntities} onChange={this.onRelatedEntityChange}/> */}
         <div className="map-entities-to-locations-container">
           <Stack fullHeight className="map-entities-header">
             <StackItem className="map-entities-progress-bar-container">
@@ -213,7 +226,7 @@ export default class MapLocationData extends React.Component {
           </ul>
           {selectedMapLocation && (
             <JsonSchemaForm
-              schema={MAP_LOCATION_JSON_SCHEMA}
+              schema={schema}
               uiSchema={uiSchema}
               defaultValues={false}
               formData={formData}
