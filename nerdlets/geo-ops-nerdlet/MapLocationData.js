@@ -115,6 +115,10 @@ export default class MapLocationData extends React.Component {
       0
     );
     const totalCount = mapLocations.length;
+    const percentageCompleted = `${(
+      (completedCount / totalCount) *
+      100
+    ).toFixed(0)}%`;
 
     return (
       <>
@@ -135,7 +139,10 @@ export default class MapLocationData extends React.Component {
           <Stack fullHeight className="map-entities-header">
             <StackItem className="map-entities-progress-bar-container">
               <div className="map-entities-progress-bar">
-                <div className="map-entities-progress-bar-fill" />
+                <div
+                  className="map-entities-progress-bar-fill"
+                  style={{ width: percentageCompleted }}
+                />
               </div>
               <span className="map-entities-progress-bar-label">
                 {completedCount} of {totalCount} completed
