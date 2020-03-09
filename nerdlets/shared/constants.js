@@ -12,6 +12,18 @@ import cloneDeep from "lodash.clonedeep";
 import uuid from "uuid/v4";
 import { FormInputFullWidth, FormInputTwoColumn, FormInputThreeColumn } from "./components/react-jsonschema-form"
 
+/*
+ * TO DO - interrogate the need to use the UUID at all
+
+ Documentation states:
+
+ > Id of the nerdlet. You can specify the full nerdlet id: <nerdpack-id>.<nerdlet-id> (i.e. "8ba28fe4-5362-4f7f-8f9a-4b8c6c39d8a6.my-nerdlet") or simply <nerdlet-id> (i.e. "my-nerdlet"). In the latter case, the nerdlet will be treated as if it belongs to the current nerdpack, meaning that the nerdpack id is automatically added by the platform.
+ 
+ Which leads me to believe we wouldn't need to specify the UUID, but we seemingly do.
+*/
+
+export const PACKAGE_UUID = "40e251de-1278-49dd-9ce0-9a09006e79f4";
+
 const LAT_LNG_SCHEMA = {
   "lat": {
     "type": "number",
