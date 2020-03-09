@@ -12,6 +12,15 @@ import { mapLocationCollection } from '../constants';
  */
 export const formatMapLocation = mapLocation => {
   const i = mapLocation;
+
+  if (!mapLocation || !mapLocation.location) {
+    console.warn(
+      "Attempt to format MapLocation's lat/lng but no location data found"
+    );
+    console.debug(mapLocation);
+    return mapLocation;
+  }
+
   const lat = i.location.lat;
   const lng = i.location.lng;
 
