@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NerdletStateContext, navigation } from 'nr1';
+import { NerdletStateContext, navigation, Stack, StackItem, Button } from 'nr1';
 import { EmptyState } from '@newrelic/nr1-community';
 
 import MapLocationFilesUpload from '../geo-ops-nerdlet/MapLocationFilesUpload';
@@ -59,16 +59,12 @@ export default class MapLocationUploadNerdlet extends React.Component {
 
     return (
       <div className="map-location-upload-container">
-        <h2>File Upload</h2>
-        <p>
-          JSON file formatted to <a href="#">this specification</a>. We
-          recommend this method for providing locations.
-        </p>
         <input
           ref={this.fileInput}
           type="file"
           className="json-file-upload"
           accept=".json"
+          id="location-upload"
           onChange={event => {
             this.fileInputOnChange(event);
           }}
@@ -83,10 +79,6 @@ export default class MapLocationUploadNerdlet extends React.Component {
             // TO DO - if we don't have these, because of weird user navigation - show inputs to capture these
             // console.log(mapGuid);
             // console.log(accountId);
-
-            if (!mapGuid || !accountId) {
-              return <EmptyState />;
-            }
 
             return (
               <>

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Spinner } from 'nr1';
+import { Button, Spinner, Stack, StackItem } from 'nr1';
 
+import { EmptyState } from '@newrelic/nr1-community';
 import uuid from 'uuid/v4';
 import get from 'lodash.get';
 import cloneDeep from 'lodash.clonedeep';
@@ -325,6 +326,74 @@ export default class MapLocationFilesUpload extends React.Component {
 
     return (
       <>
+        <Stack
+          fullWidth
+          verticalType={Stack.VERTICAL_TYPE.BOTTOM}
+          className="file-upload-nerdlet-header"
+        >
+          <StackItem grow>
+            <h2>File Upload</h2>
+            <p className="file-upload-nerdlet-description">
+              JSON file formatted to <a href="#">this specification</a>. We
+              recommend this method for providing locations.
+            </p>
+          </StackItem>
+          <StackItem className="cta-container">
+            {this.props.files.length === 0 ? (
+              <>
+                <Button onClick={() => this.close()}>Cancel</Button>
+                <label htmlFor="location-upload" className="upload-button">
+                  Choose a file
+                </label>
+              </>
+            ) : (
+              <>
+                <Button onClick={() => this.close()}>Cancel</Button>
+                <label
+                  htmlFor="location-upload"
+                  className="upload-button upload-other-button"
+                >
+                  Choose a different file
+                </label>
+                <Button
+                  type={Button.TYPE.PRIMARY}
+                  onClick={() => this.onAdd({ mapLocations: fileData })}
+                >
+                  Save and continue
+                </Button>
+              </>
+            )}
+          </StackItem>
+        </Stack>
+
+        {(!this.props.mapGuid || !this.props.accountId) && (
+          <EmptyState
+            heading="Choose a file to upload"
+            description="TODO: Use the `footer` prop of the EmptyState to make the button below trigger file upload selection"
+            buttonText="Choose a file"
+          />
+        )}
+
+        {this.props.files.length === 0 && (
+          <EmptyState
+            heading="Choose a file to upload"
+            description="TODO: Use the `footer` prop of the EmptyState to make the button below trigger file upload selection"
+            buttonText="Choose a file"
+          />
+        )}
+        <input
+          ref={this.fileInput}
+          type="file"
+          className="json-file-upload"
+          accept=".json"
+          id="location-upload"
+          onChange={event => {
+            this.fileInputOnChange(event);
+          }}
+          onClick={event => {
+            event.target.value = null;
+          }}
+        />
         {mapLocationSuccesses.length > 0 && (
           <h2>Successfully added: {mapLocationSuccesses.length} markers.</h2>
         )}
@@ -335,7 +404,7 @@ export default class MapLocationFilesUpload extends React.Component {
 
         {fileErrors && this.renderFileErrors(fileErrors)}
 
-        {fileData && (
+        {fileData && this.props.files.length !== 0 && (
           <>
             <ToolkitProvider
               keyField="guid"
@@ -350,23 +419,8 @@ export default class MapLocationFilesUpload extends React.Component {
                 </div>
               )}
             </ToolkitProvider>
-            <Button
-              onClick={() => this.onAdd({ mapLocations: fileData })}
-              type={Button.TYPE.PRIMARY}
-              iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
-            >
-              Add to Map
-            </Button>
           </>
         )}
-
-        <Button
-          onClick={() => this.close()}
-          type={Button.TYPE.PRIMARY}
-          iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
-        >
-          Close
-        </Button>
       </>
     );
   }
