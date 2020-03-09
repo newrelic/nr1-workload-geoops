@@ -83,7 +83,12 @@ ul.map-entities-location-list {
   border-bottom: 1px solid #edeeee;
   line-height: 40px;
 
-  &:not(.completed):hover {
+  &.active {
+    position: relative;
+    z-index: 100;
+  }
+
+  &:not(.completed):not(.active):hover {
     background-color: #fafbfb;
     cursor: pointer;
 
@@ -93,7 +98,7 @@ ul.map-entities-location-list {
   }
 
   &.active {
-    background-color: #edeeee;
+    background-color: #f4f5f5;
   }
 }
 
@@ -101,16 +106,21 @@ ul.map-entities-location-list {
   margin-right: 4px;
   font-size: 14px;
   font-weight: 600;
-  color: #2A3434;
+  color: #464e4e;
 
   .completed & {
     color: #b9bdbd;
     text-decoration: line-through;
   }
+
+  .active & {
+    color: #000d0d;
+  }
 }
 
 div[class*='wnd-Stack'].map-entities-location-list-item-description {
   margin-left: 0;
+  color: #464e4e;
   
   &:before {
     content: " - "
@@ -119,6 +129,10 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   .completed & {
     color: #b9bdbd;
     text-decoration: line-through;
+  }
+
+  .active & {
+    color: #000d0d;
   }
 } 
 
@@ -137,6 +151,10 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
     background-position: 5px center;
     background-repeat: no-repeat;
   }
+
+  .active & {
+    box-shadow: inset 0 0 0 2px #000d0d;
+  }
 }
 
 .map-entities-to-locations-container .rjsf {
@@ -145,6 +163,18 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   border-radius: 0 0 4px 4px;
   border: 1px solid #d5d7d7;
   border-top-color: #e3e4e4;
+
+  .field-object {
+    margin-bottom: 0;
+
+    & + div {
+      text-align: center;
+    }
+  }
+
+  .btn {
+    background-color: #007e8a;
+  }
 }
 
 .multi-value-remove {
