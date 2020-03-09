@@ -237,21 +237,7 @@ export default class CreateMap extends React.PureComponent {
   }
 
   changeActiveStep(destinationStep) {
-    this.setState({
-      activeStep: steps.find(s => s.order === destinationStep),
-      map: {
-        document: {
-          accountId: 630060,
-          lat: 22,
-          lng: -97,
-          description:
-            'Nulla quis tortor orci. Etiam at risus et justo dignissim.',
-          guid: 'f0271857-a864-4a4b-a765-6255b52e0029',
-          title: 'test mappy',
-          zoom: 5
-        }
-      }
-    });
+    this.setState({ activeStep: steps.find(s => s.order === destinationStep) });
   }
 
   render() {
