@@ -457,7 +457,7 @@ export default class CreateMap extends React.PureComponent {
                           })
                         }
                       >
-                        Continue
+                        View Map
                       </Button>
                     </StackItem>
                   </Stack>
