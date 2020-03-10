@@ -31,6 +31,11 @@
     &:hover .map-grid-item-preview-hover-contents {
         opacity: 1;
     }
+
+    &:hover .map-grid-item-preview-hover-contents-button {
+      transform: translateY(0);
+      opacity: 1;
+    }
 }
 
 .map-grid-item-preview {
@@ -64,9 +69,15 @@
     bottom: 0;
     left: 0;
     z-index: 1000;
-    background-color: rgba(0,0,0, .75);
+    background-color: rgba(0,0,0, .65);
     opacity: 0;
-    transition: opacity .05s ease-out;
+    transition: opacity .1s cubic-bezier(.075, .82, .165, 1);
+}
+
+.map-grid-item-preview-hover-contents-button {
+  transition: all .5s cubic-bezier(.075, .82, .165, 1);
+  transform: translateY(-5px);
+  opacity: 0;
 }
 
 div.map-grid-item-bottom {
@@ -91,8 +102,8 @@ h6.map-grid-item-subtitle {
   display: none;
   width: 150px;
   position: absolute;
-  top: -115px;
-  right: 39px;
+  top: -67px;
+  right: 34px;
   background: #ffffff;
   border: 1px solid #e3e4e4;
   box-sizing: border-box;
