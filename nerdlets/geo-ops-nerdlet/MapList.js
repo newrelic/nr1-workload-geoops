@@ -31,6 +31,19 @@ RightToolbar.propTypes = {
   navigation: PropTypes.object
 };
 
+const LeftToolbar = () => {
+  return (
+    <>
+      <StackItem className="">
+        <h4 className="page-title">My maps</h4>
+      </StackItem>
+    </>
+  );
+};
+RightToolbar.propTypes = {
+  navigation: PropTypes.object
+};
+
 export default class MapList extends PureComponent {
   static propTypes = {
     maps: PropTypes.array,
@@ -83,7 +96,10 @@ export default class MapList extends PureComponent {
 
     return (
       <>
-        <Toolbar right={<RightToolbar navigation={navigation} />} />
+        <Toolbar
+          right={<RightToolbar navigation={navigation} />}
+          left={<LeftToolbar />}
+        />
 
         <Grid
           className="primary-grid map-list-primary-grid"
