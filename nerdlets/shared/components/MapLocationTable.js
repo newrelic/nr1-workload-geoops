@@ -4,37 +4,77 @@ import PropTypes from 'prop-types';
 import some from 'lodash.some';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import { Icon } from 'nr1';
+import { Icon, AccountStorageMutation, AccountStorageQuery } from 'nr1';
 
 export default class MapLocationTable extends PureComponent {
   static propTypes = {
     mapLocations: PropTypes.array,
     entities: PropTypes.object,
-    entityToEntitiesLookup: PropTypes.object
+    entityToEntitiesLookup: PropTypes.object,
+    map: PropTypes.object
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      //
+      favoriteLocations: []
     };
+
+    this.getFavoriteLocations = this.getFavoriteLocations.bind(this);
+    this.favoriteFormatter = this.favoriteFormatter.bind(this);
   }
 
   statusFormatter() {
     return <div className="status-color-fill" />;
   }
 
-  favoriteFormatter(cell) {
-    return (
-      <Icon
-        type={
-          cell
-            ? Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD
-            : Icon.TYPE.PROFILES__EVENTS__FAVORITE
+  favoriteFormatter(cell, row, rowIndex) {
+    const { favoriteLocations } = this.state;
+    if (favoriteLocations && favoriteLocations[row.externalId]) {
+      return (
+        <Icon
+          type={Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD}
+          color={favoriteLocations[row.externalId] ? '#FFB951' : '#d5d7d7'}
+        />
+      );
+    } else {
+      return (
+        <Icon type={Icon.TYPE.PROFILES__EVENTS__FAVORITE} color="#d5d7d7" />
+      );
+    }
+  }
+
+  getFavoriteLocations() {
+    const { accountId, guid } = this.props.map;
+
+    AccountStorageQuery.query({
+      accountId: accountId,
+      collection: 'workloadsGeooopsFavorites',
+      documentId: guid
+    }).then(({ data }) => {
+      this.setState({ favoriteLocations: data });
+    });
+  }
+
+  handleFavoriteClick(e, column, row) {
+    const { accountId, guid } = this.props.map;
+
+    AccountStorageQuery.query({
+      accountId: accountId,
+      collection: 'workloadsGeooopsFavorites',
+      documentId: guid
+    }).then(({ data }) => {
+      AccountStorageMutation.mutate({
+        accountId: accountId,
+        actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
+        collection: 'workloadsGeooopsFavorites',
+        documentId: guid,
+        document: {
+          ...data,
+          [row.externalId]: true
         }
-        color={cell ? '#FFB951' : '#d5d7d7'}
-      />
-    );
+      });
+    });
   }
 
   transformMapLocations() {
@@ -197,7 +237,12 @@ export default class MapLocationTable extends PureComponent {
         dataField: 'favorite',
         text: '',
         sort: true,
-        formatter: this.favoriteFormatter
+        formatter: this.favoriteFormatter,
+        events: {
+          onClick: (e, column, columnIndex, row, rowIndex) => {
+            this.handleFavoriteClick(e, column, row);
+          }
+        }
       },
       {
         dataField: 'externalId',
@@ -220,6 +265,7 @@ export default class MapLocationTable extends PureComponent {
   render() {
     const { SearchBar } = Search;
     const data = this.transformMapLocations();
+    this.getFavoriteLocations();
 
     return (
       <ToolkitProvider

@@ -208,6 +208,7 @@ export default class ViewMap extends Component {
                       {hasMapLocations && hasEntities && (
                         <MapLocationTable
                           mapLocations={mapLocations}
+                          map={map}
                           entities={entitiesMap}
                           entityToEntitiesLookup={workloadToEntityGuidsLookup}
                         />
@@ -215,7 +216,7 @@ export default class ViewMap extends Component {
                       {/* TO DO - What does this table look like without entity alert data ? */}
                       {hasMapLocations && !hasEntities && (
                         <>
-                          <MapLocationTable data={mapLocations} />
+                          <MapLocationTable data={mapLocations} map={map} />
                           <EmptyState
                             heading="Map locations but no associated entities"
                             description=""
