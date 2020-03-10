@@ -87,13 +87,14 @@ export default class AccountDropdown extends React.Component {
     return (
       <>
         <select
+          id="account-picker"
           value={selected ? selected.id : 'Choose an account'}
           onChange={event => {
             const value = event.target.value;
             const selected = accounts.find(a => a.id === parseInt(value, 10));
             this.setState({ selected });
           }}
-          className={className}
+          className={`Dropdown-trigger Dropdown-trigger--small u-unstyledButton Dropdown-trigger--normal ${className}`}
           style={style}
         >
           {accountItems}

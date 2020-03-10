@@ -59,12 +59,17 @@ export default class EntityTypeAhead extends React.PureComponent {
         boxShadow: state.isFocused ? 'none' : 'none',
         '&:hover': {
           cursor: 'text'
-        }
+        },
+        maxHeight: '32px'
+      }),
+      valueContainer: provided => ({
+        ...provided,
+        padding: '2px 4px'
       }),
       multiValue: (provided, state) => ({
         display: 'flex',
         alignItems: 'stretch',
-        height: '24px',
+        height: '22px',
         marginRight: '4px',
         borderRadius: '3px',
         backgroundColor: '#F0FCFC',
@@ -74,7 +79,7 @@ export default class EntityTypeAhead extends React.PureComponent {
         padding: '0 8px',
         color: '#005054',
         fontSize: '11px',
-        lineHeight: '21px'
+        lineHeight: '20px'
       }),
       option: (provided, state) => ({
         ...provided,
@@ -87,6 +92,9 @@ export default class EntityTypeAhead extends React.PureComponent {
           backgroundColor: '#007e8a',
           color: '#fff'
         }
+      }),
+      indicatorSeparator: () => ({
+        display: 'none'
       })
     };
 

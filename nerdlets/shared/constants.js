@@ -47,8 +47,8 @@ export const mapLocationCollection = ({ mapGuid }) => `${MAP_LOCATION_COLLECTION
 
 export const MAP_UI_SCHEMA = {
   "guid": { "ui:widget": "hidden" },
-  "accountId": {},
-  "title": { "ui:FieldTemplate": FormInputFullWidth },
+  "title": { "ui:FieldTemplate": FormInputTwoColumn },
+  "accountId": { "ui:FieldTemplate": FormInputTwoColumn },
   "description": { "ui:FieldTemplate": FormInputFullWidth },
   "lat": { "ui:FieldTemplate": FormInputThreeColumn },
   "lng": { "ui:FieldTemplate": FormInputThreeColumn },
@@ -68,6 +68,10 @@ export const MAP_JSON_SCHEMA = {
       "type": "string",
       "title": "Name your map"
     },
+    "accountId": {
+      "type": "number",
+      "title": "Choose an account"
+    },
     "description": {
       "type": "string",
       "title": "Description",
@@ -79,9 +83,6 @@ export const MAP_JSON_SCHEMA = {
       "default": 4,
       "minimum": 0,
       "maximum": 12
-    },
-    "accountId": {
-      "type": "number"
     },
   }
 };

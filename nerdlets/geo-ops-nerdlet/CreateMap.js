@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Grid, GridItem, navigation, Stack, StackItem } from 'nr1';
+import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
 import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import DefineLocations from './DefineLocations';
@@ -287,7 +287,7 @@ export default class CreateMap extends React.PureComponent {
             {activeStep.order === 1 && (
               <Stack
                 verticalType={Stack.HORIZONTAL_TYPE.CENTER}
-                className="get-started-step-contents"
+                className="get-started-step-contents create-map"
               >
                 <StackItem className="get-started-step-contents-header-container">
                   <h1 className="get-started-step-contents-header">

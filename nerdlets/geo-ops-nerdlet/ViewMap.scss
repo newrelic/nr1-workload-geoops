@@ -95,7 +95,7 @@
         0px 1px 0px rgba(0, 75, 82, 0.21), 
         0px 3px 0px rgba(0, 49, 54, 0.14), 
         0px 1px 3px rgba(0, 134, 148, 0.13), 
-        0px 8px 7px rgba(70, 107, 111, 0.15);
+        0px 1px 7px rgba(70, 107, 111, 0.15);
 }
 
 div.leaflet-pane .leaflet-popup .leaflet-popup-content {
@@ -186,4 +186,24 @@ div.leaflet-pane .leaflet-popup p.marker-popup-description {
     a {
         color: #0079bf;
     }
+}
+
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+    background-color: #fff;
+}
+
+a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-in,
+a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-out {
+    color: #2a3434;
+    font-size: 18px;
+    line-height: 22px;
+    border-bottom: 1px solid #d5d7d7;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-out {
+    border-bottom: none;
 }
