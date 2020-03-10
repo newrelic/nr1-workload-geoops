@@ -18,7 +18,18 @@ export default class MapLocationTable extends PureComponent {
     };
 
     this.getFavoriteLocations = this.getFavoriteLocations.bind(this);
+    this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
     this.favoriteFormatter = this.favoriteFormatter.bind(this);
+  }
+
+  componentDidMount() {
+    this.getFavoriteLocations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.map !== this.props.map) {
+      this.getFavoriteLocations();
+    }
   }
 
   statusFormatter() {
@@ -46,7 +57,7 @@ export default class MapLocationTable extends PureComponent {
 
     AccountStorageQuery.query({
       accountId: accountId,
-      collection: 'workloadsGeooopsFavorites',
+      collection: 'workloadsGeoopsFavorites',
       documentId: guid
     }).then(({ data }) => {
       this.setState({ favoriteLocations: data });
@@ -58,18 +69,20 @@ export default class MapLocationTable extends PureComponent {
 
     AccountStorageQuery.query({
       accountId: accountId,
-      collection: 'workloadsGeooopsFavorites',
+      collection: 'workloadsGeoopsFavorites',
       documentId: guid
     }).then(({ data }) => {
+      const document = {
+        ...data,
+        [row.externalId]: !data[row.externalId]
+      };
+      this.setState({ favoriteLocations: document });
       AccountStorageMutation.mutate({
         accountId: accountId,
         actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
-        collection: 'workloadsGeooopsFavorites',
+        collection: 'workloadsGeoopsFavorites',
         documentId: guid,
-        document: {
-          ...data,
-          [row.externalId]: true
-        }
+        document: document
       });
     });
   }
@@ -165,7 +178,6 @@ export default class MapLocationTable extends PureComponent {
   render() {
     const { SearchBar } = Search;
     const { data } = this.props;
-    this.getFavoriteLocations();
 
     return (
       <ToolkitProvider
