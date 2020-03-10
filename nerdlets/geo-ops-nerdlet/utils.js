@@ -2,13 +2,27 @@ import React from 'react';
 import L from 'leaflet';
 import { ChevronUp, ChevronDown } from 'react-feather';
 
-export const generateIcon = mark => {
+export const generateIcon = mapLocation => {
+  const { mostCriticalEntity } = mapLocation;
+  const { alertSeverity } = mostCriticalEntity;
+
   // const color = mark.status.color || 'red';
   const colors = {
     green: '#13BA00',
     yellow: '#FFB951',
-    red: '#FF0000'
+    red: '#FF0000',
+    gray: '#8E9494',
+    white: '#FFFFFF'
   };
+
+  const severityToColor = {
+    CRITICAL: 'red',
+    WARNING: 'yellow',
+    NOT_ALERTING: 'green',
+    NOT_CONFIGURED: 'gray'
+  };
+
+  const color = colors[severityToColor[alertSeverity]];
 
   return L.divIcon({
     className: 'marker',
@@ -34,7 +48,7 @@ export const generateIcon = mark => {
           />
           <path
             d="M24 17.5C24 21.0899 21.0899 24 17.5 24C13.9101 24 11 21.0899 11 17.5C11 13.9101 13.9101 11 17.5 11C21.0899 11 24 13.9101 24 17.5Z"
-            fill="${colors.green}"
+            fill="${color || colors.white}"
           />
         </svg>
       </span>
