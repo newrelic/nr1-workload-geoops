@@ -140,7 +140,7 @@ query($query: String!) {
   },
 */
 export const ENTITIES_BY_GUIDS = `
-query EntityDetails($entityGuids: [EntityGuid]!, $includeTags: Boolean = false, $includeAlertViolations: Boolean = true, $startTime: EpochMilliseconds = 0, $endTime: EpochMilliseconds = 0) {
+query EntityDetails($entityGuids: [EntityGuid]!, $includeTags: Boolean = false, $includeAlertViolations: Boolean = true, $begin_time: EpochMilliseconds = 0, $end_time: EpochMilliseconds = 0) {
   actor {
     entities(guids: $entityGuids) {
       ...EntityInfo
@@ -158,7 +158,7 @@ fragment EntityInfo on Entity {
   reporting
   ... on AlertableEntity {
     alertSeverity
-      alertViolations(endTime: $endTime, startTime: $startTime) @include(if: $includeAlertViolations) {
+      alertViolations(endTime: $end_time, startTime: $begin_time) @include(if: $includeAlertViolations) {
         ...AlertInfo
       }
 
