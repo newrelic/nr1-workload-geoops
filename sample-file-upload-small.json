@@ -16,7 +16,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -34,7 +34,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -52,7 +52,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -70,7 +70,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -88,7 +88,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -106,7 +106,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -124,7 +124,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -142,7 +142,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -160,7 +160,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -178,7 +178,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -196,7 +196,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -214,7 +214,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     },
     {
       "guid": "1111-1111-1111-1111",
@@ -232,7 +232,7 @@
           "entityType": "WORKLOAD_ENTITY"
         }
       ],
-      "query": ""
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')"
     }
   ]
 }
