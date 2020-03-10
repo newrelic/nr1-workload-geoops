@@ -97,18 +97,8 @@ export default class MapItem extends PureComponent {
               e.stopPropagation();
               navigation.router({
                 to: 'createMap',
-                state: { selectedMap: map, activeStep: 2 }
+                state: { selectedMap: map, activeStep: 1 }
               });
-            }}
-          >
-            <Icon type={Icon.TYPE.INTERFACE__INFO__INFO} />
-            Guided Configuration
-          </li>
-          <li
-            className="service-settings-dropdown-item"
-            onClick={e => {
-              e.stopPropagation();
-              navigation.router({ to: 'editMap', state: { selectedMap: map } });
             }}
           >
             <Icon type={Icon.TYPE.INTERFACE__OPERATIONS__EDIT} />
@@ -124,10 +114,7 @@ export default class MapItem extends PureComponent {
               });
             }}
           >
-            <Icon
-              type={Icon.TYPE.INTERFACE__OPERATIONS__TRASH}
-              color="#BF0016"
-            />
+            <Icon type={Icon.TYPE.LOCATION__LOCATION__MAP} color="#BF0016" />
             Delete Map
           </li>
           <li
@@ -140,10 +127,7 @@ export default class MapItem extends PureComponent {
               });
             }}
           >
-            <Icon
-              type={Icon.TYPE.INTERFACE__OPERATIONS__TRASH}
-              color="#BF0016"
-            />
+            <Icon type={Icon.TYPE.LOCATION__LOCATION__PIN} color="#BF0016" />
             Delete Markers
           </li>
         </ul>
