@@ -163,8 +163,8 @@ export default class GeoMap extends Component {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               {renderMarkers &&
-                mapLocations.map(item => {
-                  const { document: mapLocation } = item;
+                mapLocations.map(mapLocation => {
+                  // const { document: mapLocation } = item;
                   const { guid, location = false } = mapLocation;
 
                   if (!location) {

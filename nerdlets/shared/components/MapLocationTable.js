@@ -1,17 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import some from 'lodash.some';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import { Icon, AccountStorageMutation, AccountStorageQuery } from 'nr1';
 
 export default class MapLocationTable extends PureComponent {
   static propTypes = {
-    mapLocations: PropTypes.array,
-    entities: PropTypes.object,
-    entityToEntitiesLookup: PropTypes.object,
-    map: PropTypes.object
+    map: PropTypes.object,
+    data: PropTypes.array
   };
 
   constructor(props) {
@@ -77,103 +74,6 @@ export default class MapLocationTable extends PureComponent {
     });
   }
 
-  transformMapLocations() {
-    const { mapLocations = [], entities } = this.props;
-
-    return mapLocations.reduce((previousValue, ml) => {
-      const { document } = ml;
-      const { externalId = '', location } = document;
-      const { region = '' } = location;
-
-      if (!document.guid || !region) {
-        console.warn('Map Location missing data: ');
-        console.warn(document);
-        return previousValue;
-      }
-
-      const status = this.calculateStatus(document);
-      // const lastIncident = entities.findLastIncident;
-
-      previousValue.push({
-        status,
-        favorite: false,
-        externalId,
-        lastIncident: '2/4/20 10:54 AM', // TO DO - does entity outline give us this?
-        region
-      });
-
-      return previousValue;
-    }, []);
-  }
-
-  severityStatusToWeight(value) {
-    const values = {
-      CRITICAL: 1,
-      WARNING: 2,
-      NOT_ALERTING: 3,
-      NOT_CONFIGURED: 4
-    };
-
-    return values[value] || 5;
-  }
-
-  weightToSeverityStatus(value) {
-    const values = {
-      1: 'CRITICAL',
-      2: 'WARNING',
-      3: 'NOT_ALERTING',
-      4: 'NOT_CONFIGURED'
-    };
-
-    return values[value] || '';
-  }
-
-  /*
-   * Look for the highest weighted value on all associated entities
-   */
-  calculateStatus(mapLocation) {
-    const { entities, entityToEntitiesLookup } = this.props;
-    const mapLocationEntities = mapLocation.entities || [];
-    let maxStatus;
-    const defaultStatus = 5;
-
-    if (mapLocationEntities.length > 0) {
-      // TO DO
-      // Does 'some' convert the object to an array first? If so, we should find a more performant way to check for values
-      // Maybe we don't pass the mapped entities down and just an array
-      // and we let this component build the map
-      if (some(mapLocationEntities)) {
-        maxStatus = mapLocationEntities.reduce((p, { guid: entityGuid }) => {
-          const entity = entities[entityGuid];
-          const relatedEntities = entityToEntitiesLookup[entityGuid] || [];
-
-          const entitiesToDistill = [
-            entity,
-            ...relatedEntities.map(guid => entities[guid])
-          ];
-          const distill = (previousValue, { guid: entityGuid }) => {
-            if (entityGuid) {
-              const entity = entities[entityGuid];
-              if (entity) {
-                const status = entity.alertSeverity || ''; // Only exists on alertable entities
-                const current = this.severityStatusToWeight(status);
-                if (current < previousValue) {
-                  return current;
-                }
-              }
-            }
-            return previousValue;
-          };
-
-          return entitiesToDistill.reduce(distill, p);
-        }, defaultStatus);
-      }
-    }
-
-    const label = this.weightToSeverityStatus(maxStatus);
-    return label;
-  }
-
   dummyData() {
     return [
       {
@@ -217,7 +117,7 @@ export default class MapLocationTable extends PureComponent {
   columns() {
     return [
       {
-        dataField: 'status',
+        dataField: 'mostCriticalEntity.alertSeverity',
         text: '',
         sort: true,
         classes: cell => {
@@ -246,11 +146,11 @@ export default class MapLocationTable extends PureComponent {
       },
       {
         dataField: 'externalId',
-        text: 'ID',
+        text: 'ExID',
         sort: true
       },
       {
-        dataField: 'lastIncident',
+        dataField: 'lastIncidentTime',
         text: 'Last Incident',
         sort: true
       },
@@ -264,7 +164,7 @@ export default class MapLocationTable extends PureComponent {
 
   render() {
     const { SearchBar } = Search;
-    const data = this.transformMapLocations();
+    const { data } = this.props;
     this.getFavoriteLocations();
 
     return (

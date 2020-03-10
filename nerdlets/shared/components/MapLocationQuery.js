@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import uniq from 'lodash.uniq';
 
 import { nerdStorageRequest } from '../utils';
 import { getMapLocations } from '../services/map-location';
 
-export default class MapLocationQuery extends Component {
+export default class MapLocationQuery extends React.PureComponent {
   static propTypes = {
     children: PropTypes.func.isRequired,
     map: PropTypes.object
@@ -29,29 +31,42 @@ export default class MapLocationQuery extends Component {
     const { map } = this.props;
     const { accountId } = map;
 
-    const { data, errors } = await nerdStorageRequest({
+    const { data: mapLocations, errors } = await nerdStorageRequest({
       service: getMapLocations,
       params: { accountId, document: map }
     });
 
+    const { entityGuids } = this.entitiesFromMapLocations({
+      mapLocations
+    });
+
     this.setState({
       loading: false,
-      data,
+      data: { mapLocations, entityGuids },
       errors
     });
+  }
+
+  entitiesFromMapLocations({ mapLocations }) {
+    const allEntities = mapLocations.reduce((previousValue, currentValue) => {
+      const entities = currentValue.document.entities || [];
+      previousValue.push(...entities);
+      return previousValue;
+    }, []);
+    const entityGuids = uniq(allEntities.map(e => e.guid));
+    return {
+      entities: allEntities,
+      entityGuids
+    };
   }
 
   render() {
     const { data, loading, errors } = this.state;
     const { children } = this.props;
-    return (
-      <>
-        {children({
-          loading,
-          data,
-          errors
-        })}
-      </>
-    );
+    return children({
+      loading,
+      data,
+      errors
+    });
   }
 }

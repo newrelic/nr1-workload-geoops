@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import get from 'lodash.get';
 
-import { NerdGraphQuery, Spinner } from 'nr1';
-import { NerdGraphError } from '@newrelic/nr1-community';
+import { NerdGraphQuery, PlatformStateContext } from 'nr1';
 
 import { ENTITIES_BY_GUIDS } from '../services/queries';
 /*
@@ -15,19 +14,14 @@ import { ENTITIES_BY_GUIDS } from '../services/queries';
  *
  * Momentarily pinned/limited to fetching Workloads - even though we're keeping the name generic to "Entity"
  */
-export default class AlertableEntitiesByGuidsQuery extends Component {
+export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
   static propTypes = {
     entityGuids: PropTypes.array,
     children: PropTypes.func.isRequired,
-    fetchPolicyType: PropTypes.string
+    fetchPolicyType: PropTypes.string,
+    begin_time: PropTypes.number,
+    end_time: PropTypes.number
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      //
-    };
-  }
 
   /*
     Returned data (actor.account.entities):
@@ -67,53 +61,49 @@ export default class AlertableEntitiesByGuidsQuery extends Component {
     const {
       entityGuids,
       children,
-      fetchPolicyType = NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE
+      fetchPolicyType = NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE,
+      begin_time: propBeginTime,
+      end_time: propEndTime
     } = this.props;
-
-    // TO DO - Get timeRange from PlatformStateContext.Consumer
-    const timeRange = {
-      begin_time: Date.now() - 30 * 60 * 1000, // 30 min ago
-      duration: 0,
-      end_time: Date.now()
-    };
-    const { begin_time: startTime, end_time: endTime } = timeRange;
-
-    // console.log(entityGuids);
 
     return (
       <>
         {entityGuids && (
-          <NerdGraphQuery
-            query={ENTITIES_BY_GUIDS}
-            variables={{
-              entityGuids,
-              includeTags: true,
-              includeAlertViolations: true,
-              startTime,
-              endTime
-            }}
-            fetchPolicyType={fetchPolicyType}
-          >
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <Spinner />;
-              }
+          <PlatformStateContext.Consumer>
+            {platformState => {
+              const { timeRange } = platformState;
 
-              if (error) {
-                return <NerdGraphError error={error} />;
+              const { begin_time, end_time } = timeRange;
+
+              if (!begin_time && !end_time) {
+                console.debug(
+                  'User did not supply a begin/end time via the Time Picker'
+                );
               }
 
               return (
-                <>
-                  {children({
-                    loading,
-                    data: get(data, 'actor.entities', []),
-                    error
-                  })}
-                </>
+                <NerdGraphQuery
+                  query={ENTITIES_BY_GUIDS}
+                  variables={{
+                    entityGuids,
+                    includeTags: true,
+                    includeAlertViolations: true,
+                    begin_time: begin_time || propBeginTime,
+                    end_time: end_time || propEndTime
+                  }}
+                  fetchPolicyType={fetchPolicyType}
+                >
+                  {({ loading, error, data }) => {
+                    return children({
+                      loading,
+                      data: data ? get(data, 'actor.entities', []) : data,
+                      error
+                    });
+                  }}
+                </NerdGraphQuery>
               );
             }}
-          </NerdGraphQuery>
+          </PlatformStateContext.Consumer>
         )}
       </>
     );
