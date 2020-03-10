@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -5,6 +6,8 @@ import { Button, Icon, Stack, StackItem } from 'nr1';
 
 class Header extends React.PureComponent {
   render() {
+    const { data, onClose, onMinimize, featuredChart } = this.props;
+
     return (
       <header className="detail-panel-header">
         <Stack className="detail-panel-header-top-bar">
@@ -20,14 +23,11 @@ class Header extends React.PureComponent {
             <Button
               sizeType={Button.SIZE_TYPE.SMALL}
               type={Button.TYPE.PLAIN}
-              onClick={this.props.onClose}
+              onClick={onClose}
               className="detail-panel-close-button"
               iconType={Button.ICON_TYPE.INTERFACE__SIGN__TIMES__V_ALTERNATE}
             />
-            <span
-              className="detail-panel-minimize-button"
-              onClick={this.props.onMinimize}
-            >
+            <span className="detail-panel-minimize-button" onClick={onMinimize}>
               <Icon
                 type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__WEIGHT_BOLD}
                 color="#000E0E"
@@ -38,7 +38,7 @@ class Header extends React.PureComponent {
           </StackItem>
         </Stack>
         <hr className="detail-panel-header-top-bar-hr" />
-        <h3 className="detail-panel-title">{this.props.data.title}</h3>
+        <h3 className="detail-panel-title">{data ? data.title : ''}</h3>
         <div className="detail-panel-cta-container">
           <a className="detail-pane-view-workload-button detail-pane-cta">
             <Icon
@@ -55,12 +55,10 @@ class Header extends React.PureComponent {
             Contact manager
           </a>
         </div>
-        {this.props.featuredChart && (
+        {featuredChart && (
           <>
             <hr className="detail-panel-header-top-bar-hr" />
-            <div className="featured-chart-container">
-              {this.props.featuredChart}
-            </div>
+            <div className="featured-chart-container">{featuredChart}</div>
           </>
         )}
       </header>
