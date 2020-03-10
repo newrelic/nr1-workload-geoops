@@ -5,8 +5,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Stack, StackItem, Link, Modal, UserStorageMutation } from 'nr1';
 import get from 'lodash.get';
 
-// eslint-disable-next-line no-unused-vars
-import DetailModal from './detail-modal';
+import BatchNrql from '../shared/components/BatchNrql';
 import { generateIcon } from './utils';
 
 export default class GeoMap extends Component {
@@ -143,6 +142,14 @@ export default class GeoMap extends Component {
       mapLocations &&
       mapLocations.length > 0;
 
+    const queries = mapLocations
+      ? mapLocations.map(i => ({
+          key: i.guid,
+          query: i.query
+        }))
+      : [];
+    const queryPrefix = 'Q';
+
     return (
       <>
         {/* <h1>{map.title}</h1> */}
@@ -162,89 +169,108 @@ export default class GeoMap extends Component {
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              {renderMarkers &&
-                mapLocations.map(item => {
-                  const mapLocation = item.document ? item.document : item;
-                  const { guid, location = false } = mapLocation;
+              {renderMarkers && (
+                <BatchNrql
+                  accountId={map.accountId}
+                  queries={queries}
+                  queryPrefix={queryPrefix}
+                >
+                  {({ queryResults }) => {
+                    return mapLocations.map(item => {
+                      const mapLocation = item.document ? item.document : item;
+                      const { guid, location = false } = mapLocation;
 
-                  if (!location) {
-                    return null;
-                  }
+                      if (!location) {
+                        return null;
+                      }
 
-                  let { lat, lng } = location;
+                      let { lat, lng } = location;
 
-                  if (!(lat && lng)) {
-                    return null;
-                  }
+                      if (!(lat && lng)) {
+                        return null;
+                      }
 
-                  // TO DO - Why are some strings and others numbers?
-                  // We need to sync-up and ensure we're appropriately converting these
-                  // probably before they get to this component...
-                  if (typeof lat === 'string' || typeof lng === 'string') {
-                    lat = parseFloat(lat);
-                    lng = parseFloat(lng);
-                  }
+                      // TO DO - Why are some strings and others numbers?
+                      // We need to sync-up and ensure we're appropriately converting these before they get to this component...
+                      if (typeof lat === 'string' || typeof lng === 'string') {
+                        lat = parseFloat(lat);
+                        lng = parseFloat(lng);
+                      }
 
-                  const latLngBounds = [lat, lng];
-                  const inBounds = bounds.contains(latLngBounds);
+                      const latLngBounds = [lat, lng];
+                      const inBounds = bounds.contains(latLngBounds);
 
-                  if (!inBounds) {
-                    return null;
-                  }
+                      if (!inBounds) {
+                        return null;
+                      }
 
-                  const icon = generateIcon(mapLocation);
-                  return (
-                    <Marker
-                      key={guid}
-                      position={[lat, lng]}
-                      onClick={() => this.handleMarkerClick(event, mapLocation)}
-                      _did={mapLocation}
-                      icon={icon}
-                      document={mapLocation}
-                      riseOnHover
-                      onMouseOver={e => {
-                        e.target.openPopup();
-                      }}
-                      onMouseOut={e => {
-                        e.target.closePopup();
-                      }}
-                    >
-                      <Popup>
-                        <Stack
-                          className="marker-popup-header"
-                          directionType={Stack.DIRECTION_TYPE.HORIZONTAL}
-                          fullWidth
+                      const icon = generateIcon(mapLocation);
+
+                      // Lookup the result
+                      const queryName = queryPrefix + guid.replace(/-/gi, '');
+                      const queryResult = queryResults[queryName];
+                      // console.log(`Query result for: ${queryName}`);
+                      // console.log(queryResult);
+
+                      const markerComparisonNumber = queryResult || 'N/A';
+
+                      return (
+                        <Marker
+                          key={guid}
+                          position={[lat, lng]}
+                          onClick={() =>
+                            this.handleMarkerClick(event, mapLocation)
+                          }
+                          _did={mapLocation}
+                          icon={icon}
+                          document={mapLocation}
+                          riseOnHover
+                          onMouseOver={e => {
+                            e.target.openPopup();
+                          }}
+                          onMouseOut={e => {
+                            e.target.closePopup();
+                          }}
                         >
-                          <StackItem className="marker-popup-status-dot-container">
-                            <span className="marker-popup-status-dot" />
-                          </StackItem>
-                          <StackItem
-                            className="marker-popup-title-container"
-                            grow
-                          >
-                            {/* <span className="marker-popup-title-label">
-                              Store:
-                            </span>{' '} */}
-                            <span className="marker-popup-title">
-                              {mapLocation.title}
-                            </span>
-                          </StackItem>{' '}
-                          <StackItem className="marker-popup-comparison-container">
-                            <span className="marker-popup-comparison">
-                              1.04%
-                            </span>
-                          </StackItem>
-                        </Stack>
-                        <p className="marker-popup-description">
-                          {mapLocation.location.description
-                            ? mapLocation.location.description
-                            : 'No description.'}
-                          <Link>View workload</Link>
-                        </p>
-                      </Popup>
-                    </Marker>
-                  );
-                })}
+                          <Popup>
+                            <Stack
+                              className="marker-popup-header"
+                              directionType={Stack.DIRECTION_TYPE.HORIZONTAL}
+                              fullWidth
+                            >
+                              <StackItem className="marker-popup-status-dot-container">
+                                <span className="marker-popup-status-dot" />
+                              </StackItem>
+                              <StackItem
+                                className="marker-popup-title-container"
+                                grow
+                              >
+                                {/* <span className="marker-popup-title-label">
+                          Store:
+                        </span>{' '} */}
+                                <span className="marker-popup-title">
+                                  {mapLocation.title}
+                                </span>
+                              </StackItem>{' '}
+                              <StackItem className="marker-popup-comparison-container">
+                                <span className="marker-popup-comparison">
+                                  {markerComparisonNumber}
+                                </span>
+                              </StackItem>
+                            </Stack>
+                            <p className="marker-popup-description">
+                              {mapLocation.location.description
+                                ? mapLocation.location.description
+                                : 'No description.'}
+                              <Link>View workload</Link>
+                            </p>
+                          </Popup>
+                        </Marker>
+                      );
+                    });
+                  }}
+                </BatchNrql>
+              )}
             </Map>
           )}
         </div>
