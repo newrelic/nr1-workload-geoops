@@ -174,7 +174,7 @@ export default class MapItem extends PureComponent {
         >
           <StackItem className="map-grid-item-meta">
             <h4 className="map-grid-item-name">{map.title || map.guid}</h4>
-            <h6 className="map-grid-item-subtitle">24 locations</h6>
+            <h6 className="map-grid-item-subtitle">{map.description}</h6>
           </StackItem>
           <StackItem className="map-grid-item-settings-button">
             {this.renderSettingsButton(map, navigation)}

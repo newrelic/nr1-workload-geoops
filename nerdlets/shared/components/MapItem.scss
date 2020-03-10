@@ -86,12 +86,20 @@ div.map-grid-item-bottom {
     padding: 0 16px;
 }
 
+.map-grid-item-meta {
+  width: 88%;
+}
+
 h4.map-grid-item-name {
     margin-bottom: 2px;
     margin-top: 8px;
 }
 
 h6.map-grid-item-subtitle {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 12px;
     line-height: 16px;
     color: #8E9494;
