@@ -19,7 +19,7 @@
   "dependencies": {
     "@newrelic/nr1-community": "^1.0.1",
     "ajv": "^6.11.0",
-    "dateformat": "^3.0.3",
+    "date-fns": "^2.10.0",
     "file-loader": "^4.2.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
