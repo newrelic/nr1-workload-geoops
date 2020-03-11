@@ -184,16 +184,15 @@ a:not([href]):not([tabindex]).detail-pane-cta {
   padding: 16px 16px 8px;
   position: relative;
 
-  &:before {
-    content: "";
-    display: inline-block;
-    width: 4px;
-    height: 33px;
-    background-color: #DD5454;
-    position: absolute;
-    left: 0;
-    top: 12px;
-  }
+}
+
+.detail-panel-title-status {
+  display: inline-block;
+  width: 4px;
+  height: 36px;
+  position: absolute;
+  left: 0;
+  top: 12px;
 }
 
 .detail-panel-cta-container {

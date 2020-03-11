@@ -3,9 +3,6 @@ import L from 'leaflet';
 import { ChevronUp, ChevronDown } from 'react-feather';
 
 export const statusColor = mapLocation => {
-  const { mostCriticalEntity } = mapLocation;
-  const { alertSeverity } = mostCriticalEntity;
-
   const colors = {
     green: '#13BA00',
     yellow: '#FFB951',
@@ -21,7 +18,14 @@ export const statusColor = mapLocation => {
     NOT_CONFIGURED: 'gray'
   };
 
-  return colors[severityToColor[alertSeverity]] || colors.white;
+  if (mapLocation) {
+    const { mostCriticalEntity } = mapLocation;
+    const { alertSeverity } = mostCriticalEntity;
+
+    return colors[severityToColor[alertSeverity]] || colors.white;
+  } else {
+    return colors.white;
+  }
 };
 
 export const generateIcon = mapLocation => {

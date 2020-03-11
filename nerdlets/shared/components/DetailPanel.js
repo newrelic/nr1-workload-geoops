@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { Button, Icon, Stack, StackItem } from 'nr1';
 
+import { statusColor } from '../../geo-ops-nerdlet/utils';
+
 class Header extends React.PureComponent {
   render() {
     const { data, onClose, onMinimize, featuredChart } = this.props;
@@ -38,7 +40,13 @@ class Header extends React.PureComponent {
           </StackItem>
         </Stack>
         <hr className="detail-panel-header-top-bar-hr" />
-        <h3 className="detail-panel-title">{data ? data.title : ''}</h3>
+        <h3 className="detail-panel-title">
+          <span
+            className="detail-panel-title-status"
+            style={{ backgroundColor: statusColor(data) }}
+          />
+          {data ? data.title : ''}
+        </h3>
         <div className="detail-panel-cta-container">
           <a className="detail-pane-view-workload-button detail-pane-cta">
             <Icon
