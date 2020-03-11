@@ -39,18 +39,18 @@
       left: 5px;
     }
 
-    &:hover {
-      transform: translateY(-1px);
-      cursor: pointer;
-      color: #005054;
-      background-color: #D3EFEF;
+    // &:hover {
+    //   transform: translateY(-1px);
+    //   cursor: pointer;
+    //   color: #005054;
+    //   background-color: #D3EFEF;
 
-      &:before,
-      &:after {
-        box-shadow: none;
-        background-color: #D3EFEF;
-      }
-     }
+    //   &:before,
+    //   &:after {
+    //     box-shadow: none;
+    //     background-color: #D3EFEF;
+    //   }
+    //  }
     
     &:active {
       transform: translateY(1px);
@@ -62,15 +62,15 @@
     }
   }
 
-  &:hover {
-    color: #005054;
-    cursor: pointer;
-    transform: translateY(-1px);
+  // &:hover {
+  //   color: #005054;
+  //   cursor: pointer;
+  //   transform: translateY(-1px);
     
-    &:before, &:after {
-      background-color: #D3EFEF;
-    }
-  }
+  //   &:before, &:after {
+  //     background-color: #D3EFEF;
+  //   }
+  // }
   
   &:active {
     transform: translateY(1px);

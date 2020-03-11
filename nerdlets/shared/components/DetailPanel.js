@@ -14,12 +14,27 @@ class Header extends React.PureComponent {
       <header className="detail-panel-header">
         <Stack className="detail-panel-header-top-bar">
           <StackItem className="detail-panel-breadcrumbs-container">
-            <ul className="detail-panel-breadcrumbs">
-              <li className="detail-panel-breadcrumb">Canada</li>
-              <li className="detail-panel-breadcrumb">Ontario</li>
-              <li className="detail-panel-breadcrumb">Toronto</li>
-              <li className="detail-panel-breadcrumb">Alexandria Park</li>
-            </ul>
+            {data && (
+              <ul className="detail-panel-breadcrumbs">
+                <>
+                  {data.location.country && (
+                    <li className="detail-panel-breadcrumb">
+                      {data.location.country}
+                    </li>
+                  )}
+                  {data.location.region && (
+                    <li className="detail-panel-breadcrumb">
+                      {data.location.region}
+                    </li>
+                  )}
+                  {data.location.municipality && (
+                    <li className="detail-panel-breadcrumb">
+                      {data.location.municipality}
+                    </li>
+                  )}
+                </>
+              </ul>
+            )}
           </StackItem>
           <StackItem className="detail-panel-visiblity-controls">
             <Button
