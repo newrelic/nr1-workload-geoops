@@ -39,15 +39,17 @@ export default class MapLocationTable extends PureComponent {
   favoriteFormatter(cell, row, rowIndex) {
     const { favoriteLocations } = this.state;
 
+    const favoriteStatus =
+      (favoriteLocations && favoriteLocations[row.externalId]) || false;
     return (
       <Icon
         className="favorite-button"
         type={
-          favoriteLocations && favoriteLocations[row.externalId]
+          favoriteStatus
             ? Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD
             : Icon.TYPE.PROFILES__EVENTS__FAVORITE
         }
-        color={favoriteLocations[row.externalId] ? '#FFB951' : '#d5d7d7'}
+        color={favoriteStatus ? '#FFB951' : '#d5d7d7'}
       />
     );
   }

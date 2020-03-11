@@ -480,16 +480,22 @@ export default class ViewMap extends React.PureComponent {
                                           label="Recent incidents"
                                           className="no-padding"
                                         >
-                                          {activeMapLocation &&
-                                            this.renderMiniTimline()}
+                                          {activeMapLocation ? (
+                                            this.renderMiniTimline()
+                                          ) : (
+                                            <></>
+                                          )}
                                         </TabsItem>
                                         <TabsItem
                                           value="tab-2"
                                           label="Metadata & tags"
                                           className="no-padding"
                                         >
-                                          {activeMapLocation &&
-                                            this.renderMetadata()}
+                                          {activeMapLocation ? (
+                                            this.renderMetadata()
+                                          ) : (
+                                            <></>
+                                          )}
                                           {/* {activeMapLocation &&
                                             this.renderTags()} */}
                                         </TabsItem>

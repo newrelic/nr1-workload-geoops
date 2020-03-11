@@ -35,6 +35,7 @@ class Header extends React.PureComponent {
                 </>
               </ul>
             )}
+            {!data && <></>}
           </StackItem>
           <StackItem className="detail-panel-visiblity-controls">
             <Button
