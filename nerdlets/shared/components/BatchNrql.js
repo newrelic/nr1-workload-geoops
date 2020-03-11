@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
+import chunk from 'lodash.chunk';
 
 import { NerdGraphQuery } from 'nr1';
 
@@ -33,7 +34,8 @@ export default class BatchNrql extends React.PureComponent {
     super(props);
     this.state = {
       allQueries: [],
-      queryResults: {}
+      queryResults: {},
+      queriesPerBatch: 5
     };
 
     this.handleResults = this.handleResults.bind(this);
@@ -72,29 +74,23 @@ export default class BatchNrql extends React.PureComponent {
 
   batchProcess() {
     const { accountId } = this.props;
-    const { allQueries } = this.state;
+    const { allQueries, queriesPerBatch } = this.state;
 
-    // TO DO - Split into batches of X
-
-    // For each batch
-    // batch.map
-
-    // eslint-disable-next-line no-constant-condition
-    if (true) {
-      const queries = allQueries.join('\n');
+    const chunks = chunk(allQueries, queriesPerBatch);
+    chunks.forEach(chunk => {
+      const queries = chunk.join('\n');
 
       // TO DO - Somewhere in here we have an opportunity to create a unique list of queries
       // so we don't duplicate requests, we'll just need to map the results back to the guids
 
       const query = NG_QUERY({ accountId, queries });
 
-      // Promise.then
       NerdGraphQuery.query({
         query,
         variables: {},
         fetchPolicyType: NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE
       }).then(this.handleResults);
-    }
+    });
   }
 
   handleResults({ data, errors }) {
