@@ -18,14 +18,16 @@ export default class MapLocationTable extends Component {
 
   favoriteFormatter(cell) {
     return (
-      <Icon
-        type={
-          cell
-            ? Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD
-            : Icon.TYPE.PROFILES__EVENTS__FAVORITE
-        }
-        color={cell ? '#FFB951' : '#d5d7d7'}
-      />
+      <div className="favorite-button">
+        <Icon
+          type={
+            cell
+              ? Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD
+              : Icon.TYPE.PROFILES__EVENTS__FAVORITE
+          }
+          color={cell ? '#FFB951' : '#d5d7d7'}
+        />
+      </div>
     );
   }
 

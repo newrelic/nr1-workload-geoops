@@ -10,13 +10,15 @@ import {
   SparklineChart,
   Tabs,
   TabsItem,
-  Icon
+  Icon,
+  navigation
 } from 'nr1';
 
 import { mapByGuid } from '../shared/utils';
-import { EmptyState, Timeline } from '@newrelic/nr1-community';
+import { EmptyState } from '@newrelic/nr1-community';
 import { lowerCase, kebabCase } from 'lodash';
 import { format } from 'date-fns';
+import { PACKAGE_UUID } from '../shared/constants';
 
 import ViewMapQuery from './ViewMapQuery';
 import GeoMap from './geo-map';
@@ -205,6 +207,15 @@ export default class ViewMap extends React.PureComponent {
             violation.alertSeverity
           )}`}
           key={violation.violationId}
+          onClick={() => {
+            navigation.openStackedNerdlet({
+              id: `${PACKAGE_UUID}.recent-incidents`,
+              urlState: {
+                recentViolations: activeMapLocation.recentViolations,
+                clickedViolation: violation
+              }
+            });
+          }}
         >
           <div className="timeline-item-timestamp">
             <span className="timeline-timestamp-date">

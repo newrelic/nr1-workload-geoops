@@ -238,7 +238,7 @@ a:not([href]):not([tabindex]).detail-pane-cta {
   [class*='Tabs-navigation'] {
     margin-bottom: 0;
     background: #FAFBFB;
-    box-shadow: 0px -1px 0px #EDEEEE, inset 0px -1px 0px #EDEEEE;
+    box-shadow: inset 0px 1px 0px #EDEEEE, inset 0px -1px 0px #EDEEEE;
     border-bottom: 0;
     padding: 0 8px;
   }
@@ -249,6 +249,7 @@ a:not([href]):not([tabindex]).detail-pane-cta {
   }
   
   [class*='TabContent'] {
+    box-shadow: inset 0 2px 0 #fafbfb;
     height: calc(100% - 243px);
     overflow: scroll;
     padding: 16px;
