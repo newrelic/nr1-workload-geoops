@@ -14,7 +14,6 @@ import {
   navigation
 } from 'nr1';
 
-import { mapByGuid } from '../shared/utils';
 import { EmptyState } from '@newrelic/nr1-community';
 import { lowerCase, kebabCase } from 'lodash';
 import { format } from 'date-fns';
@@ -354,11 +353,13 @@ export default class ViewMap extends React.PureComponent {
              *
              */
             <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
-              {({
-                mapLocations = [],
-                entities = [],
-                workloadToEntityGuidsLookup = {}
-              }) => {
+              {({ mapLocations, entities, workloadToEntityGuidsLookup }) => {
+                /*
+                  TO DO - When clicking on a map marker, AlertsReducer says 'entities' has changed
+                  This causes a cascading re-render of everything below it
+                  How does 'entities' change without re-running any queries?
+                  Temporarily we're storing a copy in local state in AlertsReducer which "fixes" this
+                */
                 return (
                   <AlertsReducer
                     mapLocations={mapLocations}
@@ -373,10 +374,8 @@ export default class ViewMap extends React.PureComponent {
                       const hasMapLocations =
                         mapLocations && mapLocations.length > 0;
                       const hasEntities = entities && entities.length > 0;
-                      const entitiesMap = mapByGuid({ data: entities });
-                      const test = false;
 
-                      if (!test && !hasMapLocations) {
+                      if (!hasMapLocations) {
                         return (
                           <EmptyState
                             heading="No map locations found"
@@ -396,7 +395,7 @@ export default class ViewMap extends React.PureComponent {
                         <>
                           <MapLocationDistiller
                             mapLocations={mapLocations}
-                            entities={entitiesMap}
+                            entities={entities}
                             entityToEntitiesLookup={workloadToEntityGuidsLookup}
                           >
                             {/* Note: we have multiple variables named mapLocations scoped differently */}
@@ -436,15 +435,7 @@ export default class ViewMap extends React.PureComponent {
                                       <GeoMap
                                         map={map}
                                         mapLocations={mapLocations}
-                                        entitiesMap={mapByGuid({
-                                          entities
-                                        })}
-                                        onMarkerClick={mapLocation =>
-                                          this.openDetailPanel(mapLocation)
-                                        }
-                                        onMapClick={() =>
-                                          console.log('not a rerender')
-                                        }
+                                        onMarkerClick={this.openDetailPanel}
                                       />
                                     )}
                                     {!hasMapLocations && (

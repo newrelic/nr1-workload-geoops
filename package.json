@@ -24,6 +24,7 @@
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "leaflet": "^1.5.1",
+    "lodash.chunk": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.some": "^4.6.0",
