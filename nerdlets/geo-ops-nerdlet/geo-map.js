@@ -6,7 +6,7 @@ import { Stack, StackItem, Link, Modal, UserStorageMutation } from 'nr1';
 import get from 'lodash.get';
 
 import BatchNrql from '../shared/components/BatchNrql';
-import { generateIcon } from './utils';
+import { generateIcon, statusColor } from './utils';
 
 export default class GeoMap extends Component {
   static propTypes = {
@@ -239,7 +239,12 @@ export default class GeoMap extends Component {
                               fullWidth
                             >
                               <StackItem className="marker-popup-status-dot-container">
-                                <span className="marker-popup-status-dot" />
+                                <span
+                                  className="marker-popup-status-dot"
+                                  style={{
+                                    backgroundColor: statusColor(mapLocation)
+                                  }}
+                                />
                               </StackItem>
                               <StackItem
                                 className="marker-popup-title-container"
