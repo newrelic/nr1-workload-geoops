@@ -249,6 +249,76 @@ export default class ViewMap extends React.PureComponent {
     );
   }
 
+  renderMetadata() {
+    const { activeMapLocation } = this.state;
+
+    const keys = Object.keys(activeMapLocation);
+
+    const items = keys.map(key => {
+      if (typeof activeMapLocation[key] !== 'object') {
+        return (
+          <li key={key} className="detail-panel-metadata-item">
+            <Stack fullWidth>
+              <StackItem className="detail-panel-metadata-item-key" title={key}>
+                {key}
+              </StackItem>
+              <StackItem
+                grow
+                className="detail-panel-metadata-item-value"
+                title={activeMapLocation[key]}
+              >
+                {activeMapLocation[key]}
+              </StackItem>
+            </Stack>
+          </li>
+        );
+      } else if (key === 'location') {
+        const locationKeys = Object.keys(activeMapLocation[key]);
+
+        return locationKeys.map(locationKey => {
+          return (
+            <li key={locationKey} className="detail-panel-metadata-item">
+              <Stack fullWidth>
+                <StackItem
+                  className="detail-panel-metadata-item-key"
+                  title={locationKey}
+                >
+                  {locationKey}
+                </StackItem>
+                <StackItem
+                  grow
+                  className="detail-panel-metadata-item-value"
+                  title={activeMapLocation[key][locationKey]}
+                >
+                  {activeMapLocation[key][locationKey]}
+                </StackItem>
+              </Stack>
+            </li>
+          );
+        });
+      } else {
+        return '';
+      }
+    });
+
+    return <ul className="detail-panel-metadata-list">{items}</ul>;
+  }
+
+  renderTags() {
+    const { activeMapLocation } = this.state;
+
+    const items = activeMapLocation.tags.map((tag, index) => {
+      return (
+        <div key={index} className="detail-panel-metadata-item">
+          <span className="tag-key">{tag.key}:</span>
+          <span className="tag-value">{tag.value}</span>
+        </div>
+      );
+    });
+
+    return items;
+  }
+
   render() {
     const { maps, map, navigation } = this.props;
     const {
@@ -407,18 +477,6 @@ export default class ViewMap extends React.PureComponent {
                                       <Tabs>
                                         <TabsItem
                                           value="tab-1"
-                                          label="Location JSON"
-                                        >
-                                          <pre>
-                                            {JSON.stringify(
-                                              activeMapLocation,
-                                              null,
-                                              2
-                                            )}
-                                          </pre>
-                                        </TabsItem>
-                                        <TabsItem
-                                          value="tab-2"
                                           label="Recent incidents"
                                           className="no-padding"
                                         >
@@ -426,37 +484,17 @@ export default class ViewMap extends React.PureComponent {
                                             this.renderMiniTimline()}
                                         </TabsItem>
                                         <TabsItem
-                                          value="tab-3"
-                                          label="Metatags & data"
+                                          value="tab-2"
+                                          label="Metadata & tags"
+                                          className="no-padding"
                                         >
-                                          <small>
-                                            Ut in nulla enim. Phasellus molestie
-                                            magna non est bibendum non venenatis
-                                            nisl tempor. Suspendisse dictum
-                                            feugiat nisl ut dapibus. Mauris
-                                            iaculis porttitor posuere. Praesent
-                                            id metus massa, ut blandit odio.
-                                            Proin quis tortor orci. Etiam at
-                                            risus et justo dignissim congue.
-                                            Donec congue lacinia dui, a
-                                            porttitor lectus condimentum
-                                            laoreet. Nunc eu ullamcorper orci.
-                                            Quisque eget odio ac lectus
-                                            vestibulum faucibus eget in metus.
-                                            In pellentesque faucibus vestibulum.
-                                            Nulla at nulla justo, eget luctus
-                                            tortor. Nulla facilisi. Duis aliquet
-                                            egestas purus in blandit. Curabitur
-                                            vulputate, ligula lacinia
-                                            scelerisque tempor, lacus lacus
-                                            ornare ante, ac egestas est urna sit
-                                            amet arcu. Class aptent taciti
-                                            sociosqu ad litora torquent per
-                                            conubia.
-                                          </small>
+                                          {activeMapLocation &&
+                                            this.renderMetadata()}
+                                          {/* {activeMapLocation &&
+                                            this.renderTags()} */}
                                         </TabsItem>
                                         <TabsItem
-                                          value="tab-4"
+                                          value="tab-3"
                                           label="Revenue detail"
                                         >
                                           <small>

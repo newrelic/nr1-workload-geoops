@@ -667,7 +667,7 @@ a:not([href]):not([tabindex]).detail-pane-cta {
   .timeline-item-title {
     display: block;
     width: 100%;
-    padding: 0px 8px 0 8px;
+    padding: 0 8px 0 8px;
     box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -682,4 +682,31 @@ a:not([href]):not([tabindex]).detail-pane-cta {
     left: 0.5px;
     z-index: 10;
   }
+}
+
+/*-- end timeline styles --*/
+
+ul.detail-panel-metadata-list {
+  margin: 0;
+}
+
+.detail-panel-metadata-item {
+  display: block;
+  border-bottom: 1px dotted #EDEEEE;
+  padding: 8px 16px;
+  list-style-type: none;
+}
+
+.detail-panel-metadata-item-key {
+  font-weight: 600;
+  color: #464E4E;
+}
+
+.detail-panel-metadata-item-value {
+  text-align: right;
+  color: #464E4E;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
