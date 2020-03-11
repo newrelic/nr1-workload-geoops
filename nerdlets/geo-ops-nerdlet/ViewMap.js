@@ -9,11 +9,14 @@ import {
   StackItem,
   SparklineChart,
   Tabs,
-  TabsItem
+  TabsItem,
+  Icon
 } from 'nr1';
 
 import { mapByGuid } from '../shared/utils';
 import { EmptyState, Timeline } from '@newrelic/nr1-community';
+import { lowerCase, kebabCase } from 'lodash';
+import { format } from 'date-fns';
 
 import ViewMapQuery from './ViewMapQuery';
 import GeoMap from './geo-map';
@@ -161,6 +164,77 @@ export default class ViewMap extends React.PureComponent {
           query="SELECT count(*) FROM `Synthetics` SINCE 1 MONTH AGO TIMESERIES AUTO FACET error"
         />
       </>
+    );
+  }
+
+  renderMiniTimline() {
+    const { activeMapLocation } = this.state;
+
+    const iconType = alertSeverity => {
+      switch (alertSeverity) {
+        case 'CRITICAL':
+          return Icon.TYPE
+            .HARDWARE_AND_SOFTWARE__SOFTWARE__APPLICATION__S_ERROR;
+        case 'WARNING':
+          return Icon.TYPE
+            .HARDWARE_AND_SOFTWARE__SOFTWARE__APPLICATION__S_WARNING;
+        case 'NOT_ALERTING':
+          return Icon.TYPE
+            .HARDWARE_AND_SOFTWARE__SOFTWARE__APPLICATION__A_CHECKED;
+        case 'NOT_CONFIGURED':
+          return Icon.TYPE.HARDWARE_AND_SOFTWARE__SOFTWARE__APPLICATION__S_OK;
+      }
+    };
+    const iconColor = alertSeverity => {
+      switch (alertSeverity) {
+        case 'CRITICAL':
+          return '#BF0016';
+        case 'WARNING':
+          return '#9C5400';
+        case 'NOT_ALERTING':
+          return '#3CA653';
+        case 'NOT_CONFIGURED':
+          return '#464e4e';
+      }
+    };
+
+    const timelineItems = activeMapLocation.recentViolations.map(violation => {
+      return (
+        <div
+          className={`timeline-item impact-${kebabCase(
+            violation.alertSeverity
+          )}`}
+          key={violation.violationId}
+        >
+          <div className="timeline-item-timestamp">
+            <span className="timeline-timestamp-date">
+              {format(violation.openedAt, 'MM/dd/yy')}
+            </span>
+            <span className="timeline-timestamp-time">
+              {format(violation.openedAt, 'p')}
+            </span>
+          </div>
+          <div className="timeline-item-dot" />
+          <div className="timeline-item-body">
+            <div className="timeline-item-body-header">
+              <div
+                className="timeline-item-symbol"
+                title={`Impact: ${lowerCase(violation.alertSeverity)}`}
+              >
+                <Icon
+                  type={iconType(violation.alertSeverity)}
+                  color={iconColor(violation.alertSeverity)}
+                />
+              </div>
+              <div className="timeline-item-title">{violation.label}</div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+
+    return (
+      <div className="timeline-container mini-timeline">{timelineItems}</div>
     );
   }
 
@@ -335,19 +409,10 @@ export default class ViewMap extends React.PureComponent {
                                         <TabsItem
                                           value="tab-2"
                                           label="Recent incidents"
+                                          className="no-padding"
                                         >
-                                          <small>
-                                            Morbi malesuada nulla nec purus
-                                            convallis consequat. Vivamus id
-                                            mollis quam. Morbi ac commodo nulla.
-                                            In condimentum orci id nisl volutpat
-                                            bibendum. Quisque commodo hendrerit
-                                            lorem quis egestas. Maecenas quis
-                                            tortor arcu. Vivamus rutrum nunc non
-                                            neque consectetur quis placerat
-                                            neque lobortis.
-                                          </small>
-                                          {/* <Timeline data={activeMapLocation} /> */}
+                                          {activeMapLocation &&
+                                            this.renderMiniTimline()}
                                         </TabsItem>
                                         <TabsItem
                                           value="tab-3"

@@ -27,6 +27,20 @@
 @import '../shared/components/MapItem.scss';
 @import '../shared/components/DetailPanel.scss';
 
+// ==============================================================
+// Uitility Classes
+// ==============================================================
+
+.hidden {
+  display: none !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+/*-- end utility classes --*/
+
 .primary-grid {
   height: calc(100% - 74px);
 }
@@ -102,10 +116,6 @@
   left: 50%;
   margin-top: -50px;
   margin-left: -100px;
-}
-
-.hidden {
-  display: none;
 }
 
 h4.page-title:not(.u-unstyledH4) {
