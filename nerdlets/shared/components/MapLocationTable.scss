@@ -3,6 +3,7 @@ td[class*='status-'] {
   overflow: hidden;
 }
 
+
 .locations-table-grid-item {
   overflow: scroll;
   overflow-x: hidden;
@@ -16,10 +17,16 @@ td[class*='status-'] {
   }
 
   td {
+    padding: .75rem .5rem;
     border: none;
     vertical-align: bottom;
     color: #464e4e;
+
+    &[class*='status'] {
+      padding: 0;
+    }
   }
+  
 
   .ic-Icon {
     position: relative;
@@ -40,7 +47,7 @@ td[class*='status-'] {
     font-weight: 400;
     box-shadow: 0 1px 0 #f4f5f5;
     letter-spacing: .5px;
-    padding: 0 .75rem;
+    padding: 0 .5rem;
 
     &:hover {
       cursor: pointer;

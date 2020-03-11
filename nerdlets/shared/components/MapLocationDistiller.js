@@ -115,10 +115,7 @@ export default class MapLocationDistiller extends React.PureComponent {
       const mostCriticalEntity = this.entityReducer(document);
       const mostRecentAlertViolation = mostCriticalEntity.alertViolations[0];
       const lastIncidentTime = mostRecentAlertViolation
-        ? format(
-            new Date(mostRecentAlertViolation.openedAt),
-            'MMM i, hh:mm:ss aaaa'
-          )
+        ? format(new Date(mostRecentAlertViolation.openedAt), 'MM/d/yy h:m a')
         : 'N/A';
 
       previousValue.push({
