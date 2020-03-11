@@ -38,18 +38,18 @@ export default class MapLocationTable extends PureComponent {
 
   favoriteFormatter(cell, row, rowIndex) {
     const { favoriteLocations } = this.state;
-    if (favoriteLocations && favoriteLocations[row.externalId]) {
-      return (
-        <Icon
-          type={Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD}
-          color={favoriteLocations[row.externalId] ? '#FFB951' : '#d5d7d7'}
-        />
-      );
-    } else {
-      return (
-        <Icon type={Icon.TYPE.PROFILES__EVENTS__FAVORITE} color="#d5d7d7" />
-      );
-    }
+
+    return (
+      <Icon
+        className="favorite-button"
+        type={
+          favoriteLocations && favoriteLocations[row.externalId]
+            ? Icon.TYPE.PROFILES__EVENTS__FAVORITE__WEIGHT_BOLD
+            : Icon.TYPE.PROFILES__EVENTS__FAVORITE
+        }
+        color={favoriteLocations[row.externalId] ? '#FFB951' : '#d5d7d7'}
+      />
+    );
   }
 
   getFavoriteLocations() {

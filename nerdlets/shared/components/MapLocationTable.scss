@@ -160,3 +160,7 @@ input:not(.u-unstyledInput):not([type=button]):not([type=submit]):not([type=rese
     border: none;
   }
 }
+
+.favorite-button:hover {
+  cursor: pointer;
+}
