@@ -27,13 +27,21 @@ export default class GeoMap extends Component {
       errors: [],
       mapReady: false,
       queries: [],
-      selectedLocation: ''
+      selectedLocation: '',
+      popupIsHovered: false,
+      hoveredMarker: null
     };
+
+    this.popupHoverTimer = null;
 
     this.mapRef = React.createRef();
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
     this.handleOnZoomEnd = this.handleOnZoomEnd.bind(this);
+    this.handleMarkerMouseOver = this.handleMarkerMouseOver.bind(this);
+    this.handleMarkerMouseOut = this.handleMarkerMouseOut.bind(this);
+    this.handlePopupMouseOver = this.handlePopupMouseOver.bind(this);
+    this.handlePopupMouseOut = this.handlePopupMouseOut.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +52,10 @@ export default class GeoMap extends Component {
     if (prevProps.mapLocations !== this.props.mapLocations) {
       // console.log('mapLocations changed');
       this.mapQueries();
+    }
+
+    if (this.state.popupIsHovered) {
+      clearTimeout(this.popupHoverTimer);
     }
   }
 
@@ -110,6 +122,31 @@ export default class GeoMap extends Component {
     }
 
     return startingCenter;
+  }
+
+  handleMarkerMouseOver(e) {
+    if (this.popupHoverTimer) {
+      clearTimeout(this.popupHoverTimer);
+    }
+    e.target.openPopup();
+  }
+
+  handleMarkerMouseOut(e) {
+    this.setState({ hoveredMarker: e.target });
+    this.popupHoverTimer = setTimeout(() => {
+      this.state.hoveredMarker.closePopup();
+    }, 100);
+  }
+
+  handlePopupMouseOver() {
+    clearTimeout(this.popupHoverTimer);
+    this.setState({ popupIsHovered: true });
+  }
+
+  handlePopupMouseOut() {
+    this.popupHoverTimer = setTimeout(() => {
+      this.state.hoveredMarker.closePopup();
+    }, 100);
   }
 
   renderMarkers() {
@@ -179,47 +216,52 @@ export default class GeoMap extends Component {
                 icon={icon}
                 document={mapLocation}
                 riseOnHover
-                onMouseOver={e => {
-                  e.target.openPopup();
-                }}
-                onMouseOut={e => {
-                  e.target.closePopup();
-                }}
+                onMouseOver={e => this.handleMarkerMouseOver(e)}
+                onMouseOut={e => this.handleMarkerMouseOut(e)}
               >
                 <Popup>
-                  <Stack
-                    className="marker-popup-header"
-                    directionType={Stack.DIRECTION_TYPE.HORIZONTAL}
-                    fullWidth
+                  <div
+                    className="blessed"
+                    onMouseEnter={e => {
+                      e.stopPropagation();
+                      this.handlePopupMouseOver();
+                    }}
+                    onMouseLeave={this.handlePopupMouseOut}
                   >
-                    <StackItem className="marker-popup-status-dot-container">
-                      <span
-                        className="marker-popup-status-dot"
-                        style={{
-                          backgroundColor: statusColor(mapLocation)
-                        }}
-                      />
-                    </StackItem>
-                    <StackItem className="marker-popup-title-container" grow>
-                      {/* <span className="marker-popup-title-label">
+                    <Stack
+                      className="marker-popup-header"
+                      directionType={Stack.DIRECTION_TYPE.HORIZONTAL}
+                      fullWidth
+                    >
+                      <StackItem className="marker-popup-status-dot-container">
+                        <span
+                          className="marker-popup-status-dot"
+                          style={{
+                            backgroundColor: statusColor(mapLocation)
+                          }}
+                        />
+                      </StackItem>
+                      <StackItem className="marker-popup-title-container" grow>
+                        {/* <span className="marker-popup-title-label">
                           Store:
                         </span>{' '} */}
-                      <span className="marker-popup-title">
-                        {mapLocation.title}
-                      </span>
-                    </StackItem>{' '}
-                    <StackItem className="marker-popup-comparison-container">
-                      <span className="marker-popup-comparison">
-                        {markerComparisonNumber}
-                      </span>
-                    </StackItem>
-                  </Stack>
-                  <p className="marker-popup-description">
-                    {mapLocation.location.description
-                      ? mapLocation.location.description
-                      : 'No description.'}
-                    <Link>View workload</Link>
-                  </p>
+                        <span className="marker-popup-title">
+                          {mapLocation.title}
+                        </span>
+                      </StackItem>{' '}
+                      <StackItem className="marker-popup-comparison-container">
+                        <span className="marker-popup-comparison">
+                          {markerComparisonNumber}
+                        </span>
+                      </StackItem>
+                    </Stack>
+                    <p className="marker-popup-description">
+                      {mapLocation.location.description
+                        ? mapLocation.location.description
+                        : 'No description.'}
+                      <Link>View workload</Link>
+                    </p>
+                  </div>
                 </Popup>
               </Marker>
             );
