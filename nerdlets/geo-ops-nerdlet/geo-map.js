@@ -96,8 +96,7 @@ export default class GeoMap extends Component {
 
   handleMarkerClick(e, mapLocation) {
     const { onMarkerClick } = this.props;
-    const document = get(e, 'target.options.document', false);
-    this.setState({ selectedLocation: document, hidden: false });
+    this.setState({ selectedLocation: mapLocation.guid, hidden: false });
     onMarkerClick(mapLocation);
   }
 
@@ -204,7 +203,10 @@ export default class GeoMap extends Component {
                         return null;
                       }
 
-                      const icon = generateIcon(mapLocation);
+                      const isSelectedIcon =
+                        mapLocation.guid === selectedLocation;
+
+                      const icon = generateIcon(mapLocation, isSelectedIcon);
 
                       // Lookup the result
                       const queryName = queryPrefix + guid.replace(/-/gi, '');

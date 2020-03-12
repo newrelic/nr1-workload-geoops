@@ -28,7 +28,7 @@ export const statusColor = mapLocation => {
   }
 };
 
-export const generateIcon = mapLocation => {
+export const generateIcon = (mapLocation, isSelectedIcon) => {
   return L.divIcon({
     className: 'marker',
     iconSize: [10, 10],
@@ -40,6 +40,9 @@ export const generateIcon = mapLocation => {
           viewBox="0 0 35 44"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          class="marker-icon-svg ${
+            isSelectedIcon ? 'selected-marker-icon' : ''
+          }"
         >
           <path
             fillRule="evenodd"
