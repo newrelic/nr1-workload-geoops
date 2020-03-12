@@ -122,6 +122,7 @@ export default class ViewMap extends React.PureComponent {
       this
     );
     this.openDetailPanel = this.openDetailPanel.bind(this);
+    this.handleTableRowClick = this.handleTableRowClick.bind(this);
   }
 
   openDetailPanel(mapLocation) {
@@ -318,6 +319,13 @@ export default class ViewMap extends React.PureComponent {
     return items;
   }
 
+  handleTableRowClick(location) {
+    this.setState({
+      activeMapLocation: location,
+      detailPanelClosed: false
+    });
+  }
+
   render() {
     const { maps, map, navigation } = this.props;
     const {
@@ -410,6 +418,9 @@ export default class ViewMap extends React.PureComponent {
                                       <MapLocationTable
                                         data={mapLocations}
                                         map={map}
+                                        rowClickHandler={
+                                          this.handleTableRowClick
+                                        }
                                       />
                                     )}
                                     {hasMapLocations && !hasEntities && (
@@ -436,6 +447,7 @@ export default class ViewMap extends React.PureComponent {
                                         map={map}
                                         mapLocations={mapLocations}
                                         onMarkerClick={this.openDetailPanel}
+                                        activeMapLocation={activeMapLocation}
                                       />
                                     )}
                                     {!hasMapLocations && (

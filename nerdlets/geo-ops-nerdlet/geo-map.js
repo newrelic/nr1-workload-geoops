@@ -18,7 +18,8 @@ export default class GeoMap extends Component {
 
     // Leaflet pass-throughs
     center: PropTypes.array,
-    zoom: PropTypes.number
+    zoom: PropTypes.number,
+    activeMapLocation: PropTypes.object
   };
 
   constructor(props) {
@@ -57,6 +58,14 @@ export default class GeoMap extends Component {
     if (this.state.popupIsHovered) {
       clearTimeout(this.popupHoverTimer);
     }
+
+    if (prevProps.activeMapLocation !== this.props.activeMapLocation) {
+      this.setSelectedLocation();
+    }
+  }
+
+  setSelectedLocation() {
+    this.setState({ selectedLocation: this.props.activeMapLocation.guid });
   }
 
   mapQueries() {
@@ -221,7 +230,6 @@ export default class GeoMap extends Component {
               >
                 <Popup>
                   <div
-                    className="blessed"
                     onMouseEnter={e => {
                       e.stopPropagation();
                       this.handlePopupMouseOver();

@@ -8,7 +8,8 @@ import { Icon, AccountStorageMutation, AccountStorageQuery } from 'nr1';
 export default class MapLocationTable extends PureComponent {
   static propTypes = {
     map: PropTypes.object,
-    data: PropTypes.array
+    data: PropTypes.array,
+    rowClickHandler: PropTypes.func
   };
 
   constructor(props) {
@@ -177,6 +178,14 @@ export default class MapLocationTable extends PureComponent {
     ];
   }
 
+  rowEvents() {
+    return {
+      onClick: (e, row, rowIndex) => {
+        this.props.rowClickHandler(row);
+      }
+    };
+  }
+
   render() {
     const { SearchBar } = Search;
     const { data } = this.props;
@@ -191,7 +200,11 @@ export default class MapLocationTable extends PureComponent {
         {props => (
           <div>
             <SearchBar {...props.searchProps} />
-            <BootstrapTable {...props.baseProps} bordered={false} />
+            <BootstrapTable
+              {...props.baseProps}
+              bordered={false}
+              rowEvents={this.rowEvents()}
+            />
           </div>
         )}
       </ToolkitProvider>
