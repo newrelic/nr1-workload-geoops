@@ -452,6 +452,7 @@ export default class ViewMap extends React.PureComponent {
                                         map={map}
                                         mapLocations={mapLocations}
                                         onMarkerClick={this.openDetailPanel}
+                                        activeMapLocation={activeMapLocation}
                                       />
                                     )}
                                     {!hasMapLocations && (
