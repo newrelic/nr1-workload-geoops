@@ -3,20 +3,31 @@ import PropTypes from 'prop-types';
 
 import some from 'lodash.some';
 import { format } from 'date-fns';
+import { mapByGuid } from '../utils';
 
 export default class MapLocationDistiller extends React.PureComponent {
   static propTypes = {
     children: PropTypes.func,
     mapLocations: PropTypes.array,
-    entities: PropTypes.object,
+    entities: PropTypes.array,
     entityToEntitiesLookup: PropTypes.object
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      //
+      mapLocations: []
     };
+  }
+
+  componentDidMount() {
+    this.transformMapLocations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.entities !== this.props.entities) {
+      this.transformMapLocations();
+    }
   }
 
   severityStatusToWeight(value) {
@@ -46,6 +57,7 @@ export default class MapLocationDistiller extends React.PureComponent {
    */
   entityReducer(mapLocation) {
     const { entities, entityToEntitiesLookup } = this.props;
+    const entitiesMap = mapByGuid({ data: entities });
     const mapLocationEntities = mapLocation.entities || [];
     let mostCriticalEntity;
 
@@ -57,16 +69,16 @@ export default class MapLocationDistiller extends React.PureComponent {
       if (some(mapLocationEntities)) {
         mostCriticalEntity = mapLocationEntities.reduce(
           (p, { guid: entityGuid }) => {
-            const entity = entities[entityGuid];
+            const entity = entitiesMap[entityGuid];
             const relatedEntities = entityToEntitiesLookup[entityGuid] || [];
 
             const entitiesToDistill = [
               entity,
-              ...relatedEntities.map(guid => entities[guid])
+              ...relatedEntities.map(guid => entitiesMap[guid])
             ];
             const distill = (previousValue, { guid: entityGuid }) => {
               if (entityGuid) {
-                const entity = entities[entityGuid];
+                const entity = entitiesMap[entityGuid];
                 if (entity) {
                   if (!previousValue) {
                     return entity;
@@ -102,8 +114,12 @@ export default class MapLocationDistiller extends React.PureComponent {
   transformMapLocations() {
     const { mapLocations = [] } = this.props;
 
-    return mapLocations.reduce((previousValue, ml) => {
+    const transformed = mapLocations.reduce((previousValue, ml) => {
       const { document } = ml;
+
+      if (!document) {
+        return previousValue;
+      }
 
       if (!document.guid) {
         console.warn('Map Location missing guid');
@@ -113,10 +129,15 @@ export default class MapLocationDistiller extends React.PureComponent {
 
       // Last incident is actually the entity that has the current worst alertSeverity
       const mostCriticalEntity = this.entityReducer(document);
-      const mostRecentAlertViolation = mostCriticalEntity.alertViolations[0];
-      const lastIncidentTime = mostRecentAlertViolation
-        ? format(new Date(mostRecentAlertViolation.openedAt), 'MM/d/yy h:m a')
-        : 'N/A';
+      let mostRecentAlertViolation = null;
+      let lastIncidentTime = 'N/A';
+
+      if (mostCriticalEntity) {
+        mostRecentAlertViolation = mostCriticalEntity.alertViolations[0];
+        lastIncidentTime = mostRecentAlertViolation
+          ? format(new Date(mostRecentAlertViolation.openedAt), 'MM/d/yy h:m a')
+          : 'N/A';
+      }
 
       previousValue.push({
         ...document,
@@ -127,12 +148,13 @@ export default class MapLocationDistiller extends React.PureComponent {
 
       return previousValue;
     }, []);
+    this.setState({ mapLocations: transformed });
   }
 
   render() {
     const { children } = this.props;
-    const data = this.transformMapLocations();
+    const { mapLocations } = this.state;
 
-    return children({ data });
+    return children({ data: mapLocations });
   }
 }

@@ -139,7 +139,7 @@ export default class ViewMapQuery extends React.PureComponent {
                                       begin_time={begin_time}
                                       end_time={end_time}
                                     >
-                                      {({ loading, error, data }) => {
+                                      {({ loading, error, data: entities }) => {
                                         if (loading) {
                                           return (
                                             <>
@@ -154,10 +154,9 @@ export default class ViewMapQuery extends React.PureComponent {
                                             <NerdGraphError error={error} />
                                           );
                                         }
-
                                         return children({
                                           mapLocations,
-                                          entities: data,
+                                          entities,
                                           workloadToEntityGuidsLookup
                                         });
                                       }}

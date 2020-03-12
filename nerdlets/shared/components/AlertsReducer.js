@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { mapByGuid } from '../utils';
+import cloneDeep from 'lodash.clonedeep';
 
 export default class AlertsReducer extends React.PureComponent {
   static propTypes = {
@@ -13,7 +14,36 @@ export default class AlertsReducer extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      flattened: [],
+      entities: []
+    };
+  }
+
+  componentDidMount() {
+    this.reduce();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.mapLocations !== this.props.mapLocations) {
+      console.log('mapLocations has changed');
+      this.reduce();
+    }
+
+    if (prevProps.entities !== this.props.entities) {
+      console.log('entities has changed');
+    }
+  }
+
+  reduce() {
+    const { mapLocations, entities, workloadToEntityGuidsLookup } = this.props;
+
+    const flattened = this.alertsReducer({
+      mapLocations,
+      entities,
+      workloadToEntityGuidsLookup
+    });
+    this.setState({ flattened, entities: cloneDeep(entities) });
   }
 
   // TO DO - _actually_ make this recursive
@@ -107,18 +137,8 @@ export default class AlertsReducer extends React.PureComponent {
   }
 
   render() {
-    const {
-      children,
-      mapLocations,
-      entities,
-      workloadToEntityGuidsLookup
-    } = this.props;
-
-    const flattened = this.alertsReducer({
-      mapLocations,
-      entities,
-      workloadToEntityGuidsLookup
-    });
+    const { children, workloadToEntityGuidsLookup } = this.props;
+    const { entities, flattened } = this.state;
 
     return children({
       mapLocations: flattened,

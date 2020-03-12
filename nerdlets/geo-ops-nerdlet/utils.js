@@ -1,6 +1,7 @@
 import React from 'react';
 import L from 'leaflet';
 import { ChevronUp, ChevronDown } from 'react-feather';
+import get from 'lodash.get';
 
 export const statusColor = mapLocation => {
   const colors = {
@@ -19,10 +20,15 @@ export const statusColor = mapLocation => {
   };
 
   if (mapLocation) {
-    const { mostCriticalEntity } = mapLocation;
-    const { alertSeverity } = mostCriticalEntity;
+    const alertSeverity = get(
+      mapLocation,
+      'mostCriticalEntity.alertSeverity',
+      false
+    );
 
-    return colors[severityToColor[alertSeverity]] || colors.white;
+    if (alertSeverity) {
+      return colors[severityToColor[alertSeverity]] || colors.white;
+    }
   } else {
     return colors.white;
   }
