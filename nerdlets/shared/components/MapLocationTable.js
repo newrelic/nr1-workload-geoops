@@ -19,32 +19,6 @@ export default class MapLocationTable extends PureComponent {
       favoriteLocations: []
     };
 
-    this.renderOriginalTable = () => {
-      const { SearchBar } = Search;
-      const { data } = this.props;
-
-      return (
-        <ToolkitProvider
-          keyField="externalId"
-          data={data}
-          columns={this.columns()}
-          search
-        >
-          {props => (
-            <div>
-              <SearchBar {...props.searchProps} />
-              <BootstrapTable
-                {...props.baseProps}
-                bordered={false}
-                rowEvents={this.rowEvents()}
-                rowClasses={(row, rowIndex) => this.rowClasses(row, rowIndex)}
-              />
-            </div>
-          )}
-        </ToolkitProvider>
-      );
-    };
-
     this.getFavoriteLocations = this.getFavoriteLocations.bind(this);
     this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
     this.favoriteFormatter = this.favoriteFormatter.bind(this);
@@ -57,34 +31,6 @@ export default class MapLocationTable extends PureComponent {
   componentDidUpdate(prevProps) {
     if (prevProps.map !== this.props.map) {
       this.getFavoriteLocations();
-    }
-
-    if (prevProps.activeMapLocation !== this.props.activeMapLocation) {
-      this.renderTable = () => {
-        const { SearchBar } = Search;
-        const { data } = this.props;
-
-        return (
-          <ToolkitProvider
-            keyField="externalId"
-            data={data}
-            columns={this.columns()}
-            search
-          >
-            {props => (
-              <div>
-                <SearchBar {...props.searchProps} />
-                <BootstrapTable
-                  {...props.baseProps}
-                  bordered={false}
-                  rowEvents={this.rowEvents()}
-                  rowClasses={this.rowClasses()}
-                />
-              </div>
-            )}
-          </ToolkitProvider>
-        );
-      };
     }
   }
 
@@ -257,6 +203,25 @@ export default class MapLocationTable extends PureComponent {
     const { SearchBar } = Search;
     const { data } = this.props;
 
-    return this.renderOriginalTable();
+    return (
+      <ToolkitProvider
+        keyField="externalId"
+        data={data}
+        columns={this.columns()}
+        search
+      >
+        {props => (
+          <div>
+            <SearchBar {...props.searchProps} />
+            <BootstrapTable
+              {...props.baseProps}
+              bordered={false}
+              rowEvents={this.rowEvents()}
+              rowClasses={(row, rowIndex) => this.rowClasses(row, rowIndex)}
+            />
+          </div>
+        )}
+      </ToolkitProvider>
+    );
   }
 }

@@ -127,6 +127,20 @@ td[class*='status-'] {
   }
 }
 
+.react-bootstrap-table tbody td:hover {
+  cursor: pointer;
+}
+
+.react-bootstrap-table tr:hover {
+  &:not(.active-location):nth-child(2n) > td:not(.u-unstyledTd) {
+    background-color: #fafbfb;
+  }
+
+  &:not(.active-location) td {
+    background-color: #fafbfb;
+  }
+}
+
 .react-bootstrap-table tr td {
   box-shadow: 0 -1px 0 #f4f5f5;
   font-size: 12px;
