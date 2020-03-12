@@ -171,3 +171,11 @@ input:not(.u-unstyledInput):not([type=button]):not([type=submit]):not([type=rese
 .favorite-button:hover {
   cursor: pointer;
 }
+
+tr.active-location:nth-child(2n)>td:not(.u-unstyledTd) {
+  background-color: #F4F5F5;
+}
+
+tr.active-location > td:not(.u-unstyledTd) {
+  background-color: #F4F5F5;
+}

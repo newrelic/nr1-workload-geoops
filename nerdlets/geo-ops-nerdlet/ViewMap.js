@@ -421,6 +421,7 @@ export default class ViewMap extends React.PureComponent {
                                         rowClickHandler={
                                           this.handleTableRowClick
                                         }
+                                        activeMapLocation={activeMapLocation}
                                       />
                                     )}
                                     {hasMapLocations && !hasEntities && (
@@ -428,6 +429,10 @@ export default class ViewMap extends React.PureComponent {
                                         <MapLocationTable
                                           data={mapLocations}
                                           map={map}
+                                          rowClickHandler={
+                                            this.handleTableRowClick
+                                          }
+                                          activeMapLocation={activeMapLocation}
                                         />
                                         <EmptyState
                                           heading="Map locations but no associated entities"
@@ -447,7 +452,6 @@ export default class ViewMap extends React.PureComponent {
                                         map={map}
                                         mapLocations={mapLocations}
                                         onMarkerClick={this.openDetailPanel}
-                                        activeMapLocation={activeMapLocation}
                                       />
                                     )}
                                     {!hasMapLocations && (
