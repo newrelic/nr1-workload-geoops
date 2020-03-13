@@ -82,10 +82,17 @@ export default class MapLocationTable extends PureComponent {
       collection: 'workloadsGeoopsFavorites',
       documentId: guid
     }).then(({ data }) => {
-      const document = {
-        ...data,
-        [row.externalId]: !data[row.externalId]
-      };
+      let document = {};
+      if (data) {
+        document = {
+          ...data,
+          [row.externalId]: !data[row.externalId]
+        };
+      } else {
+        document = {
+          [row.externalId]: true
+        };
+      }
       this.setState({ favoriteLocations: document });
       AccountStorageMutation.mutate({
         accountId: accountId,
