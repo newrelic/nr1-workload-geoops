@@ -230,3 +230,18 @@ a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-out 
         }
     }
 }
+
+[class*='wnd-Link'].detail-pane-view-workload-button {
+    margin-right: 16px;
+    color: #007e8a;
+
+    .ic-Icon {
+        margin-right: 4px;
+        position: relative;
+        bottom: 1px;
+    }
+}
+
+.leaflet-popup-content [class*='wnd-Link'].view-workload-button {
+    margin-left: 3px;
+}

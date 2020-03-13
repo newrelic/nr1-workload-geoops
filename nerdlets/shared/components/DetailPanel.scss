@@ -156,14 +156,6 @@ a:not([href]):not([tabindex]).detail-pane-cta {
   color: #007e8a;
   transition: transform .1s ease-out;
 
-  &:hover {
-    transform: translateY(-1px)
-  }
-  
-  &:active {
-    transform: translateY(1px)
-  }
-
   &:last-child {
     margin-right: 0px;
   }
@@ -710,3 +702,4 @@ ul.detail-panel-metadata-list {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+

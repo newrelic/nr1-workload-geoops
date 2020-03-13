@@ -2,11 +2,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Icon, Stack, StackItem } from 'nr1';
+import { Button, Icon, Stack, StackItem, navigation, Link } from 'nr1';
 
 import { statusColor } from '../../geo-ops-nerdlet/utils';
 
 class Header extends React.PureComponent {
+  renderEntityLink() {
+    const { data, onClose, onMinimize, featuredChart } = this.props;
+    const location = navigation.getOpenStackedEntityLocation(
+      data.entities[0].guid
+    );
+    return (
+      <Link
+        to={location}
+        className="detail-pane-view-workload-button detail-pane-cta"
+      >
+        <Icon color="#007e8a" type={Icon.TYPE.INTERFACE__OPERATIONS__SHOW} />
+        View in Workloads
+      </Link>
+    );
+  }
+
   render() {
     const { data, onClose, onMinimize, featuredChart } = this.props;
 
@@ -64,13 +80,7 @@ class Header extends React.PureComponent {
           {data ? data.title : ''}
         </h3>
         <div className="detail-panel-cta-container">
-          <a className="detail-pane-view-workload-button detail-pane-cta">
-            <Icon
-              color="#007e8a"
-              type={Icon.TYPE.INTERFACE__OPERATIONS__SHOW}
-            />
-            View in Workloads
-          </a>
+          {data && this.renderEntityLink()}
           <a className="detail-pane-contact-button detail-pane-cta">
             <Icon
               color="#007e8a"

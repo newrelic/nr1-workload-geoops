@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Stack, StackItem, Link, Modal, UserStorageMutation } from 'nr1';
+import { Stack, StackItem, Link, Icon, navigation } from 'nr1';
 import get from 'lodash.get';
 
 import BatchNrql from '../shared/components/BatchNrql';
@@ -158,6 +158,17 @@ export default class GeoMap extends Component {
     }, 100);
   }
 
+  renderEntityLink(mapLocation) {
+    const location = navigation.getOpenStackedEntityLocation(
+      mapLocation.entities[0].guid
+    );
+    return (
+      <Link to={location} className="view-workload-button detail-pane-cta">
+        View in Workloads
+      </Link>
+    );
+  }
+
   renderMarkers() {
     const { map, mapLocations } = this.props;
     const { mapReady, queries, selectedLocation } = this.state;
@@ -267,7 +278,7 @@ export default class GeoMap extends Component {
                       {mapLocation.location.description
                         ? mapLocation.location.description
                         : 'No description.'}
-                      <Link>View workload</Link>
+                      {mapLocation && this.renderEntityLink(mapLocation)}
                     </p>
                   </div>
                 </Popup>
