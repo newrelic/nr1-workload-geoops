@@ -30,8 +30,11 @@ import AlertsReducer from '../shared/components/AlertsReducer';
 const LeftToolbar = ({ maps, map, navigation }) => {
   return (
     <>
+      <StackItem className="toolbar-item has-separator">
+        <h4 className="page-title">{map.title}</h4>
+      </StackItem>
       <StackItem className="toolbar-item">
-        <Dropdown label="Map" title={map ? map.title : 'Choose a map'}>
+        <Dropdown label="Other maps" title="View other maps">
           {maps.map(m => {
             if (!m.document.guid) {
               return null;
@@ -65,7 +68,7 @@ LeftToolbar.propTypes = {
 const RightToolbar = ({ navigation }) => {
   return (
     <>
-      <StackItem className="">
+      <StackItem className="toolbar-item has-separator">
         <Button
           type={Button.TYPE.NORMAL}
           onClick={() => navigation.router({ to: 'createMap' })}
@@ -74,7 +77,7 @@ const RightToolbar = ({ navigation }) => {
           New Map
         </Button>
       </StackItem>
-      <StackItem className="">
+      <StackItem className="toolbar-item">
         <Button
           type={Button.TYPE.NORMAL}
           onClick={() => navigation.router({ to: 'mapList' })}

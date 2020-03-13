@@ -60,6 +60,7 @@
             0px 1px 3px rgba(0, 134, 148, 0.13), 
             0px 8px 17px rgba(88, 114, 117, 0.3);
         transition: transform .2s cubic-bezier(.25, .46, .45, .94);
+        border-top: 1px solid #e3e4e4;
 
         &.closed {
             transform: translateX(100%);

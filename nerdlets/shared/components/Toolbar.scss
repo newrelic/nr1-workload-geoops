@@ -11,6 +11,10 @@
   padding-left: 0;
 }
 
+.toolbar-section2 .toolbar-item:last-child {
+  padding-right: 0;
+}
+
 .toolbar-item {
   display: flex;
   justify-content: center;

@@ -22,6 +22,7 @@ export default class MapLocationTable extends PureComponent {
     this.getFavoriteLocations = this.getFavoriteLocations.bind(this);
     this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
     this.favoriteFormatter = this.favoriteFormatter.bind(this);
+    this.favoriteSortValue = this.favoriteSortValue.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +37,11 @@ export default class MapLocationTable extends PureComponent {
 
   statusFormatter() {
     return <div className="status-color-fill" />;
+  }
+
+  favoriteSortValue(cell, row, rowIndex) {
+    const { favoriteLocations } = this.state;
+    return favoriteLocations[row.externalId];
   }
 
   favoriteFormatter(cell, row, rowIndex) {
@@ -167,8 +173,10 @@ export default class MapLocationTable extends PureComponent {
         text: '',
         sort: true,
         formatter: this.favoriteFormatter,
+        sortValue: this.favoriteSortValue,
         events: {
           onClick: (e, column, columnIndex, row, rowIndex) => {
+            e.preventDefault();
             this.handleFavoriteClick(e, column, row);
           }
         }

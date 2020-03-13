@@ -10,7 +10,7 @@ import { latLngToTile } from '../shared/utils';
 const RightToolbar = ({ navigation }) => {
   return (
     <>
-      <StackItem className="">
+      <StackItem className="toolbar-item">
         <Button
           type={Button.TYPE.PRIMARY}
           onClick={() =>

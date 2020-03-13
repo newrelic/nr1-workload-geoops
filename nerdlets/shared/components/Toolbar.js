@@ -28,9 +28,10 @@ const Toolbar = function({ className, left, right }) {
       </StackItem>
       <StackItem className="toolbar-section2">
         <Stack
+          gapType={Stack.GAP_TYPE.NONE}
           fullWidth
           fullHeight
-          verticalType={Stack.VERTICAL_TYPE.CENTER}
+          verticalType={Stack.VERTICAL_TYPE.FILL}
           horizontalType={Stack.HORIZONTAL_TYPE.RIGHT}
         >
           {right || (

@@ -42,7 +42,7 @@ LeftToolbar.propTypes = {
 const RightToolbar = ({ navigation }) => {
   return (
     <>
-      <StackItem className="">
+      <StackItem className="toolbar-item has-separator">
         <Button
           type={Button.TYPE.PRIMARY}
           onClick={() => console.log('Edit Locations')}
@@ -50,7 +50,7 @@ const RightToolbar = ({ navigation }) => {
           Edit Locations
         </Button>
       </StackItem>
-      <StackItem className="">
+      <StackItem className="toolbar-item">
         <Button
           type={Button.TYPE.PRIMARY}
           onClick={() => navigation.router({ to: 'createMap' })}
