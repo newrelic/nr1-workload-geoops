@@ -270,7 +270,9 @@ export default class GeoMap extends Component {
                       </StackItem>{' '}
                       <StackItem className="marker-popup-comparison-container">
                         <span className="marker-popup-comparison">
-                          {markerComparisonNumber}
+                          {typeof markerComparisonNumber === 'number'
+                            ? `${markerComparisonNumber.toFixed(2)}%`
+                            : markerComparisonNumber}
                         </span>
                       </StackItem>
                     </Stack>
