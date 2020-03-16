@@ -65,6 +65,7 @@ div.map-entities-header {
   .ic-Icon {
     position: relative;
     bottom: 1px;
+    pointer-events: none;
   }
 }
 
@@ -88,9 +89,13 @@ ul.map-entities-location-list {
     z-index: 100;
   }
 
+  &:hover {
+    cursor: pointer;
+    background-color: #fafbfb;
+  }
+
   &:not(.completed):not(.active):hover {
     background-color: #fafbfb;
-    cursor: pointer;
 
     .map-entities-location-list-item-check {
       box-shadow: inset 0 0 0 2px #b9bdbd;
@@ -108,13 +113,14 @@ ul.map-entities-location-list {
   font-weight: 600;
   color: #464e4e;
 
-  .completed & {
-    color: #b9bdbd;
-    text-decoration: line-through;
-  }
-
+  
   .active & {
     color: #000d0d;
+  }
+  
+  .completed & {
+    color: #8e9494;
+    text-decoration: line-through;
   }
 }
 
@@ -127,12 +133,12 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   }
 
   .completed & {
-    color: #b9bdbd;
+    color: #8e9494;
     text-decoration: line-through;
   }
 
   .active & {
-    color: #000d0d;
+    color: #8e9494;
   }
 } 
 
@@ -152,7 +158,7 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
     background-repeat: no-repeat;
   }
 
-  .active & {
+  .active:not(.completed) & {
     box-shadow: inset 0 0 0 2px #000d0d;
   }
 }

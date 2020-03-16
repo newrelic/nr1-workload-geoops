@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import uuid from 'uuid/v4';
-import cloneDeep from 'lodash.clonedeep';
+import { cloneDeep, findIndex } from 'lodash';
 import { Stack, StackItem, Icon } from 'nr1';
 
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
@@ -71,6 +71,16 @@ export default class MapLocationData extends React.Component {
 
     this.onMapLocationSelect = this.onMapLocationSelect.bind(this);
     this.onRelatedEntityChange = this.onRelatedEntityChange.bind(this);
+    this.selectLocationViaArrowNav = this.selectLocationViaArrowNav.bind(this);
+  }
+
+  componentDidMount() {
+    const { mapLocations } = this.props;
+
+    // select the first location by default
+    if (mapLocations.length > 0) {
+      this.setState({ selectedMapLocation: mapLocations[0] });
+    }
   }
 
   onMapLocationSelect(e) {
@@ -106,6 +116,28 @@ export default class MapLocationData extends React.Component {
 
     return ml.entities.length > 0 && ml.query !== '';
     // return ml.entities.length > 0 || ml.query !== '';
+  }
+
+  selectLocationViaArrowNav(e) {
+    const { selectedMapLocation } = this.state;
+    const { mapLocations } = this.props;
+
+    const prevOrNext = e.target.classList.contains(
+      'map-entities-header-navigation-arrow-next'
+    )
+      ? 1
+      : -1;
+
+    const indexOfCurrentMapLocation = findIndex(mapLocations, location => {
+      return location.id === selectedMapLocation.id;
+    });
+
+    if (mapLocations[indexOfCurrentMapLocation + prevOrNext]) {
+      this.setState({
+        selectedMapLocation:
+          mapLocations[indexOfCurrentMapLocation + prevOrNext]
+      });
+    }
   }
 
   render() {
@@ -164,7 +196,8 @@ export default class MapLocationData extends React.Component {
             <StackItem className="map-entities-header-navigation-arrows">
               <button
                 type="button"
-                className="map-entities-header-navigation-arrow map-entities-header-navigation-arrow-left u-unstyledButton"
+                className="map-entities-header-navigation-arrow map-entities-header-navigation-arrow-prev u-unstyledButton"
+                onClick={this.selectLocationViaArrowNav}
               >
                 <Icon
                   type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT}
@@ -173,7 +206,8 @@ export default class MapLocationData extends React.Component {
               </button>
               <button
                 type="button"
-                className="map-entities-header-navigation-arrow map-entities-header-navigation-arrow-right u-unstyledButton"
+                className="map-entities-header-navigation-arrow map-entities-header-navigation-arrow-next u-unstyledButton"
+                onClick={this.selectLocationViaArrowNav}
               >
                 <Icon
                   type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT}
