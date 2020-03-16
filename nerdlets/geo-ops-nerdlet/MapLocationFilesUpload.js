@@ -369,16 +369,34 @@ export default class MapLocationFilesUpload extends React.Component {
         {(!this.props.mapGuid || !this.props.accountId) && (
           <EmptyState
             heading="Choose a file to upload"
-            description="TODO: Use the `footer` prop of the EmptyState to make the button below trigger file upload selection"
-            buttonText="Choose a file"
+            description="Once uploaded, your data will be displayed here in a table for your review. After you have uploaded, and confirmed that you are content with the data you've uploaded, click the Save and Continue button to save your data."
+            footer={() => {
+              return (
+                <label
+                  htmlFor="location-upload"
+                  className="upload-button upload-other-button"
+                >
+                  Choose a file
+                </label>
+              );
+            }}
           />
         )}
 
         {this.props.files.length === 0 && (
           <EmptyState
             heading="Choose a file to upload"
-            description="TODO: Use the `footer` prop of the EmptyState to make the button below trigger file upload selection"
-            buttonText="Choose a file"
+            description="Once uploaded, your data will be displayed here in a table for your review. After you have uploaded, and confirmed that you are content with the data you've uploaded, click the Save and Continue button to save your data."
+            footer={() => {
+              return (
+                <label
+                  htmlFor="location-upload"
+                  className="upload-button upload-other-button"
+                >
+                  Choose a file
+                </label>
+              );
+            }}
           />
         )}
         <input
