@@ -9,7 +9,8 @@ export const statusColor = mapLocation => {
     yellow: '#FFB951',
     red: '#FF0000',
     gray: '#8E9494',
-    white: '#FFFFFF'
+    white: '#FFFFFF',
+    darkGreen: '#005054'
   };
 
   const severityToColor = {
@@ -27,10 +28,12 @@ export const statusColor = mapLocation => {
     );
 
     if (alertSeverity) {
-      return colors[severityToColor[alertSeverity]] || colors.white;
+      return colors[severityToColor[alertSeverity]] || colors.darkGreen;
+    } else {
+      return colors.darkGreen;
     }
   } else {
-    return colors.white;
+    return colors.darkGreen;
   }
 };
 
