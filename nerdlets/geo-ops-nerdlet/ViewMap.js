@@ -24,15 +24,39 @@ import GeoMap from './geo-map';
 import Toolbar from '../shared/components/Toolbar';
 import DetailPanel from '../shared/components/DetailPanel';
 import MapLocationTable from '../shared/components/MapLocationTable';
+import FilteredMapLocations from '../shared/components/FilteredMapLocations';
 
-const LeftToolbar = ({ maps, map, navigation }) => {
+const LeftToolbar = ({
+  maps,
+  map,
+  navigation,
+  mapLocations,
+  onFilter,
+  regionFilter,
+  favoriteFilter
+}) => {
+  const regions = Object.keys(groupBy(mapLocations, i => i.location.region));
+  const favoriteOptions = [
+    { name: 'All', value: null },
+    { name: 'Favorites', value: true },
+    { name: 'Unfavorited', value: false }
+  ];
+  console.log(favoriteFilter);
+  const selectedFavorite = favoriteOptions.find(
+    o => o.value === favoriteFilter
+  );
+  console.log(selectedFavorite);
+
   return (
     <>
       <StackItem className="toolbar-item has-separator">
         <h4 className="page-title">{map.title}</h4>
       </StackItem>
       <StackItem className="toolbar-item">
-        <Dropdown label="Other maps" title="View other maps">
+        <Dropdown
+          label="Other maps"
+          title={get(map, 'title', 'View other maps')}
+        >
           {maps.map(m => {
             if (!m.document.guid) {
               return null;
@@ -54,6 +78,42 @@ const LeftToolbar = ({ maps, map, navigation }) => {
           })}
         </Dropdown>
       </StackItem>
+      <StackItem className="toolbar-item">
+        <Dropdown label="Regions" title={regionFilter || 'Filter by Region'}>
+          {regions.map(r => {
+            return (
+              <DropdownItem
+                key={r}
+                onClick={() => {
+                  onFilter({
+                    filter: { name: 'regionFilter', value: r }
+                  });
+                }}
+              >
+                {r}
+              </DropdownItem>
+            );
+          })}
+        </Dropdown>
+      </StackItem>
+      <StackItem className="toolbar-item">
+        <Dropdown label="Favorites" title={selectedFavorite.name}>
+          {favoriteOptions.map(r => {
+            return (
+              <DropdownItem
+                key={r.value}
+                onClick={() => {
+                  onFilter({
+                    filter: { name: 'favoriteFilter', value: r.value }
+                  });
+                }}
+              >
+                {r.name}
+              </DropdownItem>
+            );
+          })}
+        </Dropdown>
+      </StackItem>
     </>
   );
 };
@@ -61,7 +121,10 @@ LeftToolbar.propTypes = {
   maps: PropTypes.array,
   map: PropTypes.object,
   navigation: PropTypes.object,
-  mapLocations: PropTypes.array
+  mapLocations: PropTypes.array,
+  onFilter: PropTypes.func,
+  regionFilter: PropTypes.string,
+  favoriteFilter: PropTypes.bool
 };
 
 const RightToolbar = ({ navigation }) => {
@@ -114,7 +177,9 @@ export default class ViewMap extends React.PureComponent {
 
       detailPanelMinimized: false,
       detailPanelClosed: true,
-      activeMapLocation: null
+      activeMapLocation: null,
+      regionFilter: '',
+      favoriteFilter: null
     };
 
     this.handleDetailPanelMinimizeButton = this.handleDetailPanelMinimizeButton.bind(
@@ -125,6 +190,7 @@ export default class ViewMap extends React.PureComponent {
     );
     this.openDetailPanel = this.openDetailPanel.bind(this);
     this.handleTableRowClick = this.handleTableRowClick.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   openDetailPanel(mapLocation) {
@@ -143,6 +209,11 @@ export default class ViewMap extends React.PureComponent {
     this.setState(prevState => ({
       detailPanelMinimized: !prevState.detailPanelMinimized
     }));
+  }
+
+  handleFilterChange({ filter }) {
+    const { name, value } = filter;
+    this.setState({ [name]: value });
   }
 
   renderFeaturedChart(map) {
@@ -335,39 +406,30 @@ export default class ViewMap extends React.PureComponent {
       end_time,
       activeMapLocation,
       detailPanelClosed,
-      detailPanelMinimized
+      detailPanelMinimized,
+      regionFilter,
+      favoriteFilter
     } = this.state;
 
     return (
       <>
-        <Toolbar
-          className="view-map-toolbar"
-          left={<LeftToolbar navigation={navigation} maps={maps} map={map} />}
-          right={<RightToolbar navigation={navigation} />}
-        />
-        <Stack
-          fullWidth
-          gapType={Stack.GAP_TYPE.NONE}
-          className="primary-grid view-map-primary-grid"
-        >
-          {map && (
-            /*
-             * 
-                1. ViewMapQuery fetches data through a series of 3 calls:
-                    - NerdStorage for MapLocations
-                    - Workloads for all attached workloads and their entities
-                    - All entities contained in all workloads with alert data
-                2. AlertsReducer flattens all alertViolations and recentAlertViolations into one array on the MapLocation
-                3. MapLocationDistiller goes through all of a MapLocation's alerting entities and their attached
-                  alertViolations and finds the one with the highest severity and adds it to the mapLocation as "mostCriticalEntity"
-             *
-             */
+        {map && (
+          /*
+           * 
+              1. ViewMapQuery fetches data through a series of 3 calls:
+                  - NerdStorage for MapLocations
+                  - Workloads for all attached workloads and their entities
+                  - All entities contained in all workloads with alert data
+              2. AlertsReducer aggregates entities, alertViolations, and recentAlertViolations onto the MapLocation
+              3. MapLocationDistiller goes through all of a MapLocation's alerting entities and their attached
+                alertViolations and finds the one with the highest severity and adds it to the mapLocation as "mostCriticalEntity"
+           *
+          */
           <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
-            {({ mapLocations, entities, workloadToEntityGuidsLookup }) => {
+            {({ mapLocations, entities }) => {
               const hasMapLocations = mapLocations && mapLocations.length > 0;
               const hasEntities = entities && entities.length > 0;
 
-              console.log(mapLocations);
               if (!hasMapLocations) {
                 return (
                   <EmptyState
@@ -394,6 +456,9 @@ export default class ViewMap extends React.PureComponent {
                         maps={maps}
                         map={map}
                         mapLocations={mapLocations}
+                        onFilter={this.handleFilterChange}
+                        regionFilter={regionFilter}
+                        favoriteFilter={favoriteFilter}
                       />
                     }
                     right={<RightToolbar navigation={navigation} />}
@@ -433,12 +498,21 @@ export default class ViewMap extends React.PureComponent {
                     </StackItem>
                     <StackItem grow className="primary-content-container">
                       {hasMapLocations && (
-                        <GeoMap
-                          map={map}
+                        <FilteredMapLocations
                           mapLocations={mapLocations}
-                          onMarkerClick={this.openDetailPanel}
-                          activeMapLocation={activeMapLocation}
-                        />
+                          filters={[]}
+                          regionFilter={regionFilter}
+                          favoriteFilter={favoriteFilter}
+                        >
+                          {({ filteredMapLocations }) => (
+                            <GeoMap
+                              map={map}
+                              mapLocations={filteredMapLocations}
+                              onMarkerClick={this.openDetailPanel}
+                              activeMapLocation={activeMapLocation}
+                            />
+                          )}
+                        </FilteredMapLocations>
                       )}
                       {!hasMapLocations && (
                         <EmptyState
