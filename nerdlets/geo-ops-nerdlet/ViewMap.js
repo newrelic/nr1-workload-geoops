@@ -41,11 +41,9 @@ const LeftToolbar = ({
     { name: 'Favorites', value: true },
     { name: 'Unfavorited', value: false }
   ];
-  console.log(favoriteFilter);
   const selectedFavorite = favoriteOptions.find(
     o => o.value === favoriteFilter
   );
-  console.log(selectedFavorite);
 
   return (
     <>

@@ -44,7 +44,7 @@ export default class index extends PureComponent {
 
     this.onMapDelete = this.onMapDelete.bind(this);
     this.onMapChange = this.onMapChange.bind(this);
-    this.route = this.route.bind(this);
+    this.router = this.router.bind(this);
   }
 
   async componentDidMount() {
@@ -116,7 +116,7 @@ export default class index extends PureComponent {
     });
   }
 
-  route({ to, state }) {
+  router({ to, state }) {
     const next = { ...initialPages };
     next[to] = true;
     this.setState({ pages: next, ...state });
@@ -140,7 +140,7 @@ export default class index extends PureComponent {
       return (
         <EmptyState
           navigation={{
-            router: this.route
+            router: this.router
           }}
         />
       );
@@ -172,7 +172,7 @@ export default class index extends PureComponent {
                 activeStep={activeStep}
                 onMapChange={this.onMapChange}
                 navigation={{
-                  router: this.route
+                  router: this.router
                 }}
                 hasNewLocations={hasNewLocations || null}
               />
@@ -188,7 +188,7 @@ export default class index extends PureComponent {
           maps={maps}
           onMapDelete={this.onMapDelete}
           navigation={{
-            router: this.route
+            router: this.router
           }}
         />
       );
@@ -198,7 +198,7 @@ export default class index extends PureComponent {
       return (
         <EditMap
           navigation={{
-            router: this.route
+            router: this.router
           }}
         />
       );
@@ -210,7 +210,7 @@ export default class index extends PureComponent {
           maps={maps}
           map={selectedMap}
           navigation={{
-            router: this.route
+            router: this.router
           }}
         />
       );
