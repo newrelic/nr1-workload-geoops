@@ -49,24 +49,43 @@ export default class AlertsReducer extends React.PureComponent {
   // TO DO - _actually_ make this recursive
   alertsReducer({
     mapLocations,
-    entities: allEntities,
+    entities: propEntities,
     workloadToEntityGuidsLookup
   }) {
+    const entitiesMap = mapByGuid({ data: propEntities });
+
+    // Aggregate alertViolations and recentAlertViolations
+    const aggregator = (previousValue, currentValue) => {
+      if (currentValue) {
+        if (currentValue.alertViolations) {
+          previousValue.alertViolations.push(...currentValue.alertViolations);
+        }
+
+        if (currentValue.recentAlertViolations) {
+          previousValue.recentAlertViolations.push(
+            ...currentValue.recentAlertViolations
+          );
+        }
+      }
+      return previousValue;
+    };
+
     // For each item
     return mapLocations.map(ml => {
       const { document } = ml;
       const { entities = [] } = document;
 
-      // console.log(ml);
-      // console.log(entities);
-      // console.log(workloadToEntityGuidsLookup);
-
-      const entitiesMap = mapByGuid({ data: allEntities });
-
-      const { alertViolations, recentAlertViolations } = entities.reduce(
+      const {
+        allEntities,
+        alertViolations,
+        recentAlertViolations
+      } = entities.reduce(
         (previousValue, currentValue) => {
-          let alertViolations = [];
-          let recentAlertViolations = [];
+          const aggregatedResult = {
+            alertViolations: [],
+            recentAlertViolations: [],
+            allEntities: []
+          };
 
           if (currentValue.entityType === 'WORKLOAD_ENTITY') {
             // console.log(currentValue.guid);
@@ -80,55 +99,36 @@ export default class AlertsReducer extends React.PureComponent {
                 return entitiesMap[guid];
               });
 
-              // Aggregate alertViolations and recentAlertViolations
-              const result = workloadEntities.reduce(
-                (previousValue, currentValue) => {
-                  // console.log(currentValue);
-                  if (currentValue) {
-                    if (currentValue.alertViolations) {
-                      previousValue.alertViolations.push(
-                        ...currentValue.alertViolations
-                      );
-                    }
+              const result = workloadEntities.reduce(aggregator, {
+                alertViolations: [],
+                recentAlertViolations: [],
+                allEntities: workloadEntities
+              });
 
-                    if (currentValue.recentAlertViolations) {
-                      previousValue.recentAlertViolations.push(
-                        ...currentValue.recentAlertViolations
-                      );
-                    }
-                  }
-                  return previousValue;
-                },
-                {
-                  alertViolations: [],
-                  recentAlertViolations: []
-                }
-              );
-
-              // console.log(result);
-              alertViolations = result.alertViolations;
-              recentAlertViolations = result.recentAlertViolations;
+              Object.assign(aggregatedResult, result);
             }
           } else {
-            alertViolations = currentValue.alertViolations || [];
-            recentAlertViolations = currentValue.recentAlertViolations || [];
+            Object.assign(aggregatedResult, {
+              alertViolations: currentValue.alertViolations || [],
+              recentAlertViolations: currentValue.recentAlertViolations || [],
+              allEntities: [currentValue]
+            });
           }
 
-          if (alertViolations) {
-            previousValue.alertViolations.push(...alertViolations);
-          }
-
-          if (recentAlertViolations) {
-            previousValue.recentAlertViolations.push(...recentAlertViolations);
-          }
+          Object.keys(aggregatedResult).forEach(key => {
+            if (Array.isArray(aggregatedResult[key])) {
+              previousValue[key].push(...aggregatedResult[key]);
+            }
+          });
 
           return previousValue;
         },
-        { alertViolations: [], recentAlertViolations: [] }
+        { allEntities: [], alertViolations: [], recentAlertViolations: [] }
       );
 
       ml.document.alertViolations = alertViolations;
       ml.document.recentViolations = recentAlertViolations;
+      ml.document.entities = allEntities;
 
       // console.log(ml.document);
 

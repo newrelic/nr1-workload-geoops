@@ -8,6 +8,8 @@ import { NerdGraphError } from '@newrelic/nr1-community';
 import AlertableEntitiesByGuidsQuery from '../shared/components/AlertableEntitiesByGuidsQuery';
 import MapLocationQuery from '../shared/components/MapLocationQuery';
 import EntitiesFromWorkloads from '../shared/components/EntitiesFromWorkloads';
+import AlertsReducer from '../shared/components/AlertsReducer';
+import MapLocationDistiller from '../shared/components/MapLocationDistiller';
 
 import { LIST_WORKLOADS } from '../shared/services/queries';
 
@@ -154,11 +156,51 @@ export default class ViewMapQuery extends React.PureComponent {
                                             <NerdGraphError error={error} />
                                           );
                                         }
-                                        return children({
-                                          mapLocations,
-                                          entities,
-                                          workloadToEntityGuidsLookup
-                                        });
+                                        /*
+                                          TO DO - When clicking on a map marker, AlertsReducer says 'entities' has changed
+                                          This causes a cascading re-render of everything below it
+                                          How does 'entities' change without re-running any queries?
+                                          Temporarily we're storing a copy in local state in AlertsReducer which "fixes" this
+                                        */
+                                        return (
+                                          <AlertsReducer
+                                            mapLocations={mapLocations}
+                                            entities={entities}
+                                            workloadToEntityGuidsLookup={
+                                              workloadToEntityGuidsLookup
+                                            }
+                                          >
+                                            {({
+                                              mapLocations,
+                                              entities,
+                                              workloadToEntityGuidsLookup
+                                            }) => {
+                                              return (
+                                                <>
+                                                  <MapLocationDistiller
+                                                    mapLocations={mapLocations}
+                                                    entities={entities}
+                                                    entityToEntitiesLookup={
+                                                      workloadToEntityGuidsLookup
+                                                    }
+                                                  >
+                                                    {/* Note: we have multiple variables named mapLocations scoped differently */}
+                                                    {({
+                                                      data: mapLocations
+                                                    }) => {
+                                                      // console.log(mapLocations);
+                                                      return children({
+                                                        mapLocations,
+                                                        entities,
+                                                        workloadToEntityGuidsLookup
+                                                      });
+                                                    }}
+                                                  </MapLocationDistiller>
+                                                </>
+                                              );
+                                            }}
+                                          </AlertsReducer>
+                                        );
                                       }}
                                     </AlertableEntitiesByGuidsQuery>
                                   );

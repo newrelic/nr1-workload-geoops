@@ -15,7 +15,7 @@ import {
 } from 'nr1';
 
 import { EmptyState } from '@newrelic/nr1-community';
-import { lowerCase, kebabCase } from 'lodash';
+import { get, groupBy, lowerCase, kebabCase } from 'lodash';
 import { format } from 'date-fns';
 import { PACKAGE_UUID } from '../shared/constants';
 
@@ -24,8 +24,6 @@ import GeoMap from './geo-map';
 import Toolbar from '../shared/components/Toolbar';
 import DetailPanel from '../shared/components/DetailPanel';
 import MapLocationTable from '../shared/components/MapLocationTable';
-import MapLocationDistiller from '../shared/components/MapLocationDistiller';
-import AlertsReducer from '../shared/components/AlertsReducer';
 
 const LeftToolbar = ({ maps, map, navigation }) => {
   return (
@@ -62,7 +60,8 @@ const LeftToolbar = ({ maps, map, navigation }) => {
 LeftToolbar.propTypes = {
   maps: PropTypes.array,
   map: PropTypes.object,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  mapLocations: PropTypes.array
 };
 
 const RightToolbar = ({ navigation }) => {
@@ -363,178 +362,140 @@ export default class ViewMap extends React.PureComponent {
                   alertViolations and finds the one with the highest severity and adds it to the mapLocation as "mostCriticalEntity"
              *
              */
-            <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
-              {({ mapLocations, entities, workloadToEntityGuidsLookup }) => {
-                /*
-                  TO DO - When clicking on a map marker, AlertsReducer says 'entities' has changed
-                  This causes a cascading re-render of everything below it
-                  How does 'entities' change without re-running any queries?
-                  Temporarily we're storing a copy in local state in AlertsReducer which "fixes" this
-                */
+          <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
+            {({ mapLocations, entities, workloadToEntityGuidsLookup }) => {
+              const hasMapLocations = mapLocations && mapLocations.length > 0;
+              const hasEntities = entities && entities.length > 0;
+
+              console.log(mapLocations);
+              if (!hasMapLocations) {
                 return (
-                  <AlertsReducer
-                    mapLocations={mapLocations}
-                    entities={entities}
-                    workloadToEntityGuidsLookup={workloadToEntityGuidsLookup}
-                  >
-                    {({
-                      mapLocations,
-                      entities,
-                      workloadToEntityGuidsLookup
-                    }) => {
-                      const hasMapLocations =
-                        mapLocations && mapLocations.length > 0;
-                      const hasEntities = entities && entities.length > 0;
-
-                      if (!hasMapLocations) {
-                        return (
-                          <EmptyState
-                            heading="No map locations found"
-                            description=""
-                            buttonText="Add Locations"
-                            buttonOnClick={() => {
-                              navigation.router({
-                                to: 'createMap',
-                                state: { selectedMap: map, activeStep: 2 }
-                              });
-                            }}
-                          />
-                        );
-                      }
-
-                      return (
-                        <>
-                          <MapLocationDistiller
-                            mapLocations={mapLocations}
-                            entities={entities}
-                            entityToEntitiesLookup={workloadToEntityGuidsLookup}
-                          >
-                            {/* Note: we have multiple variables named mapLocations scoped differently */}
-                            {({ data: mapLocations }) => {
-                              return (
-                                <>
-                                  <StackItem
-                                    fullHeight
-                                    className="locations-table-stack-item"
-                                  >
-                                    {hasMapLocations && hasEntities && (
-                                      <MapLocationTable
-                                        data={mapLocations}
-                                        map={map}
-                                        rowClickHandler={
-                                          this.handleTableRowClick
-                                        }
-                                        activeMapLocation={activeMapLocation}
-                                      />
-                                    )}
-                                    {hasMapLocations && !hasEntities && (
-                                      <>
-                                        <MapLocationTable
-                                          data={mapLocations}
-                                          map={map}
-                                          rowClickHandler={
-                                            this.handleTableRowClick
-                                          }
-                                          activeMapLocation={activeMapLocation}
-                                        />
-                                        <EmptyState
-                                          heading="Map locations but no associated entities"
-                                          description=""
-                                        />
-                                      </>
-                                    )}
-                                    {!hasMapLocations &&
-                                      this.renderEmptyState()}
-                                  </StackItem>
-                                  <StackItem
-                                    grow
-                                    className="primary-content-container"
-                                  >
-                                    {hasMapLocations && (
-                                      <GeoMap
-                                        map={map}
-                                        mapLocations={mapLocations}
-                                        onMarkerClick={this.openDetailPanel}
-                                        activeMapLocation={activeMapLocation}
-                                      />
-                                    )}
-                                    {!hasMapLocations && (
-                                      <EmptyState
-                                        heading="No map locations found"
-                                        description=""
-                                      />
-                                    )}
-                                  </StackItem>
-                                  <StackItem
-                                    fullHeight
-                                    className={`detail-panel-stack-item ${
-                                      detailPanelClosed ? 'closed' : ''
-                                    } ${
-                                      detailPanelMinimized ? 'minimized' : ''
-                                    }`}
-                                  >
-                                    <DetailPanel
-                                      featuredChart={this.renderFeaturedChart(
-                                        map
-                                      )}
-                                      onClose={
-                                        this.handleDetailPanelCloseButton
-                                      }
-                                      onMinimize={
-                                        this.handleDetailPanelMinimizeButton
-                                      }
-                                      data={activeMapLocation}
-                                    >
-                                      <Tabs>
-                                        <TabsItem
-                                          value="tab-1"
-                                          label="Recent incidents"
-                                          className="no-padding"
-                                        >
-                                          {activeMapLocation ? (
-                                            this.renderMiniTimline()
-                                          ) : (
-                                            <></>
-                                          )}
-                                        </TabsItem>
-                                        <TabsItem
-                                          value="tab-2"
-                                          label="Metadata & tags"
-                                          className="no-padding"
-                                        >
-                                          {activeMapLocation ? (
-                                            this.renderMetadata()
-                                          ) : (
-                                            <></>
-                                          )}
-                                          {/* {activeMapLocation &&
-                                            this.renderTags()} */}
-                                        </TabsItem>
-                                        <TabsItem
-                                          value="tab-3"
-                                          label="Revenue detail"
-                                        >
-                                          <small>
-                                            Nulla quis tortor orci. Etiam at
-                                            risus et justo dignissim.
-                                          </small>
-                                        </TabsItem>
-                                      </Tabs>
-                                    </DetailPanel>
-                                  </StackItem>
-                                </>
-                              );
-                            }}
-                          </MapLocationDistiller>
-                        </>
-                      );
+                  <EmptyState
+                    heading="No map locations found"
+                    description=""
+                    buttonText="Add Locations"
+                    buttonOnClick={() => {
+                      navigation.router({
+                        to: 'createMap',
+                        state: { selectedMap: map, activeStep: 2 }
+                      });
                     }}
-                  </AlertsReducer>
+                  />
                 );
-              }}
-            </ViewMapQuery>
-          )}
-        </Stack>
+              }
+
+              return (
+                <>
+                  <Toolbar
+                    className="view-map-toolbar"
+                    left={
+                      <LeftToolbar
+                        navigation={navigation}
+                        maps={maps}
+                        map={map}
+                        mapLocations={mapLocations}
+                      />
+                    }
+                    right={<RightToolbar navigation={navigation} />}
+                  />
+                  <Stack
+                    fullWidth
+                    gapType={Stack.GAP_TYPE.NONE}
+                    className="primary-grid view-map-primary-grid"
+                  >
+                    <StackItem
+                      fullHeight
+                      className="locations-table-stack-item"
+                    >
+                      {hasMapLocations && hasEntities && (
+                        <MapLocationTable
+                          data={mapLocations}
+                          map={map}
+                          rowClickHandler={this.handleTableRowClick}
+                          activeMapLocation={activeMapLocation}
+                        />
+                      )}
+                      {hasMapLocations && !hasEntities && (
+                        <>
+                          <MapLocationTable
+                            data={mapLocations}
+                            map={map}
+                            rowClickHandler={this.handleTableRowClick}
+                            activeMapLocation={activeMapLocation}
+                          />
+                          <EmptyState
+                            heading="Map locations but no associated entities"
+                            description=""
+                          />
+                        </>
+                      )}
+                      {!hasMapLocations && this.renderEmptyState()}
+                    </StackItem>
+                    <StackItem grow className="primary-content-container">
+                      {hasMapLocations && (
+                        <GeoMap
+                          map={map}
+                          mapLocations={mapLocations}
+                          onMarkerClick={this.openDetailPanel}
+                          activeMapLocation={activeMapLocation}
+                        />
+                      )}
+                      {!hasMapLocations && (
+                        <EmptyState
+                          heading="No map locations found"
+                          description=""
+                        />
+                      )}
+                    </StackItem>
+                    <StackItem
+                      fullHeight
+                      className={`detail-panel-stack-item ${
+                        detailPanelClosed ? 'closed' : ''
+                      } ${detailPanelMinimized ? 'minimized' : ''}`}
+                    >
+                      <DetailPanel
+                        featuredChart={this.renderFeaturedChart(map)}
+                        onClose={this.handleDetailPanelCloseButton}
+                        onMinimize={this.handleDetailPanelMinimizeButton}
+                        data={activeMapLocation}
+                        relatedEntities={get(activeMapLocation, 'entities', [])}
+                      >
+                        <Tabs>
+                          <TabsItem
+                            value="tab-1"
+                            label="Recent incidents"
+                            className="no-padding"
+                          >
+                            {activeMapLocation ? (
+                              this.renderMiniTimline()
+                            ) : (
+                              <></>
+                            )}
+                          </TabsItem>
+                          <TabsItem
+                            value="tab-2"
+                            label="Metadata & tags"
+                            className="no-padding"
+                          >
+                            {activeMapLocation ? this.renderMetadata() : <></>}
+                            {/* {activeMapLocation &&
+                                            this.renderTags()} */}
+                          </TabsItem>
+                          <TabsItem value="tab-3" label="Revenue detail">
+                            <small>
+                              Nulla quis tortor orci. Etiam at risus et justo
+                              dignissim.
+                            </small>
+                          </TabsItem>
+                        </Tabs>
+                      </DetailPanel>
+                    </StackItem>
+                  </Stack>
+                </>
+              );
+            }}
+          </ViewMapQuery>
+        )}
       </>
     );
   }

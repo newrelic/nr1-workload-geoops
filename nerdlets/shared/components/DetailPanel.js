@@ -114,7 +114,8 @@ export default class DetailPanel extends React.PureComponent {
     onMinimize: PropTypes.func,
     featuredChart: PropTypes.node,
     className: PropTypes.string,
-    data: PropTypes.object
+    data: PropTypes.object,
+    relatedEntities: PropTypes.array
   };
 
   constructor(props) {
@@ -126,8 +127,44 @@ export default class DetailPanel extends React.PureComponent {
     };
   }
 
+  /*
+   Related Entities:
+
+   Can look like:
+   
+   {
+      __typename: "DashboardEntity"
+      accountId: 630060
+      domain: "VIZ"
+      guid: "NjMwMDYwfFZJWnxEQVNIQk9BUkR8NzA2MzI2"
+      name: "Joey Bagels"
+      reporting: true
+      tags: (3) [{…}, {…}, {…}]
+      type: "DASHBOARD"
+   }
+
+   Or:
+
+   {
+     __typename: "ApmApplicationEntity"
+      accountId: 630060
+      alertSeverity: "CRITICAL"
+      alertViolations: (2) [{…}, {…}]
+      domain: "APM"
+      guid: "NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2"
+      name: "Origami Portal"
+      recentAlertViolations: (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+      reporting: true
+      tags: (13) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+      type: "APPLICATION"
+   }
+
+   */
+
   render() {
+    const { children } = this.props;
     const { closed, minimized, className } = this.state;
+
     return (
       <div
         className={`detail-panel-container ${closed ? 'closed' : ''} ${
@@ -135,7 +172,7 @@ export default class DetailPanel extends React.PureComponent {
         } ${className || ''}`}
       >
         <Header {...this.props} />
-        <div className="children-container">{this.props.children}</div>
+        <div className="children-container">{children}</div>
       </div>
     );
   }
