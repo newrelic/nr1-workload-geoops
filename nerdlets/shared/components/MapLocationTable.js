@@ -41,7 +41,14 @@ export default class MapLocationTable extends PureComponent {
 
   favoriteSortValue(cell, row, rowIndex) {
     const { favoriteLocations } = this.state;
-    return favoriteLocations[row.externalId];
+
+    if (favoriteLocations) {
+      return favoriteLocations[row.externalId]
+        ? favoriteLocations[row.externalId]
+        : false;
+    } else {
+      return false;
+    }
   }
 
   favoriteFormatter(cell, row, rowIndex) {
