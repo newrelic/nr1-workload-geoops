@@ -7,11 +7,27 @@ import { Button, Icon, Stack, StackItem, navigation, Link } from 'nr1';
 import { statusColor } from '../../geo-ops-nerdlet/utils';
 
 class Header extends React.PureComponent {
-  renderEntityLink() {
-    const { data, onClose, onMinimize, featuredChart } = this.props;
-    const location = navigation.getOpenStackedEntityLocation(
-      data.entities[0].guid
+  renderEntityLink(mapLocation) {
+    if (!mapLocation || !mapLocation.entities) {
+      return null;
+    }
+
+    const firstWorkloadEntity = mapLocation.entities.find(
+      e => e.type === 'WORKLOAD'
     );
+
+    if (!firstWorkloadEntity) {
+      return null;
+    }
+
+    const location = navigation.getOpenStackedNerdletLocation({
+      id: 'workloads.home',
+      urlState: {
+        nerdletId: 'workloads.overview',
+        entityId: firstWorkloadEntity.guid
+      }
+    });
+
     return (
       <Link
         to={location}

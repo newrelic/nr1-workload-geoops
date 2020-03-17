@@ -159,6 +159,10 @@ export default class GeoMap extends Component {
   }
 
   renderEntityLink(mapLocation) {
+    if (!mapLocation || !mapLocation.entities) {
+      return null;
+    }
+
     const firstWorkloadEntity = mapLocation.entities.find(
       e => e.type === 'WORKLOAD'
     );
