@@ -86,7 +86,14 @@ class Header extends React.PureComponent {
               color="#007e8a"
               type={Icon.TYPE.DOCUMENTS__DOCUMENTS__EMAIL}
             />
-            Contact manager
+            Contact
+          </a>
+          <a className="detail-pane-cta">
+            <Icon
+              color="#007e8a"
+              type={Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES}
+            />
+            Runbook
           </a>
         </div>
         {featuredChart && (
