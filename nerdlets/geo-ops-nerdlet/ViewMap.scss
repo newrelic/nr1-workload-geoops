@@ -178,8 +178,11 @@ div.leaflet-pane .leaflet-popup .marker-popup-comparison-container {
 }
 
 div.leaflet-pane .leaflet-popup p.marker-popup-description {
-    margin: 0;
-    padding: 8px 10px;
+    margin: 8px 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
     box-sizing: border-box;
     line-height: 16px;
     font-size: 12px;
@@ -243,5 +246,17 @@ a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-out 
 }
 
 .leaflet-popup-content [class*='wnd-Link'].view-workload-button {
-    margin-left: 3px;
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-left: 0;
+    height: 30px;
+    border-top: 1px solid #edeeee;
+    line-height: 29px;
+
+    .ic-Icon {
+        margin-left: 2px;
+        position: relative;
+        bottom: 2px;
+    }
 }

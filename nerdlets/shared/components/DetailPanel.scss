@@ -152,9 +152,13 @@
 
 a:not([href]):not([tabindex]).detail-pane-cta {
   display: inline-block;
-  margin-right: 16px;
+  margin-right: 18px;
   color: #007e8a;
   transition: transform .1s ease-out;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &:last-child {
     margin-right: 0px;

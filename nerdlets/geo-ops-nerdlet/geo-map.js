@@ -144,7 +144,7 @@ export default class GeoMap extends Component {
     this.setState({ hoveredMarker: e.target });
     this.popupHoverTimer = setTimeout(() => {
       this.state.hoveredMarker.closePopup();
-    }, 100);
+    }, 150);
   }
 
   handlePopupMouseOver() {
@@ -155,7 +155,7 @@ export default class GeoMap extends Component {
   handlePopupMouseOut() {
     this.popupHoverTimer = setTimeout(() => {
       this.state.hoveredMarker.closePopup();
-    }, 100);
+    }, 150);
   }
 
   renderEntityLink(mapLocation) {
@@ -165,6 +165,10 @@ export default class GeoMap extends Component {
     return (
       <Link to={location} className="view-workload-button detail-pane-cta">
         View in Workloads
+        <Icon
+          type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__SIZE_8}
+          color="#0079bf"
+        />
       </Link>
     );
   }
@@ -280,8 +284,8 @@ export default class GeoMap extends Component {
                       {mapLocation.location.description
                         ? mapLocation.location.description
                         : 'No description.'}
-                      {mapLocation && this.renderEntityLink(mapLocation)}
                     </p>
+                    {mapLocation && this.renderEntityLink(mapLocation)}
                   </div>
                 </Popup>
               </Marker>
