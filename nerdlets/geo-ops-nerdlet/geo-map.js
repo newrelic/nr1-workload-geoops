@@ -159,13 +159,22 @@ export default class GeoMap extends Component {
   }
 
   renderEntityLink(mapLocation) {
-    const entity = mapLocation.entities[0] || false;
+    const firstWorkloadEntity = mapLocation.entities.find(
+      e => e.type === 'WORKLOAD'
+    );
 
-    if (!entity) {
+    if (!firstWorkloadEntity) {
       return null;
     }
 
-    const location = navigation.getOpenStackedEntityLocation(entity.guid);
+    const location = navigation.getOpenStackedNerdletLocation({
+      id: 'workloads.home',
+      urlState: {
+        nerdletId: 'workloads.overview',
+        entityId: firstWorkloadEntity.guid
+      }
+    });
+
     return (
       <Link to={location} className="view-workload-button detail-pane-cta">
         View in Workloads

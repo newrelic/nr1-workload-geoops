@@ -88,7 +88,7 @@ export default class AlertsReducer extends React.PureComponent {
           };
 
           if (currentValue.entityType === 'WORKLOAD_ENTITY') {
-            // console.log(currentValue.guid);
+            const workloadEntity = entitiesMap[currentValue.guid];
             const workloadEntityGuids =
               workloadToEntityGuidsLookup[currentValue.guid];
 
@@ -101,11 +101,17 @@ export default class AlertsReducer extends React.PureComponent {
 
               const result = workloadEntities.reduce(aggregator, {
                 alertViolations: [],
-                recentAlertViolations: [],
-                allEntities: workloadEntities
+                recentAlertViolations: []
               });
 
-              Object.assign(aggregatedResult, result);
+              if (workloadEntity) {
+                workloadEntities.push(workloadEntity);
+              }
+              console.log(workloadEntities);
+
+              Object.assign(aggregatedResult, result, {
+                allEntities: workloadEntities
+              });
             }
           } else {
             Object.assign(aggregatedResult, {
