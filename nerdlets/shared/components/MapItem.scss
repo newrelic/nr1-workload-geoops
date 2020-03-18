@@ -81,6 +81,7 @@
 }
 
 div.map-grid-item-bottom {
+    box-sizing: border-box;
     height: 70px;
     justify-content: space-between;
     padding: 0 16px;
@@ -92,7 +93,7 @@ div.map-grid-item-bottom {
 
 h4.map-grid-item-name {
     margin-bottom: 2px;
-    margin-top: 8px;
+    margin-top: 0;
 }
 
 h6.map-grid-item-subtitle {

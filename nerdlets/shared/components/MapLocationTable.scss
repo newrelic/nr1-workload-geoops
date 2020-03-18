@@ -193,3 +193,7 @@ tr.active-location:nth-child(2n)>td:not(.u-unstyledTd) {
 tr.active-location > td:not(.u-unstyledTd) {
   background-color: #F4F5F5;
 }
+
+.sr-only {
+  display:none;
+}

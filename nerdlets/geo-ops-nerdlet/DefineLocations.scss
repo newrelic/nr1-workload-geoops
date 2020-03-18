@@ -10,9 +10,13 @@
 
 .or-sep {
     display: flex;
+    height: 1px;
     justify-content: center;
     align-items: center;
     margin: 36px 0;
+    border: none;
+    overflow: visible;
+    border-top: 1px solid #e3e4e4;
 
     &:before {
         content: "or";
