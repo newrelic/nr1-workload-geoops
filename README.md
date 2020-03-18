@@ -1,6 +1,16 @@
-# nr1-infra-geoops
+<p align="center">
+	<img src="assets/documentation-images/docs-header.svg" />
+    <br>
+    A New Relic application that aligns Workload data (or other Entities) in a Geographic management console
+</p>
 
-![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/newrelic/nr1-infra-geoops?include_prereleases&sort=semver) ![AppVeyor](https://img.shields.io/appveyor/ci/newrelic/nr1-infra-geoops) [![Snyk](https://snyk.io/test/github/newrelic/nr1-infra-geoops/badge.svg)](https://snyk.io/test/github/newrelic/nr1-infra-geoops)
+<p align="center">
+<img src="https://img.shields.io/github/v/release/newrelic/nr1-infra-geoops?include_prereleases&sort=semver" title="GitHub release (latest SemVer including pre-releases)">
+<img src="https://img.shields.io/appveyor/ci/newrelic/nr1-infra-geoops" title="AppVeyor">
+<img src="https://snyk.io/test/github/newrelic/nr1-infra-geoops" title="Snyk">
+</p>
+
+------
 
 ## Usage
 
