@@ -41,7 +41,8 @@ const LeftToolbar = ({
   mapLocations,
   onFilter,
   regionFilter,
-  favoriteFilter
+  favoriteFilter,
+  alertFilter
 }) => {
   const regions = Object.keys(groupBy(mapLocations, i => i.location.region));
   const favoriteOptions = [
@@ -51,6 +52,17 @@ const LeftToolbar = ({
   ];
   const selectedFavorite = favoriteOptions.find(
     o => o.value === favoriteFilter
+  );
+
+  const alertStatusOptions = [
+    { name: 'All', value: null },
+    { name: 'CRITICAL', value: 'CRITICAL' },
+    { name: 'NOT_ALERTING', value: 'NOT_ALERTING' },
+    { name: 'NOT_CONFIGURED', value: 'NOT_CONFIGURED' },
+    { name: 'WARNING', value: 'WARNING' }
+  ];
+  const selectedAlertStatus = alertStatusOptions.find(
+    o => o.value === alertFilter
   );
 
   return (
@@ -120,6 +132,24 @@ const LeftToolbar = ({
           })}
         </Dropdown>
       </StackItem>
+      <StackItem className="toolbar-item">
+        <Dropdown label="Alerting Status" title={selectedAlertStatus.name}>
+          {alertStatusOptions.map(r => {
+            return (
+              <DropdownItem
+                key={r.value}
+                onClick={() => {
+                  onFilter({
+                    filter: { name: 'alertFilter', value: r.value }
+                  });
+                }}
+              >
+                {r.name}
+              </DropdownItem>
+            );
+          })}
+        </Dropdown>
+      </StackItem>
     </>
   );
 };
@@ -130,7 +160,8 @@ LeftToolbar.propTypes = {
   mapLocations: PropTypes.array,
   onFilter: PropTypes.func,
   regionFilter: PropTypes.string,
-  favoriteFilter: PropTypes.bool
+  favoriteFilter: PropTypes.bool,
+  alertFilter: PropTypes.string
 };
 
 const RightToolbar = ({ navigation }) => {
@@ -186,7 +217,8 @@ export default class ViewMap extends React.PureComponent {
       activeMapLocation: null,
       regionFilter: '',
       favoriteFilter: null,
-      favoriteLocations: []
+      favoriteLocations: [],
+      alertFilter: null
     };
 
     this.handleDetailPanelMinimizeButton = this.handleDetailPanelMinimizeButton.bind(
@@ -509,7 +541,8 @@ export default class ViewMap extends React.PureComponent {
       detailPanelMinimized,
       regionFilter,
       favoriteFilter,
-      favoriteLocations
+      favoriteLocations,
+      alertFilter
     } = this.state;
 
     return (
@@ -560,6 +593,7 @@ export default class ViewMap extends React.PureComponent {
                         onFilter={this.handleFilterChange}
                         regionFilter={regionFilter}
                         favoriteFilter={favoriteFilter}
+                        alertFilter={alertFilter}
                       />
                     }
                     right={<RightToolbar navigation={navigation} />}
@@ -607,6 +641,7 @@ export default class ViewMap extends React.PureComponent {
                           regionFilter={regionFilter}
                           favoriteFilter={favoriteFilter}
                           favoriteLocations={favoriteLocations}
+                          alertFilter={alertFilter}
                         >
                           {({ filteredMapLocations }) => (
                             <GeoMap

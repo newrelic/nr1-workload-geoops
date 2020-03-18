@@ -12,7 +12,8 @@ export default class FilteredMapLocations extends React.PureComponent {
     filters: PropTypes.array,
     regionFilter: PropTypes.string,
     favoriteFilter: PropTypes.bool,
-    favoriteLocations: PropTypes.object
+    favoriteLocations: PropTypes.object,
+    alertFilter: PropTypes.string
   };
 
   constructor(props) {
@@ -45,7 +46,8 @@ export default class FilteredMapLocations extends React.PureComponent {
       filters,
       regionFilter,
       favoriteFilter,
-      favoriteLocations
+      favoriteLocations,
+      alertFilter
     } = this.props;
 
     let filtered = cloneDeep(mapLocations);
@@ -60,6 +62,24 @@ export default class FilteredMapLocations extends React.PureComponent {
           ? favoriteLocations[m.externalId]
           : !favoriteLocations[m.externalId]
       );
+    }
+
+    if (alertFilter !== null) {
+      filtered = filtered.filter(m => {
+        if (
+          m.mostCriticalEntity &&
+          m.mostCriticalEntity.alertSeverity === alertFilter
+        ) {
+          return true;
+        }
+
+        if (!m.mostCriticalEntity) {
+          if (alertFilter === 'NOT_CONFIGURED') {
+            return true;
+          }
+        }
+        return false;
+      });
     }
 
     this.setState({ filtered });
