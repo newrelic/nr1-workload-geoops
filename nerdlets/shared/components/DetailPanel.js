@@ -79,7 +79,14 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { data, onClose, onMinimize, featuredChart } = this.props;
+    const { map, data, onClose, onMinimize } = this.props;
+
+    if (!data) {
+      return null;
+    }
+
+    const runbookUrl = data.runbookUrl || map.runbookUrl || false;
+    const contactEmail = data.contactEmail || map.contactEmail || false;
 
     return (
       <header className="detail-panel-header">
@@ -136,20 +143,34 @@ class Header extends React.PureComponent {
         </h3>
         <div className="detail-panel-cta-container">
           {data && this.renderEntityLink()}
-          <a className="detail-pane-contact-button detail-pane-cta">
-            <Icon
-              color="#007e8a"
-              type={Icon.TYPE.DOCUMENTS__DOCUMENTS__EMAIL}
-            />
-            Contact
-          </a>
-          <a className="detail-pane-cta">
-            <Icon
-              color="#007e8a"
-              type={Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES}
-            />
-            Runbook
-          </a>
+          {contactEmail && (
+            <a
+              className="detail-pane-contact-button detail-pane-cta u-unstyledLink"
+              href={`mailto:${contactEmail}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon
+                color="#007e8a"
+                type={Icon.TYPE.DOCUMENTS__DOCUMENTS__EMAIL}
+              />
+              Contact
+            </a>
+          )}
+          {runbookUrl && (
+            <a
+              className="detail-pane-cta u-unstyledLink"
+              href={runbookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon
+                color="#007e8a"
+                type={Icon.TYPE.DOCUMENTS__DOCUMENTS__NOTES}
+              />
+              Runbook
+            </a>
+          )}
         </div>
         {data && data.query && (
           <>

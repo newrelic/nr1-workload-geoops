@@ -53,6 +53,8 @@ export const MAP_UI_SCHEMA = {
   "lat": { "ui:FieldTemplate": FormInputThreeColumn },
   "lng": { "ui:FieldTemplate": FormInputThreeColumn },
   "zoom": { "ui:FieldTemplate": FormInputThreeColumn },
+  "runbookUrl": { "ui:FieldTemplate": FormInputTwoColumn },
+  "contactEmail": { "ui:FieldTemplate": FormInputTwoColumn },
 }
 
 export const MAP_JSON_SCHEMA = {
@@ -84,6 +86,14 @@ export const MAP_JSON_SCHEMA = {
       "minimum": 0,
       "maximum": 12
     },
+    "runbookUrl": {
+      "type": "string",
+      "title": "Runbook Link"
+    },
+    "contactEmail": {
+      "type": "string",
+      "title": "Contact Email"
+    }
   }
 };
 
@@ -101,6 +111,8 @@ export const LOCATION_UI_SCHEMA = {
   "region": { "ui:FieldTemplate": FormInputThreeColumn },
   "country": { "ui:FieldTemplate": FormInputThreeColumn },
   "postalCode": { "ui:FieldTemplate": FormInputThreeColumn },
+  "runbookUrl": { "ui:FieldTemplate": FormInputTwoColumn },
+  "contactEmail": { "ui:FieldTemplate": FormInputTwoColumn },
 }
 
 export const LOCATION_JSON_SCHEMA = {
@@ -175,17 +187,12 @@ export const MAP_LOCATION_JSON_SCHEMA = {
     "map": {
       "type": "string",
       "title": "Map",
-      // Dynamically modifying the schema to provide dropdown options seems to be the only way to achieve this functionality
-      // https://github.com/rjsf-team/react-jsonschema-form/issues/809
-      // "enum": 
-      // "enumNames":
     },
     "location": {...cloneDeep(LOCATION_JSON_SCHEMA)},
     "query": {
       "type": "string",
       "title": "NRQL"
     },
-    // TO DO - https://react-jsonschema-form.readthedocs.io/en/latest/form-customization/#multiple-choice-list
     "entities": {
       "type": "array",
       "title": "Related Entities",
@@ -200,10 +207,14 @@ export const MAP_LOCATION_JSON_SCHEMA = {
           }
         }
       },
-      // Dynamically modifying the schema to provide dropdown options seems to be the only way to achieve this functionality
-      // https://github.com/rjsf-team/react-jsonschema-form/issues/809
-      // "enum": 
-      // "enumNames":
+    },
+    "runbookUrl": {
+      "type": "string",
+      "title": "Runbook Link"
+    },
+    "contactEmail": {
+      "type": "string",
+      "title": "Contact Email"
     }
   }
 };

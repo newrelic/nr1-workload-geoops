@@ -52,6 +52,8 @@
         "lat": "36.0689264",
         "lng": "-115.280825"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
@@ -72,6 +74,8 @@
         "lat": "40.67197549999999",
         "lng": "-74.01146080000001"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
@@ -92,6 +96,8 @@
         "lat": "40.7741334",
         "lng": "-73.53059309999998"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -112,6 +118,8 @@
         "lat": "40.76177",
         "lng": "-73.96618"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -132,6 +140,8 @@
         "lat": "40.1485005",
         "lng": "-82.96761170000002"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -152,6 +162,8 @@
         "lat": "39.3154678",
         "lng": "-84.43399769999996"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -172,6 +184,8 @@
         "lat": "45.5712882",
         "lng": "-122.55351080000003"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -192,6 +206,8 @@
         "lat": "40.0951758",
         "lng": "-75.3063721"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -212,6 +228,8 @@
         "lat": "40.4518981",
         "lng": "-80.16799249999997"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -232,6 +250,8 @@
         "lat": "39.9170912",
         "lng": "-75.141859"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
@@ -252,6 +272,8 @@
         "lat": "35.1899914",
         "lng": "-89.79930250000001"
       },
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit",
       "entities": [
         {
           "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
