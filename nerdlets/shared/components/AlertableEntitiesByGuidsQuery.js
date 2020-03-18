@@ -138,8 +138,7 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
                   {({ loading, error, data }) => {
                     return children({
                       loading,
-                      data: data,
-                      entities: data ? get(data, 'actor.entities', []) : data,
+                      data: data ? get(data, 'actor.entities', []) : data,
                       error
                     });
                   }}
