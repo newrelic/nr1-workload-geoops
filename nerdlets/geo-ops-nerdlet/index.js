@@ -123,7 +123,9 @@ export default class index extends PureComponent {
     };
 
     if (to === 'createMap') {
-      newState.selectedMap = null;
+      if (!newState.selectedMap) {
+        newState.selectedMap = null;
+      }
     }
 
     this.setState({ pages: next, ...newState });
