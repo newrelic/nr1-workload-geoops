@@ -111,46 +111,6 @@ export default class MapLocationTable extends PureComponent {
     });
   }
 
-  dummyData() {
-    return [
-      {
-        status: 'critical',
-        favorite: true,
-        id: 2439,
-        lastIncident: '2/4/20 10:54 AM',
-        region: 'CAN'
-      },
-      {
-        status: 'critical',
-        favorite: true,
-        id: 654,
-        lastIncident: '2/4/20 10:54 AM',
-        region: 'CAN'
-      },
-      {
-        status: 'warning',
-        favorite: false,
-        id: 2435467,
-        lastIncident: '2/4/20 10:54 AM',
-        region: 'CAN'
-      },
-      {
-        status: 'noAlert',
-        favorite: false,
-        id: 9876,
-        lastIncident: '2/4/20 10:54 AM',
-        region: 'CAN'
-      },
-      {
-        status: 'noAlert',
-        favorite: false,
-        id: '6354',
-        lastIncident: '2/4/20 10:54 AM',
-        region: 'CAN'
-      }
-    ];
-  }
-
   rowClasses(row) {
     let classes = null;
 
