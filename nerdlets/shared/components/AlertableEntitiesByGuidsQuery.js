@@ -7,13 +7,17 @@ import { NerdGraphQuery, PlatformStateContext } from 'nr1';
 
 import { ENTITIES_BY_GUIDS } from '../services/queries';
 /*
- * We need to make a more specific GraphQL request for Workload
- * data than what you can get with something like <EntitiesByGuidsQuery>
- *
- * This emulates similar behavior by being declarative but allows us to customize the GraphQL request
- *
- * Momentarily pinned/limited to fetching Workloads - even though we're keeping the name generic to "Entity"
+ * <EntitiesByGuidsQuery> only provides access to the AlertableEntityOutline and not the AlertableEntity
+ * This component is meant to emulate similar behavior but allows us to customize the GraphQL request
  */
+
+/*
+ * Note:
+ * NerdGraphQuery seems to render "with side effects", even though nothing has changed and data is not refetched.
+ * It creates and returns a new object reference for { loading, data, error }, so simple equality comparison does not suffice.
+ * We may need to convert this component from a PureComponent to a regular one so we can control this behavior.
+ */
+
 export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
   static propTypes = {
     entityGuids: PropTypes.array,
@@ -22,6 +26,47 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
     begin_time: PropTypes.number,
     end_time: PropTypes.number
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      variables: {}
+    };
+  }
+
+  componentDidMount() {
+    this.update();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.entityGuids !== this.props.entityGuids ||
+      prevProps.begin_time !== this.props.begin_time ||
+      prevProps.end_time !== this.props.end_time
+    ) {
+      this.update();
+    }
+  }
+
+  update() {
+    const {
+      entityGuids,
+      begin_time: propBeginTime,
+      end_time: propEndTime
+    } = this.props;
+
+    const variables = {
+      entityGuids,
+      includeTags: true,
+      includeAlertViolations: true,
+      begin_time: propBeginTime,
+      end_time: propEndTime
+    };
+
+    this.setState({
+      variables
+    });
+  }
 
   /*
     Returned data (actor.account.entities):
@@ -61,10 +106,10 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
     const {
       entityGuids,
       children,
-      fetchPolicyType = NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE,
-      begin_time: propBeginTime,
-      end_time: propEndTime
+      fetchPolicyType = NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE
     } = this.props;
+
+    const { variables } = this.state;
 
     return (
       <>
@@ -75,28 +120,26 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
 
               const { begin_time, end_time } = timeRange;
 
-              if (!begin_time && !end_time) {
-                console.debug(
-                  'User did not supply a begin/end time via the Time Picker'
-                );
+              if (begin_time && end_time) {
+                variables.begin_time = begin_time;
+                variables.end_time = end_time;
+              } else {
+                // console.debug(
+                //   'User did not supply a begin/end time via the Time Picker'
+                // );
               }
 
               return (
                 <NerdGraphQuery
                   query={ENTITIES_BY_GUIDS}
-                  variables={{
-                    entityGuids,
-                    includeTags: true,
-                    includeAlertViolations: true,
-                    begin_time: begin_time || propBeginTime,
-                    end_time: end_time || propEndTime
-                  }}
+                  variables={variables}
                   fetchPolicyType={fetchPolicyType}
                 >
                   {({ loading, error, data }) => {
                     return children({
                       loading,
-                      data: data ? get(data, 'actor.entities', []) : data,
+                      data: data,
+                      entities: data ? get(data, 'actor.entities', []) : data,
                       error
                     });
                   }}
