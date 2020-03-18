@@ -38,6 +38,7 @@ export default class FilteredMapLocations extends React.PureComponent {
   }
 
   update() {
+    // eslint-disable-next-line no-unused-vars
     const { mapLocations, filters, regionFilter, favoriteFilter } = this.props;
 
     let filtered = cloneDeep(mapLocations);

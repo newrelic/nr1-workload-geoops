@@ -24,7 +24,7 @@ export default class index extends PureComponent {
     super(props);
     this.state = {
       startingCenter: [39.5, -98.35],
-      startingZoom: 4
+      startingZoom: 5
     };
   }
 
@@ -82,7 +82,7 @@ export default class index extends PureComponent {
                   </Button>
                 </StackItem>
               </Stack>
-              <Map center={startingCenter} zoomControl zoom={5}>
+              <Map center={startingCenter} zoomControl zoom={startingZoom}>
                 {/*
                   For funsies, try swapping out the TileLayer url to:
                   https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png

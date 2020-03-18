@@ -10,21 +10,8 @@ export default class RecentIncidentsNerdlet extends React.Component {
     super(props);
 
     this.state = {
-      activeViolation: ''
+      //
     };
-  }
-
-  componentDidMount() {
-    return (
-      <NerdletStateContext.Consumer>
-        {nerdletState => {
-          const { violation } = nerdletState;
-          this.setState({
-            activeViolation: violation
-          });
-        }}
-      </NerdletStateContext.Consumer>
-    );
   }
 
   iconType(alertSeverity) {
@@ -59,7 +46,7 @@ export default class RecentIncidentsNerdlet extends React.Component {
     return (
       <NerdletStateContext.Consumer>
         {nerdletState => {
-          const { recentViolations, violation } = nerdletState;
+          const { recentViolations } = nerdletState;
 
           if (recentViolations) {
             return (

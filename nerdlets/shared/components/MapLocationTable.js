@@ -39,7 +39,7 @@ export default class MapLocationTable extends PureComponent {
     return <div className="status-color-fill" />;
   }
 
-  favoriteSortValue(cell, row, rowIndex) {
+  favoriteSortValue(cell, row) {
     const { favoriteLocations } = this.state;
 
     if (favoriteLocations) {
@@ -51,7 +51,7 @@ export default class MapLocationTable extends PureComponent {
     }
   }
 
-  favoriteFormatter(cell, row, rowIndex) {
+  favoriteFormatter(cell, row) {
     const { favoriteLocations } = this.state;
 
     const favoriteStatus =
@@ -151,7 +151,7 @@ export default class MapLocationTable extends PureComponent {
     ];
   }
 
-  rowClasses(row, rowIndex) {
+  rowClasses(row) {
     let classes = null;
 
     if (!this.props.activeMapLocation) {
@@ -189,7 +189,7 @@ export default class MapLocationTable extends PureComponent {
         formatter: this.favoriteFormatter,
         sortValue: this.favoriteSortValue,
         events: {
-          onClick: (e, column, columnIndex, row, rowIndex) => {
+          onClick: (e, column, columnIndex, row) => {
             e.preventDefault();
             this.handleFavoriteClick(e, column, row);
           }
@@ -215,7 +215,7 @@ export default class MapLocationTable extends PureComponent {
 
   rowEvents() {
     return {
-      onClick: (e, row, rowIndex) => {
+      onClick: (e, row) => {
         this.props.rowClickHandler(row);
       }
     };

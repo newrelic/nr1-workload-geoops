@@ -40,6 +40,7 @@ export default class MapItem extends PureComponent {
         }
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
     this.props.onMapDelete({ map });

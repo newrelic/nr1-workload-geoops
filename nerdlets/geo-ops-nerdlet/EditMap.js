@@ -45,7 +45,7 @@ const RightToolbar = ({ navigation }) => {
       <StackItem className="toolbar-item has-separator">
         <Button
           type={Button.TYPE.PRIMARY}
-          onClick={() => console.log('Edit Locations')}
+          // onClick={() => console.log('Edit Locations')}
         >
           Edit Locations
         </Button>

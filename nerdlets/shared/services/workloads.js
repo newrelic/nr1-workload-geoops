@@ -1,4 +1,3 @@
-import get from 'lodash.get';
 import { nerdGraphQuery } from '../utils';
 import { LIST_WORKLOADS, SINGLE_WORKLOAD } from './queries';
 

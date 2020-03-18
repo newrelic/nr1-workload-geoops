@@ -49,9 +49,9 @@ export default class EntitiesFromWorkloads extends React.PureComponent {
     const result = workloads.reduce(
       (previousValue, currentValue) => {
         const workloadGuid = currentValue.guid;
-        if (!workloadGuid) {
-          console.log('Workload is missing guid');
-        }
+        // if (!workloadGuid) {
+        //   console.log('Workload is missing guid');
+        // }
 
         if (lookup[workloadGuid]) {
           const entityGuids = currentValue.entities.map(e => e.guid);

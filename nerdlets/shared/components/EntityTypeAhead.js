@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import get from 'lodash.get';
-import cloneDeep from 'lodash.clonedeep';
 import { NerdGraphQuery, Spinner } from 'nr1';
 import { NerdGraphError } from '@newrelic/nr1-community';
 

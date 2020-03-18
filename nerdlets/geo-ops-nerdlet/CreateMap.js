@@ -131,7 +131,7 @@ export default class CreateMap extends React.PureComponent {
     return getMap({ accountId: map.accountId, documentId: map.guid });
   }
 
-  onAddEditMap({ data, error }) {
+  onAddEditMap({ data }) {
     const { activeStep } = this.state;
     const nextStep = this.nextStep({ step: activeStep });
     const { document } = data;
@@ -310,7 +310,7 @@ export default class CreateMap extends React.PureComponent {
                       })
                     }
                     onWrite={this.onAddEditMap}
-                    onError={errors => console.log('Form errors: ', errors)}
+                    // onError={errors => console.log('Form errors: ', errors)}
                     onChange={({ formData }) => {
                       if (formData.zoom) {
                         this.setState({ mapZoomLevel: formData.zoom });
@@ -469,7 +469,7 @@ export default class CreateMap extends React.PureComponent {
             <GeoMap
               map={map}
               mapLocations={mapLocations}
-              onMarkerClick={marker => console.log(marker)}
+              // onMarkerClick={marker => console.log(marker)}
               onMapClick={this.onMapClick}
               onZoomEnd={this.onZoomEnd}
               center={mapCenter}

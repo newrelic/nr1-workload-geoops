@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import uuid from 'uuid/v4';
 import cloneDeep from 'lodash.clonedeep';
 import { Button, navigation, Spinner, Stack, StackItem } from 'nr1';
 
@@ -12,7 +11,6 @@ import {
   MAP_LOCATION_DEFAULTS
 } from '../shared/constants';
 
-import { NerdGraphError } from '@newrelic/nr1-community';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 
 import { writeLocation } from '../shared/services/location';
@@ -25,7 +23,8 @@ export default class DefineLocations extends React.PureComponent {
     onMapLocationWrite: PropTypes.func,
     mapLocations: PropTypes.array,
     mapLocationsLoading: PropTypes.bool,
-    mapLocationsLoadingErrors: PropTypes.array,
+    // mapLocationsLoadingErrors: PropTypes.array,
+
     // TO DO - custom validation for an array containing [ lat, lng ]
     selectedLatLng: PropTypes.oneOfType([PropTypes.array, PropTypes.bool])
   };
@@ -34,8 +33,6 @@ export default class DefineLocations extends React.PureComponent {
     super(props);
 
     this.state = {
-      isValidatingFile: false,
-      files: [],
       uiSchema: this.transformUiSchema(DEFINE_LOCATIONS_UI_SCHEMA),
       schema: this.transformSchema(MAP_LOCATION_JSON_SCHEMA),
       formData: { map: props.map.guid }
@@ -92,7 +89,7 @@ export default class DefineLocations extends React.PureComponent {
   // As they add locations we need to associate them with _this_ map
   // We do so by creating a MapLocation object for each
 
-  async onWrite({ data, error: locationWriteError }) {
+  async onWrite({ data }) {
     const { document: location } = data;
 
     const {
@@ -144,32 +141,10 @@ export default class DefineLocations extends React.PureComponent {
         });
       })
     );
-
-    this.setState({ isValidatingFile: false });
-  }
-
-  /*
-  File: {
-    name: "map-location-upload-file.json"
-    lastModified: 1582219355387
-    lastModifiedDate: Thu Feb 20 2020 12:22:35 GMT-0500 (Eastern Standard Time) {}
-    webkitRelativePath: ""
-    size: 90
-    type: "application/json"
-  }
-  */
-  fileInputOnChange(event) {
-    const fileList = event.target.files;
-    this.setState({ files: Array.from(fileList) });
   }
 
   render() {
-    const {
-      map,
-      mapLocations,
-      mapLocationsLoading,
-      mapLocationsLoadingErrors
-    } = this.props;
+    const { map, mapLocations, mapLocationsLoading } = this.props;
 
     const { formData, uiSchema, schema } = this.state;
     const accountId = map.accountId;
@@ -221,7 +196,7 @@ export default class DefineLocations extends React.PureComponent {
             });
           }}
           onWrite={this.onWrite}
-          onError={errors => console.log(errors)}
+          // onError={errors => console.log(errors)}
           className="define-locations-form"
         >
           <Stack fullWidth horizontalType={Stack.HORIZONTAL_TYPE.CENTER}>

@@ -5,8 +5,6 @@ import { Button, Grid, GridItem, StackItem } from 'nr1';
 import Toolbar from '../shared/components/Toolbar';
 import MapItem from '../shared/components/MapItem';
 
-import { latLngToTile } from '../shared/utils';
-
 const RightToolbar = ({ navigation }) => {
   return (
     <>
@@ -60,6 +58,7 @@ export default class MapList extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (prevProps.maps !== this.props.maps) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ maps: this.props.maps });
     }
   }
@@ -70,14 +69,6 @@ export default class MapList extends PureComponent {
 
     const mapGridItems = maps.map(m => {
       const { document: map } = m;
-
-      const { s, x, y, z } = latLngToTile({
-        latLng: [map.lat, map.lng],
-        zoom: 10 // TO DO - update to the default zoom the user sets?
-      });
-
-      const url = `https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`;
-      console.log(url);
 
       if (!map.guid) {
         return null;

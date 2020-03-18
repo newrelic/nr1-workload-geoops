@@ -49,7 +49,7 @@ export default class GeoMap extends Component {
     this.mapQueries();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.mapLocations !== this.props.mapLocations) {
       // console.log('mapLocations changed');
       this.mapQueries();

@@ -14,10 +14,11 @@ export const formatMapLocation = mapLocation => {
   const i = mapLocation;
 
   if (!mapLocation || !mapLocation.location) {
+    // eslint-disable-next-line no-console
     console.warn(
       "Attempt to format MapLocation's lat/lng but no location data found"
     );
-    console.debug(mapLocation);
+    // console.debug(mapLocation);
     return mapLocation;
   }
 

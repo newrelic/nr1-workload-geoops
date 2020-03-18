@@ -24,14 +24,9 @@ export default class AlertsReducer extends React.PureComponent {
     this.reduce();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.mapLocations !== this.props.mapLocations) {
-      console.log('mapLocations has changed');
       this.reduce();
-    }
-
-    if (prevProps.entities !== this.props.entities) {
-      console.log('entities has changed');
     }
   }
 

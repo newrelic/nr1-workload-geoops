@@ -93,7 +93,7 @@ export default class BatchNrql extends React.PureComponent {
     });
   }
 
-  handleResults({ data, errors }) {
+  handleResults({ data }) {
     const results = get(data, 'actor.account');
 
     const newResults = Object.entries(results).reduce(

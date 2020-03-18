@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { NerdletStateContext, navigation, Stack, StackItem, Button } from 'nr1';
-import { EmptyState } from '@newrelic/nr1-community';
+import { NerdletStateContext, navigation } from 'nr1';
 
 import MapLocationFilesUpload from '../geo-ops-nerdlet/MapLocationFilesUpload';
 import { PACKAGE_UUID } from '../shared/constants';

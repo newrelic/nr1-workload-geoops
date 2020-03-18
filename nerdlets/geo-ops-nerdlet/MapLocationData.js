@@ -144,8 +144,6 @@ export default class MapLocationData extends React.Component {
     const { schema, selectedMapLocation, uiSchema } = this.state;
     const accountId = map.accountId;
 
-    console.log(selectedMapLocation);
-
     const formData = selectedMapLocation
       ? { ...selectedMapLocation.document }
       : {};
@@ -278,7 +276,7 @@ export default class MapLocationData extends React.Component {
                   document: formData
                 })
               }
-              onWrite={({ data, errors }) => console.log([data, errors])}
+              // onWrite={({ data, errors }) => console.log([data, errors])}
             />
           )}
         </div>

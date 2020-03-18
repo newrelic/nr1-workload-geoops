@@ -51,11 +51,11 @@ export const writeMap = ({ accountId, documentId, document }) => {
     throw new Error('No map guid provided');
   }
 
-  if (document.guid !== documentId) {
-    console.warn('Map guid does not match NerdStorage documentId');
-    console.debug(documentId);
-    console.debug(document);
-  }
+  // if (document.guid !== documentId) {
+  //   console.warn('Map guid does not match NerdStorage documentId');
+  //   console.debug(documentId);
+  //   console.debug(document);
+  // }
 
   document.accountId = accountId;
 
