@@ -7,7 +7,6 @@ import {
   DropdownItem,
   Stack,
   StackItem,
-  SparklineChart,
   Tabs,
   TabsItem,
   Icon,
@@ -307,32 +306,6 @@ export default class ViewMap extends React.PureComponent {
   handleFilterChange({ filter }) {
     const { name, value } = filter;
     this.setState({ [name]: value });
-  }
-
-  renderFeaturedChart(map) {
-    return (
-      <>
-        <Stack
-          fullWidth
-          className="detail-panel-featured-chart-header-container"
-        >
-          <StackItem grow>
-            <h6 className="detail-panel-featured-chart-header">
-              Revenue overview
-            </h6>
-          </StackItem>
-          <StackItem>
-            <span className="detail-panel-featured-chart-comparison-stat negative">
-              14.5%
-            </span>
-          </StackItem>
-        </Stack>
-        <SparklineChart
-          accountId={map.accountId}
-          query="SELECT count(*) FROM `Synthetics` SINCE 1 MONTH AGO TIMESERIES AUTO FACET error"
-        />
-      </>
-    );
   }
 
   renderMiniTimline() {
@@ -667,7 +640,7 @@ export default class ViewMap extends React.PureComponent {
                       } ${detailPanelMinimized ? 'minimized' : ''}`}
                     >
                       <DetailPanel
-                        featuredChart={this.renderFeaturedChart(map)}
+                        map={map}
                         onClose={this.handleDetailPanelCloseButton}
                         onMinimize={this.handleDetailPanelMinimizeButton}
                         data={activeMapLocation}

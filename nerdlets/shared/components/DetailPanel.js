@@ -2,9 +2,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Icon, Stack, StackItem, navigation, Link } from 'nr1';
+import get from 'lodash.get';
+
+import {
+  Button,
+  Icon,
+  SparklineChart,
+  Stack,
+  StackItem,
+  navigation,
+  Link
+} from 'nr1';
 
 import { statusColor } from '../utils';
+
+const FeaturedChart = function({ map, mapLocation }) {
+  const accountId = map.accountId;
+  const baseQuery = get(mapLocation, 'query', '');
+  const query = baseQuery ? `${baseQuery} TIMESERIES` : baseQuery;
+
+  return (
+    <>
+      {/* TO DO - We don't have this data. We built the data fetching into <GeoMap> so it only queries for those points that are visible */}
+      {/* We would need to re-excute the query for _this_ MapLocation, or pull up the data fetching out of <GeoMap> */}
+      {/* <Stack fullWidth className="detail-panel-featured-chart-header-container">
+        <StackItem grow>
+          <h6 className="detail-panel-featured-chart-header">
+            Revenue overview
+          </h6>
+        </StackItem>
+
+        <StackItem>
+          <span className="detail-panel-featured-chart-comparison-stat negative">
+            14.5%
+          </span>
+        </StackItem>
+      </Stack> */}
+      {accountId && query && (
+        <SparklineChart accountId={accountId} query={query} />
+      )}
+    </>
+  );
+};
 
 class Header extends React.PureComponent {
   renderEntityLink(mapLocation) {
@@ -112,10 +151,12 @@ class Header extends React.PureComponent {
             Runbook
           </a>
         </div>
-        {featuredChart && (
+        {data && data.query && (
           <>
             <hr className="detail-panel-header-top-bar-hr" />
-            <div className="featured-chart-container">{featuredChart}</div>
+            <div className="featured-chart-container">
+              <FeaturedChart map={map} mapLocation={data} />
+            </div>
           </>
         )}
       </header>
@@ -125,10 +166,10 @@ class Header extends React.PureComponent {
 
 export default class DetailPanel extends React.PureComponent {
   static propTypes = {
+    map: PropTypes.object,
     children: PropTypes.node,
     onClose: PropTypes.func,
     onMinimize: PropTypes.func,
-    featuredChart: PropTypes.node,
     className: PropTypes.string,
     data: PropTypes.object,
     relatedEntities: PropTypes.array
