@@ -11,7 +11,13 @@ import {
   Tabs,
   TabsItem,
   Icon,
-  navigation
+  navigation,
+  Table,
+  TableHeader,
+  TableHeaderCell,
+  TableRow,
+  TableRowCell,
+  EntityTitleTableRowCell
 } from 'nr1';
 
 import { EmptyState } from '@newrelic/nr1-community';
@@ -397,6 +403,33 @@ export default class ViewMap extends React.PureComponent {
     });
   }
 
+  renderEntitySummary() {
+    const entities = get(this.state.activeMapLocation, 'entities', []);
+
+    if (entities && entities.length > 0) {
+      return entities.map((entity, index) => {
+        const entityValue = {
+          name: entity.name,
+          alertSeverity: entity.alertSeverity || 'NOT_ALERTING'
+        };
+
+        return (
+          <TableRow key={index}>
+            <EntityTitleTableRowCell value={entityValue} />
+            <TableRowCell>{entity.type}</TableRowCell>
+          </TableRow>
+        );
+      });
+    } else {
+      return (
+        <TableRow>
+          <TableRowCell>placeholder</TableRowCell>
+          <TableRowCell>placeholder</TableRowCell>
+        </TableRow>
+      );
+    }
+  }
+
   render() {
     const { maps, map, navigation } = this.props;
     const {
@@ -553,11 +586,14 @@ export default class ViewMap extends React.PureComponent {
                             {/* {activeMapLocation &&
                                             this.renderTags()} */}
                           </TabsItem>
-                          <TabsItem value="tab-3" label="Revenue detail">
-                            <small>
-                              Nulla quis tortor orci. Etiam at risus et justo
-                              dignissim.
-                            </small>
+                          <TabsItem value="tab-3" label="Entity summary">
+                            <Table>
+                              <TableHeader>
+                                <TableHeaderCell>Name</TableHeaderCell>
+                                <TableHeaderCell>Type</TableHeaderCell>
+                              </TableHeader>
+                              {this.renderEntitySummary()}
+                            </Table>
                           </TabsItem>
                         </Tabs>
                       </DetailPanel>
