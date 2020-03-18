@@ -21,7 +21,7 @@ import {
 } from 'nr1';
 
 import { EmptyState } from '@newrelic/nr1-community';
-import { get, groupBy, lowerCase, kebabCase } from 'lodash';
+import { get, groupBy, lowerCase, kebabCase, startCase } from 'lodash';
 import { format } from 'date-fns';
 import { PACKAGE_UUID } from '../shared/constants';
 
@@ -195,6 +195,7 @@ export default class ViewMap extends React.PureComponent {
     this.openDetailPanel = this.openDetailPanel.bind(this);
     this.handleTableRowClick = this.handleTableRowClick.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.renderEntitySummary = this.renderEntitySummary.bind(this);
   }
 
   openDetailPanel(mapLocation) {
@@ -404,30 +405,42 @@ export default class ViewMap extends React.PureComponent {
   }
 
   renderEntitySummary() {
-    const entities = get(this.state.activeMapLocation, 'entities', []);
+    const { activeMapLocation } = this.state;
 
-    if (entities && entities.length > 0) {
-      return entities.map((entity, index) => {
-        const entityValue = {
-          name: entity.name,
-          alertSeverity: entity.alertSeverity || 'NOT_ALERTING'
-        };
+    if (activeMapLocation) {
+      const activeLocationEntities = get(activeMapLocation, 'entities', []);
 
-        return (
-          <TableRow key={index}>
-            <EntityTitleTableRowCell value={entityValue} />
-            <TableRowCell>{entity.type}</TableRowCell>
-          </TableRow>
-        );
-      });
+      if (activeLocationEntities.length > 0) {
+        return activeLocationEntities.map(entity => {
+          return {
+            name: entity.name,
+            alertSeverity: entity.alertSeverity || 'NOT_CONFIGURED',
+            type: entity.type,
+            guid: entity.guid
+          };
+        });
+      } else {
+        return [
+          {
+            name: 'hi',
+            alertSeverity: 'NOT_ALERTING',
+            type: 'APPLICATION'
+          }
+        ];
+      }
     } else {
-      return (
-        <TableRow>
-          <TableRowCell>placeholder</TableRowCell>
-          <TableRowCell>placeholder</TableRowCell>
-        </TableRow>
-      );
+      return [
+        {
+          name: 'hi',
+          alertSeverity: 'NOT_ALERTING',
+          type: 'APPLICATION'
+        }
+      ];
     }
+  }
+
+  openStackedEntity(guid) {
+    navigation.openStackedEntity(guid);
   }
 
   render() {
@@ -579,20 +592,46 @@ export default class ViewMap extends React.PureComponent {
                           </TabsItem>
                           <TabsItem
                             value="tab-2"
-                            label="Metadata & tags"
+                            label="Metadata"
                             className="no-padding"
                           >
                             {activeMapLocation ? this.renderMetadata() : <></>}
                             {/* {activeMapLocation &&
                                             this.renderTags()} */}
                           </TabsItem>
-                          <TabsItem value="tab-3" label="Entity summary">
-                            <Table>
+                          <TabsItem
+                            value="tab-3"
+                            label={`Entity summary (${
+                              get(activeMapLocation, 'entities', []).length
+                            })`}
+                            className="entity-summary-tab"
+                          >
+                            <Table
+                              spacingType={[
+                                Table.SPACING_TYPE.NONE,
+                                Table.SPACING_TYPE.NONE
+                              ]}
+                              items={this.renderEntitySummary()}
+                            >
                               <TableHeader>
-                                <TableHeaderCell>Name</TableHeaderCell>
+                                <TableHeaderCell width="65%">
+                                  Name
+                                </TableHeaderCell>
                                 <TableHeaderCell>Type</TableHeaderCell>
                               </TableHeader>
-                              {this.renderEntitySummary()}
+
+                              {({ item }) => (
+                                <TableRow
+                                  onClick={() =>
+                                    this.openStackedEntity(item.guid)
+                                  }
+                                >
+                                  <EntityTitleTableRowCell value={item} />
+                                  <TableRowCell>
+                                    {startCase(lowerCase(item.type))}
+                                  </TableRowCell>
+                                </TableRow>
+                              )}
                             </Table>
                           </TabsItem>
                         </Tabs>

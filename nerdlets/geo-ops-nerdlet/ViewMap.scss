@@ -260,3 +260,8 @@ a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-out 
         bottom: 2px;
     }
 }
+
+
+.children-container [class*='TabContent'].entity-summary-tab {
+    padding: 8px 16px;
+}
