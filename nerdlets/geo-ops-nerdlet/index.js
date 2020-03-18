@@ -8,7 +8,6 @@ import EmptyState from './EmptyState';
 import CreateMap from './CreateMap';
 import ViewMap from './ViewMap';
 import MapList from './MapList';
-import EditMap from './EditMap';
 
 import { nerdStorageRequest } from '../shared/utils';
 import { getMaps } from '../shared/services/map';
@@ -18,8 +17,7 @@ const initialPages = {
   emptyState: false,
   createMap: false,
   viewMap: false,
-  mapList: false,
-  editMap: false
+  mapList: false
 };
 
 export default class index extends PureComponent {
@@ -139,7 +137,7 @@ export default class index extends PureComponent {
 
   render() {
     const { pages, mapsLoading, maps, selectedMap, activeStep } = this.state;
-    const { emptyState, createMap, viewMap, mapList, editMap } = pages;
+    const { emptyState, createMap, viewMap, mapList } = pages;
 
     if (mapsLoading) {
       return <Spinner />;
@@ -196,16 +194,6 @@ export default class index extends PureComponent {
         <MapList
           maps={maps}
           onMapDelete={this.onMapDelete}
-          navigation={{
-            router: this.router
-          }}
-        />
-      );
-    }
-
-    if (editMap) {
-      return (
-        <EditMap
           navigation={{
             router: this.router
           }}
