@@ -26,7 +26,7 @@ import { format } from 'date-fns';
 import { PACKAGE_UUID } from '../shared/constants';
 
 import ViewMapQuery from './ViewMapQuery';
-import GeoMap from './geo-map';
+import GeoMap from './GeoMap';
 import Toolbar from '../shared/components/Toolbar';
 import DetailPanel from '../shared/components/DetailPanel';
 import MapLocationTable from '../shared/components/MapLocationTable';

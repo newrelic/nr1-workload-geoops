@@ -6,7 +6,7 @@ import { Stack, StackItem, Link, Icon, navigation } from 'nr1';
 import get from 'lodash.get';
 
 import BatchNrql from '../shared/components/BatchNrql';
-import { generateIcon, statusColor } from './utils';
+import { generateIcon, statusColor } from '../shared/utils';
 
 export default class GeoMap extends Component {
   static propTypes = {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import uuid from 'uuid/v4';
 import { cloneDeep, findIndex } from 'lodash';
 import { Stack, StackItem, Icon } from 'nr1';
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Stack, StackItem, Icon, Modal, HeadingText, Toast } from 'nr1';
 import { startCase } from 'lodash';
 
-import GeoMap from '../../geo-ops-nerdlet/geo-map';
+import GeoMap from '../../geo-ops-nerdlet/GeoMap';
 
 import { deleteMap } from '../services/map';
 import { deleteMapLocationCollection } from '../services/map-location';

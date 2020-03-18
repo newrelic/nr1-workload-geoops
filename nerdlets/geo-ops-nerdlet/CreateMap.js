@@ -6,7 +6,7 @@ import GettingStartedSteps from '../shared/components/GettingStartedSteps';
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import DefineLocations from './DefineLocations';
 import MapLocationData from './MapLocationData';
-import GeoMap from './geo-map';
+import GeoMap from './GeoMap';
 
 import { nerdStorageRequest } from '../shared/utils';
 

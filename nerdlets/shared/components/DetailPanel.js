@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Button, Icon, Stack, StackItem, navigation, Link } from 'nr1';
 
-import { statusColor } from '../../geo-ops-nerdlet/utils';
+import { statusColor } from '../utils';
 
 class Header extends React.PureComponent {
   renderEntityLink(mapLocation) {
