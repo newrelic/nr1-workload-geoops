@@ -1,3 +1,9 @@
+<p align="center">
+	<img src="assets/documentation-images/docs-header.svg" />
+</p>
+
+# Detailed Documentation
+
 ## Description
 
 Workloads Geo-ops helps customers that do brick and mortar customer engagement connect all the tech that they use to deliver an experience to physical locations. That could look like the infra agents on their POS system, a table, but it necessarily has to also include those thing talking to services that are out in their data center. We'd like to be able to qualitatively analyze the service that is delivering service to your location to answer the question "is this service that causing issues for this location".
