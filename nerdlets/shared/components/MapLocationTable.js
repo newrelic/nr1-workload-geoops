@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import { Icon } from 'nr1';
+import { Icon, Link } from 'nr1';
 
 export default class MapLocationTable extends PureComponent {
   static propTypes = {
@@ -111,7 +111,24 @@ export default class MapLocationTable extends PureComponent {
       {
         dataField: 'lastIncidentTime',
         text: 'Last Incident',
-        sort: true
+        sort: true,
+        formatter: (cell, row) => {
+          const { mostCriticalEntity } = row;
+          const { alertViolations } = mostCriticalEntity;
+
+          const violation = alertViolations.reduce((p, v) => {
+            if (!p) return v;
+            if (v.openedAt > p.openedAt) return v;
+
+            return p;
+          }, false);
+
+          if (alertViolations && violation) {
+            return <Link to={violation.agentUrl}>{row.lastIncidentTime}</Link>;
+          }
+
+          return row.lastIncidentTime;
+        }
       },
       {
         dataField: 'location.region',
