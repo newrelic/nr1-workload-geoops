@@ -2,13 +2,21 @@
 	<img src="assets/documentation-images/docs-header.svg" />
 </p>
 
-# Detailed Documentation
+# Documentation
 
 ## Description
-Workloads Geo-ops helps customers that do brick and mortar customer engagement connect all the tech that they use to deliver an experience to physical locations. That could look like the infra agents on their POS system, a table, but it necessarily has to also include those thing talking to services that are out in their data center. We'd like to be able to qualitatively analyze the service that is delivering service to your location to answer the question "is this service that causing issues for this location".
+
+Workloads Geo-ops helps customers that do brick and mortar customer engagement connect all the tech that they use to deliver an experience to physical locations. That could look like the `New Relic Infrastructure` agents on their Point of Sale systems; but it necessarily has to also include the related `Services` in a cloud data center. We need to be able to qualitatively analyze the collection of services, computing devices, and even customer experiences (i.e. `Browser` or `Mobile` agents) that are delivering customer experiences as a location to answer the question, "how are my IT systems and services supporting the business in _that_ location."
+
+This New Relic One Application allows customers to define Maps and then collect / assign Entities to points on those maps. Using the power of `Workloads` that collection of `Entities` can be managed by rules and tags so as to support the dynamic, emphemiral nature of modern IT infrastructure.
+
+### Installation
+
+If you are an `Admin` or `Nerdpack Manager` in New Relic, navigate to the `New Relic One Catalog`, click on `Geo Ops`, and enable the application for your account(s).
 
 ## Getting started
-To begin using this nerdpack to analyze entities at your locations follow the steps outlined below:
+
+To begin using this New Relic One Application to analyze `Entities` at your locations follow the steps outlined below:
 
 1. From https://one.newrelic.com/ click on the **Geo Ops** launcher.<p><img src="assets/documentation-images/launcher.png" width="500px" /></p>
 2. Click on one of the **Get Started** buttons on the screen. <p><img src="assets/documentation-images/map-empty-state.png" width="500px" /></p>
@@ -19,15 +27,15 @@ To begin using this nerdpack to analyze entities at your locations follow the st
 	3. Select a JSON file from your files that follows our specification.
 	4. Review the data that you've uploaded, and if you're satisfied with it click **Save and continue**. (If you're not satisfied with your data, you can **Choose a different file**)<p><img src="assets/documentation-images/review-data.png" width="500px" /></p>
 5. Map each of your locations to one or more entities, then click **View map**. <p><img src="assets/documentation-images/no-locations-mapped.png" width="500px" /></p>
-	- This is done by clicking on each of your locations one at a time and choosing an entity and/or workload as well as a NRQL query in the form below. 
-	- The NRQL query will be used in your map to display a chart and comparison data for each of your locations. 
+	- This is done by clicking on each of your locations one at a time and choosing an entity and/or workload as well as a NRQL query in the form below.
+	- The NRQL query will be used in your map to display a chart and comparison data for each of your locations.
 	- (If you have already provided this data in your JSON file, which you can tell by looking at your list of locations and seeing whether *each* location is checked with a line through it on the list, then just click **View map**) <p><img src="assets/documentation-images/locations-mapped.png" width="500px" /></p>
 6. You're done, you've just created your first map!
 
 ## Using your maps
 
-
 ### Overview of the map UI
+
 <p><img src="assets/documentation-images/fresh-map-legend.png" /></p>
 
 1. **Map title**: The title you provided for your map.
@@ -44,6 +52,7 @@ To begin using this nerdpack to analyze entities at your locations follow the st
 	- A "**view in workloads**" button which, when clicked displays the entity explorer or workloads view of the entity (or entit*ies*) associated with the location
 
 ### Overview of the Detail Panel
+
 When you click on any of the location markers on the map or any of the locations in the location table, the marker for that location is highlighted and a detail panel is displayed on the right which provides more data about the location you've selected.
 <p><img src="assets/documentation-images/detail-panel-legend.png" /></p>
 
@@ -60,6 +69,7 @@ When you click on any of the location markers on the map or any of the locations
 11. **Entity Summary**: A table listing all entities associated with this location (including entities tied to a workload).
 
 ### Overview of the All Maps page
+
 When you click on the "View all Maps" on any map page, you will be taken to a page which displays a visual grid of all of your maps with an option to edit them. To edit one of your maps, click on the settings icon next to the title of the map you'd like to edit.<p><img src="assets/documentation-images/all-maps.png" /></p>
 
 Once, clicked, a settings popover will appear which will offer you options for the following actions:
