@@ -119,7 +119,16 @@ export default class index extends PureComponent {
   router({ to, state }) {
     const next = { ...initialPages };
     next[to] = true;
-    this.setState({ pages: next, ...state });
+
+    const newState = {
+      ...state
+    };
+
+    if (to === 'createMap') {
+      newState.selectedMap = null;
+    }
+
+    this.setState({ pages: next, ...newState });
   }
 
   /*
