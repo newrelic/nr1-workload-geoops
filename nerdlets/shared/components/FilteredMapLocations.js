@@ -11,7 +11,8 @@ export default class FilteredMapLocations extends React.PureComponent {
     mapLocations: PropTypes.array,
     filters: PropTypes.array,
     regionFilter: PropTypes.string,
-    favoriteFilter: PropTypes.bool
+    favoriteFilter: PropTypes.bool,
+    favoriteLocations: PropTypes.object
   };
 
   constructor(props) {
@@ -39,7 +40,13 @@ export default class FilteredMapLocations extends React.PureComponent {
 
   update() {
     // eslint-disable-next-line no-unused-vars
-    const { mapLocations, filters, regionFilter, favoriteFilter } = this.props;
+    const {
+      mapLocations,
+      filters,
+      regionFilter,
+      favoriteFilter,
+      favoriteLocations
+    } = this.props;
 
     let filtered = cloneDeep(mapLocations);
 
@@ -47,8 +54,12 @@ export default class FilteredMapLocations extends React.PureComponent {
       filtered = mapLocations.filter(m => m.location.region === regionFilter);
     }
 
-    if (favoriteFilter) {
-      filtered = filtered.filter(m => m.favorite === favoriteFilter);
+    if (favoriteFilter !== null) {
+      filtered = filtered.filter(m =>
+        favoriteFilter
+          ? favoriteLocations[m.externalId]
+          : !favoriteLocations[m.externalId]
+      );
     }
 
     this.setState({ filtered });

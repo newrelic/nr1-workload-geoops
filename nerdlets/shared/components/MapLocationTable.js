@@ -3,36 +3,26 @@ import PropTypes from 'prop-types';
 
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
-import { Icon, AccountStorageMutation, AccountStorageQuery } from 'nr1';
+import { Icon } from 'nr1';
 
 export default class MapLocationTable extends PureComponent {
   static propTypes = {
     map: PropTypes.object,
     data: PropTypes.array,
+    favoriteLocations: PropTypes.object,
     rowClickHandler: PropTypes.func,
+    favoriteClickHandler: PropTypes.func,
     activeMapLocation: PropTypes.object
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      favoriteLocations: []
+      //
     };
 
-    this.getFavoriteLocations = this.getFavoriteLocations.bind(this);
-    this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
     this.favoriteFormatter = this.favoriteFormatter.bind(this);
     this.favoriteSortValue = this.favoriteSortValue.bind(this);
-  }
-
-  componentDidMount() {
-    this.getFavoriteLocations();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.map !== this.props.map) {
-      this.getFavoriteLocations();
-    }
   }
 
   statusFormatter() {
@@ -40,7 +30,7 @@ export default class MapLocationTable extends PureComponent {
   }
 
   favoriteSortValue(cell, row) {
-    const { favoriteLocations } = this.state;
+    const { favoriteLocations } = this.props;
 
     if (favoriteLocations) {
       return favoriteLocations[row.externalId]
@@ -52,7 +42,7 @@ export default class MapLocationTable extends PureComponent {
   }
 
   favoriteFormatter(cell, row) {
-    const { favoriteLocations } = this.state;
+    const { favoriteLocations } = this.props;
 
     const favoriteStatus =
       (favoriteLocations && favoriteLocations[row.externalId]) || false;
@@ -67,48 +57,6 @@ export default class MapLocationTable extends PureComponent {
         color={favoriteStatus ? '#FFB951' : '#d5d7d7'}
       />
     );
-  }
-
-  getFavoriteLocations() {
-    const { accountId, guid } = this.props.map;
-
-    AccountStorageQuery.query({
-      accountId: accountId,
-      collection: 'workloadsGeoopsFavorites',
-      documentId: guid
-    }).then(({ data }) => {
-      this.setState({ favoriteLocations: data });
-    });
-  }
-
-  handleFavoriteClick(e, column, row) {
-    const { accountId, guid } = this.props.map;
-
-    AccountStorageQuery.query({
-      accountId: accountId,
-      collection: 'workloadsGeoopsFavorites',
-      documentId: guid
-    }).then(({ data }) => {
-      let document = {};
-      if (data) {
-        document = {
-          ...data,
-          [row.externalId]: !data[row.externalId]
-        };
-      } else {
-        document = {
-          [row.externalId]: true
-        };
-      }
-      this.setState({ favoriteLocations: document });
-      AccountStorageMutation.mutate({
-        accountId: accountId,
-        actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
-        collection: 'workloadsGeoopsFavorites',
-        documentId: guid,
-        document: document
-      });
-    });
   }
 
   rowClasses(row) {
@@ -151,7 +99,7 @@ export default class MapLocationTable extends PureComponent {
         events: {
           onClick: (e, column, columnIndex, row) => {
             e.preventDefault();
-            this.handleFavoriteClick(e, column, row);
+            this.props.favoriteClickHandler(e, column, row);
           }
         }
       },

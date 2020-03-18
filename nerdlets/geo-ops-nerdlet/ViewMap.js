@@ -17,7 +17,9 @@ import {
   TableHeaderCell,
   TableRow,
   TableRowCell,
-  EntityTitleTableRowCell
+  EntityTitleTableRowCell,
+  AccountStorageMutation,
+  AccountStorageQuery
 } from 'nr1';
 
 import { EmptyState } from '@newrelic/nr1-community';
@@ -183,7 +185,8 @@ export default class ViewMap extends React.PureComponent {
       detailPanelClosed: true,
       activeMapLocation: null,
       regionFilter: '',
-      favoriteFilter: null
+      favoriteFilter: null,
+      favoriteLocations: []
     };
 
     this.handleDetailPanelMinimizeButton = this.handleDetailPanelMinimizeButton.bind(
@@ -196,6 +199,59 @@ export default class ViewMap extends React.PureComponent {
     this.handleTableRowClick = this.handleTableRowClick.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.renderEntitySummary = this.renderEntitySummary.bind(this);
+    this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.getFavoriteLocations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.map !== this.props.map) {
+      this.getFavoriteLocations();
+    }
+  }
+
+  getFavoriteLocations() {
+    const { accountId, guid } = this.props.map;
+
+    AccountStorageQuery.query({
+      accountId: accountId,
+      collection: 'workloadsGeoopsFavorites',
+      documentId: guid
+    }).then(({ data }) => {
+      this.setState({ favoriteLocations: data });
+    });
+  }
+
+  handleFavoriteClick(e, column, row) {
+    const { accountId, guid } = this.props.map;
+
+    AccountStorageQuery.query({
+      accountId: accountId,
+      collection: 'workloadsGeoopsFavorites',
+      documentId: guid
+    }).then(({ data }) => {
+      const document = { ...data };
+
+      if (data) {
+        if (document[row.externalId]) {
+          delete document[row.externalId];
+        } else {
+          document[row.externalId] = true;
+        }
+      }
+
+      this.setState({ favoriteLocations: document });
+
+      AccountStorageMutation.mutate({
+        accountId: accountId,
+        actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
+        collection: 'workloadsGeoopsFavorites',
+        documentId: guid,
+        document: document
+      });
+    });
   }
 
   openDetailPanel(mapLocation) {
@@ -452,7 +508,8 @@ export default class ViewMap extends React.PureComponent {
       detailPanelClosed,
       detailPanelMinimized,
       regionFilter,
-      favoriteFilter
+      favoriteFilter,
+      favoriteLocations
     } = this.state;
 
     return (
@@ -519,8 +576,10 @@ export default class ViewMap extends React.PureComponent {
                       {hasMapLocations && hasEntities && (
                         <MapLocationTable
                           data={mapLocations}
+                          favoriteLocations={favoriteLocations}
                           map={map}
                           rowClickHandler={this.handleTableRowClick}
+                          favoriteClickHandler={this.handleFavoriteClick}
                           activeMapLocation={activeMapLocation}
                         />
                       )}
@@ -547,6 +606,7 @@ export default class ViewMap extends React.PureComponent {
                           filters={[]}
                           regionFilter={regionFilter}
                           favoriteFilter={favoriteFilter}
+                          favoriteLocations={favoriteLocations}
                         >
                           {({ filteredMapLocations }) => (
                             <GeoMap
