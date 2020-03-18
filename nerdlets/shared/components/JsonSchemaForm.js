@@ -89,7 +89,6 @@ export default class JsonSchemaForm extends React.PureComponent {
 
     if (fetchDocument || formData) {
       if (fetchDocument) {
-        console.log('Is acting like fetchDocument prop changed..');
         await this.load();
       }
 

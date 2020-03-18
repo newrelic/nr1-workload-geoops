@@ -46,7 +46,6 @@ export default class AlertsReducer extends React.PureComponent {
     this.setState({ flattened, entities: cloneDeep(entities) });
   }
 
-  // TO DO - _actually_ make this recursive
   alertsReducer({
     mapLocations,
     entities: propEntities,
@@ -107,7 +106,6 @@ export default class AlertsReducer extends React.PureComponent {
               if (workloadEntity) {
                 workloadEntities.push(workloadEntity);
               }
-              console.log(workloadEntities);
 
               Object.assign(aggregatedResult, result, {
                 allEntities: workloadEntities
