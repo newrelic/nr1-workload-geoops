@@ -55,8 +55,7 @@ input[type="file"].json-file-upload:not(.u-unstyledInput):not([type="button"]):n
 }
 
 [class*='style_empty-state'] {
-  margin: 16px 0 0;
-  height: calc(100% - 64px);
+  margin: 16px 16px 0;
 }
 
 .cta-container > * {
