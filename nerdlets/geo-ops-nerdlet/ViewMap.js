@@ -131,7 +131,7 @@ const LeftToolbar = ({
           })}
         </Dropdown>
       </StackItem>
-      <StackItem className="toolbar-item has-separator">
+      <StackItem className="toolbar-item">
         <Dropdown label="Alerting Status" title={selectedAlertStatus.name}>
           {alertStatusOptions.map(r => {
             return (
