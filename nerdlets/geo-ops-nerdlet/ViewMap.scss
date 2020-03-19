@@ -3,6 +3,18 @@
     position: relative;
     z-index: 10000;
     border-bottom: none; 
+
+    .page-title {
+        width: 308px;
+        line-height: 56px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .toolbar-item:not(.has-separator) {
+        padding-right: 0px;
+      }
 }
 
 .view-map-primary-grid {

@@ -45,6 +45,10 @@ i.glyphicon { display: none; }
   margin-right: 2%;
 }
 
+.create-map .form-input-col-3:nth-child(3n+5) {
+  margin-right: 0;
+}
+
 
 // Alternatively we could implement a custom titles widget
 // https://react-jsonschema-form.readthedocs.io/en/latest/advanced-customization/#custom-titles

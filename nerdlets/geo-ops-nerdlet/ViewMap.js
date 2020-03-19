@@ -69,7 +69,7 @@ const LeftToolbar = ({
       <StackItem className="toolbar-item has-separator">
         <h4 className="page-title">{map.title}</h4>
       </StackItem>
-      <StackItem className="toolbar-item">
+      <StackItem className="toolbar-item has-separator">
         <Dropdown
           label="Other maps"
           title={get(map, 'title', 'View other maps')}
@@ -131,7 +131,7 @@ const LeftToolbar = ({
           })}
         </Dropdown>
       </StackItem>
-      <StackItem className="toolbar-item">
+      <StackItem className="toolbar-item has-separator">
         <Dropdown label="Alerting Status" title={selectedAlertStatus.name}>
           {alertStatusOptions.map(r => {
             return (
