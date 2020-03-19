@@ -14,9 +14,14 @@
 
 ## Usage
 
-nr1-infra-geoops provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
+Workloads Geo-ops provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
 
 ![Screenshot #1](screenshots/screenshot_01.png)
+<p align="center">
+<img src="screenshots/screenshot_02.png" width="32.5%">
+<img src="screenshots/screenshot_03.png" width="32.5%">
+<img src="screenshots/screenshot_04.png" width="32.5%">
+</p>
 
 ## Open Source License
 
