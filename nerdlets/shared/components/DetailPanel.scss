@@ -150,11 +150,12 @@
   top: 11px;
 }
 
-a:not([href]):not([tabindex]).detail-pane-cta {
+a:not([tabindex]).detail-pane-cta {
   display: inline-block;
   margin-right: 18px;
   color: #007e8a;
   transition: transform .1s ease-out;
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
@@ -171,6 +172,7 @@ a:not([href]):not([tabindex]).detail-pane-cta {
 }
 
 .detail-panel-header-top-bar-hr {
+  border: none;
   border-top: 1px dotted rgba(0, 14, 14, 0.1);
   margin: 0 16px;
 }
@@ -202,9 +204,25 @@ a:not([href]):not([tabindex]).detail-pane-cta {
 }
 
 .detail-panel-featured-chart-header {
+  white-space: nowrap;
   margin-bottom: 0;
   font-size: 12px;
   color: #2a3434;
+}
+
+.detail-panel-featured-chart-query {
+  max-width: 230px;
+  position: relative;
+  bottom: 1px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 10px;
+  font-family: 'fira code', 'open source sans', monospace;
+  color: #8e9494;
+  background-color: #f4f5f5;
+  padding: 4px 4px 3px;
+  border-radius: 4px;
 }
 
 .detail-panel-featured-chart-comparison-stat {

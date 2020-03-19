@@ -11,7 +11,8 @@ import {
   Stack,
   StackItem,
   navigation,
-  Link
+  Link,
+  Tooltip
 } from 'nr1';
 
 import { statusColor } from '../utils';
@@ -39,7 +40,29 @@ const FeaturedChart = function({ map, mapLocation }) {
         </StackItem>
       </Stack> */}
       {accountId && query && (
-        <SparklineChart accountId={accountId} query={query} />
+        <>
+          <Stack
+            fullWidth
+            className="detail-panel-featured-chart-header-container"
+          >
+            <StackItem grow>
+              <h6 className="detail-panel-featured-chart-header">
+                Chart query
+              </h6>
+            </StackItem>
+
+            <StackItem>
+              <Tooltip
+                className="detail-panel-featured-chart-query"
+                text={query}
+                placementType={Tooltip.PLACEMENT_TYPE.LEFT}
+              >
+                {query}
+              </Tooltip>
+            </StackItem>
+          </Stack>
+          <SparklineChart accountId={accountId} query={query} />
+        </>
       )}
     </>
   );
