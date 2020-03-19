@@ -206,6 +206,14 @@ div.leaflet-pane .leaflet-popup p.marker-popup-description {
     }
 }
 
+.leaflet-control-zoom {
+    box-shadow: 
+        0px 1px 0px rgba(40, 65, 72, 0.22), 
+        0px 1px 2px rgba(20, 49, 54, 0.1), 
+        0px 1px 3px rgba(0, 134, 148, 0.23), 
+        0px 1px 10px rgba(88, 114, 117, 0.35);
+}
+
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
     background-color: #fff;
 }
