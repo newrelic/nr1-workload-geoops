@@ -24,7 +24,7 @@
   position: relative;
   z-index: 10;
   padding: 3px 8px;
-  color: #007E8A;
+  color: #464e4e;
   margin-right: 3px;
   font-size: 10px;
 
@@ -32,7 +32,7 @@
     padding-right: 4px;
     margin-right: 8px;
     border-radius: 3px 0 0 3px;
-    background-color: #ECF6F6;
+    background-color: #edeeee;
 
     &:before,
     &:after {
@@ -93,7 +93,7 @@
   z-index: -1;
   width: 100%;
   height: 50%;
-  background-color: #ECF6F6;
+  background-color: #edeeee;
   transform: skew(35deg);
 }
 
@@ -106,7 +106,7 @@
   z-index: -1;
   width: 100%;
   height: 50%;
-  background-color: #ECF6F6;
+  background-color: #edeeee;
   transform: skew(-35deg);
 }
 
@@ -122,7 +122,7 @@
   margin-left: 4px;
   top: -1px;
   border-radius: 3px 0 0 3px;
-  background-color: #f4f5f5;
+  background-color: #edeeee;
   
   &:hover {
     cursor: pointer;
@@ -216,18 +216,24 @@ a:not([tabindex]).detail-pane-cta {
 }
 
 .detail-panel-featured-chart-query {
-  max-width: 230px;
+  max-width: 214px;
   position: relative;
-  bottom: 1px;
+  bottom: 3px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 10px;
   font-family: 'fira code', 'open source sans', monospace;
-  color: #8e9494;
-  background-color: #f4f5f5;
+  color: #007E8A;
+  background-color: #ECF6F6;
   padding: 4px 4px 3px;
   border-radius: 4px;
+
+  &:hover {
+    cursor: pointer;
+    color: #005054;
+    background-color: #D3EFEF;
+  }
 }
 
 .detail-panel-featured-chart-comparison-stat {

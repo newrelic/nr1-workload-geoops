@@ -17,7 +17,7 @@ import {
 
 import { statusColor } from '../utils';
 
-const FeaturedChart = function({ map, mapLocation }) {
+const FeaturedChart = function({ map, mapLocation, openChartBuilder }) {
   const accountId = map.accountId;
   const baseQuery = get(mapLocation, 'query', '');
   const query = baseQuery ? `${baseQuery} TIMESERIES` : baseQuery;
@@ -47,16 +47,18 @@ const FeaturedChart = function({ map, mapLocation }) {
           >
             <StackItem grow>
               <h6 className="detail-panel-featured-chart-header">
-                Chart query
+                Location query
               </h6>
             </StackItem>
 
             <StackItem>
               <Tooltip
                 className="detail-panel-featured-chart-query"
-                text={query}
+                text="Click to view the full query in the chart builder"
               >
-                {query}
+                <span onClick={() => openChartBuilder(query, accountId)}>
+                  {query}
+                </span>
               </Tooltip>
             </StackItem>
           </Stack>
@@ -198,7 +200,11 @@ class Header extends React.PureComponent {
           <>
             <hr className="detail-panel-header-top-bar-hr" />
             <div className="featured-chart-container">
-              <FeaturedChart map={map} mapLocation={data} />
+              <FeaturedChart
+                map={map}
+                mapLocation={data}
+                openChartBuilder={this.props.openChartBuilder}
+              />
             </div>
           </>
         )}
@@ -225,6 +231,21 @@ export default class DetailPanel extends React.PureComponent {
       closed: false,
       minimized: false
     };
+  }
+
+  openChartBuilder(query, account) {
+    if (query && account) {
+      const nerdlet = {
+        id: 'wanda-data-exploration.nrql-editor',
+        urlState: {
+          initialActiveInterface: 'nrqlEditor',
+          initialAccountId: account.id,
+          initialNrqlValue: query,
+          isViewingQuery: true
+        }
+      };
+      navigation.openOverlay(nerdlet);
+    }
   }
 
   /*
@@ -271,7 +292,12 @@ export default class DetailPanel extends React.PureComponent {
           minimized ? 'minimized' : ''
         } ${className || ''}`}
       >
-        <Header {...this.props} />
+        <Header
+          {...this.props}
+          openChartBuilder={(query, account) =>
+            this.openChartBuilder(query, account)
+          }
+        />
         <div className="children-container">{children}</div>
       </div>
     );
