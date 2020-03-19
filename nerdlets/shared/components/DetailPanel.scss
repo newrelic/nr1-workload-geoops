@@ -723,12 +723,17 @@ ul.detail-panel-metadata-list {
 }
 
 .detail-panel-metadata-item-key {
+  width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-weight: 600;
   color: #464E4E;
+  text-align: left;
 }
 
 .detail-panel-metadata-item-value {
-  text-align: right;
+  text-align: left;
   color: #464E4E;
   white-space: nowrap;
   width: 100%;
