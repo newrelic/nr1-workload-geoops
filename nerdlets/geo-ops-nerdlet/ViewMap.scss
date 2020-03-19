@@ -4,17 +4,23 @@
     z-index: 10000;
     border-bottom: none; 
 
-    .page-title {
-        max-width: 308px;
-        line-height: 56px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .page-title-label {
+        margin: 4px 0 1px;
+        letter-spacing: 1.25px;
+        text-transform: uppercase;
+        color: #8E9494;
+        font-size: 10px;
     }
 
     .toolbar-item:not(.has-separator) {
-        padding-right: 0px;
+        padding-right: 0;
       }
+
+    .title-toolbar-item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
 }
 
 .view-map-primary-grid {

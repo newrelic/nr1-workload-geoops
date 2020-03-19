@@ -119,13 +119,17 @@
 h4.page-title:not(.u-unstyledH4) {
   margin-bottom: 0;
   font-size: 20px;
-  height: 100%;
   line-height: 71px;
   text-transform: none;
   color: #464e4e;
 
-  .toolbar-item & {
-    line-height: 56px;
+  div.title-toolbar-item & {
+    height: auto;
+    max-width: 308px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 30px;
   }
 }
 

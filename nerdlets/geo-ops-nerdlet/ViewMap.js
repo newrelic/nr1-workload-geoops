@@ -66,7 +66,8 @@ const LeftToolbar = ({
 
   return (
     <>
-      <StackItem className="toolbar-item has-separator">
+      <StackItem className="toolbar-item has-separator title-toolbar-item">
+        <span className="page-title-label">Current Map</span>
         <h4 className="page-title">{map.title}</h4>
       </StackItem>
       <StackItem className="toolbar-item has-separator">
