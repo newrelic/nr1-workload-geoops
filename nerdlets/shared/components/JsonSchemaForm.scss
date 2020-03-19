@@ -21,6 +21,7 @@ i.glyphicon { display: none; }
   display: inline-block;
   width: 49%;
   margin-right: 2%;
+  margin-bottom: 16px;
 
   &:nth-child(even) {
     margin-right: 0;
@@ -29,7 +30,7 @@ i.glyphicon { display: none; }
 
 .form-input-col-3 {
   display: inline-block;
-  width: 31%;
+  width: 32%;
   margin-right: 2%;
 
   &:last-child {

@@ -170,6 +170,10 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   border: 1px solid #d5d7d7;
   border-top-color: #e3e4e4;
 
+  .form-group {
+    margin-bottom: 16px;
+  }
+
   .field-object {
     margin-bottom: 0;
 
@@ -179,7 +183,6 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   }
 
   .btn {
-    margin-top: 16px;
     color: #fff;
     background-color: #007e8a;
   }

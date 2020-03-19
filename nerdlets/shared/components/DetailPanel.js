@@ -55,7 +55,6 @@ const FeaturedChart = function({ map, mapLocation }) {
               <Tooltip
                 className="detail-panel-featured-chart-query"
                 text={query}
-                placementType={Tooltip.PLACEMENT_TYPE.LEFT}
               >
                 {query}
               </Tooltip>
