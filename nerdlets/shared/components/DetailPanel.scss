@@ -196,6 +196,10 @@ a:not([tabindex]).detail-pane-cta {
 
 .detail-panel-cta-container {
   padding: 0 16px 16px;
+
+  &:empty {
+    padding: 0 16px 8px;
+  }
 }
 
 .featured-chart-container {
