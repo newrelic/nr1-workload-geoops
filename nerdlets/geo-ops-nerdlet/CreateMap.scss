@@ -41,8 +41,11 @@ div.get-started-step-contents {
 [class*='wnd-Stack'] [class*='wnd-StackItem'].get-started-step-contents-CTA-container {
     width: 100%;
     background-color: #FAFBFB;
-    box-shadow: 0 -1px 0 #F4F5F5;
+    box-shadow: 0 -1px 0 #e3e4e4, 0 -1px 20px rgba(0,0,0, .1);
     margin-left: 0;
+    position: sticky;
+    left: 0;
+    bottom: 0;
     
     .step-define-locations & {
         position: sticky;
