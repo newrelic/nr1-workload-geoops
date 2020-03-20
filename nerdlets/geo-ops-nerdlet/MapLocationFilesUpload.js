@@ -55,6 +55,7 @@ export default class MapLocationFilesUpload extends React.Component {
     );
     delete schema.properties.map;
     delete schema.properties.location;
+    schema.required = schema.required.filter(i => i !== 'guid');
 
     // According to the "spec" we've asked them to adhere to
     const pathToLocations = 'items';
@@ -121,7 +122,7 @@ export default class MapLocationFilesUpload extends React.Component {
     // console.log(fileData);
 
     const formatted = fileData.map(item => {
-      if (item.guid === '1111-1111-1111-1111' || !item.guid) {
+      if (!item.guid) {
         item.guid = uuid();
       }
       return item;
