@@ -166,7 +166,7 @@ class Header extends React.PureComponent {
           {data ? data.title : ''}
         </h3>
         <div className="detail-panel-cta-container">
-          {data && this.renderEntityLink()}
+          {data && this.renderEntityLink(data)}
           {contactEmail && (
             <a
               className="detail-pane-contact-button detail-pane-cta u-unstyledLink"
