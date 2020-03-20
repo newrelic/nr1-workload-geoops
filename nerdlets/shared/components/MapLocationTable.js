@@ -113,12 +113,12 @@ export default class MapLocationTable extends PureComponent {
         text: 'Last Incident',
         sort: true,
         formatter: (cell, row) => {
+          const { mostCriticalEntity } = row;
+          const { alertViolations } = mostCriticalEntity;
+
           if (!mostCriticalEntity) {
             return null;
           }
-
-          const { mostCriticalEntity } = row;
-          const { alertViolations } = mostCriticalEntity;
 
           if (!alertViolations) {
             return null;
