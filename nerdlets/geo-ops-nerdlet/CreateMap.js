@@ -40,6 +40,7 @@ export default class CreateMap extends React.PureComponent {
 
     // Optional - pick up where they left off with a specific map
     // We "map" this onto local state
+    maps: PropTypes.object,
     map: PropTypes.object,
     navigation: PropTypes.object,
     activeStep: PropTypes.number,
@@ -241,7 +242,7 @@ export default class CreateMap extends React.PureComponent {
   }
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, maps } = this.props;
     const {
       accountId,
       activeStep,
@@ -260,14 +261,16 @@ export default class CreateMap extends React.PureComponent {
 
     return (
       <>
-        <Button
-          onClick={() => navigation.router({ to: 'mapList' })}
-          type={Button.TYPE.PRIMARY}
-          iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD}
-          className="temporary-all-maps-btn"
-        >
-          Map List
-        </Button>
+        {maps.length > 0 && (
+          <Button
+            onClick={() => navigation.router({ to: 'mapList' })}
+            type={Button.TYPE.PRIMARY}
+            iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__GROUP}
+            className="temporary-all-maps-btn"
+          >
+            View all maps
+          </Button>
+        )}
         <Grid
           className="primary-grid getting-started-primary-grid"
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}

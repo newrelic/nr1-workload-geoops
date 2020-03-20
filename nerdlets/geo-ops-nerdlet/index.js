@@ -177,6 +177,7 @@ export default class index extends PureComponent {
 
             return (
               <CreateMap
+                maps={maps}
                 map={selectedMap}
                 activeStep={activeStep}
                 onMapChange={this.onMapChange}

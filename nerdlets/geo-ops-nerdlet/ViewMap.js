@@ -180,7 +180,7 @@ const RightToolbar = ({ navigation }) => {
         <Button
           type={Button.TYPE.NORMAL}
           onClick={() => navigation.router({ to: 'mapList' })}
-          iconType={Button.ICON_TYPE.LOCATION__LOCATION__MAP}
+          iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__GROUP}
         >
           View all maps
         </Button>
