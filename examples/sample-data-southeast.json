@@ -1,0 +1,224 @@
+{
+  "items": [
+    {
+      "externalId": "537",
+      "title": "7801 Gate Parkway",
+      "location": {
+        "municipality": "Jacksonville",
+        "region": "FL",
+        "country": "USA",
+        "postalCode": "32256",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "30.332184",
+        "lng": "-81.655651"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "327",
+      "title": "1801 NW 117th Ave",
+      "location": {
+        "municipality": "Miami",
+        "region": "FL",
+        "country": "USA",
+        "postalCode": "33172",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "25.7915476",
+        "lng": "-80.38382109999998"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "145",
+      "title": "4092 Eastgate Dr",
+      "location": {
+        "municipality": "Orlando",
+        "region": "FL",
+        "country": "USA",
+        "postalCode": "32839",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "28.4830125",
+        "lng": "-81.42728799999998"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "207",
+      "title": "151 NW 136th Ave",
+      "location": {
+        "municipality": "Sunrise",
+        "region": "FL",
+        "country": "USA",
+        "postalCode": "33325",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "26.121522",
+        "lng": "-80.33178680000003"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "042",
+      "title": "1103 N 22nd St",
+      "location": {
+        "municipality": "Tampa",
+        "region": "FL",
+        "country": "USA",
+        "postalCode": "33605",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "27.9539394",
+        "lng": "-82.43173660000002"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "257",
+      "title": "441 16th St NW",
+      "location": {
+        "municipality": "Atlanta",
+        "region": "GA",
+        "country": "USA",
+        "postalCode": "30363",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "33.7887958",
+        "lng": "-84.40527850000001"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "067",
+      "title": "8300 Ikea Blvd",
+      "location": {
+        "municipality": "Charlotte",
+        "region": "NC",
+        "country": "USA",
+        "postalCode": "28262",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "35.29339179999999",
+        "lng": "-80.76505550000002"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "508",
+      "title": "7900 Ikea Way",
+      "location": {
+        "municipality": "Memphis",
+        "region": "TN",
+        "country": "USA",
+        "postalCode": "38016",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "35.1899914",
+        "lng": "-89.79930250000001"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "569",
+      "title": "1500 IKEA Way",
+      "location": {
+        "municipality": "Norfolk",
+        "region": "VA",
+        "country": "USA",
+        "postalCode": "23502",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "36.87444",
+        "lng": "-76.20061"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "168",
+      "title": "2901 Potomac Mills Cir",
+      "location": {
+        "municipality": "Woodbridge",
+        "region": "VA",
+        "country": "USA",
+        "postalCode": "22192",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "38.6432536",
+        "lng": "-77.289176"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    }
+  ]
+}

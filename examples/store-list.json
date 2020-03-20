@@ -1,0 +1,3674 @@
+[
+  {
+    "storeId": 1,
+    "storeCity": "Tempe",
+    "storeState": "AZ",
+    "storeAddress": "2110 West IKEA Way",
+    "storeZip": "85284",
+    "storeNumber": "209",
+    "storeURL": "https://www.ikea.com/us/en/stores/tempe/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=tempe",
+    "offersURL": "https://www.ikea.com/us/en/stores/tempe/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=tempe",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/2110+West+IKEA+Way+Tempe+AZ+85284",
+    "geoLat": "33.3406452",
+    "geoLng": "-111.9701824",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 2,
+    "storeCity": "Burbank",
+    "storeState": "CA",
+    "storeAddress": "600 Ikea Way",
+    "storeZip": "91502",
+    "storeNumber": "399",
+    "storeURL": "https://www.ikea.com/us/en/stores/burbank/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=burbank",
+    "offersURL": "https://www.ikea.com/us/en/stores/burbank/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=burbank",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/600+South+IKEA+Way+Burbank+CA+91502",
+    "geoLat": "34.174558",
+    "geoLng": "-118.303142",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 3,
+    "storeCity": "Carson",
+    "storeState": "CA",
+    "storeAddress": "20700 S Avalon Blvd",
+    "storeZip": "90746",
+    "storeNumber": "162",
+    "storeURL": "https://www.ikea.com/us/en/stores/carson/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=carson",
+    "offersURL": "https://www.ikea.com/us/en/stores/carson/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=carson",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/20700+S+Avalon+Blvd+Carson+CA+90476",
+    "geoLat": "33.84179776428456",
+    "geoLng": "-118.2603120803833",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 4,
+    "storeCity": "Costa Mesa",
+    "storeState": "CA",
+    "storeAddress": "1475 S Coast Dr",
+    "storeZip": "92626",
+    "storeNumber": "167",
+    "storeURL": "https://www.ikea.com/us/en/stores/costa-mesa/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=costa-mesa",
+    "offersURL": "https://www.ikea.com/us/en/stores/costa-mesa/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=costa-mesa",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1475+S+Coast+Dr+Costa+Mesa+CA+92626",
+    "geoLat": "33.69092406434901",
+    "geoLng": " -117.91640996932983",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 5,
+    "storeCity": "Covina",
+    "storeState": "CA",
+    "storeAddress": "848 South Barranca Avenue",
+    "storeZip": "91723",
+    "storeNumber": "413",
+    "storeURL": "https://www.ikea.com/us/en/stores/covina/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=covina",
+    "offersURL": "https://www.ikea.com/us/en/stores/covina/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=covina",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/848+South+Barranca+Avenue+Covina+CA+91723",
+    "geoLat": "34.074221611710605",
+    "geoLng": "-117.87920236587524",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 6,
+    "storeCity": "East Palo Alto",
+    "storeState": "CA",
+    "storeAddress": "1700 E. Bayshore Road",
+    "storeZip": "94303",
+    "storeNumber": "347",
+    "storeURL": "https://www.ikea.com/us/en/stores/east-palo-alto/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=epa",
+    "offersURL": "https://www.ikea.com/us/en/stores/east-palo-alto/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=epa",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1700+E.+Bayshore+Road+East+Palo+Alto+CA+94303",
+    "geoLat": "37.4610567",
+    "geoLng": "-122.13937399999998",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 7,
+    "storeCity": "Emeryville",
+    "storeState": "CA",
+    "storeAddress": "4400 Shellmound St",
+    "storeZip": "94608",
+    "storeNumber": "165",
+    "storeURL": "https://www.ikea.com/us/en/stores/emeryville/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=emeryville",
+    "offersURL": "https://www.ikea.com/us/en/stores/emeryville/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=emeryville",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/4400+Shellmound+St+Emeryville+CA+94608",
+    "geoLat": "37.8310722",
+    "geoLng": "-122.29233629999999",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 8,
+    "storeCity": "San Diego",
+    "storeState": "CA",
+    "storeAddress": "2149 Fenton Pkwy",
+    "storeZip": "92108",
+    "storeNumber": "166",
+    "storeURL": "https://www.ikea.com/us/en/stores/san-diego/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=san-diego",
+    "offersURL": "https://www.ikea.com/us/en/stores/san-diego/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=san-diego",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/2149+Fenton+Pkwy+San+Diego+CA+92108",
+    "geoLat": "32.7800402",
+    "geoLng": "-117.12639760000002",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 9,
+    "storeCity": "West Sacramento",
+    "storeState": "CA",
+    "storeAddress": "700 Ikea Ct",
+    "storeZip": "95605",
+    "storeNumber": "157",
+    "storeURL": "https://www.ikea.com/us/en/stores/west-sacramento/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=west-sac",
+    "offersURL": "https://www.ikea.com/us/en/stores/west-sacramento/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=west-sac",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/700+Ikea+Ct+West+Sacramento+CA+95605",
+    "geoLat": "38.5866091",
+    "geoLng": "-121.5535246",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 10,
+    "storeCity": "Centennial",
+    "storeState": "CO",
+    "storeAddress": "9800 E. IKEA Way",
+    "storeZip": "80112",
+    "storeNumber": "064",
+    "storeURL": "https://www.ikea.com/us/en/stores/centennial/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=centennial",
+    "offersURL": "https://www.ikea.com/us/en/stores/centennial/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=centennial",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/9800+E.+IKEA+Way+Centennial+CO+80112",
+    "geoLat": "39.571952",
+    "geoLng": "-104.87504189999999",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "07",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 11,
+    "storeCity": "New Haven",
+    "storeState": "CT",
+    "storeAddress": "450 Sargent Dr",
+    "storeZip": "06511",
+    "storeNumber": "213",
+    "storeURL": "https://www.ikea.com/us/en/stores/new-haven/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=new-haven",
+    "offersURL": "https://www.ikea.com/us/en/stores/new-haven/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=new-haven",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/450+Sargent+Dr+New+Haven+CT+06511",
+    "geoLat": "41.2961069",
+    "geoLng": "-72.9198649",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 12,
+    "storeCity": "Jacksonville",
+    "storeState": "FL",
+    "storeAddress": "7801 Gate Parkway",
+    "storeZip": "32256",
+    "storeNumber": "537",
+    "storeURL": "https://www.ikea.com/us/en/stores/jacksonville/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=jacksonville",
+    "offersURL": "https://www.ikea.com/us/en/stores/jacksonville/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=jacksonville",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/7801+Gate+Parkway+Jacksonville+FL+32256",
+    "geoLat": "30.332184",
+    "geoLng": "-81.655651",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 13,
+    "storeCity": "Miami",
+    "storeState": "FL",
+    "storeAddress": "1801 NW 117th Ave",
+    "storeZip": "33172",
+    "storeNumber": "327",
+    "storeURL": "https://www.ikea.com/us/en/stores/miami/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=miami",
+    "offersURL": "https://www.ikea.com/us/en/stores/miami/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=miami",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1801+NW+117th+Ave+Miami+FL+33172",
+    "geoLat": "25.7915476",
+    "geoLng": "-80.38382109999998",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 14,
+    "storeCity": "Orlando",
+    "storeState": "FL",
+    "storeAddress": "4092 Eastgate Dr",
+    "storeZip": "32839",
+    "storeNumber": "145",
+    "storeURL": "https://www.ikea.com/us/en/stores/orlando/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=orlando",
+    "offersURL": "https://www.ikea.com/us/en/stores/orlando/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=orlando",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/4092+Eastgate+Dr+Orlando+FL+32839",
+    "geoLat": "28.4830125",
+    "geoLng": "-81.42728799999998",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 15,
+    "storeCity": "Sunrise",
+    "storeState": "FL",
+    "storeAddress": "151 NW 136th Ave",
+    "storeZip": "33325",
+    "storeNumber": "207",
+    "storeURL": "https://www.ikea.com/us/en/stores/sunrise/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=sunrise",
+    "offersURL": "https://www.ikea.com/us/en/stores/sunrise/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=sunrise",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/151+NW+136th+Ave+Sunrise+FL+33325",
+    "geoLat": "26.121522",
+    "geoLng": "-80.33178680000003",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 16,
+    "storeCity": "Tampa",
+    "storeState": "FL",
+    "storeAddress": "1103 N 22nd St",
+    "storeZip": "33605",
+    "storeNumber": "042",
+    "storeURL": "https://www.ikea.com/us/en/stores/tampa/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=tampa",
+    "offersURL": "https://www.ikea.com/us/en/stores/tampa/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=tampa",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1103+N+22nd+St+Tampa+FL+33605",
+    "geoLat": "27.9539394",
+    "geoLng": "-82.43173660000002",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 17,
+    "storeCity": "Atlanta",
+    "storeState": "GA",
+    "storeAddress": "441 16th St NW",
+    "storeZip": "30363",
+    "storeNumber": "257",
+    "storeURL": "https://www.ikea.com/us/en/stores/atlanta/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=atlanta",
+    "offersURL": "https://www.ikea.com/us/en/stores/atlanta/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=atlanta",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/441+16th+St+NW+Atlanta+GA+30363",
+    "geoLat": "33.7887958",
+    "geoLng": "-84.40527850000001",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 18,
+    "storeCity": "Bolingbrook",
+    "storeState": "IL",
+    "storeAddress": "750 E Boughton Rd",
+    "storeZip": "60440",
+    "storeNumber": "170",
+    "storeURL": "https://www.ikea.com/us/en/stores/bolingbrook/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=bolingbrook",
+    "offersURL": "https://www.ikea.com/us/en/stores/bolingbrook/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=bolingbrook",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/750+E+Boughton+Rd+Bolingbrook+IL+60440",
+    "geoLat": "41.7279305",
+    "geoLng": "-88.03783240000001",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 19,
+    "storeCity": "Schaumburg",
+    "storeState": "IL",
+    "storeAddress": "1800 McConnor Pkwy",
+    "storeZip": "60173",
+    "storeNumber": "210",
+    "storeURL": "https://www.ikea.com/us/en/stores/schaumburg/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=schaumburg",
+    "offersURL": "https://www.ikea.com/us/en/stores/schaumburg/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=schaumburg",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1800+McConnor+Pkwy+Schaumburg+IL+60173",
+    "geoLat": "42.0568612",
+    "geoLng": "-88.03617150000002",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 20,
+    "storeCity": "Fishers",
+    "storeState": "IN",
+    "storeAddress": "11400 IKEA Way",
+    "storeZip": "32322",
+    "storeNumber": "536",
+    "storeURL": "https://www.ikea.com/us/en/stores/fishers/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=fishers",
+    "offersURL": "https://www.ikea.com/us/en/stores/fishers/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=fishers",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/11400+IKEA+Way+IN+46037",
+    "geoLat": "39.954334",
+    "geoLng": "-86.01207590000001",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 21,
+    "storeCity": "Merriam",
+    "storeState": "KS",
+    "storeAddress": "6000 Ikea Way",
+    "storeZip": "66202",
+    "storeNumber": "374",
+    "storeURL": "https://www.ikea.com/us/en/stores/merriam/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=merriam",
+    "offersURL": "https://www.ikea.com/us/en/stores/merriam/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=merriam",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/6000+Ikea+Way+Merriam+KS+66202",
+    "geoLat": "39.019697",
+    "geoLng": "-94.69092409999996",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 22,
+    "storeCity": "Stoughton",
+    "storeState": "MA",
+    "storeAddress": "1 IKEA Way",
+    "storeZip": "02072",
+    "storeNumber": "158",
+    "storeURL": "https://www.ikea.com/us/en/stores/stoughton/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=stoughton",
+    "offersURL": "https://www.ikea.com/us/en/stores/stoughton/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=stoughton",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1+IKEA+Way+Stoughton+MA+02072",
+    "geoLat": "42.1375763",
+    "geoLng": "-71.0685603",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 23,
+    "storeCity": "Baltimore",
+    "storeState": "MD",
+    "storeAddress": "8352 Honeygo Blvd",
+    "storeZip": "21236",
+    "storeNumber": "152",
+    "storeURL": "https://www.ikea.com/us/en/stores/baltimore/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=baltimore",
+    "offersURL": "https://www.ikea.com/us/en/stores/baltimore/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=baltimore",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/6000+Ikea+Way+Merriam+KS+66202",
+    "geoLat": "39.3753398",
+    "geoLng": "-76.4616532",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 24,
+    "storeCity": "College Park",
+    "storeState": "MD",
+    "storeAddress": "10100 Baltimore Ave",
+    "storeZip": "20740",
+    "storeNumber": "411",
+    "storeURL": "https://www.ikea.com/us/en/store/college_park?itm_campaign=lsf&itm_element=Button-LSP&itm_content=college-park",
+    "offersURL": "https://www.ikea.com/us/en/stores/college-park/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=college-park",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/10100+Baltimore+Ave+College+Park+MD+20740",
+    "geoLat": "39.0208564",
+    "geoLng": "-76.92850609999999",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 25,
+    "storeCity": "Canton",
+    "storeState": "MI",
+    "storeAddress": "41640 Ford Rd",
+    "storeZip": "48187",
+    "storeNumber": "026",
+    "storeURL": "https://www.ikea.com/us/en/stores/canton/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=canton",
+    "offersURL": "https://www.ikea.com/us/en/stores/canton/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=canton",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/41640+Ford+Rd+Canton+MI+48187",
+    "geoLat": "42.324824",
+    "geoLng": "-83.45166189999998",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 26,
+    "storeCity": "Twin Cities",
+    "storeState": "MN",
+    "storeAddress": "8000 Ikea Way",
+    "storeZip": "55425",
+    "storeNumber": "212",
+    "storeURL": "https://www.ikea.com/us/en/stores/twin-cities/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=twin-cities",
+    "offersURL": "https://www.ikea.com/us/en/stores/twin-cities/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=twin-cities",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/8000+Ikea+Way+Bloomington+MN+55425",
+    "geoLat": "44.8584007",
+    "geoLng": "-93.24482769999997",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "07",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 27,
+    "storeCity": "St. Louis",
+    "storeState": "MO",
+    "storeAddress": "1 Ikea Way",
+    "storeZip": "63112",
+    "storeNumber": "410",
+    "storeURL": "https://www.ikea.com/us/en/stores/st-louis/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=st-louis",
+    "offersURL": "https://www.ikea.com/us/en/stores/st-louis/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=st-louis",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1+Ikea+Way+St.+Louis+MO+63112",
+    "geoLat": "38.6331482",
+    "geoLng": "-90.24403719999998",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 28,
+    "storeCity": "Charlotte",
+    "storeState": "NC",
+    "storeAddress": "8300 Ikea Blvd",
+    "storeZip": "28262",
+    "storeNumber": "067",
+    "storeURL": "https://www.ikea.com/us/en/stores/charlotte/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=charlotte",
+    "offersURL": "https://www.ikea.com/us/en/stores/charlotte/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=charlotte",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/8300+Ikea+Blvd+Charlotte+NC+28262",
+    "geoLat": "35.29339179999999",
+    "geoLng": "-80.76505550000002",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 29,
+    "storeCity": "Elizabeth",
+    "storeState": "NJ",
+    "storeAddress": "1000 Ikea Dr",
+    "storeZip": "07201",
+    "storeNumber": "154",
+    "storeURL": "https://www.ikea.com/us/en/stores/elizabeth/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=elizabeth",
+    "offersURL": "https://www.ikea.com/us/en/stores/elizabeth/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=elizabeth",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1000+Ikea+Dr+Elizabeth+NJ+07201",
+    "geoLat": "40.6751301",
+    "geoLng": "-74.1697393",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 30,
+    "storeCity": "Paramus",
+    "storeState": "NJ",
+    "storeAddress": "100 Ikea Dr",
+    "storeZip": "07652",
+    "storeNumber": "409",
+    "storeURL": "https://www.ikea.com/us/en/stores/paramus/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=paramus",
+    "offersURL": "https://www.ikea.com/us/en/stores/paramus/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=paramus",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/100+Ikea+Dr+Paramus+NJ+07652",
+    "geoLat": "40.9245349",
+    "geoLng": "-74.07328610000002",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "10",
+        "closeMinutes": "00",
+        "closedStatus": "Closed"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 31,
+    "storeCity": "Las Vegas",
+    "storeState": "NV",
+    "storeAddress": "6500 IKEA Way",
+    "storeZip": "89148",
+    "storeNumber": "462",
+    "storeURL": "https://www.ikea.com/us/en/stores/las-vegas/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=las-vegas",
+    "offersURL": "https://www.ikea.com/us/en/stores/las-vegas/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=las-vegas",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/6500+IKEA+Way+Las+Vegas+NV+89148",
+    "geoLat": "36.0689264",
+    "geoLng": "-115.280825",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 32,
+    "storeCity": "Brooklyn",
+    "storeState": "NY",
+    "storeAddress": "1 Beard St",
+    "storeZip": "11231",
+    "storeNumber": "921",
+    "storeURL": "https://www.ikea.com/us/en/stores/brooklyn/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=brooklyn",
+    "offersURL": "https://www.ikea.com/us/en/stores/brooklyn/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=brooklyn",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1+Beard+St+Brooklyn+NY+11231",
+    "geoLat": "40.67197549999999",
+    "geoLng": "-74.01146080000001",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 33,
+    "storeCity": "Long Island",
+    "storeState": "NY",
+    "storeAddress": "1100 Broadway Mall",
+    "storeZip": "11801",
+    "storeNumber": "156",
+    "storeURL": "https://www.ikea.com/us/en/stores/long-island/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=long-island",
+    "offersURL": "https://www.ikea.com/us/en/stores/long-island/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=long-island",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1100+Broadway+Mall+Hicksville+NY+11801",
+    "geoLat": "40.7741334",
+    "geoLng": "-73.53059309999998",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 34,
+    "storeCity": "Upper East Side",
+    "storeState": "NY",
+    "storeAddress": "999 Third Avenue",
+    "storeZip": "10022",
+    "storeNumber": "",
+    "storeURL": "https://www.ikea.com/ext/us/expansion/planning-studio/upper-east-side/?itm_campaign=lsf&itm_element=Button-LSP&itm_content=planning-studio",
+    "offersURL": "https://www.ikea.com/ext/us/expansion/?itm_campaign=lsf&itm_element=Button-LSP&itm_content=planning-studio",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/999+3rd+Ave+New+York,+NY+10022",
+    "geoLat": "40.76177",
+    "geoLng": "-73.96618",
+    "storeType": "studio",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 35,
+    "storeCity": "Columbus",
+    "storeState": "OH",
+    "storeAddress": "1900 IKEA Way",
+    "storeZip": "43240",
+    "storeNumber": "511",
+    "storeURL": "https://www.ikea.com/us/en/stores/columbus/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=columbus",
+    "offersURL": "https://www.ikea.com/us/en/stores/columbus/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=columbus",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1900+IKEA+Way+Columbus+OH+43240",
+    "geoLat": "40.1485005",
+    "geoLng": "-82.96761170000002",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 36,
+    "storeCity": "West Chester",
+    "storeState": "OH",
+    "storeAddress": "9500 IKEA Way",
+    "storeZip": "45069",
+    "storeNumber": "175",
+    "storeURL": "https://www.ikea.com/us/en/stores/west-chester/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=west-chester",
+    "offersURL": "https://www.ikea.com/us/en/stores/west-chester/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=west-chester",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/9500+IKEA+Way+West+Chester+Township+OH+45069",
+    "geoLat": "39.3154678",
+    "geoLng": "-84.43399769999996",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 37,
+    "storeCity": "Portland",
+    "storeState": "OR",
+    "storeAddress": "10280 NE Cascades Pkwy",
+    "storeZip": "97220",
+    "storeNumber": "028",
+    "storeURL": "https://www.ikea.com/us/en/stores/portland/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=portland",
+    "offersURL": "https://www.ikea.com/us/en/stores/portland/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=portland",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/10280+NE+Cascades+Pkwy+Portland+OR+97220",
+    "geoLat": "45.5712882",
+    "geoLng": "-122.55351080000003",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 38,
+    "storeCity": "Conshohocken",
+    "storeState": "PA",
+    "storeAddress": "400 Alan Wood Road",
+    "storeZip": "19428",
+    "storeNumber": "211",
+    "storeURL": "https://www.ikea.com/us/en/stores/conshohocken/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=conshohocken",
+    "offersURL": "https://www.ikea.com/us/en/stores/conshohocken/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=conshohocken",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/400+Alan+Wood+Road+Conshohocken+PA+19428",
+    "geoLat": "40.0951758",
+    "geoLng": "-75.3063721",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 39,
+    "storeCity": "Pittsburgh",
+    "storeState": "PA",
+    "storeAddress": "2001 Park Manor Blvd",
+    "storeZip": "15205",
+    "storeNumber": "153",
+    "storeURL": "https://www.ikea.com/us/en/stores/pittsburgh/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=pittsurgh",
+    "offersURL": "https://www.ikea.com/us/en/stores/pittsburgh/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=pittsurgh",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/2001+Park+Manor+Blvd+Pittsburgh+PA+15205",
+    "geoLat": "40.4518981",
+    "geoLng": "-80.16799249999997",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 40,
+    "storeCity": "South Philadelphia",
+    "storeState": "PA",
+    "storeAddress": "2206 S Christopher Columbus Blvd",
+    "storeZip": "19148",
+    "storeNumber": "215",
+    "storeURL": "https://www.ikea.com/us/en/stores/south-philadelphia/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=philadelphia",
+    "offersURL": "https://www.ikea.com/us/en/stores/south-philadelphia/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=philadelphia",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/2206+S+Christopher+Columbus+Blvd+Philadelphia+PA+19148",
+    "geoLat": "39.9170912",
+    "geoLng": "-75.141859",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 41,
+    "storeCity": "Memphis",
+    "storeState": "TN",
+    "storeAddress": "7900 Ikea Way",
+    "storeZip": "38016",
+    "storeNumber": "508",
+    "storeURL": "https://www.ikea.com/us/en/stores/memphis/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=memphis",
+    "offersURL": "https://www.ikea.com/us/en/stores/memphis/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=memphis",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/7900+Ikea+Way+Cordova+TN+38016",
+    "geoLat": "35.1899914",
+    "geoLng": "-89.79930250000001",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "11",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "11",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "11",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "11",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "11",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 42,
+    "storeCity": "Frisco",
+    "storeState": "TX",
+    "storeAddress": "7171 Ikea Dr",
+    "storeZip": "75034",
+    "storeNumber": "183",
+    "storeURL": "https://www.ikea.com/us/en/stores/frisco/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=frisco",
+    "offersURL": "https://www.ikea.com/us/en/stores/frisco/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=frisco",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/7171+Ikea+Dr+Frisco+TX+75034",
+    "geoLat": "33.093868",
+    "geoLng": "-96.82122070000003",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 43,
+    "storeCity": "Grand Prairie",
+    "storeState": "TX",
+    "storeAddress": "1000 IKEA Way",
+    "storeZip": "75052",
+    "storeNumber": "535",
+    "storeURL": "https://www.ikea.com/us/en/stores/grand-prairie/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=grand-prairie",
+    "offersURL": "https://www.ikea.com/us/en/stores/grand-prairie/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=grand-prairie",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1000+IKEA+Way+Grand+Prairie+TX",
+    "geoLat": "32.689824",
+    "geoLng": "-97.02212",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 44,
+    "storeCity": "Houston",
+    "storeState": "TX",
+    "storeAddress": "7810 Katy Fwy",
+    "storeZip": "77024",
+    "storeNumber": "379",
+    "storeURL": "https://www.ikea.com/us/en/stores/houston/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=houston",
+    "offersURL": "https://www.ikea.com/us/en/stores/houston/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=houston",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/7810+Katy+Fwy+Houston+TX+77024",
+    "geoLat": "29.7854269",
+    "geoLng": "-95.4722835",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 45,
+    "storeCity": "Live Oak",
+    "storeState": "TX",
+    "storeAddress": "1000 IKEA RBFCU Parkway",
+    "storeZip": "78233",
+    "storeNumber": "570",
+    "storeURL": "https://www.ikea.com/us/en/stores/live-oak/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=live-oak",
+    "offersURL": "https://www.ikea.com/us/en/stores/live-oak/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=live-oak",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1000+IKEA+RBFCU+Parkway,+Live+Oak,+Texas+78233",
+    "geoLat": "28.335474",
+    "geoLng": "-98.129793",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "11",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 46,
+    "storeCity": "Round Rock",
+    "storeState": "TX",
+    "storeAddress": "1 Ikea Way",
+    "storeZip": "78665",
+    "storeNumber": "027",
+    "storeURL": "https://www.ikea.com/us/en/stores/round-rock?itm_campaign=lsf&itm_element=Button-LSP&itm_content=round-rock",
+    "offersURL": "https://www.ikea.com/us/en/stores/round-rock?itm_campaign=lsf&itm_element=Button-LSP&itm_content=round-rock",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1+Ikea+Way+Round+Rock+TX+78665\",     \"http://www.ikea.com/us/en/store/round_rock/offers",
+    "geoLat": "30.5569728",
+    "geoLng": "-97.69026209999998",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 47,
+    "storeCity": "Draper",
+    "storeState": "UT",
+    "storeAddress": "67 W Ikea Way",
+    "storeZip": "84020",
+    "storeNumber": "103",
+    "storeURL": "https://www.ikea.com/us/en/stores/draper/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=draper",
+    "offersURL": "https://www.ikea.com/us/en/stores/draper/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=draper",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/67+W+Ikea+Way+Draper+UT+84020",
+    "geoLat": "40.508693",
+    "geoLng": "-111.893237",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 48,
+    "storeCity": "Norfolk",
+    "storeState": "VA",
+    "storeAddress": "1500 IKEA Way",
+    "storeZip": "23502",
+    "storeNumber": "569",
+    "storeURL": "https://www.ikea.com/us/en/stores/norfolk/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=norfolk",
+    "offersURL": "https://www.ikea.com/us/en/stores/norfolk/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=norfolk",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/1500+IKEA+Way,+Norfolk,+VA+23502",
+    "geoLat": "36.87444",
+    "geoLng": "-76.20061",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 49,
+    "storeCity": "Woodbridge",
+    "storeState": "VA",
+    "storeAddress": "2901 Potomac Mills Cir",
+    "storeZip": "22192",
+    "storeNumber": "168",
+    "storeURL": "https://www.ikea.com/us/en/stores/woodbridge/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=woodbridge",
+    "offersURL": "https://www.ikea.com/us/en/stores/woodbridge/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=woodbridge",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/2901+Potomac+Mills+Cir+Woodbridge+VA+22192",
+    "geoLat": "38.6432536",
+    "geoLng": "-77.289176",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 50,
+    "storeCity": "Renton",
+    "storeState": "WA",
+    "storeAddress": "601 SW 41st St",
+    "storeZip": "98057",
+    "storeNumber": "488",
+    "storeURL": "https://www.ikea.com/us/en/stores/renton/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=renton",
+    "offersURL": "https://www.ikea.com/us/en/stores/renton/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=renton",
+    "geoURL": "https://www.google.com/maps/dir/Current+Location/601+SW+41st+St+Renton+WA+98057",
+    "geoLat": "47.4424256",
+    "geoLng": "-122.22569240000001",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "08",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  },
+  {
+    "storeId": 51,
+    "storeCity": "Oak Creek",
+    "storeState": "WI",
+    "storeAddress": "7500 S. IKEA Way",
+    "storeZip": "53154",
+    "storeNumber": "560",
+    "storeURL": "https://www.ikea.com/us/en/stores/oak-creek/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=oak-creek",
+    "offersURL": "https://www.ikea.com/us/en/stores/oak-creek/?itm_campaign=lsf-mobile&itm_element=Button-LSP&itm_content=oak-creek",
+    "geoURL": "https://www.google.com/maps/place/7500+South+Ikea+Way,+Oak+Creek,+WI+53154",
+    "geoLat": "42.88585",
+    "geoLng": "-87.863136",
+    "storeType": "market",
+    "storeHours": [
+      {
+        "day": "Sunday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "06",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Monday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Tuesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Wednesday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Thursday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Friday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      },
+      {
+        "day": "Saturday",
+        "openHours": "10",
+        "openMinutes": "00",
+        "closeHours": "09",
+        "closeMinutes": "00",
+        "closedStatus": "Open"
+      }
+    ]
+  }
+]

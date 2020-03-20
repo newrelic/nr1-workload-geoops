@@ -1,0 +1,268 @@
+{
+  "items": [
+    {
+      "externalId": "213",
+      "title": "450 Sargent Dr",
+      "location": {
+        "municipality": "New Haven",
+        "region": "CT",
+        "country": "USA",
+        "postalCode": "06511",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "41.2961069",
+        "lng": "-72.9198649"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "158",
+      "title": "1 IKEA Way",
+      "location": {
+        "municipality": "Stoughton",
+        "region": "MA",
+        "country": "USA",
+        "postalCode": "02072",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "42.1375763",
+        "lng": "-71.0685603"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "152",
+      "title": "8352 Honeygo Blvd",
+      "location": {
+        "municipality": "Baltimore",
+        "region": "MD",
+        "country": "USA",
+        "postalCode": "21236",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "39.3753398",
+        "lng": "-76.4616532"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "411",
+      "title": "10100 Baltimore Ave",
+      "location": {
+        "municipality": "College Park",
+        "region": "MD",
+        "country": "USA",
+        "postalCode": "20740",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "39.0208564",
+        "lng": "-76.92850609999999"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "154",
+      "title": "1000 Ikea Dr",
+      "location": {
+        "municipality": "Elizabeth",
+        "region": "NJ",
+        "country": "USA",
+        "postalCode": "07201",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "40.6751301",
+        "lng": "-74.1697393"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "409",
+      "title": "100 Ikea Dr",
+      "location": {
+        "municipality": "Paramus",
+        "region": "NJ",
+        "country": "USA",
+        "postalCode": "07652",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "40.9245349",
+        "lng": "-74.07328610000002"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "921",
+      "title": "1 Beard St",
+      "location": {
+        "municipality": "Brooklyn",
+        "region": "NY",
+        "country": "USA",
+        "postalCode": "11231",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "40.67197549999999",
+        "lng": "-74.01146080000001"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "156",
+      "title": "1100 Broadway Mall",
+      "location": {
+        "municipality": "Long Island",
+        "region": "NY",
+        "country": "USA",
+        "postalCode": "11801",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "40.7741334",
+        "lng": "-73.53059309999998"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "",
+      "title": "999 Third Avenue",
+      "location": {
+        "municipality": "Upper East Side",
+        "region": "NY",
+        "country": "USA",
+        "postalCode": "10022",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "40.76177",
+        "lng": "-73.96618"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "211",
+      "title": "400 Alan Wood Road",
+      "location": {
+        "municipality": "Conshohocken",
+        "region": "PA",
+        "country": "USA",
+        "postalCode": "19428",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "40.0951758",
+        "lng": "-75.3063721"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "153",
+      "title": "2001 Park Manor Blvd",
+      "location": {
+        "municipality": "Pittsburgh",
+        "region": "PA",
+        "country": "USA",
+        "postalCode": "15205",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "40.4518981",
+        "lng": "-80.16799249999997"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHw1ODM",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    },
+    {
+      "externalId": "215",
+      "title": "2206 S Christopher Columbus Blvd",
+      "location": {
+        "municipality": "South Philadelphia",
+        "region": "PA",
+        "country": "USA",
+        "postalCode": "19148",
+        "description": "Nulla quis tortor orci. Etiam at risus et justo dignissim.",
+        "lat": "39.9170912",
+        "lng": "-75.141859"
+      },
+      "query": "FROM Transaction SELECT average(duration) FACET entityGuid, appName WHERE entityGuid in ('NjMwMDYwfEFQTXxBUFBMSUNBVElPTnw2MDgwNzg2')",
+      "entities": [
+        {
+          "guid": "NjMwMDYwfE5SMXxXT1JLTE9BRHwzODI",
+          "entityType": "WORKLOAD_ENTITY"
+        }
+      ],
+      "contactEmail": "foo@foo.com",
+      "runbookUrl": "https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit"
+    }
+  ]
+}
