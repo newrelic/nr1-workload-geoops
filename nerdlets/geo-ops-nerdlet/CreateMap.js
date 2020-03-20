@@ -40,7 +40,7 @@ export default class CreateMap extends React.PureComponent {
 
     // Optional - pick up where they left off with a specific map
     // We "map" this onto local state
-    maps: PropTypes.object,
+    maps: PropTypes.array,
     map: PropTypes.object,
     navigation: PropTypes.object,
     activeStep: PropTypes.number,
