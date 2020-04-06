@@ -248,7 +248,7 @@ export default class ViewMap extends React.PureComponent {
     const { accountId, guid } = this.props.map;
 
     AccountStorageQuery.query({
-      accountId: accountId,
+      accountId: parseInt(accountId, 10),
       collection: 'workloadsGeoopsFavorites',
       documentId: guid
     }).then(({ data }) => {
@@ -260,7 +260,7 @@ export default class ViewMap extends React.PureComponent {
     const { accountId, guid } = this.props.map;
 
     AccountStorageQuery.query({
-      accountId: accountId,
+      accountId: parseInt(accountId, 10),
       collection: 'workloadsGeoopsFavorites',
       documentId: guid
     }).then(({ data }) => {
@@ -277,7 +277,7 @@ export default class ViewMap extends React.PureComponent {
       this.setState({ favoriteLocations: document });
 
       AccountStorageMutation.mutate({
-        accountId: accountId,
+        accountId: parseInt(accountId, 10),
         actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
         collection: 'workloadsGeoopsFavorites',
         documentId: guid,

@@ -33,7 +33,7 @@ export default class MapLocationQuery extends React.PureComponent {
 
     const { data: mapLocations, errors } = await nerdStorageRequest({
       service: getMapLocations,
-      params: { accountId, document: map }
+      params: { accountId: parseInt(accountId, 10), document: map }
     });
 
     const { entityGuids } = this.entitiesFromMapLocations({

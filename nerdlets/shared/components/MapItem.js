@@ -139,6 +139,9 @@ export default class MapItem extends PureComponent {
   render() {
     const { map, navigation } = this.props;
     const { deleteModalActive, deleteModalType } = this.state;
+    const center = [parseFloat(map.lat), parseFloat(map.lng)];
+    const zoom = parseInt(map.zoom, 10);
+
     return (
       <div
         className="map-grid-item"
@@ -148,12 +151,7 @@ export default class MapItem extends PureComponent {
         }
       >
         <section className="map-grid-item-preview">
-          <GeoMap
-            accountId={map.accountId}
-            map={map}
-            center={[map.lat, map.lng]}
-            zoom={map.zoom}
-          />
+          <GeoMap map={map} center={center} zoom={zoom} />
           <div className="map-grid-item-preview-hover-contents">
             <Button
               onClick={() =>

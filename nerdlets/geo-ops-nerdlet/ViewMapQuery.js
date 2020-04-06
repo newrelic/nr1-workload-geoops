@@ -99,7 +99,7 @@ export default class ViewMapQuery extends React.PureComponent {
                       return (
                         <NerdGraphQuery
                           query={LIST_WORKLOADS}
-                          variables={{ accountId: map.accountId }}
+                          variables={{ accountId: parseInt(map.accountId, 10) }}
                           fetchPolicyType={
                             NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE
                           }

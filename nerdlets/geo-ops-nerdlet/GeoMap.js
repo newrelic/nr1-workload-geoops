@@ -194,6 +194,7 @@ export default class GeoMap extends Component {
     const { map, mapLocations } = this.props;
     const { mapReady, queries, selectedLocation } = this.state;
 
+    const accountId = parseInt(map.accountId, 10);
     const leafletElement = get(this.mapRef, 'current.leafletElement', false);
     const bounds =
       mapReady && leafletElement ? leafletElement.getBounds() : false;
@@ -203,6 +204,7 @@ export default class GeoMap extends Component {
     return (
       <BatchNrql
         accountId={map.accountId}
+        accountId={accountId}
         queries={queries}
         queryPrefix={queryPrefix}
       >
