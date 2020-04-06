@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/v/release/newrelic/nr1-infra-geoops?include_prereleases&sort=semver" title="GitHub release (latest SemVer including pre-releases)">
-<img src="https://img.shields.io/appveyor/ci/newrelic/nr1-infra-geoops" title="AppVeyor">
-<img src="https://snyk.io/test/github/newrelic/nr1-infra-geoops" title="Snyk">
+<img src="https://img.shields.io/github/v/release/newrelic/nr1-workload-geoops?include_prereleases&sort=semver" title="GitHub release (latest SemVer including pre-releases)">
+<img src="https://img.shields.io/appveyor/ci/newrelic/nr1-workload-geoops" title="AppVeyor">
+<img src="https://snyk.io/test/github/newrelic/nr1-workload-geoops" title="Snyk">
 </p>
 
 ------
@@ -45,8 +45,8 @@ npm -v
 Next, clone this repository and run the following scripts:
 
 ```bash
-git clone https://github.com/newrelic/nr1-infra-geoops.git
-cd nr1-infra-geoops
+git clone https://github.com/newrelic/nr1-workload-geoops.git
+cd nr1-workload-geoops
 nr1 nerdpack:uuid -gf
 npm install
 npm start
@@ -79,7 +79,7 @@ _Please do not report issues with this software to New Relic Global Technical Su
 
 New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorer's Hub. You can find this project's topic/threads here:
 
-[https://discuss.newrelic.com/c/build-on-new-relic/nr1-infra-geoops](https://discuss.newrelic.com/c/build-on-new-relic/nr1-infra-geoops)
+[https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops](https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops)
 *(Note: URL subject to change before GA)*
 
 ### Issues / Enhancement Requests

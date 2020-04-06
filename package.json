@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "nr1-infra-geoops",
+  "name": "nr1-workload-geoops",
   "bugs": {
-    "email": "opensource@newrelic.com"
+    "email": "opensource+nr1-workload-geoops@newrelic.com"
   },
   "description": "NR1 Nerdpack for geographically aligned infrastructure and application data (ex. Point of Sale monitoring).",
   "version": "0.1.0",
