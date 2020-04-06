@@ -1,12 +1,31 @@
 # Automation
 
-[Build highly customized applications on New Relic One that meet your unique business needs](https://developer.newrelic.com/) combined with our [Developer Toolkit's](https://newrelic.github.io/developer-toolkit/) [Terraform](https://github.com/newrelic/terraform-newrelic-apm) and [NewRelic CLI](https://github.com/newrelic/newrelic-cli) projects.
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Automation](#automation)
+  - [Overview](#overview)
+  - [New Relic CLI](#new-relic-cli)
+  - [Scripting Map and MapLocation data](#scripting-map-and-maplocation-data)
+    - [Pre-requisites](#pre-requisites)
+    - [Example 1 - Add a Map](#example-1---add-a-map)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Overview
+
+[Build highly customized applications on New Relic One](https://developer.newrelic.com/) that meet your unique business needs combined with our [Developer Toolkit's](https://newrelic.github.io/developer-toolkit/) [Terraform provider](https://github.com/newrelic/terraform-newrelic-apm) and [NewRelic CLI](https://github.com/newrelic/newrelic-cli) projects.
 
 ## New Relic CLI
 
 The New Relic CLI is an officially supported command line interface for New Relic, released as part of the [Developer Toolkit](https://newrelic.github.io/developer-toolkit/) and can be found [open-sourced on Github](https://github.com/newrelic/newrelic-cli).
 
-## Pre-requisites
+## Scripting Map and MapLocation data
+
+The New Relic CLI can be utilized to script data into [NerdStorage](https://developer.newrelic.com/build-tools/new-relic-one-applications/nerdstorage), providing an integration point and ability to overlay your data into applications built with New Relic One.
+
+### Pre-requisites
 
 1. [Install the NewRelic CLI](https://github.com/newrelic/newrelic-cli)
 1. Add a profile to the NewRelic CLI
@@ -18,7 +37,7 @@ The New Relic CLI is an officially supported command line interface for New Reli
 1. Add an app/nerdpack to your account, either via deploying your own, or adding access through the _New Relic One Catalog_ app. See [publish and deploy](https://developer.newrelic.com/build-tools/new-relic-one-applications/publish-deploy) for more information.
 1. Find the UUID of the app/nerdpack - most easily derived from looking at the link to the launcher icon `https://one.newrelic.com/launcher/035a0597-d6a9-46a9-97e4-a8a4b3101f2a.geo-ops`, `035a0597-d6a9-46a9-97e4-a8a4b3101f2a` is the `packageId` or `uuid` of the app/nerdpack
 
-## Example 1 - Add a Map
+### Example 1 - Add a Map
 
 1. Identify the `accountId` you're working with, most commonly this is a 7-digit number
 
