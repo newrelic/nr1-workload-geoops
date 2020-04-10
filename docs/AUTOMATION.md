@@ -2,28 +2,50 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Automation](#automation)
-  - [Overview](#overview)
+
+- [Overview](#overview)
+  - [Workloads](#workloads)
   - [New Relic CLI](#new-relic-cli)
-  - [Scripting Map and MapLocation data](#scripting-map-and-maplocation-data)
-    - [Pre-requisites](#pre-requisites)
-    - [Example 1 - Add a Map](#example-1---add-a-map)
+- [Automation and Integration](#automation-and-integration)
+  - [Scripting data for Workload Geoops](#scripting-data-for-workload-geoops)
+  - [Pre-requisites](#pre-requisites)
+  - [Instructions](#instructions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Overview
 
-[Build highly customized applications on New Relic One](https://developer.newrelic.com/) that meet your unique business needs combined with our [Developer Toolkit's](https://newrelic.github.io/developer-toolkit/) [Terraform provider](https://github.com/newrelic/terraform-newrelic-apm) and [NewRelic CLI](https://github.com/newrelic/newrelic-cli) projects.
+[Workload Geo-ops](https://github.com/newrelic/nr1-workload-geoops) is an example of [a highly customized application on New Relic One](https://developer.newrelic.com/) that helps you tailor to specific business needs. See your global [Workloads](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) and link them to physical locations for quick identification and resolution of incidents.
 
-## New Relic CLI
+Automating the population of this data from your CI/CD pipeline or business integration services provides an up-to-date view of how your software impacts and interacts with your physical locations.
 
-The New Relic CLI is an officially supported command line interface for New Relic, released as part of the [Developer Toolkit](https://newrelic.github.io/developer-toolkit/) and can be found [open-sourced on Github](https://github.com/newrelic/newrelic-cli).
+### Workloads
 
-## Scripting Map and MapLocation data
+> In New Relic, a workload represents a group of entities that work together to provide a digital service.
 
-The New Relic CLI can be utilized to script data into [NerdStorage](https://developer.newrelic.com/build-tools/new-relic-one-applications/nerdstorage), providing an integration point and ability to overlay your data into applications built with New Relic One.
+For more information on [Workloads](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) visit [here](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster)
+
+### New Relic CLI
+
+The New Relic CLI is an officially supported command line interface for New Relic, released as part of the [Developer Toolkit](https://newrelic.github.io/developer-toolkit/).
+
+## Automation and Integration
+
+Workload Geoops provides 2 ways to setup data:
+
+1. A step-by-step wizard in the application to assist you in defining `MapLocation`'s on a map by map basis
+2. A JSON file upload in the application of `MapLocations` for a specific `Map`
+
+These data objects are written to and read out of [Nerd Storage](https://developer.newrelic.com/build-tools/new-relic-one-applications/nerdstorage) by the application. Both of these are convenient and user-friendly but are unable to automate or script the data for you.
+
+We teamed up with our [Developer Toolkit](https://newrelic.github.io/developer-toolkit/) team and their newly [open-sourced New Relic CLI](https://github.com/newrelic/newrelic-cli) to provide a way to automate the input of this Geographic data into this application by inserting data directly into [Nerd Storage](https://developer.newrelic.com/build-tools/new-relic-one-applications/nerdstorage) in association with this specific application.
+
+### Scripting data for Workload Geoops
+
+This is a "how-to" on utilizing the [New Relic CLI](https://github.com/newrelic/newrelic-cli) to script data into [NerdStorage](https://developer.newrelic.com/build-tools/new-relic-one-applications/nerdstorage), providing an integration point and ability to overlay your data into applications built with New Relic One.
+
+This will walk you through adding the prerequisite `Map` and `MapLocation` data to drive the Workload Geoops application. Visit our [Data Dictionary](./data-dictionary.md) for detailed information on the `Map` and `MapLocation` data objects.
 
 ### Pre-requisites
 
@@ -31,17 +53,17 @@ The New Relic CLI can be utilized to script data into [NerdStorage](https://deve
 1. Add a profile to the NewRelic CLI
 
  ```bash
-  newrelic-cli profile add --name fluffy-waffles --region US --apiKey <your api key>
+  newrelic profile add --name fluffy-waffles --region US --apiKey <your api key>
  ```
 
 1. Add an app/nerdpack to your account, either via deploying your own, or adding access through the _New Relic One Catalog_ app. See [publish and deploy](https://developer.newrelic.com/build-tools/new-relic-one-applications/publish-deploy) for more information.
-1. Find the UUID of the app/nerdpack - most easily derived from looking at the link to the launcher icon `https://one.newrelic.com/launcher/035a0597-d6a9-46a9-97e4-a8a4b3101f2a.geo-ops`, `035a0597-d6a9-46a9-97e4-a8a4b3101f2a` is the `packageId` or `uuid` of the app/nerdpack
+1. Find the UUID (packageId) of the app/nerdpack - most easily derived from looking at the link to the launcher icon `https://one.newrelic.com/launcher/035a0597-d6a9-46a9-97e4-a8a4b3101f2a.geo-ops`, `035a0597-d6a9-46a9-97e4-a8a4b3101f2a` is the `packageId` or `uuid` of the app/nerdpack
 
-### Example 1 - Add a Map
+### Instructions
 
-1. Identify the `accountId` you're working with, most commonly this is a 7-digit number
+1. Identify the New Relic `accountId` you're working with, most commonly this is a 7-digit number
 
-1. Identify the `packageId` of the app/nerdpack you want to write data for, this is a uuid, example - `035a0597-d6a9-46a9-97e4-a8a4b3101f2a`
+1. Identify the application's `packageId` to write data to, this is a uuid, example - `035a0597-d6a9-46a9-97e4-a8a4b3101f2a`
 
 1. Generate a uuid for uniquely identifying your map. In Javascript there is a package called [uuid](https://github.com/uuidjs/uuid), if you're just experimenting, you can use an [online generator](https://www.guidgenerator.com/)
 
@@ -79,6 +101,7 @@ The New Relic CLI can be utilized to script data into [NerdStorage](https://deve
 
     ```json
       {
+        "guid": "27983350-fa72-4924-b934-8d58a7a4bd80",
         "externalId": "399",
         "title": "600 Ikea Way",
         "location": {
@@ -106,16 +129,15 @@ The New Relic CLI can be utilized to script data into [NerdStorage](https://deve
 
 1. Execute the CLI command  
     1. Map
-        Without document:
 
         ```bash
-        newrelic-cli-0.6.0 nerdstorage document write --scope ACCOUNT --packageId 035a0597-d6a9-46a9-97e4-a8a4b3101f2a --accountId 2526305 --collection v1-maps-collection --document '<your json document>`
-        ```
-
-        With document:
-
-        ```bash
-        newrelic-cli-0.6.0 nerdstorage document write --scope ACCOUNT --packageId 035a0597-d6a9-46a9-97e4-a8a4b3101f2a --accountId 2526305 --collection v1-maps-collection --documentId 836611b8-9d08-41c7-ac81-419ae2a1fd6c --document '{
+        newrelic nerdstorage document write \
+        --scope ACCOUNT \
+        --packageId 035a0597-d6a9-46a9-97e4-a8a4b3101f2a \
+        --accountId 2526305 \
+        --collection v1-maps-collection \
+        --documentId <the guid of your map, in this case - 836611b8-9d08-41c7-ac81-419ae2a1fd6c> \
+        --document '{
             "guid": "836611b8-9d08-41c7-ac81-419ae2a1fd6c",
             "title": "Foo Map",
             "accountId": "2526305",
@@ -132,17 +154,15 @@ The New Relic CLI can be utilized to script data into [NerdStorage](https://deve
 
         `documentId` is a UUID you generate to uniquely represent the `MapLocation` object
 
-        Without document:
-
         ```bash
-        newrelic-cli-0.6.0 nerdstorage document write --scope ACCOUNT --packageId 035a0597-d6a9-46a9-97e4-a8a4b3101f2a --accountId 2526305 --collection v1-maps-collection --document '<your json document>`
-        ```
-
-        With document:
-
-        ```bash
-        newrelic-cli-0.6.0 nerdstorage document write --scope ACCOUNT --packageId 035a0597-d6a9-46a9-97e4-a8a4b3101f2a --accountId 2526305 --collection v1-map-location-collection-836611b8-9d08-41c7-ac81-419ae2a1fd6c --documentId 27983350-fa72-4924-b934-8d58a7a4bd80 --document '{
-            "uuid": "27983350-fa72-4924-b934-8d58a7a4bd80",
+        newrelic nerdstorage document write \
+        --scope ACCOUNT \
+        --packageId 035a0597-d6a9-46a9-97e4-a8a4b3101f2a \
+        --accountId 2526305 \
+        --collection v1-map-location-collection-836611b8-9d08-41c7-ac81-419ae2a1fd6c \
+        --documentId <the guid of your maplocation, in this case 27983350-fa72-4924-b934-8d58a7a4bd80> \
+        --document '{
+            "guid": "27983350-fa72-4924-b934-8d58a7a4bd80",
             "externalId": "399",
             "title": "600 Ikea Way",
             "location": {
