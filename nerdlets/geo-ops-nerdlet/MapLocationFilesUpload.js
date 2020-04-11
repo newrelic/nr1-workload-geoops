@@ -335,7 +335,7 @@ export default class MapLocationFilesUpload extends React.Component {
           <StackItem grow>
             <h2>File Upload</h2>
             <p className="file-upload-nerdlet-description">
-              JSON file formatted to <a href="#">this specification</a>. We
+              JSON file formatted to <a href="https://github.com/newrelic/nr1-workload-geoops/blob/master/docs/data-dictionary.md" target="_blank">this specification</a> or <a href="https://github.com/newrelic/nr1-workload-geoops/tree/master/examples" target="_blank">these examples</a>. We
               recommend this method for providing locations.
             </p>
           </StackItem>
