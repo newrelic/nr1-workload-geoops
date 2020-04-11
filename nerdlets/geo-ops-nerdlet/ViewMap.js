@@ -24,7 +24,6 @@ import {
 import { EmptyState } from '@newrelic/nr1-community';
 import { get, groupBy, lowerCase, kebabCase, startCase } from 'lodash';
 import { format } from 'date-fns';
-import { PACKAGE_UUID } from '../shared/constants';
 
 import ViewMapQuery from './ViewMapQuery';
 import GeoMap from './GeoMap';
@@ -349,7 +348,7 @@ export default class ViewMap extends React.PureComponent {
           key={violation.violationId}
           onClick={() => {
             navigation.openStackedNerdlet({
-              id: `${PACKAGE_UUID}.recent-incidents`,
+              id: `recent-incidents`,
               urlState: {
                 recentViolations: activeMapLocation.recentViolations,
                 clickedViolation: violation
@@ -518,12 +517,11 @@ export default class ViewMap extends React.PureComponent {
       favoriteLocations,
       alertFilter
     } = this.state;
-
     return (
       <>
         {map && (
           /*
-           * 
+           *
               1. ViewMapQuery fetches data through a series of 3 calls:
                   - NerdStorage for MapLocations
                   - Workloads for all attached workloads and their entities

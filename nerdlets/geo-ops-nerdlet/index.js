@@ -11,7 +11,6 @@ import MapList from './MapList';
 
 import { nerdStorageRequest } from '../shared/utils';
 import { getMaps } from '../shared/services/map';
-import { PACKAGE_UUID } from '../shared/constants';
 
 const initialPages = {
   emptyState: false,
@@ -165,9 +164,9 @@ export default class index extends PureComponent {
             if (hasNewLocations) {
               navigation.openLauncher(
                 {
-                  id: `${PACKAGE_UUID}.geo-ops`,
+                  id: `geo-ops`,
                   nerdlet: {
-                    id: `${PACKAGE_UUID}.geo-ops-nerdlet`,
+                    id: `geo-ops-nerdlet`,
                     urlState: {}
                   }
                 },

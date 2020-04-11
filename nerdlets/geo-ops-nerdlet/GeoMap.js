@@ -203,7 +203,6 @@ export default class GeoMap extends Component {
 
     return (
       <BatchNrql
-        accountId={map.accountId}
         accountId={accountId}
         queries={queries}
         queryPrefix={queryPrefix}

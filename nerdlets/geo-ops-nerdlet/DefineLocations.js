@@ -155,8 +155,23 @@ export default class DefineLocations extends React.PureComponent {
         <div className="define-locations-file-upload-container">
           <h4>File Upload</h4>
           <p>
-            JSON file formatted to <a href="https://github.com/newrelic/nr1-workload-geoops/blob/master/docs/data-dictionary.md" target="_blank">this specification</a> or <a href="https://github.com/newrelic/nr1-workload-geoops/tree/master/examples" target="_blank">these examples</a>. We
-            recommend this method for providing locations.
+            JSON file formatted to{' '}
+            <a
+              href="https://github.com/newrelic/nr1-workload-geoops/blob/master/docs/data-dictionary.md"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              this specification
+            </a>{' '}
+            or{' '}
+            <a
+              href="https://github.com/newrelic/nr1-workload-geoops/tree/master/examples"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              these examples
+            </a>
+            . We recommend this method for providing locations.
           </p>
           <Button
             onClick={e => {

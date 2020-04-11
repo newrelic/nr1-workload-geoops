@@ -157,7 +157,6 @@ export default class MapLocationTable extends PureComponent {
   render() {
     const { SearchBar } = Search;
     const { data } = this.props;
-
     return (
       <ToolkitProvider
         keyField="externalId"
