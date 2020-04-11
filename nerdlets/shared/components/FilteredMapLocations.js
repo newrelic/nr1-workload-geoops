@@ -40,7 +40,7 @@ export default class FilteredMapLocations extends React.PureComponent {
   }
 
   update() {
-    // eslint-disable-next-line no-unused-vars
+    /* eslint-disable no-unused-vars */
     const {
       mapLocations,
       filters,
@@ -49,6 +49,7 @@ export default class FilteredMapLocations extends React.PureComponent {
       favoriteLocations,
       alertFilter
     } = this.props;
+    /* eslint-enable */
 
     let filtered = cloneDeep(mapLocations);
 
