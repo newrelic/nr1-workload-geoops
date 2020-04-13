@@ -3,7 +3,7 @@
 <p align="center">
 	<img src="assets/documentation-images/docs-header.svg" />
     <br>
-    A New Relic application that aligns Workload data (or other Entities) in a Geographic management console
+    A New Relic application that aligns [Workload](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) data (or other Entities) in a Geographic management console
 </p>
 
 <p align="center">
@@ -16,7 +16,7 @@
 
 ## Usage
 
-Workloads GeoOps provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
+Workloads GeoOps provides a geographic exploration of [Workload](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) data (collections of Entities) tied to geographic data, including location metadata. Find additional information in the [docs](docs) directory.
 
 ![Screenshot #1](screenshots/screenshot_01.png)
 <p align="center">
@@ -31,9 +31,8 @@ This project is distributed under the [Apache 2 license](LICENSE).
 
 ## What do you need to make this work?
 
-1. [New Relic Infrastructure Agent(s) installed](https://newrelic.com/products/infrastructure) and the related access to [New Relic One](https://newrelic.com/platform).
-2. (Recommended) Add the customer-defined `locationId` to the `newrelic_infra.yml`. See an example [here](examples/example_newrelic_infra.yml).
-3. (Currently) Updating (or replacing) the [geoopsConfig.js](geoopsConfig.js) file.
+1. [New Relic One](https://newrelic.com/platform)
+2. (recommended) Configured [Workloads](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) in New Relic One
 
 ## Getting started
 
