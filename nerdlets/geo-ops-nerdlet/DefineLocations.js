@@ -204,12 +204,12 @@ export default class DefineLocations extends React.PureComponent {
           defaultValues={MAP_LOCATION_DEFAULTS}
           formData={formData}
           fetchDocument={null}
-          writeDocument={({ formData }) => {
-            writeLocation({
+          writeDocument={({ formData }) =>
+            writeMapLocation({
               accountId: map.accountId,
               document: formData
-            });
-          }}
+            })
+          }
           onWrite={this.onWrite}
           // onError={errors => console.log(errors)}
           className="define-locations-form"
