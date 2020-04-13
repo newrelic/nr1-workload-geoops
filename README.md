@@ -3,7 +3,7 @@
 <p align="center">
 	<img src="assets/documentation-images/docs-header.svg" />
     <br>
-    A New Relic application that aligns [Workload](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) data (or other Entities) in a Geographic management console
+    A New Relic application that aligns Workload data (or other Entities) in a Geographic management console
 </p>
 
 <p align="center">
