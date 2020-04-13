@@ -6,7 +6,7 @@
 
 ## Description
 
-Workloads Geo-ops helps customers that do brick and mortar customer engagement connect all the tech that they use to deliver an experience to physical locations. That could look like the `New Relic Infrastructure` agents on their Point of Sale systems; but it necessarily has to also include the related `Services` in a cloud data center. We need to be able to qualitatively analyze the collection of services, computing devices, and even customer experiences (i.e. `Browser` or `Mobile` agents) that are delivering customer experiences as a location to answer the question, "how are my IT systems and services supporting the business in _that_ location."
+Workloads GeoOps helps customers that do brick and mortar customer engagement connect all the tech that they use to deliver an experience to physical locations. That could look like the `New Relic Infrastructure` agents on their Point of Sale systems; but it necessarily has to also include the related `Services` in a cloud data center. We need to be able to qualitatively analyze the collection of services, computing devices, and even customer experiences (i.e. `Browser` or `Mobile` agents) that are delivering customer experiences as a location to answer the question, "how are my IT systems and services supporting the business in _that_ location."
 
 This New Relic One Application allows customers to define Maps and then collect / assign Entities to points on those maps. Using the power of `Workloads` that collection of `Entities` can be managed by rules and tags so as to support the dynamic, ephemeral nature of modern IT infrastructure.
 
