@@ -4,19 +4,20 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Overview](#overview)
-  - [Workloads](#workloads)
-  - [New Relic CLI](#new-relic-cli)
-- [Automation and Integration](#automation-and-integration)
-  - [Scripting data for Workload Geoops](#scripting-data-for-workload-geoops)
-  - [Pre-requisites](#pre-requisites)
-  - [Instructions](#instructions)
+- [Automation](#automation)
+  - [Overview](#overview)
+    - [Workloads](#workloads)
+    - [New Relic CLI](#new-relic-cli)
+  - [Automation and Integration](#automation-and-integration)
+    - [Scripting data for Workload Geoops](#scripting-data-for-workload-geoops)
+    - [Pre-requisites](#pre-requisites)
+    - [Instructions](#instructions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Overview
 
-[Workload Geo-ops](https://github.com/newrelic/nr1-workload-geoops) is an example of [a highly customized application on New Relic One](https://developer.newrelic.com/) that helps you tailor to specific business needs. See your global [Workloads](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) and link them to physical locations for quick identification and resolution of incidents.
+[Workload GeoOps](https://github.com/newrelic/nr1-workload-geoops) is an example of [a highly customized application on New Relic One](https://developer.newrelic.com/) that helps you tailor to specific business needs. See your global [Workloads](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) and link them to physical locations for quick identification and resolution of incidents.
 
 Automating the population of this data from your CI/CD pipeline or business integration services provides an up-to-date view of how your software impacts and interacts with your physical locations.
 
@@ -67,7 +68,7 @@ This will walk you through adding the prerequisite `Map` and `MapLocation` data 
 
 1. Generate a uuid for uniquely identifying your map. In Javascript there is a package called [uuid](https://github.com/uuidjs/uuid), if you're just experimenting, you can use an [online generator](https://www.guidgenerator.com/)
 
-1. Identify the collection and/or document in NerdStorage you need to write to  
+1. Identify the collection and/or document in NerdStorage you need to write to
 
     For nr1-workload-geoops, the collection keys are:
 
@@ -127,7 +128,7 @@ This will walk you through adding the prerequisite `Map` and `MapLocation` data 
 
     A JSON Schema specification of these objects/fields can be found in [constants.js](../nerdlets/shared/constants.js)
 
-1. Execute the CLI command  
+1. Execute the CLI command
     1. Map
 
         ```bash

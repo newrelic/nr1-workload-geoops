@@ -16,7 +16,7 @@
 
 ## Usage
 
-Workloads Geo-ops provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
+Workloads GeoOps provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
 
 ![Screenshot #1](screenshots/screenshot_01.png)
 <p align="center">
@@ -71,20 +71,15 @@ nr1 nerdpack:subscribe [-c [DEV|BETA|STABLE]] [--profile=your_profile_name]
 
 Visit [https://one.newrelic.com](https://one.newrelic.com), navigate to the Nerdpack, and :sparkles:
 
-## Support
+## Community Support
 
-New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR SUPPORT, although you can report issues and contribute to the project here on GitHub.
-
-_Please do not report issues with this software to New Relic Global Technical Support._
-
-### Community
-
-New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorer's Hub. You can find this project's topic/threads here:
+New Relic hosts and moderates an online forum where you can interact with New Relic employees as well as other customers to get help and share best practices. Like all New Relic open source community projects, there's a related topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
 
 [https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops](https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops)
-*(Note: URL subject to change before GA)*
 
-### Issues / Enhancement Requests
+Please do not report issues with Workload GeoOps to New Relic Global Technical Support. Instead, visit the [`Explorers Hub`](https://discuss.newrelic.com/c/build-on-new-relic) for troubleshooting and best-practices.
+
+## Issues / Enhancement Requests
 
 Issues and enhancement requests can be submitted in the [Issues tab of this repository](../../issues). Please search for and review the existing open issues before submitting a new issue.
 
