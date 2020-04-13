@@ -17,9 +17,9 @@ This project is distributed under the [Apache 2 license](LICENSE).
 
 New Relic hosts and moderates an online forum where you can interact with New Relic employees as well as other customers to get help and share best practices. Like all New Relic open source community projects, there's a related topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
 
-[https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops](https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops)
+[https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478](https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478)
 
-Please do not report issues with Workload GeoOps to New Relic Global Technical Support. Instead, visit the [`Explorers Hub`](https://discuss.newrelic.com/c/build-on-new-relic) for troubleshooting and best-practices.
+Please do not report issues with Workload GeoOps to New Relic Global Technical Support. Instead, visit the [`Explorers Hub`](https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478) for troubleshooting and best-practices.
 
 ## Issues / Enhancement Requests
 

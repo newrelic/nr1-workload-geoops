@@ -10,7 +10,7 @@
       "address": "opensource+nr1-workload-geoops@newrelic.com"
     },
     "community": {
-      "url": "https://discuss.newrelic.com/t/[YOUR REPO SUPPORT TOPIC]"
+      "url": "https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478"
     }
   },
   "whatsNew": "\n-Feat: Geographic mapping of Workloads and Entities\n-Feat: Programmatic alerting rollup of underlying Entities\n-Feat: Custom KPI measurement per location\n-Feat: Empty-state edit workflow\n-Feat: JSON file upload format\n-Feat: Published (in open source docs) guide to automating configuration using the newrelic-cli"
