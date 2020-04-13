@@ -13,7 +13,6 @@ import {
 
 import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 
-import { writeLocation } from '../shared/services/location';
 import { writeMapLocation } from '../shared/services/map-location';
 import LocationTable from '../shared/components/LocationTable';
 

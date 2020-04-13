@@ -40,7 +40,6 @@ const LAT_LNG_SCHEMA = {
 export const MAP_COLLECTION_ID = "v1-maps-collection";
 export const LOCATION_COLLECTION_ID = "v1-locations-collection";
 export const MAP_LOCATION_COLLECTION_ID = "v1-map-location-collection";
-export const MAP_LOCATION_METRIC_COLLECTION_ID = "v1-map-location-metric";
 export const mapLocationCollection = ({ mapGuid }) => `${MAP_LOCATION_COLLECTION_ID}-${mapGuid}`;
 
 export const MAP_UI_SCHEMA = {
