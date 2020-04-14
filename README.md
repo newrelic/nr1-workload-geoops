@@ -27,7 +27,7 @@ Workloads GeoOps provides a geographic exploration of [Workload](https://docs.ne
 
 ## Walkthrough Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fh0C553kA3c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Find the walkthrough video [here](https://www.youtube.com/watch?v=fh0C553kA3c&feature=youtu.be).
 
 ## Open Source License
 
