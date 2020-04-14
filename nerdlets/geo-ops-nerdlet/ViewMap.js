@@ -32,6 +32,7 @@ import DetailPanel from '../shared/components/DetailPanel';
 import MapLocationTable from '../shared/components/MapLocationTable';
 import FilteredMapLocations from '../shared/components/FilteredMapLocations';
 
+/* eslint-disable no-unused-vars */
 const LeftToolbar = ({
   maps,
   map,
@@ -42,7 +43,8 @@ const LeftToolbar = ({
   favoriteFilter,
   alertFilter
 }) => {
-  const regions = Object.keys(groupBy(mapLocations, i => i.location.region));
+  /* eslint-enable */
+  const regions = Object.keys(groupBy(mapLocations, i => i.location ? i.location.region : null));
   const favoriteOptions = [
     { name: 'All', value: null },
     { name: 'Favorites', value: true },
@@ -69,34 +71,18 @@ const LeftToolbar = ({
         <span className="page-title-label">Current Map</span>
         <h4 className="page-title">{map.title}</h4>
       </StackItem>
-      <StackItem className="toolbar-item has-separator">
-        <Dropdown
-          label="Other maps"
-          title={get(map, 'title', 'View other maps')}
-        >
-          {maps.map(m => {
-            if (!m.document.guid) {
-              return null;
-            }
-
-            return (
-              <DropdownItem
-                key={m.document.guid}
-                onClick={() =>
-                  navigation.router({
-                    to: 'viewMap',
-                    state: { selectedMap: m.document }
-                  })
-                }
-              >
-                {m.document.title}
-              </DropdownItem>
-            );
-          })}
-        </Dropdown>
-      </StackItem>
       <StackItem className="toolbar-item">
         <Dropdown label="Regions" title={regionFilter || 'Filter by Region'}>
+          <DropdownItem
+            key={0}
+            onClick={() => {
+              onFilter({
+                filter: { name: 'regionFilter', value: null }
+              });
+            }}
+          >
+            All
+          </DropdownItem>
           {regions.map(r => {
             return (
               <DropdownItem
@@ -216,7 +202,7 @@ export default class ViewMap extends React.PureComponent {
       activeMapLocation: null,
       regionFilter: '',
       favoriteFilter: null,
-      favoriteLocations: [],
+      favoriteLocations: {},
       alertFilter: null
     };
 
@@ -251,7 +237,9 @@ export default class ViewMap extends React.PureComponent {
       collection: 'workloadsGeoopsFavorites',
       documentId: guid
     }).then(({ data }) => {
-      this.setState({ favoriteLocations: data });
+      if (data) {
+        this.setState({ favoriteLocations: data });
+      }
     });
   }
 
@@ -600,6 +588,12 @@ export default class ViewMap extends React.PureComponent {
                           <EmptyState
                             heading="Map locations but no associated entities"
                             description=""
+                            buttonText="Configure your Map"
+                            buttonOnClick={() =>
+                              navigation.router({
+                                to: 'createMap',
+                                state: { selectedMap: map, activeStep: 1 }
+                              })}
                           />
                         </>
                       )}

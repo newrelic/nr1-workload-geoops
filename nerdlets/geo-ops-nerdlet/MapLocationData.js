@@ -113,7 +113,6 @@ export default class MapLocationData extends React.Component {
   isCompleted(mapLocationObject) {
     const { document: ml } = mapLocationObject;
 
-    return ml.entities.length > 0 && ml.query !== '';
     // return ml.entities.length > 0 || ml.query !== '';
   }
 
