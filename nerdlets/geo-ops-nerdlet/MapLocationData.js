@@ -110,11 +110,13 @@ export default class MapLocationData extends React.Component {
   /*
    * TO DO - How do we want to define isCompleted? Do we want to give users the ability to select this as part of a Map config?
    */
+  /* eslint-disable no-unused-vars */
   isCompleted(mapLocationObject) {
     const { document: ml } = mapLocationObject;
 
     // return ml.entities.length > 0 || ml.query !== '';
   }
+  /* eslint-enable */
 
   selectLocationViaArrowNav(e) {
     const { selectedMapLocation } = this.state;

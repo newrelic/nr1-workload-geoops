@@ -44,7 +44,9 @@ const LeftToolbar = ({
   alertFilter
 }) => {
   /* eslint-enable */
-  const regions = Object.keys(groupBy(mapLocations, i => i.location ? i.location.region : null));
+  const regions = Object.keys(
+    groupBy(mapLocations, i => (i.location ? i.location.region : null))
+  );
   const favoriteOptions = [
     { name: 'All', value: null },
     { name: 'Favorites', value: true },
@@ -593,7 +595,8 @@ export default class ViewMap extends React.PureComponent {
                               navigation.router({
                                 to: 'createMap',
                                 state: { selectedMap: map, activeStep: 1 }
-                              })}
+                              })
+                            }
                           />
                         </>
                       )}
