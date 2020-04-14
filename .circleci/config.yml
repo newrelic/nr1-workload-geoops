@@ -467,16 +467,6 @@ workflows:
             tags:
               only: /v.*/
 
-      - job-deploy:
-          requires:
-            - job-checkout-and-build
-
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /v.*/
-
   # Test and Analyze a branch (other than master)
   # Our Advanced Settings of "Only build pull requests" will limit this to branches with open pull requests
   analyze:
