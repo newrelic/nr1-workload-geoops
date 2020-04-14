@@ -19,13 +19,13 @@ The original (now partially outdated) design for this application can be found i
 
 > A React component for building Web forms from JSON Schema
 
-[React Json Schema Form](https://github.com/rjsf-team/react-jsonschema-form)  
-[Modify Schema for Dropdowns](https://github.com/rjsf-team/react-jsonschema-form/issues/809)  
+[React Json Schema Form](https://github.com/rjsf-team/react-jsonschema-form)
+[Modify Schema for Dropdowns](https://github.com/rjsf-team/react-jsonschema-form/issues/809)
 [Multiple Choice List](https://react-jsonschema-form.readthedocs.io/en/latest/form-customization/#multiple-choice-list)
 
 ### Geographic View
 
-> an open-source JavaScript library for mobile-friendly interactive maps
+> An open-source JavaScript library for mobile-friendly interactive maps
 
 [Leaflet](https://leafletjs.com/)
 [Leaflet providers](http://leaflet-extras.github.io/leaflet-providers/preview/)

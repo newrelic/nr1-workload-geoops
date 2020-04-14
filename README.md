@@ -16,7 +16,7 @@
 
 ## Usage
 
-Workloads Geo-ops provides a geographic exploration of Infrastructure and APM data tied to a point of sale solution.
+Workloads GeoOps provides a geographic exploration of [Workload](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) data (collections of Entities) tied to geographic data, including location metadata. Find additional information in the [docs](docs) directory.
 
 ![Screenshot #1](screenshots/screenshot_01.png)
 <p align="center">
@@ -31,9 +31,8 @@ This project is distributed under the [Apache 2 license](LICENSE).
 
 ## What do you need to make this work?
 
-1. [New Relic Infrastructure Agent(s) installed](https://newrelic.com/products/infrastructure) and the related access to [New Relic One](https://newrelic.com/platform).
-2. (Recommended) Add the customer-defined `locationId` to the `newrelic_infra.yml`. See an example [here](examples/example_newrelic_infra.yml).
-3. (Currently) Updating (or replacing) the [geoopsConfig.js](geoopsConfig.js) file.
+1. [New Relic One](https://newrelic.com/platform)
+2. (recommended) Configured [Workloads](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) in New Relic One
 
 ## Getting started
 
@@ -71,20 +70,15 @@ nr1 nerdpack:subscribe [-c [DEV|BETA|STABLE]] [--profile=your_profile_name]
 
 Visit [https://one.newrelic.com](https://one.newrelic.com), navigate to the Nerdpack, and :sparkles:
 
-## Support
+## Community Support
 
-New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR SUPPORT, although you can report issues and contribute to the project here on GitHub.
+New Relic hosts and moderates an online forum where you can interact with New Relic employees as well as other customers to get help and share best practices. Like all New Relic open source community projects, there's a related topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
 
-_Please do not report issues with this software to New Relic Global Technical Support._
+[https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478](https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478)
 
-### Community
+Please do not report issues with Workload GeoOps to New Relic Global Technical Support. Instead, visit the [`Explorers Hub`](https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478) for troubleshooting and best-practices.
 
-New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorer's Hub. You can find this project's topic/threads here:
-
-[https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops](https://discuss.newrelic.com/c/build-on-new-relic/nr1-workload-geoops)
-*(Note: URL subject to change before GA)*
-
-### Issues / Enhancement Requests
+## Issues / Enhancement Requests
 
 Issues and enhancement requests can be submitted in the [Issues tab of this repository](../../issues). Please search for and review the existing open issues before submitting a new issue.
 
