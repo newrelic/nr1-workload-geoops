@@ -16,13 +16,13 @@
 
 ## Usage
 
-Workloads GeoOps provides a geographic exploration of [Workload](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) data (collections of Entities) tied to geographic data, including location metadata. Find additional information in the [docs](docs) directory.
+Workloads GeoOps provides a geographic exploration of [Workload](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/core-concepts/new-relic-one-workloads-isolate-resolve-incidents-faster) data (collections of Entities) tied to geographic data, including location metadata. Find additional information in the [docs](docs/documentation.md) directory.
 
-![Screenshot #1](screenshots/screenshot_01.png)
+![Screenshot #1](assets/screenshots/screenshot_01.png)
 <p align="center">
-<img src="screenshots/screenshot_02.png" width="32.5%">
-<img src="screenshots/screenshot_03.png" width="32.5%">
-<img src="screenshots/screenshot_04.png" width="32.5%">
+<img src="assets/screenshots/screenshot_02.png" width="32.5%">
+<img src="assets/screenshots/screenshot_03.png" width="32.5%">
+<img src="assets/screenshots/screenshot_04.png" width="32.5%">
 </p>
 
 ## Open Source License
