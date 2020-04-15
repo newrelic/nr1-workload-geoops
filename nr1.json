@@ -1,6 +1,6 @@
 {
   "schemaType": "NERDPACK",
-  "id": "9b6e52b6-4bf8-4982-acd3-0b6e74373649",
-  "displayName": "nr1-workload-geoops",
+  "id": "e8ccfd09-ce77-4452-8a6d-85f73a2a2a7f",
+  "displayName": "Workload GeoOps",
   "description": "New Relic One application aligning Workloads and Entities to geographic data (ex. Point of Sale monitoring)."
 }
