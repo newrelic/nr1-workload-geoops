@@ -23,7 +23,8 @@ export default class MapLocationData extends React.Component {
   static propTypes = {
     map: PropTypes.object,
     mapLocations: PropTypes.array,
-    onMapLocationChange: PropTypes.func
+    onMapLocationChange: PropTypes.func,
+    onMapLocationWrite: PropTypes.func
   };
 
   constructor(props) {
@@ -48,7 +49,6 @@ export default class MapLocationData extends React.Component {
      * Customize react-jsonschema-form ui
      */
     const uiSchema = cloneDeep(MAP_LOCATION_UI_SCHEMA);
-    // uiSchema.entities = { 'ui:field': EntitySearchFormInput };
     uiSchema.entities = { 'ui:field': EntityTypeAhead };
     uiSchema.location = {
       ...uiSchema.location,
@@ -71,6 +71,7 @@ export default class MapLocationData extends React.Component {
     this.onMapLocationSelect = this.onMapLocationSelect.bind(this);
     this.onRelatedEntityChange = this.onRelatedEntityChange.bind(this);
     this.selectLocationViaArrowNav = this.selectLocationViaArrowNav.bind(this);
+    this.onWrite = this.onWrite.bind(this);
   }
 
   componentDidMount() {
@@ -105,6 +106,17 @@ export default class MapLocationData extends React.Component {
 
     const { data, errors } = await writeMapLocation({ updatedMapLocation });
     this.props.onMapLocationChange({ data, errors });
+  }
+
+  async onWrite({ data, error }) {
+    const { document } = data;
+
+    this.props.onMapLocationWrite({
+      mapLocation: {
+        data: document,
+        error
+      }
+    });
   }
 
   /*
@@ -277,7 +289,7 @@ export default class MapLocationData extends React.Component {
                   document: formData
                 })
               }
-              // onWrite={({ data, errors }) => console.log([data, errors])}
+              onWrite={this.onWrite}
             />
           )}
         </div>
