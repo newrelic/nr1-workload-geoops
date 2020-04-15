@@ -67,41 +67,44 @@ export default class MapLocationDistiller extends React.PureComponent {
       // Maybe we don't pass the mapped entities down and just an array
       // and we let this component build the map
       if (some(mapLocationEntities)) {
-        mostCriticalEntity = mapLocationEntities.reduce(
-          (p, { guid: entityGuid }) => {
-            const entity = entitiesMap[entityGuid];
-            const relatedEntities = entityToEntitiesLookup[entityGuid] || [];
+        mostCriticalEntity = mapLocationEntities.reduce((p, c) => {
+          if (!c) {
+            return p;
+          }
 
-            const entitiesToDistill = [
-              entity,
-              ...relatedEntities.map(guid => entitiesMap[guid])
-            ];
-            const distill = (previousValue, { guid: entityGuid }) => {
-              if (entityGuid) {
-                const entity = entitiesMap[entityGuid];
-                if (entity) {
-                  if (!previousValue) {
-                    return entity;
-                  }
+          const { guid: entityGuid } = c;
+          const entity = entitiesMap[entityGuid];
+          const relatedEntities = entityToEntitiesLookup[entityGuid] || [];
 
-                  const status = entity.alertSeverity || ''; // Only exists on alertable entities
-                  const current = this.severityStatusToWeight(status);
-                  const previous = this.severityStatusToWeight(
-                    previousValue.alertSeverity
-                  );
+          const entitiesToDistill = [
+            entity,
+            ...relatedEntities.map(guid => entitiesMap[guid])
+          ];
 
-                  if (current < previous) {
-                    return entity;
-                  }
+          const distill = (previousValue, { guid: entityGuid }) => {
+            if (entityGuid) {
+              const entity = entitiesMap[entityGuid];
+              if (entity) {
+                if (!previousValue) {
+                  return entity;
+                }
+
+                const status = entity.alertSeverity || ''; // Only exists on alertable entities
+                const current = this.severityStatusToWeight(status);
+                const previous = this.severityStatusToWeight(
+                  previousValue.alertSeverity
+                );
+
+                if (current < previous) {
+                  return entity;
                 }
               }
-              return previousValue;
-            };
+            }
+            return previousValue;
+          };
 
-            return entitiesToDistill.reduce(distill, p);
-          },
-          null
-        );
+          return entitiesToDistill.reduce(distill, p);
+        }, null);
 
         if (mostCriticalEntity) {
           return mostCriticalEntity;

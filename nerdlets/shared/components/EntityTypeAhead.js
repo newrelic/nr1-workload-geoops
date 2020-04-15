@@ -15,26 +15,46 @@ export default class EntityTypeAhead extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    // console.log(props);
     this.state = {
       //
     };
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  // Note:
+  // There's a second arg "action" which could be situationally useful
+  // https://react-select.com/advanced#action-meta
+  handleOnChange(value) {
+    let newValue;
+
+    if (Array.isArray(value)) {
+      newValue = value.map(i => ({
+        guid: i.value,
+        entityType: 'WORKLOAD_ENTITY'
+      }));
+    }
+
+    if (value === null) {
+      newValue = [];
+    }
+
+    this.props.onChange(newValue);
   }
 
   entitySearchQueryVariables() {
     // console.log(this.props);
-    // const { formData } = this.props;
-    const query = `(domain = 'NR1' and type = 'WORKLOAD')`;
+    const { formData } = this.props;
+    let query = `(domain = 'NR1' and type = 'WORKLOAD')`;
 
-    // TO DO - How do we indicate all those selected already?
-
-    // if (formData && formData !== undefined && formData.length > 0) {
-    //   const ids = formData.map(v => v.guid);
-    //   console.log(ids);
-    //   if (Array.isArray(ids)) {
-    //     query = `${query} OR id IN ("${ids.join('", "')`')`}`;
-    //   }
-    // }
+    // Add any entities already selected
+    if (formData && formData.length > 0) {
+      const ids = formData.map(v => v.guid);
+      if (Array.isArray(ids)) {
+        const entityGuids = `'${ids.join("', '")}'`;
+        query = `${query} OR id IN (${entityGuids})`;
+      }
+    }
 
     return {
       query
@@ -166,6 +186,7 @@ export default class EntityTypeAhead extends React.PureComponent {
                     ClearIndicator: ClearIndicator,
                     MultiValueRemove: ClearIndicator
                   }}
+                  onChange={this.handleOnChange}
                 />
               </div>
             );

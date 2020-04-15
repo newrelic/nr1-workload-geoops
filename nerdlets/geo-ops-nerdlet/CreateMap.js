@@ -431,6 +431,7 @@ export default class CreateMap extends React.PureComponent {
                     mapLocations={mapLocations}
                     mapLocationsLoading={mapLocationsLoading}
                     mapLocationsLoadingErrors={mapLocationsLoadingErrors}
+                    onMapLocationWrite={this.onMapLocationWrite}
                   />
                 </StackItem>
                 <StackItem className="get-started-step-contents-CTA-container">

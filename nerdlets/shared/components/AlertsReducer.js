@@ -89,9 +89,20 @@ export default class AlertsReducer extends React.PureComponent {
             // console.log(workloadEntityGuids);
             if (workloadEntityGuids) {
               // For each entity on a workload, pull back the entity
-              const workloadEntities = workloadEntityGuids.map(guid => {
-                return entitiesMap[guid];
-              });
+              const workloadEntities = workloadEntityGuids
+                .map(guid => {
+                  const entity = entitiesMap[guid];
+
+                  if (!entity) {
+                    console.warn(
+                      `No entity found in search results for: ${guid}`
+                    );
+                    return;
+                  }
+
+                  return entitiesMap[guid];
+                })
+                .filter(Boolean);
 
               const result = workloadEntities.reduce(aggregator, {
                 alertViolations: [],
@@ -128,8 +139,6 @@ export default class AlertsReducer extends React.PureComponent {
       ml.document.alertViolations = alertViolations;
       ml.document.recentViolations = recentAlertViolations;
       ml.document.entities = allEntities;
-
-      // console.log(ml.document);
 
       return ml;
     });
