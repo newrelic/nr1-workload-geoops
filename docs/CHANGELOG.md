@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.4...v1.0.5) (2020-04-15)
+
+
+### Bug Fixes
+
+* better keyField ([fa1f8d9](https://github.com/newrelic/nr1-workload-geoops/commit/fa1f8d9be06b3cdecf594a7b80424e7cef552c2d))
+* editing map location definitions manually ([98cbb3b](https://github.com/newrelic/nr1-workload-geoops/commit/98cbb3bc8e50c712e57bbb5b7dffa7e37eab72f7))
+* fails to render if no related entity ([30567d9](https://github.com/newrelic/nr1-workload-geoops/commit/30567d924de79ce48f9abd7e439e0c9daf1dd98f))
+
 ## [1.0.4](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.3...v1.0.4) (2020-04-15)
 
 
