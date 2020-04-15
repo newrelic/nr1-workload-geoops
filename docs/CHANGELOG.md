@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.6...v1.1.0) (2020-04-15)
+
+
+### Features
+
+* update screenshots for catalog ([#62](https://github.com/newrelic/nr1-workload-geoops/issues/62)) ([bb79ff0](https://github.com/newrelic/nr1-workload-geoops/commit/bb79ff09bec756db1b38dde99a68c1787ab6a70c))
+
 ## [1.0.6](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.5...v1.0.6) (2020-04-15)
 
 
