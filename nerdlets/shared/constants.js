@@ -37,6 +37,10 @@ const LAT_LNG_SCHEMA = {
   }
 };
 
+/**
+ * A curious edge on this app is the reload of the launcher with an navigation.openLauncher call. To make that call, we need the uuid of the package.
+ */
+export const PACKAGE_UUID = "9b6e52b6-4bf8-4982-acd3-0b6e74373649";
 export const MAP_COLLECTION_ID = "v1-maps-collection";
 export const LOCATION_COLLECTION_ID = "v1-locations-collection";
 export const MAP_LOCATION_COLLECTION_ID = "v1-map-location-collection";
