@@ -3,6 +3,7 @@ import React from 'react';
 import { NerdletStateContext, navigation } from 'nr1';
 
 import MapLocationFilesUpload from '../geo-ops-nerdlet/MapLocationFilesUpload';
+import { PACKAGE_UUID } from '../shared/constants';
 
 export default class MapLocationUploadNerdlet extends React.Component {
   constructor(props) {
@@ -40,9 +41,9 @@ export default class MapLocationUploadNerdlet extends React.Component {
   closeFileUploadNerdlet() {
     navigation.openLauncher(
       {
-        id: `geo-ops`,
+        id: `${PACKAGE_UUID}.geo-ops`,
         nerdlet: {
-          id: `geo-ops-nerdlet`,
+          id: `${PACKAGE_UUID}.geo-ops-nerdlet`,
           urlState: {
             hasNewLocations: true
           }

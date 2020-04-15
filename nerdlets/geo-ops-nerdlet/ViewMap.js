@@ -21,6 +21,8 @@ import {
   AccountStorageQuery
 } from 'nr1';
 
+import { PACKAGE_UUID } from '../shared/constants';
+
 import { EmptyState } from '@newrelic/nr1-community';
 import { get, groupBy, lowerCase, kebabCase, startCase } from 'lodash';
 import { format } from 'date-fns';
@@ -338,7 +340,7 @@ export default class ViewMap extends React.PureComponent {
           key={violation.violationId}
           onClick={() => {
             navigation.openStackedNerdlet({
-              id: `recent-incidents`,
+              id: `${PACKAGE_UUID}.recent-incidents`,
               urlState: {
                 recentViolations: activeMapLocation.recentViolations,
                 clickedViolation: violation
