@@ -21,6 +21,8 @@ import {
   AccountStorageQuery
 } from 'nr1';
 
+import { PACKAGE_UUID } from '../shared/constants';
+
 import { EmptyState } from '@newrelic/nr1-community';
 import { get, groupBy, lowerCase, kebabCase, startCase } from 'lodash';
 import { format } from 'date-fns';
@@ -44,7 +46,9 @@ const LeftToolbar = ({
   alertFilter
 }) => {
   /* eslint-enable */
-  const regions = Object.keys(groupBy(mapLocations, i => i.location ? i.location.region : null));
+  const regions = Object.keys(
+    groupBy(mapLocations, i => (i.location ? i.location.region : null))
+  );
   const favoriteOptions = [
     { name: 'All', value: null },
     { name: 'Favorites', value: true },
@@ -336,7 +340,7 @@ export default class ViewMap extends React.PureComponent {
           key={violation.violationId}
           onClick={() => {
             navigation.openStackedNerdlet({
-              id: `recent-incidents`,
+              id: `${PACKAGE_UUID}.recent-incidents`,
               urlState: {
                 recentViolations: activeMapLocation.recentViolations,
                 clickedViolation: violation
@@ -593,7 +597,8 @@ export default class ViewMap extends React.PureComponent {
                               navigation.router({
                                 to: 'createMap',
                                 state: { selectedMap: map, activeStep: 1 }
-                              })}
+                              })
+                            }
                           />
                         </>
                       )}
