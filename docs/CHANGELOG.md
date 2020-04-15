@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.5...v1.0.6) (2020-04-15)
+
+
+### Bug Fixes
+
+* eslint rule fix. ([6de78df](https://github.com/newrelic/nr1-workload-geoops/commit/6de78df401422107d0f0e8af0b081a3eda696068))
+
 ## [1.0.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.4...v1.0.5) (2020-04-15)
 
 
