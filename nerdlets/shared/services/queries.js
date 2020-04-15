@@ -12,7 +12,6 @@ query ($accountId: Int!) {
           }
           entitySearchQueries {
             id
-            name
             query
             updatedAt
             createdAt
