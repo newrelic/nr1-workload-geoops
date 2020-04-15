@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.2...v1.0.3) (2020-04-15)
+
+
+### Bug Fixes
+
+* add icon for catalog metadata ([#56](https://github.com/newrelic/nr1-workload-geoops/issues/56)) ([5b617b6](https://github.com/newrelic/nr1-workload-geoops/commit/5b617b626299a66d323689a9890cc88e48a80c82))
+
 ## [1.0.2](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.1...v1.0.2) (2020-04-15)
 
 
