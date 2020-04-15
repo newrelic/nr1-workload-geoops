@@ -79,11 +79,6 @@ export default class MapLocationTable extends Component {
     const { mapLocations: data } = this.props;
     const columns = this.getColumns();
 
-    // console.log(data);
-
-    // TO DO [performance] - Rework data flow so that we only have to do this mapping when we load data
-    // const data = mapLocations.map(l => l.document.location);
-
     const hasData = data.length > 0;
 
     return (
