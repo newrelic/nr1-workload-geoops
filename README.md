@@ -20,9 +20,9 @@ Workloads GeoOps provides a geographic exploration of [Workload](https://docs.ne
 
 ![Screenshot #1](assets/screenshots/nr1-workload-geoops-1.png)
 <p align="center">
-<img src="assets/screenshots/nr1-workload-geoops-2.png" width="32.5%">
-<img src="assets/screenshots/nr1-workload-geoops-3.png" width="32.5%">
-<img src="assets/screenshots/nr1-workload-geoops-4.png" width="32.5%">
+<img src="assets/screenshots/screenshot_02.png" width="32.5%">
+<img src="assets/screenshots/screenshot_03.png" width="32.5%">
+<img src="assets/screenshots/screenshot_04.png" width="32.5%">
 </p>
 
 ## Walkthrough Video
