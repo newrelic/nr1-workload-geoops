@@ -94,9 +94,11 @@ export default class AlertsReducer extends React.PureComponent {
                   const entity = entitiesMap[guid];
 
                   if (!entity) {
+                    /* eslint-disable no-console */
                     console.warn(
                       `No entity found in search results for: ${guid}`
                     );
+                    /* eslint-enable */
                     return;
                   }
 
