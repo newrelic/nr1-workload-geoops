@@ -1,7 +1,7 @@
 {
     "schemaType": "LAUNCHER",
     "id": "geo-ops",
-    "description": "Aligning infrastructure and application data around physical locations.",
-    "displayName": "Geo Ops",
+    "description": "Aligning workload and entity data around physical locations.",
+    "displayName": "GeoOps",
     "rootNerdletId": "geo-ops-nerdlet"
 }
