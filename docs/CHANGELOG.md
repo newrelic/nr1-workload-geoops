@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.0...v1.1.1) (2020-04-15)
+
+
+### Bug Fixes
+
+* bump version. ([9964eb3](https://github.com/newrelic/nr1-workload-geoops/commit/9964eb3a0bee5640e040312c4d15957fb2e228f4))
+
 # [1.1.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.0.6...v1.1.0) (2020-04-15)
 
 
