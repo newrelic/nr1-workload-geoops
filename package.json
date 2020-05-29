@@ -15,7 +15,7 @@
   "dependencies": {
     "@newrelic/nr1-community": "^1.1.0",
     "ajv": "^6.11.0",
-    "date-fns": "^2.10.0",
+    "date-fns": "^2.13.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "leaflet": "^1.5.1",
