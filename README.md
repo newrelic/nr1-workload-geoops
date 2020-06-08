@@ -9,7 +9,7 @@
 <p align="center">
 <img src="https://img.shields.io/github/v/release/newrelic/nr1-workload-geoops?include_prereleases&sort=semver" title="GitHub release (latest SemVer including pre-releases)">
 <img src="https://github.com/newrelic/nr1-workload-geoops/workflows/CI/badge.svg" title="CI">
-<img src="https://snyk.io/test/github/newrelic/nr1-workload-geoops" title="Snyk">
+<img src="https://img.shields.io/snyk/vulnerabilities/github/newrelic/nr1-workload-geoops" title="Snyk">
 </p>
 
 ------
