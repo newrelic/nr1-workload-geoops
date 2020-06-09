@@ -583,22 +583,32 @@ export default class ViewMap extends React.PureComponent {
                       )}
                       {hasMapLocations && !hasEntities && (
                         <>
-                          <MapLocationTable
-                            data={mapLocations}
-                            map={map}
-                            rowClickHandler={this.handleTableRowClick}
-                            activeMapLocation={activeMapLocation}
-                          />
-                          <EmptyState
-                            heading="Map locations but no associated entities"
-                            description=""
-                            buttonText="Configure your Map"
-                            buttonOnClick={() =>
+                          <div
+                            className="alert-warning"
+                            onClick={() =>
                               navigation.router({
                                 to: 'createMap',
                                 state: { selectedMap: map, activeStep: 1 }
                               })
                             }
+                          >
+                            <Icon
+                              type={
+                                Icon.TYPE
+                                  .INTERFACE__SIGN__EXCLAMATION__V_ALTERNATE
+                              }
+                              color="#8c732a"
+                            />
+                            <p>
+                              Your map locations have not yet been associated
+                              with entities. <a href="#">Resolve this</a>
+                            </p>
+                          </div>
+                          <MapLocationTable
+                            data={mapLocations}
+                            map={map}
+                            rowClickHandler={this.handleTableRowClick}
+                            activeMapLocation={activeMapLocation}
                           />
                         </>
                       )}
