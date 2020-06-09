@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.2...v1.1.3) (2020-06-09)
+
+
+### Bug Fixes
+
+* update edit map account so it reflects in the ui ([d00fead](https://github.com/newrelic/nr1-workload-geoops/commit/d00fead6dea5cf123496477ce90fe335efd5ce65))
+
 ## [1.1.2](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.1...v1.1.2) (2020-06-09)
 
 
