@@ -5,7 +5,7 @@
     "email": "opensource+nr1-workload-geoops@newrelic.com"
   },
   "description": "New Relic One application aligning Workloads and Entities to geographic data (ex. Point of Sale monitoring).",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "test": "exit 0",

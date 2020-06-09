@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.1...v1.1.2) (2020-06-09)
+
+
+### Bug Fixes
+
+* Provide a better entity association warning ([a179cef](https://github.com/newrelic/nr1-workload-geoops/commit/a179cef66d0a5941c635b4c12ece9bfe7ecbd642))
+
 ## [1.1.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.0...v1.1.1) (2020-04-15)
 
 
