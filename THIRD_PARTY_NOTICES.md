@@ -49,7 +49,7 @@ code, the source code can be found at [https://github.com/newrelic/nr1-workload-
 
 ### @newrelic/nr1-community
 
-This product includes source derived from [@newrelic/nr1-community](https://github.com/newrelic/nr1-community) ([v1.1.0](https://github.com/newrelic/nr1-community/tree/v1.1.0)), distributed under the [Apache-2.0 License](https://github.com/newrelic/nr1-community/blob/v1.1.0/LICENSE):
+This product includes source derived from [@newrelic/nr1-community](https://github.com/newrelic/nr1-community) ([v1.1.1](https://github.com/newrelic/nr1-community/tree/v1.1.1)), distributed under the [Apache-2.0 License](https://github.com/newrelic/nr1-community/blob/v1.1.1/LICENSE):
 
 ```
                                  Apache License
@@ -258,7 +258,7 @@ This product includes source derived from [@newrelic/nr1-community](https://gith
 
 ### ajv
 
-This product includes source derived from [ajv](https://github.com/epoberezkin/ajv) ([v6.12.0](https://github.com/epoberezkin/ajv/tree/v6.12.0)), distributed under the [MIT License](https://github.com/epoberezkin/ajv/blob/v6.12.0/LICENSE):
+This product includes source derived from [ajv](https://github.com/epoberezkin/ajv) ([v6.12.2](https://github.com/epoberezkin/ajv/tree/v6.12.2)), distributed under the [MIT License](https://github.com/epoberezkin/ajv/blob/v6.12.2/LICENSE):
 
 ```
 The MIT License (MIT)
@@ -288,7 +288,7 @@ SOFTWARE.
 
 ### date-fns
 
-This product includes source derived from [date-fns](https://github.com/date-fns/date-fns) ([v2.11.0](https://github.com/date-fns/date-fns/tree/v2.11.0)), distributed under the [MIT License](https://github.com/date-fns/date-fns/blob/v2.11.0/LICENSE.md):
+This product includes source derived from [date-fns](https://github.com/date-fns/date-fns) ([v2.14.0](https://github.com/date-fns/date-fns/tree/v2.14.0)), distributed under the [MIT License](https://github.com/date-fns/date-fns/blob/v2.14.0/LICENSE.md):
 
 ```
 # License
@@ -707,7 +707,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ### react-bootstrap-table2-toolkit
 
-This product includes source derived from [react-bootstrap-table2-toolkit](https://github.com/react-bootstrap-table/react-bootstrap-table2) ([v2.1.2](https://github.com/react-bootstrap-table/react-bootstrap-table2/tree/v2.1.2)), distributed under the [MIT License](https://github.com/react-bootstrap-table/react-bootstrap-table2/blob/v2.1.2/README.md):
+This product includes source derived from [react-bootstrap-table2-toolkit](https://github.com/react-bootstrap-table/react-bootstrap-table2) ([v2.1.3](https://github.com/react-bootstrap-table/react-bootstrap-table2/tree/v2.1.3)), distributed under the [MIT License](https://github.com/react-bootstrap-table/react-bootstrap-table2/blob/v2.1.3/README.md):
 
 ```
 MIT License Copyright (c) <year> <copyright holders>
@@ -959,7 +959,7 @@ This product includes source derived from [react-jsonschema-form](https://github
 
 ### react-leaflet
 
-This product includes source derived from [react-leaflet](https://github.com/PaulLeCam/react-leaflet) ([v2.6.3](https://github.com/PaulLeCam/react-leaflet/tree/v2.6.3)), distributed under the [MIT License](https://github.com/PaulLeCam/react-leaflet/blob/v2.6.3/LICENSE):
+This product includes source derived from [react-leaflet](https://github.com/PaulLeCam/react-leaflet) ([v2.7.0](https://github.com/PaulLeCam/react-leaflet/tree/v2.7.0)), distributed under the [MIT License](https://github.com/PaulLeCam/react-leaflet/blob/v2.7.0/LICENSE):
 
 ```
 The MIT License (MIT)
@@ -988,7 +988,7 @@ SOFTWARE.
 
 ### react-select
 
-This product includes source derived from [react-select](https://github.com/JedWatson/react-select) ([v3.0.8](https://github.com/JedWatson/react-select/tree/v3.0.8)), distributed under the [MIT License](https://github.com/JedWatson/react-select/blob/v3.0.8/README.md):
+This product includes source derived from [react-select](https://github.com/JedWatson/react-select) ([v3.1.0](https://github.com/JedWatson/react-select/tree/v3.1.0)), distributed under the [MIT License](https://github.com/JedWatson/react-select/blob/v3.1.0/README.md):
 
 ```
 MIT License Copyright (c) <year> <copyright holders>
