@@ -79,7 +79,7 @@ export default class index extends PureComponent {
       updatedMaps.splice(existing, 1, mapObject);
 
       this.setState({
-        selectedMap: mapObject,
+        selectedMap: map,
         maps: updatedMaps
       });
     } else {

@@ -100,6 +100,11 @@ export default class CreateMap extends React.PureComponent {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ mapZoomLevel: this.props.map.zoom });
     }
+
+    if (prevProps.map !== this.props.map) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ map: this.props.map });
+    }
   }
 
   async loadMapLocations() {
