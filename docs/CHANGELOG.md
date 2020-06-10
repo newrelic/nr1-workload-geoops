@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.3...v1.1.4) (2020-06-10)
+
+
+### Bug Fixes
+
+* bug caused by editing the map and then clicking back to edit it again ([4e818ee](https://github.com/newrelic/nr1-workload-geoops/commit/4e818eec2c8469f78c9a7761a0a9cc2126bf5a9b))
+
 ## [1.1.3](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.2...v1.1.3) (2020-06-09)
 
 
