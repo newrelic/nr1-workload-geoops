@@ -81,7 +81,7 @@ export default class MapLocationDistiller extends React.PureComponent {
             ...relatedEntities.map(guid => entitiesMap[guid])
           ];
 
-          const distill = (previousValue, { guid: entityGuid }) => {
+          const distill = (previousValue, { guid: entityGuid } = {}) => {
             if (entityGuid) {
               const entity = entitiesMap[entityGuid];
               if (entity) {
