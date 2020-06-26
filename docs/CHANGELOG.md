@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.4...v1.1.5) (2020-06-26)
+
+
+### Bug Fixes
+
+* Merge pull request [#85](https://github.com/newrelic/nr1-workload-geoops/issues/85) from madecki/82 ([7c60f39](https://github.com/newrelic/nr1-workload-geoops/commit/7c60f399bbab4472172dcf2eb4029e1e13d9938a))
+
 ## [1.1.4](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.3...v1.1.4) (2020-06-10)
 
 
