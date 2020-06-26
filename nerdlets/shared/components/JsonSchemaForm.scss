@@ -56,3 +56,7 @@ i.glyphicon { display: none; }
 form .form-group legend {
   display: none;
 }
+
+.form-input-container div[class$="-menu"] {
+  position: relative;
+}
