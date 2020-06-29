@@ -138,54 +138,81 @@ query($query: String!) {
     "type": "APPLICATION"
   },
 */
-export const ENTITIES_BY_GUIDS = `
-query EntityDetails($entityGuids: [EntityGuid]!, $includeTags: Boolean = false, $includeAlertViolations: Boolean = true, $begin_time: EpochMilliseconds = 0, $end_time: EpochMilliseconds = 0) {
-  actor {
-    entities(guids: $entityGuids) {
-      ...EntityInfo
-      ...EntityTags @include(if: $includeTags)
+
+export const _generateChunks = guids => {
+  const chunks = [];
+  const n = guids.length;
+  let i = 0;
+
+  while (i < n) {
+    chunks.push(guids.slice(i, (i += 25)));
+  }
+
+  return chunks;
+};
+
+export const getEntitiesByGuidsQuery = variables => {
+  const { entityGuids = [] } = variables;
+
+  const _generateQuery = (entityGuids, index) => {
+    return `
+      query${index}: entities(guids: "${entityGuids}") {
+        ...EntityInfo
+        ...EntityTags @include(if: $includeTags)
+      }
+    `;
+  };
+
+  const fullQuery = _generateChunks(entityGuids).map((chunk, index) => {
+    return _generateQuery(chunk, index);
+  });
+
+  return `
+    query EntityDetails($includeTags: Boolean = false, $includeAlertViolations: Boolean = true, $begin_time: EpochMilliseconds = 0, $end_time: EpochMilliseconds = 0) {
+      actor {
+        ${fullQuery.join(',\n')}
+      }
     }
-  }
-}
-
-fragment EntityInfo on Entity {
-  guid
-  accountId
-  domain
-  type
-  name
-  reporting
-  ... on AlertableEntity {
-    alertSeverity
-      alertViolations(endTime: $end_time, startTime: $begin_time) @include(if: $includeAlertViolations) {
-        ...AlertInfo
+    
+    fragment EntityInfo on Entity {
+      guid
+      accountId
+      domain
+      type
+      name
+      reporting
+      ... on AlertableEntity {
+        alertSeverity
+          alertViolations(endTime: $end_time, startTime: $begin_time) @include(if: $includeAlertViolations) {
+            ...AlertInfo
+          }
+    
+          recentAlertViolations(count: 10) @include(if: $includeAlertViolations) {
+            ...AlertInfo
+          }
+        __typename
       }
-
-      recentAlertViolations(count: 10) @include(if: $includeAlertViolations) {
-        ...AlertInfo
+      __typename
+    }
+    
+    fragment EntityTags on Entity {
+      tags {
+        key
+        values
+        __typename
       }
-    __typename
-  }
-  __typename
-}
-
-fragment EntityTags on Entity {
-  tags {
-    key
-    values
-    __typename
-  }
-  __typename
-}
-
-fragment AlertInfo on EntityAlertViolation {
-  agentUrl
-  alertSeverity
-  closedAt
-  label
-  level
-  openedAt
-  violationId
-  violationUrl
-}
-`;
+      __typename
+    }
+    
+    fragment AlertInfo on EntityAlertViolation {
+      agentUrl
+      alertSeverity
+      closedAt
+      label
+      level
+      openedAt
+      violationId
+      violationUrl
+    }
+  `;
+};

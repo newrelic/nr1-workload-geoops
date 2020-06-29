@@ -5,7 +5,7 @@ import get from 'lodash.get';
 
 import { NerdGraphQuery, PlatformStateContext } from 'nr1';
 
-import { ENTITIES_BY_GUIDS } from '../services/queries';
+import { getEntitiesByGuidsQuery } from '../services/queries';
 /*
  * <EntitiesByGuidsQuery> only provides access to the AlertableEntityOutline and not the AlertableEntity
  * This component is meant to emulate similar behavior but allows us to customize the GraphQL request
@@ -128,12 +128,13 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
                 //   'User did not supply a begin/end time via the Time Picker'
                 // );
               }
+              console.log(getEntitiesByGuidsQuery(variables));
 
               return (
                 <NerdGraphQuery
-                  query={ENTITIES_BY_GUIDS}
-                  variables={variables}
+                  query={getEntitiesByGuidsQuery(variables)}
                   fetchPolicyType={fetchPolicyType}
+                  variables={variables}
                 >
                   {({ loading, error, data }) => {
                     return children({
