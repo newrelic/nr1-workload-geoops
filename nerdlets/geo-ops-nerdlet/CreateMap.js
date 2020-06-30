@@ -21,7 +21,7 @@ import { getMapLocations } from '../shared/services/map-location';
 
 import AccountDropdown from '../shared/components/AccountDropdown';
 
-const steps = [
+const STEPS = [
   { order: 1, title: '1. Create a map' },
   { order: 2, title: '2. Define Locations' },
   { order: 3, title: '3. Map Entities to Locations' }
@@ -50,11 +50,10 @@ export default class CreateMap extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const defaultFirstStep = steps.find(s => s.order === 1);
-    const activeStep = steps.find(s => s.order === props.activeStep);
+    const defaultFirstStep = STEPS.find(s => s.order === 1);
+    const activeStep = STEPS.find(s => s.order === props.activeStep);
 
     this.state = {
-      steps,
       activeStep: activeStep || defaultFirstStep,
       map: props.map,
       mapLocations: [],
@@ -66,35 +65,31 @@ export default class CreateMap extends React.PureComponent {
       mapFormData: {}
     };
 
-    this.onAddEditMap = this.onAddEditMap.bind(this);
-    this.onMapLocationWrite = this.onMapLocationWrite.bind(this);
-    this.changeActiveStep = this.changeActiveStep.bind(this);
-    this.onMapClick = this.onMapClick.bind(this);
-    this.onZoomEnd = this.onZoomEnd.bind(this);
-    this.fetchMap = this.fetchMap.bind(this);
-
     this.createMapForm = React.createRef();
+
+    MAP_UI_SCHEMA.accountId['ui:field'] = AccountDropdown;
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     const { map } = this.state;
 
     if (map) {
-      this.loadMapLocations();
+      await this.loadMapLocations();
     }
-  }
+  };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate = async prevProps => {
     if (
       prevProps.hasNewLocations !== this.props.hasNewLocations &&
       this.props.hasNewLocations
     ) {
-      this.loadMapLocations();
+      await this.loadMapLocations();
     }
 
     if (
       this.props.map &&
       this.props.map.zoom &&
+      prevProps.map &&
       prevProps.map.zoom !== this.props.map.zoom
     ) {
       // eslint-disable-next-line react/no-did-update-set-state
@@ -105,9 +100,9 @@ export default class CreateMap extends React.PureComponent {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ map: this.props.map });
     }
-  }
+  };
 
-  async loadMapLocations() {
+  loadMapLocations = async () => {
     const { map } = this.state;
     const { accountId } = map;
 
@@ -130,36 +125,35 @@ export default class CreateMap extends React.PureComponent {
       mapLocationsLoading: false,
       mapLocationsLoadingErrors
     });
-  }
+  };
 
-  async fetchMap() {
-    const { map } = this.props;
+  fetchMap = async () => {
+    const { map } = this.state;
     return getMap({ accountId: map.accountId, documentId: map.guid });
-  }
+  };
 
-  onAddEditMap({ data }) {
-    const { activeStep } = this.state;
-    const nextStep = this.nextStep({ step: activeStep });
+  onAddEditMap = ({ data }) => {
     const { document } = data;
 
     // TO DO - Expose error about adding/editing
 
-    this.setState({ map: document, activeStep: nextStep }, () =>
-      this.props.onMapChange({ map: document, activeStep: nextStep })
-    );
-  }
+    this.setState({ map: document }, () => {
+      this.props.onMapChange({ map: document });
+      this.nextStep();
+    });
+  };
 
-  onMapLocationWrite({ mapLocation }) {
+  onMapLocationWrite = ({ mapLocation }) => {
     // TO DO - Handle errors from updating each
     this.addOrUpdate({
       collectionName: 'mapLocations',
       item: mapLocation.data
     });
-  }
+  };
 
-  onMapClick(e) {
+  onMapClick = event => {
     const { activeStep } = this.state;
-    const { lat, lng } = e.latlng;
+    const { lat, lng } = event.latlng;
 
     // Specific to map click on step 1
     if (activeStep.order === 1) {
@@ -176,23 +170,23 @@ export default class CreateMap extends React.PureComponent {
         lng
       }
     }));
-  }
+  };
 
-  onZoomEnd(e) {
-    const zoom = e.target._animateToZoom;
+  onZoomEnd = event => {
+    const zoom = event.target._animateToZoom;
     this.setState(prevState => ({
       mapFormData: {
         ...prevState,
         zoom
       }
     }));
-  }
+  };
 
   /*
    * collectionName is a local state array that needs updated in an immutable way
    * item is an un-nested nerdstore document that needs wrapped in { id: foo, document: item }
    */
-  addOrUpdate({ collectionName, item }) {
+  addOrUpdate = ({ collectionName, item }) => {
     const { [collectionName]: collection } = this.state;
 
     const itemIndex = collection.findIndex(i => i.document.guid === item.guid);
@@ -225,26 +219,36 @@ export default class CreateMap extends React.PureComponent {
         };
       });
     }
-  }
+  };
 
   // Given a step, determine the "next" one
-  nextStep({ step }) {
-    const { steps } = this.state;
+  nextStep = () => {
+    const { activeStep } = this.state;
 
-    const order = step.order;
-    const nextStep = steps.find(s => s.order === order + 1);
+    const nextStep = STEPS.find(step => step.order === activeStep.order + 1);
 
-    // TO DO:
-    if (!nextStep) {
-      // Final? Change/bump state to viewing the map?
+    if (nextStep) {
+      this.setState({ activeStep: nextStep });
+    } else {
+      // TO DO: Final? Change/bump state to viewing the map?
     }
+  };
 
-    return nextStep;
-  }
+  previousStep = () => {
+    const { activeStep } = this.state;
 
-  changeActiveStep(destinationStep) {
-    this.setState({ activeStep: steps.find(s => s.order === destinationStep) });
-  }
+    const previousStep = STEPS.find(
+      step => step.order === activeStep.order - 1
+    );
+
+    if (previousStep) {
+      this.setState({ activeStep: previousStep });
+    }
+  };
+
+  changeActiveStep = destinationStep => {
+    this.setState({ activeStep: STEPS.find(s => s.order === destinationStep) });
+  };
 
   render() {
     const { navigation, maps } = this.props;
@@ -252,7 +256,6 @@ export default class CreateMap extends React.PureComponent {
       accountId,
       activeStep,
       map,
-      steps,
       mapLocations,
       mapLocationsLoading,
       mapLocationsLoadingErrors,
@@ -261,8 +264,6 @@ export default class CreateMap extends React.PureComponent {
       mapCenter,
       mapFormData
     } = this.state;
-
-    MAP_UI_SCHEMA.accountId['ui:field'] = AccountDropdown;
 
     return (
       <>
@@ -287,7 +288,7 @@ export default class CreateMap extends React.PureComponent {
             collapseGapAfter
           >
             <GettingStartedSteps
-              steps={steps}
+              steps={STEPS}
               activeStep={activeStep}
               tempNavigation={step => this.changeActiveStep(step)}
             />
@@ -339,6 +340,7 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.SECONDARY}
+                        onClick={() => navigation.router({ to: 'mapList' })}
                       >
                         Cancel
                       </Button>
@@ -390,6 +392,7 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.SECONDARY}
+                        onClick={this.previousStep}
                         iconType={
                           Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT
                         }
@@ -401,11 +404,7 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
-                        onClick={() =>
-                          this.setState({
-                            activeStep: this.nextStep({ step: activeStep })
-                          })
-                        }
+                        onClick={this.nextStep}
                         iconType={
                           Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT
                         }
@@ -448,6 +447,7 @@ export default class CreateMap extends React.PureComponent {
                       <Button
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.SECONDARY}
+                        onClick={this.previousStep}
                         iconType={
                           Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_LEFT
                         }
