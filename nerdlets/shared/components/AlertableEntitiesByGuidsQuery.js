@@ -149,7 +149,7 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
                       if (actor) {
                         Object.keys(actor).forEach(query => {
                           if (query.startsWith('query')) {
-                            entities = [...entities, ...actor[query]]
+                            entities = [...entities, ...actor[query]];
                           }
                         });
                       }
