@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.5...v1.1.6) (2020-06-30)
+
+
+### Bug Fixes
+
+* going back when creating or editing map fixed ([44941d4](https://github.com/newrelic/nr1-workload-geoops/commit/44941d4fb00695a815ea5714c8c93cb9137db671))
+
 ## [1.1.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.4...v1.1.5) (2020-06-26)
 
 
