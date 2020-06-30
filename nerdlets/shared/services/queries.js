@@ -156,7 +156,7 @@ export const getEntitiesByGuidsQuery = variables => {
 
   const _generateQuery = (entityGuids, index) => {
     return `
-      query${index}: entities(guids: "${entityGuids}") {
+      query${index}: entities(guids: ${JSON.stringify(entityGuids)}) {
         ...EntityInfo
         ...EntityTags @include(if: $includeTags)
       }
