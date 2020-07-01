@@ -13,19 +13,10 @@ export default class EntityTypeAhead extends React.PureComponent {
     onChange: PropTypes.func
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      //
-    };
-
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
-
   // Note:
   // There's a second arg "action" which could be situationally useful
   // https://react-select.com/advanced#action-meta
-  handleOnChange(value) {
+  handleOnChange = value => {
     let newValue;
 
     if (Array.isArray(value)) {
@@ -40,10 +31,9 @@ export default class EntityTypeAhead extends React.PureComponent {
     }
 
     this.props.onChange(newValue);
-  }
+  };
 
   entitySearchQueryVariables() {
-    // console.log(this.props);
     const { formData } = this.props;
     let query = `(domain = 'NR1' and type = 'WORKLOAD')`;
 
@@ -145,36 +135,45 @@ export default class EntityTypeAhead extends React.PureComponent {
 
     return (
       <>
-        <NerdGraphQuery
-          query={ENTITY_SEARCH_BY_TYPE}
-          variables={entitySearchVariables}
-        >
-          {({ loading, error, data }) => {
-            if (loading) {
-              return <Spinner />;
-            }
+        <div className="form-input-col-12 form-input-container">
+          <label htmlFor="entity-type-ahead" className="control-label">
+            Workloads *
+          </label>
+          <NerdGraphQuery
+            query={ENTITY_SEARCH_BY_TYPE}
+            variables={entitySearchVariables}
+          >
+            {({ loading, error, data }) => {
+              if (loading) {
+                return <Spinner />;
+              }
 
-            if (error) {
-              return <NerdGraphError error={error} />;
-            }
+              if (error) {
+                return <NerdGraphError error={error} />;
+              }
 
-            const items = get(data, 'actor.entitySearch.results.entities', []);
-            const options = items.map(i => ({ value: i.guid, label: i.name }));
+              const items = get(
+                data,
+                'actor.entitySearch.results.entities',
+                []
+              );
+              const options = items.map(i => ({
+                value: i.guid,
+                label: i.name
+              }));
 
-            // Hmm, how do we get the name for the currently assigned entity guids...
+              // Hmm, how do we get the name for the currently assigned entity guids...
 
-            const currentValue = formData
-              ? formData.map(i => ({
-                  value: i.guid,
-                  label: options.find(o => o.value === i.guid).label
-                }))
-              : [];
+              const currentValue = formData
+                ? formData.map(i => ({
+                    value: i.guid,
+                    label:
+                      options.find(o => o.value === i.guid)?.label ||
+                      'UNKNOWN ENTITY'
+                  }))
+                : [];
 
-            return (
-              <div className="form-input-col-12 form-input-container">
-                <label htmlFor="entity-type-ahead" className="control-label">
-                  Workloads *
-                </label>
+              return (
                 <Select
                   id="entity-type-ahead"
                   isMulti
@@ -188,10 +187,10 @@ export default class EntityTypeAhead extends React.PureComponent {
                   }}
                   onChange={this.handleOnChange}
                 />
-              </div>
-            );
-          }}
-        </NerdGraphQuery>
+              );
+            }}
+          </NerdGraphQuery>
+        </div>
       </>
     );
   }

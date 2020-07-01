@@ -5,7 +5,7 @@ div.getting-started-primary-grid {
     button[type="submit"] {
         display: none;
     }
-    
+
     .map-entities-to-locations-container button[type="submit"] {
         display: inline;
     }
@@ -35,7 +35,6 @@ div.get-started-step-contents {
 
 .get-started-step-contents-form-container {
     width: 85%;
-    padding-bottom: 48px;
 }
 
 [class*='wnd-Stack'] [class*='wnd-StackItem'].get-started-step-contents-CTA-container {
@@ -46,14 +45,14 @@ div.get-started-step-contents {
     position: sticky;
     left: 0;
     bottom: 0;
-    
+
     .step-define-locations & {
         position: sticky;
         width: 100%;
         margin-left: 0;
         bottom: 0;
         box-shadow: 0 -1px 0 #e3e4e4, 0 -3px rgba(0,0,0, .015), 0 -5px 10px rgba(0,0,0, .05);
-    }   
+    }
 }
 
 div.get-started-step-contents-CTAs {

@@ -21,6 +21,7 @@
     font-size: 12px;
     border-radius: 3px;
     transition: background-color 125ms ease;
+    white-space: nowrap;
 
     &:hover {
         cursor: pointer;

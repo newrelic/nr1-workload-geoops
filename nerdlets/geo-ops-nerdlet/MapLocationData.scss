@@ -26,7 +26,7 @@ div.map-entities-header {
   display: flex;
   height: 100%;
   align-items: center;
-  padding: 0 8px; 
+  padding: 0 8px;
 }
 
 .map-entities-progress-bar-label {
@@ -79,10 +79,8 @@ ul.map-entities-location-list {
 }
 
 .map-entities-location-list-item {
-  padding: 0 8px;
-  height: 40px;
+  padding: 10px 8px;
   border-bottom: 1px solid #edeeee;
-  line-height: 40px;
 
   &.active {
     position: relative;
@@ -113,11 +111,11 @@ ul.map-entities-location-list {
   font-weight: 600;
   color: #464e4e;
 
-  
+
   .active & {
     color: #000d0d;
   }
-  
+
   .completed & {
     color: #8e9494;
     text-decoration: line-through;
@@ -127,7 +125,7 @@ ul.map-entities-location-list {
 div[class*='wnd-Stack'].map-entities-location-list-item-description {
   margin-left: 0;
   color: #464e4e;
-  
+
   &:before {
     content: " - "
   }
@@ -140,7 +138,7 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
   .active & {
     color: #8e9494;
   }
-} 
+}
 
 .map-entities-location-list-item-check {
   width: 22px;
@@ -199,7 +197,7 @@ div[class*='wnd-Stack'].map-entities-location-list-item-description {
     cursor: pointer;
     background-color: rgb(228, 245, 245);
   }
-  
+
   [class*='IndicatorsContainer'] & {
     border: none;
     transform: scale(1.25);
