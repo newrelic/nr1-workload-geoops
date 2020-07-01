@@ -128,9 +128,6 @@ export default class JsonSchemaForm extends React.PureComponent {
     const { data, errors } = await fetchDocument();
     this.setState({ isLoading: false });
 
-    // console.log(data);
-    // console.log(errors);
-
     const formattedDocument = this.isFunc(formatDocument)
       ? formatDocument(data)
       : data;

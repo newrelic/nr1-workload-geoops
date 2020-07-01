@@ -39,7 +39,7 @@ i.glyphicon { display: none; }
 
   &:nth-child(3n+7) {
     margin-right: 0;
-  } 
+  }
 }
 
 .create-map .form-input-col-3:nth-child(3n+7) {
@@ -59,4 +59,10 @@ form .form-group legend {
 
 .form-input-container div[class$="-menu"] {
   position: relative;
+}
+
+.get-started-step-contents-form-container {
+  div[class*="-fillContainer"] {
+    height: auto;
+  }
 }
