@@ -32,8 +32,8 @@ export default class MapLocationTable extends Component {
   getColumns() {
     return [
       {
-        dataField: 'document.guid',
-        text: 'GUID',
+        dataField: 'document.externalId',
+        text: 'ExID',
         sort: true
       },
       {
@@ -85,7 +85,7 @@ export default class MapLocationTable extends Component {
       <>
         {hasData && (
           <ToolkitProvider
-            keyField="document.guid"
+            keyField="document.externalId"
             data={data}
             columns={columns}
             search
