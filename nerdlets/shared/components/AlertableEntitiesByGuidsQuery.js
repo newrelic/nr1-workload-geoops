@@ -111,7 +111,7 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
 
     return (
       <>
-        {entityGuids && (
+        {entityGuids.length > 0 && variables.entityGuids.length > 0 && (
           <PlatformStateContext.Consumer>
             {platformState => {
               const { timeRange } = platformState;
@@ -126,42 +126,32 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
                 //   'User did not supply a begin/end time via the Time Picker'
                 // );
               }
-              const query =
-                entityGuids.length > 0 && variables.entityGuids.length > 0
-                  ? getEntitiesByGuidsQuery(variables)
-                  : false;
-              if (!query) {
-                return children({
-                  loading: false,
-                  data: [],
-                  error: null
-                });
-              } else {
-                return (
-                  <NerdGraphQuery
-                    query={query}
-                    fetchPolicyType={fetchPolicyType}
-                    variables={variables}
-                  >
-                    {({ loading, error, data }) => {
-                      const { actor } = data;
-                      let entities = [];
-                      if (actor) {
-                        Object.keys(actor).forEach(query => {
-                          if (query.startsWith('query')) {
-                            entities = [...entities, ...actor[query]];
-                          }
-                        });
-                      }
-                      return children({
-                        loading,
-                        data: entities,
-                        error
+              const query = getEntitiesByGuidsQuery(variables);
+
+              return (
+                <NerdGraphQuery
+                  query={query}
+                  fetchPolicyType={fetchPolicyType}
+                  variables={variables}
+                >
+                  {({ loading, error, data }) => {
+                    const { actor } = data;
+                    let entities = [];
+                    if (actor) {
+                      Object.keys(actor).forEach(query => {
+                        if (query.startsWith('query')) {
+                          entities = [...entities, ...actor[query]];
+                        }
                       });
-                    }}
-                  </NerdGraphQuery>
-                );
-              }
+                    }
+                    return children({
+                      loading,
+                      data: entities,
+                      error
+                    });
+                  }}
+                </NerdGraphQuery>
+              );
             }}
           </PlatformStateContext.Consumer>
         )}
