@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import get from 'lodash.get';
-
 import { NerdGraphQuery, PlatformStateContext } from 'nr1';
 
-import { ENTITIES_BY_GUIDS } from '../services/queries';
+import { getEntitiesByGuidsQuery } from '../services/queries';
 /*
  * <EntitiesByGuidsQuery> only provides access to the AlertableEntityOutline and not the AlertableEntity
  * This component is meant to emulate similar behavior but allows us to customize the GraphQL request
@@ -113,7 +111,7 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
 
     return (
       <>
-        {entityGuids && (
+        {entityGuids.length > 0 && variables.entityGuids.length > 0 && (
           <PlatformStateContext.Consumer>
             {platformState => {
               const { timeRange } = platformState;
@@ -128,17 +126,27 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
                 //   'User did not supply a begin/end time via the Time Picker'
                 // );
               }
+              const query = getEntitiesByGuidsQuery(variables);
 
               return (
                 <NerdGraphQuery
-                  query={ENTITIES_BY_GUIDS}
-                  variables={variables}
+                  query={query}
                   fetchPolicyType={fetchPolicyType}
+                  variables={variables}
                 >
                   {({ loading, error, data }) => {
+                    const { actor } = data;
+                    let entities = [];
+                    if (actor) {
+                      Object.keys(actor).forEach(query => {
+                        if (query.startsWith('query')) {
+                          entities = [...entities, ...actor[query]];
+                        }
+                      });
+                    }
                     return children({
                       loading,
-                      data: data ? get(data, 'actor.entities', []) : data,
+                      data: entities,
                       error
                     });
                   }}
