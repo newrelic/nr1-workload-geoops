@@ -1,3 +1,14 @@
+## [1.1.7](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.6...v1.1.7) (2020-07-01)
+
+
+### Bug Fixes
+
+* allowing application to fetch more entities by guid (before limited to 25) ([94a8eed](https://github.com/newrelic/nr1-workload-geoops/commit/94a8eed6090f6fb6e7dc4b95499d84143c239b24))
+* fixed eslint problem ([65d118c](https://github.com/newrelic/nr1-workload-geoops/commit/65d118c947f2755928f52decf7542ad8cc110ae3))
+* fixed incorrect rendering of entities summary ([93c7429](https://github.com/newrelic/nr1-workload-geoops/commit/93c74293af3e4a4339c2f233ad94fcc82a2e6efa))
+* upgrade @newrelic/nr1-community from 1.1.1 to 1.2.0 ([f04b22c](https://github.com/newrelic/nr1-workload-geoops/commit/f04b22c9d0d1e4bb605b24ff606ec7e78bf66a23))
+* workloads dropdown with non-existing entity fixed ([895b5fb](https://github.com/newrelic/nr1-workload-geoops/commit/895b5fbe1c689a92b8202c012c92453aaf589bad))
+
 ## [1.1.6](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.5...v1.1.6) (2020-06-30)
 
 
