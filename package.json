@@ -13,7 +13,7 @@
     "eslint-fix": "eslint nerdlets/ --fix"
   },
   "dependencies": {
-    "@newrelic/nr1-community": "^1.1.1",
+    "@newrelic/nr1-community": "^1.2.0",
     "ajv": "^6.12.2",
     "date-fns": "^2.14.0",
     "graphql": "^14.5.4",
