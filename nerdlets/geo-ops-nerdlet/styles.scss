@@ -12,16 +12,12 @@
 @import './CreateMap.scss';
 @import './MapList.scss';
 @import './ViewMap.scss';
-@import './DefineLocations.scss';
 @import './MapLocationData.scss';
-@import './EmptyState.scss';
 
 // Shared components
-@import '../shared/components/Toolbar.scss';
 @import '../shared/components/JsonSchemaForm.scss';
 @import '../shared/components/MapLocationTable.scss';
 @import '../shared/components/GettingStartedSteps.scss';
-@import '../shared/components/LocationTable.scss';
 @import '../shared/components/MapItem.scss';
 @import '../shared/components/DetailPanel.scss';
 
@@ -116,23 +112,6 @@
   margin-left: -100px;
 }
 
-h4.page-title:not(.u-unstyledH4) {
-  margin-bottom: 0;
-  font-size: 20px;
-  line-height: 71px;
-  text-transform: none;
-  color: #464e4e;
-
-  div.title-toolbar-item & {
-    height: auto;
-    max-width: 308px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: 30px;
-  }
-}
-
 *,
 *::before,
 *::after {
@@ -145,4 +124,8 @@ fieldset {
 
 p {
   margin-bottom: 1rem;
+}
+
+[class*='style_empty-state'] {
+  height: calc(100% - 32px);
 }

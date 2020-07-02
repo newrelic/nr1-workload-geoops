@@ -26,13 +26,37 @@ import { PACKAGE_UUID } from '../shared/constants';
 import { EmptyState } from '@newrelic/nr1-community';
 import { get, groupBy, lowerCase, kebabCase, startCase } from 'lodash';
 import { format } from 'date-fns';
+import styled from 'styled-components';
 
 import ViewMapQuery from './ViewMapQuery';
 import GeoMap from './GeoMap';
-import Toolbar from '../shared/components/Toolbar';
+import { ToolbarWrapper, ToolbarItem } from '../shared/components/Toolbar';
 import DetailPanel from '../shared/components/DetailPanel';
 import MapLocationTable from '../shared/components/MapLocationTable';
 import FilteredMapLocations from '../shared/components/FilteredMapLocations';
+
+const StyledToolbarItem = styled(ToolbarItem)`
+  flex-direction: column;
+  align-items: flex-start;
+
+  > span {
+    margin-bottom: 7px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    color: #8e9494;
+    font-size: 10px;
+  }
+
+  > h4 {
+    max-width: 308px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 20px;
+    text-transform: none;
+    color: #464e4e;
+  }
+`;
 
 /* eslint-disable no-unused-vars */
 const LeftToolbar = ({
@@ -71,11 +95,11 @@ const LeftToolbar = ({
 
   return (
     <>
-      <StackItem className="toolbar-item has-separator title-toolbar-item">
-        <span className="page-title-label">Current Map</span>
-        <h4 className="page-title">{map.title}</h4>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      <StyledToolbarItem hasSeparator>
+        <span>Current Map</span>
+        <h4>{map.title}</h4>
+      </StyledToolbarItem>
+      <ToolbarItem>
         <Dropdown label="Regions" title={regionFilter || 'Filter by Region'}>
           <DropdownItem
             key={0}
@@ -102,8 +126,8 @@ const LeftToolbar = ({
             );
           })}
         </Dropdown>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      </ToolbarItem>
+      <ToolbarItem>
         <Dropdown label="Favorites" title={selectedFavorite.name}>
           {favoriteOptions.map(r => {
             return (
@@ -120,8 +144,8 @@ const LeftToolbar = ({
             );
           })}
         </Dropdown>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      </ToolbarItem>
+      <ToolbarItem>
         <Dropdown label="Alerting Status" title={selectedAlertStatus.name}>
           {alertStatusOptions.map(r => {
             return (
@@ -138,7 +162,7 @@ const LeftToolbar = ({
             );
           })}
         </Dropdown>
-      </StackItem>
+      </ToolbarItem>
     </>
   );
 };
@@ -156,7 +180,7 @@ LeftToolbar.propTypes = {
 const RightToolbar = ({ navigation }) => {
   return (
     <>
-      <StackItem className="toolbar-item has-separator">
+      <ToolbarItem hasSeparator>
         <Button
           type={Button.TYPE.NORMAL}
           onClick={() => navigation.router({ to: 'createMap' })}
@@ -164,8 +188,8 @@ const RightToolbar = ({ navigation }) => {
         >
           New Map
         </Button>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      </ToolbarItem>
+      <ToolbarItem>
         <Button
           type={Button.TYPE.NORMAL}
           onClick={() => navigation.router({ to: 'mapList' })}
@@ -173,7 +197,7 @@ const RightToolbar = ({ navigation }) => {
         >
           View all maps
         </Button>
-      </StackItem>
+      </ToolbarItem>
     </>
   );
 };
@@ -546,7 +570,7 @@ export default class ViewMap extends React.PureComponent {
 
               return (
                 <>
-                  <Toolbar
+                  <ToolbarWrapper
                     className="view-map-toolbar"
                     left={
                       <LeftToolbar

@@ -1,14 +1,25 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, GridItem, StackItem } from 'nr1';
+import { Button, Grid, GridItem } from 'nr1';
+import styled from 'styled-components';
 
-import Toolbar from '../shared/components/Toolbar';
+import { ToolbarWrapper, ToolbarItem } from '../shared/components/Toolbar';
 import MapItem from '../shared/components/MapItem';
+
+const StyledToolbarItem = styled(ToolbarItem)`
+  h4 {
+    margin-bottom: 0;
+    font-size: 20px;
+    line-height: 71px;
+    text-transform: none;
+    color: #464e4e;
+  }
+`;
 
 const RightToolbar = ({ navigation }) => {
   return (
     <>
-      <StackItem className="toolbar-item">
+      <ToolbarItem>
         <Button
           type={Button.TYPE.PRIMARY}
           onClick={() =>
@@ -21,7 +32,7 @@ const RightToolbar = ({ navigation }) => {
         >
           New Map
         </Button>
-      </StackItem>
+      </ToolbarItem>
     </>
   );
 };
@@ -32,9 +43,9 @@ RightToolbar.propTypes = {
 const LeftToolbar = () => {
   return (
     <>
-      <StackItem className="">
-        <h4 className="page-title">My maps</h4>
-      </StackItem>
+      <StyledToolbarItem>
+        <h4>My maps</h4>
+      </StyledToolbarItem>
     </>
   );
 };
@@ -87,7 +98,7 @@ export default class MapList extends PureComponent {
 
     return (
       <>
-        <Toolbar
+        <ToolbarWrapper
           right={<RightToolbar navigation={navigation} />}
           left={<LeftToolbar />}
         />

@@ -15,33 +15,17 @@ export default class MapLocationTable extends PureComponent {
     activeMapLocation: PropTypes.object
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      //
-    };
-
-    this.favoriteFormatter = this.favoriteFormatter.bind(this);
-    this.favoriteSortValue = this.favoriteSortValue.bind(this);
-  }
-
   statusFormatter() {
     return <div className="status-color-fill" />;
   }
 
-  favoriteSortValue(cell, row) {
+  favoriteSortValue = (cell, row) => {
     const { favoriteLocations } = this.props;
 
-    if (favoriteLocations) {
-      return favoriteLocations[row.externalId]
-        ? favoriteLocations[row.externalId]
-        : false;
-    } else {
-      return false;
-    }
-  }
+    return (favoriteLocations && favoriteLocations[row.externalId]) || false;
+  };
 
-  favoriteFormatter(cell, row) {
+  favoriteFormatter = (cell, row) => {
     const { favoriteLocations } = this.props;
 
     const favoriteStatus =
@@ -57,7 +41,7 @@ export default class MapLocationTable extends PureComponent {
         color={favoriteStatus ? '#FFB951' : '#d5d7d7'}
       />
     );
-  }
+  };
 
   rowClasses(row) {
     let classes = null;

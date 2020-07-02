@@ -124,12 +124,6 @@ export default class MapLocationDistiller extends React.PureComponent {
         return previousValue;
       }
 
-      // if (!document.guid) {
-      //   console.warn('Map Location missing guid');
-      //   console.debug(document);
-      //   return previousValue;
-      // }
-
       // Last incident is actually the entity that has the current worst alertSeverity
       const mostCriticalEntity = this.entityReducer(document);
       let mostRecentAlertViolation = null;

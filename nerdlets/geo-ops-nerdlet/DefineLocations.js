@@ -1,7 +1,7 @@
 /* eslint-disable react/no-did-update-set-state */
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import styled from 'styled-components';
 import cloneDeep from 'lodash.clonedeep';
 import { Button, navigation, Spinner, Stack, StackItem } from 'nr1';
 
@@ -16,16 +16,76 @@ import JsonSchemaForm from '../shared/components/JsonSchemaForm';
 import { writeMapLocation } from '../shared/services/map-location';
 import LocationTable from '../shared/components/LocationTable';
 
+const FileUploadContainer = styled.div`
+  text-align: center;
+
+  p {
+    text-align: center;
+    color: #8e9494;
+  }
+`;
+
+const ManualDescription = styled.div`
+  h4 {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  p {
+    text-align: center;
+    color: #8e9494;
+  }
+`;
+
+const OrLine = styled.div`
+  display: flex;
+  height: 1px;
+  justify-content: center;
+  align-items: center;
+  margin: 36px 0;
+  border: none;
+  overflow: visible;
+  border-top: 1px solid #e3e4e4;
+
+  &:before {
+    content: 'or';
+    background-color: #fff;
+    padding: 0 8px;
+    text-align: Center;
+    position: relative;
+    bottom: 2px;
+    color: #8e9494;
+    font-style: italic;
+  }
+`;
+
+const StyledJsonSchemaForm = styled(JsonSchemaForm)`
+  padding: 24px;
+  border-radius: 4px;
+  background-color: #fafbfb;
+  border: 1px solid #e3e4e4;
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+`;
+
 export default class DefineLocations extends React.PureComponent {
   static propTypes = {
     map: PropTypes.object.isRequired,
     onMapLocationWrite: PropTypes.func,
     mapLocations: PropTypes.array,
     mapLocationsLoading: PropTypes.bool,
-    // mapLocationsLoadingErrors: PropTypes.array,
 
-    // TO DO - custom validation for an array containing [ lat, lng ]
-    selectedLatLng: PropTypes.oneOfType([PropTypes.array, PropTypes.bool])
+    selectedLatLng: PropTypes.oneOfType([
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          lat: PropTypes.number.isRequired,
+          lng: PropTypes.number.isRequired
+        })
+      ),
+      PropTypes.bool
+    ])
   };
 
   constructor(props) {
@@ -38,8 +98,6 @@ export default class DefineLocations extends React.PureComponent {
     };
 
     this.addLocationForm = React.createRef();
-    this.onWrite = this.onWrite.bind(this);
-    this.onAddFileMapLocations = this.onAddFileMapLocations.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -88,7 +146,7 @@ export default class DefineLocations extends React.PureComponent {
   // As they add locations we need to associate them with _this_ map
   // We do so by creating a MapLocation object for each
 
-  async onWrite({ data }) {
+  onWrite = async ({ data }) => {
     const { document: location } = data;
 
     const {
@@ -102,9 +160,9 @@ export default class DefineLocations extends React.PureComponent {
         error: mapLocationWriteError
       }
     });
-  }
+  };
 
-  async writeMapLocation({ location }) {
+  writeMapLocation = async ({ location }) => {
     const { map } = this.props;
     const { accountId } = map;
 
@@ -116,13 +174,13 @@ export default class DefineLocations extends React.PureComponent {
       accountId,
       document: location
     });
-  }
+  };
 
   /*
    * File-based additions of MapLocations
    */
 
-  async onAddFileMapLocations({ mapLocations }) {
+  onAddFileMapLocations = async ({ mapLocations }) => {
     await Promise.all(
       mapLocations.map(async ml => {
         const {
@@ -140,18 +198,30 @@ export default class DefineLocations extends React.PureComponent {
         });
       })
     );
-  }
+  };
+
+  onUploadFileButtonClick = e => {
+    e.preventDefault();
+    const {
+      map: { accountId, guid }
+    } = this.props;
+
+    navigation.openStackedNerdlet({
+      id: 'map-location-upload',
+      urlState: {
+        accountId: accountId,
+        map: guid
+      }
+    });
+  };
 
   render() {
     const { map, mapLocations, mapLocationsLoading } = this.props;
-
     const { formData, uiSchema, schema } = this.state;
-    const accountId = map.accountId;
-    const mapGuid = map.guid;
 
     return (
       <>
-        <div className="define-locations-file-upload-container">
+        <FileUploadContainer>
           <h4>File Upload</h4>
           <p>
             JSON file formatted to{' '}
@@ -172,31 +242,20 @@ export default class DefineLocations extends React.PureComponent {
             </a>
             . We recommend this method for providing locations.
           </p>
-          <Button
-            onClick={e => {
-              e.preventDefault();
-
-              navigation.openStackedNerdlet({
-                id: 'map-location-upload',
-                urlState: {
-                  accountId: accountId,
-                  map: mapGuid
-                }
-              });
-            }}
-          >
+          <Button onClick={this.onUploadFileButtonClick}>
             Upload JSON file
           </Button>
-        </div>
-        <hr className="or-sep" />
-        <h4>Define locations manually</h4>
-        <p>
-          Either provide the data for the fields below, or click a point on the
-          map to the right.
-        </p>
+        </FileUploadContainer>
+        <OrLine />
+        <ManualDescription>
+          <h4>Define locations manually</h4>
+          <p>
+            Either provide the data for the fields below, or click a point on
+            the map to the right.
+          </p>
+        </ManualDescription>
 
-        {/* Column 1 */}
-        <JsonSchemaForm
+        <StyledJsonSchemaForm
           ref={this.addLocationForm}
           schema={schema}
           uiSchema={uiSchema}
@@ -210,7 +269,6 @@ export default class DefineLocations extends React.PureComponent {
             })
           }
           onWrite={this.onWrite}
-          // onError={errors => console.log(errors)}
           className="define-locations-form"
         >
           <Stack fullWidth horizontalType={Stack.HORIZONTAL_TYPE.CENTER}>
@@ -224,20 +282,9 @@ export default class DefineLocations extends React.PureComponent {
               </Button>
             </StackItem>
           </Stack>
-        </JsonSchemaForm>
+        </StyledJsonSchemaForm>
 
-        {/* Column 2 */}
         {mapLocationsLoading && <Spinner />}
-
-        {/* Errors */}
-        {/* {!locationsLoading &&
-          locationLoadingErrors &&
-          locationLoadingErrors.length > 0 &&
-          locationLoadingErrors.map((error, index) => {
-            return <NerdGraphError key={index} error={error} />;
-          })} */}
-
-        {/* List of locations */}
         {!mapLocationsLoading && <LocationTable mapLocations={mapLocations} />}
       </>
     );

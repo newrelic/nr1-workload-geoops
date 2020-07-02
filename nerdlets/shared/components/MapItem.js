@@ -22,8 +22,6 @@ export default class MapItem extends PureComponent {
       deleteModalActive: false,
       deleteModalType: 'map'
     };
-
-    this.handleSettingsPopover = this.handleSettingsPopover.bind(this);
   }
 
   async deleteMap({ map }) {
@@ -46,26 +44,31 @@ export default class MapItem extends PureComponent {
     this.props.onMapDelete({ map });
   }
 
-  handleSettingsPopover(e) {
+  handleSettingsPopover = e => {
     this.setState(prevState => ({
       settingsPopoverActive: !prevState.settingsPopoverActive
     }));
+
     e.stopPropagation();
-  }
+  };
 
   handleDeleteMapConfirmationButton(e, map) {
     e.stopPropagation();
+
     this.setState({ deleteModalActive: false });
     this.deleteMap({ map });
   }
 
   handleDeleteLocationsConfirmationButton(e, map) {
     e.stopPropagation();
+
     this.setState({ deleteModalActive: false });
+
     deleteMapLocationCollection({
       accountId: map.accountId,
       mapGuid: map.guid
     });
+
     Toast.showToast({
       title: `${startCase(this.state.deleteModalType)} deleted`,
       description: `All locations from the map "${map.title}" have been deleted.`,
