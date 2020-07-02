@@ -6,7 +6,7 @@ import cloneDeep from 'lodash.clonedeep';
 
 import EmptyState from './EmptyState';
 import CreateMap from './CreateMap';
-import ViewMap from './ViewMap';
+import ViewMap from './ViewMap/ViewMap';
 import MapList from './MapList';
 
 import { nerdStorageRequest } from '../shared/utils';
