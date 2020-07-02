@@ -8,7 +8,6 @@ import { PACKAGE_UUID } from '../shared/constants';
 export default class MapLocationUploadNerdlet extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       files: []
     };
@@ -16,23 +15,6 @@ export default class MapLocationUploadNerdlet extends React.Component {
     this.fileInput = React.createRef();
   }
 
-  componentDidMount() {
-    // Warning from Google Chrome about this:
-    // File chooser dialog can only be shown with a user activation.
-    // WompWomp
-    // setTimeout(() => this.fileInput.current.click(), 300);
-  }
-
-  /*
-    File: {
-      name: "map-location-upload-file.json"
-      lastModified: 1582219355387
-      lastModifiedDate: Thu Feb 20 2020 12:22:35 GMT-0500 (Eastern Standard Time) {}
-      webkitRelativePath: ""
-      size: 90
-      type: "application/json"
-    }
-  */
   fileInputOnChange(event) {
     const fileList = event.target.files;
     this.setState({ files: Array.from(fileList) });
