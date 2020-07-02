@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.7...v1.2.0) (2020-07-02)
+
+
+### Bug Fixes
+
+* added missing dependency ([22a1d8b](https://github.com/newrelic/nr1-workload-geoops/commit/22a1d8b32a4711886048c2b0182cb4cedc8143ba))
+
+
+### Features
+
+* introduced data polling for map view and refactored whole view, dividing it on couple smaller components ([b4838dd](https://github.com/newrelic/nr1-workload-geoops/commit/b4838dd0c9530c2006709fa42df25e73960334c0))
+
 ## [1.1.7](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.6...v1.1.7) (2020-07-01)
 
 

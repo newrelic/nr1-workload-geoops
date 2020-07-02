@@ -5,13 +5,13 @@ import gql from 'graphql-tag';
 import { EntitiesByGuidsQuery, NerdGraphQuery, Spinner } from 'nr1';
 
 import { NerdGraphError } from '@newrelic/nr1-community';
-import AlertableEntitiesByGuidsQuery from '../shared/components/AlertableEntitiesByGuidsQuery';
-import MapLocationQuery from '../shared/components/MapLocationQuery';
-import EntitiesFromWorkloads from '../shared/components/EntitiesFromWorkloads';
-import AlertsReducer from '../shared/components/AlertsReducer';
-import MapLocationDistiller from '../shared/components/MapLocationDistiller';
+import AlertableEntitiesByGuidsQuery from '../../shared/components/AlertableEntitiesByGuidsQuery';
+import MapLocationQuery from '../../shared/components/MapLocationQuery';
+import EntitiesFromWorkloads from '../../shared/components/EntitiesFromWorkloads';
+import AlertsReducer from '../../shared/components/AlertsReducer';
+import MapLocationDistiller from '../../shared/components/MapLocationDistiller';
 
-import { LIST_WORKLOADS } from '../shared/services/queries';
+import { LIST_WORKLOADS } from '../../shared/services/queries';
 
 const entityFragmentExtension = gql`
   fragment EntityFragmentExtension on EntityOutline {
