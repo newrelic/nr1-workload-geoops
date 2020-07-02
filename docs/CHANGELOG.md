@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.2.0...v1.2.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* Switched from displaying our guid to users external IDs on location table items ([ea0d423](https://github.com/newrelic/nr1-workload-geoops/commit/ea0d4238930df70f55686b738b0caa2c7f568fa8))
+
 # [1.2.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.1.7...v1.2.0) (2020-07-02)
 
 
