@@ -1,9 +1,24 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { NerdletStateContext, navigation } from 'nr1';
 
 import MapLocationFilesUpload from '../geo-ops-nerdlet/MapLocationFilesUpload';
 import { PACKAGE_UUID } from '../shared/constants';
+
+const FileUploadContainer = styled.div`
+  height: 100%;
+  padding: 56px;
+`;
+
+const Input = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+`;
 
 export default class MapLocationUploadNerdlet extends React.Component {
   constructor(props) {
@@ -57,11 +72,11 @@ export default class MapLocationUploadNerdlet extends React.Component {
     const { files } = this.state;
 
     return (
-      <div className="map-location-upload-container">
-        <input
+      <FileUploadContainer>
+        <Input
           ref={this.fileInput}
           type="file"
-          className="json-file-upload"
+          className="u-unstyledInput"
           accept=".json"
           id="location-upload"
           onChange={event => {
@@ -75,7 +90,7 @@ export default class MapLocationUploadNerdlet extends React.Component {
           {nerdletState => {
             const { map: mapGuid, accountId } = nerdletState;
 
-            // TO DO - if we don't have these, because of weird user navigation - show inputs to capture these
+            // TODO: if we don't have these, because of weird user navigation - show inputs to capture these
             // console.log(mapGuid);
             // console.log(accountId);
 
@@ -94,7 +109,7 @@ export default class MapLocationUploadNerdlet extends React.Component {
             );
           }}
         </NerdletStateContext.Consumer>
-      </div>
+      </FileUploadContainer>
     );
   }
 }

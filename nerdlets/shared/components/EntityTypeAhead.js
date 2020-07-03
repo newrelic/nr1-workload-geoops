@@ -5,7 +5,39 @@ import get from 'lodash.get';
 import { NerdGraphQuery, Spinner } from 'nr1';
 import { NerdGraphError } from '@newrelic/nr1-community';
 
+import styled from 'styled-components';
+
 import { ENTITY_SEARCH_BY_TYPE } from '../services/queries';
+
+const MultiValueRemove = styled.div`
+  width: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid #7fcdd5;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(228, 245, 245);
+  }
+
+  [class*='IndicatorsContainer'] & {
+    border: none;
+    transform: scale(1.25);
+    opacity: 0.75;
+    height: 18px;
+    position: relative;
+    right: 9px;
+    width: 18px;
+    background-color: #007e8a1a;
+    border-radius: 100px;
+
+    svg {
+      position: relative;
+      right: 0.5px;
+    }
+  }
+`;
 
 export default class EntityTypeAhead extends React.PureComponent {
   static propTypes = {
@@ -110,10 +142,9 @@ export default class EntityTypeAhead extends React.PureComponent {
     const ClearIndicatorStyle = {};
 
     const ClearIndicator = ({ innerProps, innerRef }) => (
-      <div
+      <MultiValueRemove
         {...innerProps}
         style={ClearIndicatorStyle}
-        className="multi-value-remove"
         ref={innerRef}
       >
         <svg
@@ -130,7 +161,7 @@ export default class EntityTypeAhead extends React.PureComponent {
             fill="#005054"
           />
         </svg>
-      </div>
+      </MultiValueRemove>
     );
 
     return (

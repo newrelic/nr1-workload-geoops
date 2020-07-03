@@ -10,9 +10,68 @@ import cloneDeep from 'lodash.clonedeep';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import Ajv from 'ajv';
+import styled from 'styled-components';
 
 import { MAP_LOCATION_JSON_SCHEMA } from '../shared/constants';
 import { writeMapLocation } from '../shared/services/map-location';
+
+const FileUploadContainer = styled(Stack)`
+  margin-bottom: 16px;
+`;
+
+const Description = styled.p`
+  margin-bottom: 0 !important;
+`;
+
+const Label = styled.label`
+  margin-bottom: 0;
+  padding: 8px 16px;
+  position: relative;
+  top: 8px;
+  background-color: #007e8a;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 3px;
+  transition: background-color 125ms ease;
+  white-space: nowrap;
+
+  :hover {
+    cursor: pointer;
+    background-color: #0095a4;
+  }
+
+  :active {
+    background-color: #006771;
+  }
+`;
+
+const LabelGray = styled(Label)`
+  background-color: #edeeee;
+  color: #2a3434;
+
+  &:hover {
+    background-color: #d5d7d7;
+  }
+
+  &:active {
+    background-color: #b9bdbd;
+  }
+`;
+
+const ButtonsContainer = styled(StackItem)`
+  > * {
+    margin-left: 8px;
+  }
+`;
+
+const Input = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+`;
 
 export default class MapLocationFilesUpload extends React.Component {
   static propTypes = {
@@ -111,15 +170,9 @@ export default class MapLocationFilesUpload extends React.Component {
     const fileErrors = promiseResults.filter(result => !result.success);
     const fileSucesses = promiseResults.filter(result => result.success);
 
-    // console.log('Promise Results: ');
-    // console.log(promiseResults);
-
     const fileData = fileSucesses.reduce((previousValue, currentValue) => {
       return previousValue.concat(currentValue.result);
     }, []);
-
-    // console.log('Reduction data:');
-    // console.log(fileData);
 
     const formatted = fileData.map(item => {
       if (!item.guid) {
@@ -136,7 +189,6 @@ export default class MapLocationFilesUpload extends React.Component {
     const valid = ajv.validate(schema, data);
 
     if (!valid) {
-      // console.log(ajv.errors);
       return { success: false, errors: ajv.errors };
     }
 
@@ -219,7 +271,7 @@ export default class MapLocationFilesUpload extends React.Component {
     );
 
     this.setState({ savingMapLocations: false });
-    // TO DO - Don't auto-navigate away, show results first
+    // TODO: - Don't auto-navigate away, show results first
     this.props.onClose();
   }
 
@@ -242,7 +294,7 @@ export default class MapLocationFilesUpload extends React.Component {
       });
     }
 
-    // TO DO - We should enhance this to add success/failure to the table
+    // TODO: We should enhance this to add success/failure to the table
     // - this.setState() and include a status and error column of data to fileData
     // - dynamically change the result of getColumns based on whether we've processed (tried to write map locations) a file or not
     /*
@@ -327,14 +379,13 @@ export default class MapLocationFilesUpload extends React.Component {
 
     return (
       <>
-        <Stack
+        <FileUploadContainer
           fullWidth
           verticalType={Stack.VERTICAL_TYPE.BOTTOM}
-          className="file-upload-nerdlet-header"
         >
           <StackItem grow>
             <h2>File Upload</h2>
-            <p className="file-upload-nerdlet-description">
+            <Description>
               JSON file formatted to{' '}
               <a
                 href="https://github.com/newrelic/nr1-workload-geoops/blob/master/docs/data-dictionary.md"
@@ -352,25 +403,20 @@ export default class MapLocationFilesUpload extends React.Component {
                 these examples
               </a>
               . We recommend this method for providing locations.
-            </p>
+            </Description>
           </StackItem>
-          <StackItem className="cta-container">
+          <ButtonsContainer>
             {this.props.files.length === 0 ? (
               <>
                 <Button onClick={() => this.close()}>Cancel</Button>
-                <label htmlFor="location-upload" className="upload-button">
-                  Choose a file
-                </label>
+                <Label htmlFor="location-upload">Choose a file</Label>
               </>
             ) : (
               <>
                 <Button onClick={() => this.close()}>Cancel</Button>
-                <label
-                  htmlFor="location-upload"
-                  className="upload-button upload-other-button"
-                >
+                <LabelGray htmlFor="location-upload">
                   Choose a different file
-                </label>
+                </LabelGray>
                 <Button
                   type={Button.TYPE.PRIMARY}
                   onClick={() => this.onAdd({ mapLocations: fileData })}
@@ -379,23 +425,16 @@ export default class MapLocationFilesUpload extends React.Component {
                 </Button>
               </>
             )}
-          </StackItem>
-        </Stack>
+          </ButtonsContainer>
+        </FileUploadContainer>
 
         {(!this.props.mapGuid || !this.props.accountId) && (
           <EmptyState
             heading="Choose a file to upload"
             description="Once uploaded, your data will be displayed here in a table for your review. After you have uploaded, and confirmed that you are content with the data you've uploaded, click the Save and Continue button to save your data."
-            footer={() => {
-              return (
-                <label
-                  htmlFor="location-upload"
-                  className="upload-button upload-other-button"
-                >
-                  Choose a file
-                </label>
-              );
-            }}
+            footer={() => (
+              <LabelGray htmlFor="location-upload">Choose a file</LabelGray>
+            )}
           />
         )}
 
@@ -403,22 +442,15 @@ export default class MapLocationFilesUpload extends React.Component {
           <EmptyState
             heading="Choose a file to upload"
             description="Once uploaded, your data will be displayed here in a table for your review. After you have uploaded, and confirmed that you are content with the data you've uploaded, click the Save and Continue button to save your data."
-            footer={() => {
-              return (
-                <label
-                  htmlFor="location-upload"
-                  className="upload-button upload-other-button"
-                >
-                  Choose a file
-                </label>
-              );
-            }}
+            footer={() => (
+              <LabelGray htmlFor="location-upload">Choose a file</LabelGray>
+            )}
           />
         )}
-        <input
+        <Input
           ref={this.fileInput}
           type="file"
-          className="json-file-upload"
+          className="u-unstyledInput"
           accept=".json"
           id="location-upload"
           onChange={event => {

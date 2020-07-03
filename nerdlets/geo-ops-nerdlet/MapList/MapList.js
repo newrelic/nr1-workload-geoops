@@ -1,57 +1,52 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Grid, GridItem } from 'nr1';
+import { Grid, GridItem } from 'nr1';
 import styled from 'styled-components';
 
-import { ToolbarWrapper, ToolbarItem } from '../shared/components/Toolbar';
-import MapItem from '../shared/components/MapItem';
+import { ToolbarWrapper } from '../../shared/components/Toolbar';
+import MapItem from '../../shared/components/MapItem';
+import RightToolbar from './Toolbars/RightToolbar';
+import LeftToolbar from './Toolbars/LeftToolbar';
 
-const StyledToolbarItem = styled(ToolbarItem)`
-  h4 {
-    margin-bottom: 0;
-    font-size: 20px;
-    line-height: 71px;
-    text-transform: none;
-    color: #464e4e;
+const StyledGrid = styled(Grid)`
+  padding: 24px;
+  background-color: #f4f5f5;
+  height: calc(100% - 74px);
+
+  div.map-grid {
+    grid-gap: 16px;
   }
 `;
 
-const RightToolbar = ({ navigation }) => {
-  return (
-    <>
-      <ToolbarItem>
-        <Button
-          type={Button.TYPE.PRIMARY}
-          onClick={() =>
-            navigation.router({
-              to: 'createMap',
-              state: { selectedMap: null, activeStep: 1 }
-            })
-          }
-          iconType={Button.ICON_TYPE.INTERFACE__SIGN__PLUS}
-        >
-          New Map
-        </Button>
-      </ToolbarItem>
-    </>
-  );
-};
-RightToolbar.propTypes = {
-  navigation: PropTypes.object
-};
+const AddNewMapButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(9vw + 70px);
+  border: 3px dashed #d5d7d7;
+  border-radius: 4px;
+  transition: all 0.05s ease-out;
 
-const LeftToolbar = () => {
-  return (
-    <>
-      <StyledToolbarItem>
-        <h4>My maps</h4>
-      </StyledToolbarItem>
-    </>
-  );
-};
-RightToolbar.propTypes = {
-  navigation: PropTypes.object
-};
+  &:hover {
+    cursor: pointer;
+    border-color: #b9bdbd;
+    transform: translateY(-2px);
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  svg {
+    opacity: 0.75;
+    transition: all 0.15s ease-out;
+  }
+`;
 
 export default class MapList extends PureComponent {
   static propTypes = {
@@ -103,16 +98,14 @@ export default class MapList extends PureComponent {
           left={<LeftToolbar />}
         />
 
-        <Grid
-          className="primary-grid map-list-primary-grid"
+        <StyledGrid
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
           <GridItem columnSpan={12} fullHeight>
             <Grid className="map-grid">
               {mapGridItems}
               <GridItem columnSpan={3}>
-                <div
-                  className="add-map-item-button"
+                <AddNewMapButton
                   onClick={() =>
                     navigation.router({
                       to: 'createMap',
@@ -134,11 +127,11 @@ export default class MapList extends PureComponent {
                       fill="#B9BDBD"
                     />
                   </svg>
-                </div>
+                </AddNewMapButton>
               </GridItem>
             </Grid>
           </GridItem>
-        </Grid>
+        </StyledGrid>
       </>
     );
   }
