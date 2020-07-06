@@ -365,7 +365,11 @@ export default class ViewMap extends React.PureComponent {
                                 Table.SPACING_TYPE.NONE,
                                 Table.SPACING_TYPE.NONE
                               ]}
-                              items={composeEntitySummary(activeMapLocation)}
+                              items={composeEntitySummary(
+                                activeMapLocation
+                                  ? activeMapLocation.entities
+                                  : []
+                              )}
                             >
                               <TableHeader>
                                 <TableHeaderCell width="65%">

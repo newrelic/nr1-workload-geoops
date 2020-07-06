@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Stack, StackItem } from 'nr1';
 
 const LocationMetadata = ({ activeMapLocation }) => {
+  if (!activeMapLocation) return '';
+
   const keys = Object.keys(activeMapLocation);
 
   const items = keys.map(key => {

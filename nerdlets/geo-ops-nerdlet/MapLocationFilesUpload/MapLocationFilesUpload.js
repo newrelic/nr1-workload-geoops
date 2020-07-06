@@ -58,6 +58,7 @@ export default class MapLocationFilesUpload extends React.Component {
   async loadFiles() {
     const { files } = this.props;
     const schema = cloneDeep(MAP_LOCATION_JSON_SCHEMA);
+
     schema.required = schema.required.filter(
       v => v !== 'map' && v !== 'location'
     );
@@ -259,8 +260,8 @@ export default class MapLocationFilesUpload extends React.Component {
   getColumns() {
     const columns = [
       {
-        dataField: 'guid',
-        text: 'GUID',
+        dataField: 'externalId',
+        text: 'ExID',
         sort: true
       },
       {
@@ -418,11 +419,10 @@ export default class MapLocationFilesUpload extends React.Component {
         )}
 
         {fileErrors && this.renderFileErrors(fileErrors)}
-
         {fileData && this.props.files.length !== 0 && (
           <>
             <ToolkitProvider
-              keyField="guid"
+              keyField="externalId"
               data={fileData}
               columns={columns}
               search

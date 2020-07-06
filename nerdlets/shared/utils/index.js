@@ -59,32 +59,6 @@ export const nerdGraphQuery = async function({
 // GNU GPL v2 or later
 // https://www.dropbox.com/s/xllwzgezlsqebdg/Screenshot%202020-02-25%2016.26.06.png?dl=0
 
-function long2tile(lon, zoom) {
-  const tt = Number(lon);
-  return Math.floor(((tt + 180) / 360) * Math.pow(2, zoom));
-}
-
-function lat2tile(lat, zoom) {
-  return Math.floor(
-    ((1 -
-      Math.log(
-        Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)
-      ) /
-        Math.PI) /
-      2) *
-      Math.pow(2, zoom)
-  );
-}
-
-export const latLngToTile = function({ latLng, zoom }) {
-  return {
-    s: 'a', // a, b, c - different subdomains for parallelizing requests
-    x: long2tile(latLng[1], zoom),
-    y: lat2tile(latLng[0], zoom),
-    z: zoom
-  };
-};
-
 export const mapByGuid = ({ data }) => {
   if (!Array.isArray(data)) {
     return {};

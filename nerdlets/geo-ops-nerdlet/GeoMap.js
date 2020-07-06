@@ -15,8 +15,6 @@ export default class GeoMap extends Component {
     onMapClick: PropTypes.func,
     onZoomEnd: PropTypes.func,
     mapLocations: PropTypes.array,
-
-    // Leaflet pass-throughs
     center: PropTypes.array,
     zoom: PropTypes.number,
     activeMapLocation: PropTypes.object
@@ -34,14 +32,7 @@ export default class GeoMap extends Component {
     };
 
     this.popupHoverTimer = null;
-
     this.mapRef = React.createRef();
-    this.handleMapClick = this.handleMapClick.bind(this);
-    this.handleMarkerClick = this.handleMarkerClick.bind(this);
-    this.handleOnZoomEnd = this.handleOnZoomEnd.bind(this);
-    this.handleMarkerMouseOver = this.handleMarkerMouseOver.bind(this);
-    this.handleMarkerMouseOut = this.handleMarkerMouseOut.bind(this);
-    this.handlePopupMouseOver = this.handlePopupMouseOver.bind(this);
     this.handlePopupMouseOut = this.handlePopupMouseOut.bind(this);
   }
 
@@ -51,7 +42,6 @@ export default class GeoMap extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.mapLocations !== this.props.mapLocations) {
-      // console.log('mapLocations changed');
       this.mapQueries();
     }
 
@@ -71,9 +61,7 @@ export default class GeoMap extends Component {
   mapQueries() {
     const { mapLocations } = this.props;
 
-    if (!mapLocations) {
-      return;
-    }
+    if (!mapLocations) return;
 
     const queries = mapLocations.reduce((p, i) => {
       if (i.query) {
@@ -87,25 +75,21 @@ export default class GeoMap extends Component {
     this.setState({ queries });
   }
 
-  handleMapClick(e) {
+  handleMapClick = e => {
     const { onMapClick } = this.props;
     if (onMapClick) {
       onMapClick(e);
     }
-  }
+  };
 
-  handleOnZoomEnd(e) {
+  handleOnZoomEnd = e => {
     const { onZoomEnd = false } = this.props;
     if (onZoomEnd) {
       onZoomEnd(e);
     }
-  }
+  };
 
-  handleMarkerClick(e) {
-    // e.originalEvent.view.L.DomEvent.stopPropagation(e);
-    // e.originalEvent.preventDefault();
-    // e.originalEvent.stopPropagation();
-
+  handleMarkerClick = e => {
     const mapLocation = e.sourceTarget.options.document;
     const { onMarkerClick } = this.props;
     this.setState({ selectedLocation: mapLocation.guid });
@@ -113,7 +97,7 @@ export default class GeoMap extends Component {
     if (onMarkerClick) {
       onMarkerClick(mapLocation);
     }
-  }
+  };
 
   handleMarkerHover() {
     event.relatedTarget.classList.add('active');
@@ -133,30 +117,30 @@ export default class GeoMap extends Component {
     return startingCenter;
   }
 
-  handleMarkerMouseOver(e) {
+  handleMarkerMouseOver = e => {
     if (this.popupHoverTimer) {
       clearTimeout(this.popupHoverTimer);
     }
     e.target.openPopup();
-  }
+  };
 
-  handleMarkerMouseOut(e) {
+  handleMarkerMouseOut = e => {
     this.setState({ hoveredMarker: e.target });
     this.popupHoverTimer = setTimeout(() => {
       this.state.hoveredMarker.closePopup();
     }, 150);
-  }
+  };
 
-  handlePopupMouseOver() {
+  handlePopupMouseOver = () => {
     clearTimeout(this.popupHoverTimer);
     this.setState({ popupIsHovered: true });
-  }
+  };
 
-  handlePopupMouseOut() {
+  handlePopupMouseOut = () => {
     this.popupHoverTimer = setTimeout(() => {
       this.state.hoveredMarker.closePopup();
     }, 150);
-  }
+  };
 
   renderEntityLink(mapLocation) {
     if (!mapLocation || !mapLocation.entities) {
@@ -218,9 +202,7 @@ export default class GeoMap extends Component {
 
             let { lat, lng } = location;
 
-            if (!(lat && lng)) {
-              return null;
-            }
+            if (!(lat && lng)) return null;
 
             // TODO: Why are some strings and others numbers?
             // We need to sync-up and ensure we're appropriately converting these before they get to this component...
@@ -233,21 +215,13 @@ export default class GeoMap extends Component {
               const latLngBounds = [lat, lng];
               const inBounds = bounds.contains(latLngBounds);
 
-              if (!inBounds) {
-                return null;
-              }
+              if (!inBounds) return null;
             }
 
             const isSelectedIcon = mapLocation.guid === selectedLocation;
-
             const icon = generateIcon(mapLocation, isSelectedIcon);
-
-            // Lookup the result
             const queryName = queryPrefix + guid.replace(/-/gi, '');
             const queryResult = queryResults[queryName];
-            // console.log(`Query result for: ${queryName}`);
-            // console.log(queryResult);
-
             const markerComparisonNumber = queryResult || 'N/A';
 
             return (
