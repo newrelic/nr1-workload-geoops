@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { NerdletStateContext, navigation } from 'nr1';
 
-import MapLocationFilesUpload from '../geo-ops-nerdlet/MapLocationFilesUpload';
+import MapLocationFilesUpload from '../geo-ops-nerdlet/MapLocationFilesUpload/MapLocationFilesUpload';
 import { PACKAGE_UUID } from '../shared/constants';
 
 const FileUploadContainer = styled.div`

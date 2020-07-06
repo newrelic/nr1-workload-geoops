@@ -7,8 +7,8 @@ import {
   JsonSchemaForm,
   AccountDropdown
 } from '../shared/components';
-import DefineLocations from './DefineLocations';
-import MapLocationData from './MapLocationData';
+import DefineLocations from './DefineLocations/DefineLocations';
+import MapLocationData from './MapLocationData/MapLocationData';
 import GeoMap from './GeoMap';
 
 import { nerdStorageRequest } from '../shared/utils';

@@ -10,68 +10,17 @@ import cloneDeep from 'lodash.clonedeep';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import Ajv from 'ajv';
-import styled from 'styled-components';
 
-import { MAP_LOCATION_JSON_SCHEMA } from '../shared/constants';
-import { writeMapLocation } from '../shared/services/map-location';
+import { MAP_LOCATION_JSON_SCHEMA } from '../../shared/constants';
+import { writeMapLocation } from '../../shared/services/map-location';
 
-const FileUploadContainer = styled(Stack)`
-  margin-bottom: 16px;
-`;
-
-const Description = styled.p`
-  margin-bottom: 0 !important;
-`;
-
-const Label = styled.label`
-  margin-bottom: 0;
-  padding: 8px 16px;
-  position: relative;
-  top: 8px;
-  background-color: #007e8a;
-  color: #fff;
-  font-size: 12px;
-  border-radius: 3px;
-  transition: background-color 125ms ease;
-  white-space: nowrap;
-
-  :hover {
-    cursor: pointer;
-    background-color: #0095a4;
-  }
-
-  :active {
-    background-color: #006771;
-  }
-`;
-
-const LabelGray = styled(Label)`
-  background-color: #edeeee;
-  color: #2a3434;
-
-  &:hover {
-    background-color: #d5d7d7;
-  }
-
-  &:active {
-    background-color: #b9bdbd;
-  }
-`;
-
-const ButtonsContainer = styled(StackItem)`
-  > * {
-    margin-left: 8px;
-  }
-`;
-
-const Input = styled.input`
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-`;
+import {
+  FileUploadContainer,
+  LabelGray,
+  Label,
+  Description,
+  ButtonsContainer
+} from './styles';
 
 export default class MapLocationFilesUpload extends React.Component {
   static propTypes = {
