@@ -11,9 +11,11 @@ import {
   EntitiesFromWorkloads,
   MapLocationDistiller,
   MapLocationQuery
-} from '../../shared/components';
+} from '../../../shared/components';
 
-import { LIST_WORKLOADS } from '../../shared/services/queries';
+import { GeoOpsContainer } from './styles';
+
+import { LIST_WORKLOADS } from '../../../shared/services/queries';
 
 const entityFragmentExtension = gql`
   fragment EntityFragmentExtension on EntityOutline {
@@ -47,9 +49,9 @@ export default class ViewMapQuery extends React.PureComponent {
 
           if (loading) {
             return (
-              <div className="geoOpsContainer">
+              <GeoOpsContainer>
                 <Spinner />
-              </div>
+              </GeoOpsContainer>
             );
           }
 

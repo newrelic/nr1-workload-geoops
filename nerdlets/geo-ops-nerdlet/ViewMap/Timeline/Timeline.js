@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { Icon, navigation } from 'nr1';
 import PropTypes from 'prop-types';
 import { kebabCase, lowerCase } from 'lodash';
-import { PACKAGE_UUID } from '../../shared/constants';
+import { PACKAGE_UUID } from '../../../shared/constants';
 
 const Timeline = ({ activeMapLocation }) => {
   if (!activeMapLocation)
