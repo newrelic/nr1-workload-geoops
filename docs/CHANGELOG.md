@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.2.1...v1.3.0) (2020-07-06)
+
+
+### Features
+
+* added further tests, mocks and adjusted tests config ([b5e076f](https://github.com/newrelic/nr1-workload-geoops/commit/b5e076f1d84bfce6f686db9696e30351441a0317))
+* added new mocks for nr1 and example data for tests ([f13b5b6](https://github.com/newrelic/nr1-workload-geoops/commit/f13b5b6fe617d6075fefa5611b3b8d58ef0f40bd))
+* anonymized mocked locationData ([d675962](https://github.com/newrelic/nr1-workload-geoops/commit/d6759626613f3c66abe967a4c40cfaf1f00e4d69))
+* implementing tests and refactoring code across the app ([de6cd8c](https://github.com/newrelic/nr1-workload-geoops/commit/de6cd8c721d1d8d14e13cd1d768c0a71a6a40bcb))
+
 ## [1.2.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.2.0...v1.2.1) (2020-07-02)
 
 
