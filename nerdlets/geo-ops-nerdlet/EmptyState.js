@@ -4,7 +4,7 @@ import { Grid, GridItem, Stack, StackItem, Button } from 'nr1';
 import { Map, TileLayer } from 'react-leaflet';
 import { EmptyState } from '@newrelic/nr1-community';
 import styled from 'styled-components';
-import { ToolbarWrapper, ToolbarItem } from '../shared/components/Toolbar';
+import { ToolbarWrapper, ToolbarItem } from '../shared/components';
 
 const StyledToolbarItem = styled(ToolbarItem)`
   font-size: 1.25em;

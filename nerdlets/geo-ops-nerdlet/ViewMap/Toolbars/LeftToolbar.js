@@ -4,7 +4,7 @@ import { Dropdown, DropdownItem } from 'nr1';
 import { groupBy } from 'lodash';
 import styled from 'styled-components';
 
-import { ToolbarItem } from '../../../shared/components/Toolbar';
+import { ToolbarItem } from '../../../shared/components';
 
 const StyledToolbarItem = styled(ToolbarItem)`
   flex-direction: column;

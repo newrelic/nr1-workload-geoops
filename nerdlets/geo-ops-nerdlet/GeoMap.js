@@ -5,7 +5,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Stack, StackItem, Link, Icon, navigation } from 'nr1';
 import get from 'lodash.get';
 
-import BatchNrql from '../shared/components/BatchNrql';
+import { BatchNrql } from '../shared/components';
 import { generateIcon, statusColor } from '../shared/utils';
 
 export default class GeoMap extends Component {

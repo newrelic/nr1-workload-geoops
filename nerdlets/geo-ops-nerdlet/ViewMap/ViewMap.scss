@@ -2,7 +2,7 @@
 .view-map-toolbar.toolbar-container {
     position: relative;
     z-index: 10000;
-    border-bottom: none; 
+    border-bottom: none;
 
     .page-title-label {
         margin: 4px 0 1px;
@@ -59,10 +59,10 @@
         bottom: 0;
         top: 0;
         pointer-events: none;
-        box-shadow: 
-            inset 0px 0px 0px rgba(0, 75, 82, 0.22), 
-            inset 0px 0px 2px rgba(0, 49, 54, 0.1), 
-            inset 0px 0px 3px rgba(0, 134, 148, 0.13), 
+        box-shadow:
+            inset 0px 0px 0px rgba(0, 75, 82, 0.22),
+            inset 0px 0px 2px rgba(0, 49, 54, 0.1),
+            inset 0px 0px 3px rgba(0, 134, 148, 0.13),
             inset 0px 0px 10px rgba(88, 114, 117, 0.275);
     }
 
@@ -72,10 +72,10 @@
         position: absolute;
         right: 0;
         z-index: 1000;
-        box-shadow: 
-            0px 1px 0px rgba(0, 75, 82, 0.22), 
-            0px 3px 2px rgba(0, 49, 54, 0.1), 
-            0px 1px 3px rgba(0, 134, 148, 0.13), 
+        box-shadow:
+            0px 1px 0px rgba(0, 75, 82, 0.22),
+            0px 3px 2px rgba(0, 49, 54, 0.1),
+            0px 1px 3px rgba(0, 134, 148, 0.13),
             0px 8px 17px rgba(88, 114, 117, 0.3);
         transition: transform .2s cubic-bezier(.25, .46, .45, .94);
         border-top: 1px solid #e3e4e4;
@@ -102,20 +102,20 @@
     width: 16px;
     border-radius: 3px;
     transform: translateY(-1px) rotate(45deg);
-    box-shadow: 
-        0px 1px 0px rgba(0, 75, 82, 0.21), 
-        3px 3px 0px rgba(0, 49, 54, 0.14), 
-        2px 1px 3px rgba(0, 134, 148, 0.13), 
+    box-shadow:
+        0px 1px 0px rgba(0, 75, 82, 0.21),
+        3px 3px 0px rgba(0, 49, 54, 0.14),
+        2px 1px 3px rgba(0, 134, 148, 0.13),
         2px 6px 7px rgba(70, 107, 111, 0.15);
 }
 
 .leaflet-popup-content-wrapper {
     border-radius: 8px;
     width: 241px;
-    box-shadow: 
-        0px 1px 0px rgba(0, 75, 82, 0.21), 
-        0px 3px 0px rgba(0, 49, 54, 0.14), 
-        0px 1px 3px rgba(0, 134, 148, 0.13), 
+    box-shadow:
+        0px 1px 0px rgba(0, 75, 82, 0.21),
+        0px 3px 0px rgba(0, 49, 54, 0.14),
+        0px 1px 3px rgba(0, 134, 148, 0.13),
         0px 8px 7px rgba(70, 107, 111, 0.15);
 }
 
@@ -158,7 +158,7 @@ div.leaflet-pane .leaflet-popup .marker-popup-title-container {
     justify-content: center;
     align-items: center;
     border-right: 1px dotted #e3e4e4;
-    font-family: 'open sans'; 
+    font-family: 'open sans';
 }
 
 .marker-popup-title-label {
@@ -167,7 +167,7 @@ div.leaflet-pane .leaflet-popup .marker-popup-title-container {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .5px;
-    margin-right: 4px; 
+    margin-right: 4px;
 }
 
 .marker-popup-title {
@@ -199,7 +199,7 @@ div.leaflet-pane .leaflet-popup p.marker-popup-description {
     margin: 8px 10px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
     box-sizing: border-box;
     line-height: 16px;
@@ -213,10 +213,10 @@ div.leaflet-pane .leaflet-popup p.marker-popup-description {
 }
 
 .leaflet-control-zoom {
-    box-shadow: 
-        0px 1px 0px rgba(40, 65, 72, 0.22), 
-        0px 1px 2px rgba(20, 49, 54, 0.1), 
-        0px 1px 3px rgba(0, 134, 148, 0.23), 
+    box-shadow:
+        0px 1px 0px rgba(40, 65, 72, 0.22),
+        0px 1px 2px rgba(20, 49, 54, 0.1),
+        0px 1px 3px rgba(0, 134, 148, 0.23),
         0px 1px 10px rgba(88, 114, 117, 0.35);
 }
 
@@ -243,7 +243,7 @@ a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-out 
 .marker-icon-svg {
     overflow: visible;
     transition: all .2s ease-out;
-    
+
     &.selected-marker-icon {
         filter:
             drop-shadow(0px 1.24527px 1.30061px rgba(7, 45, 49, 0.0815322))
@@ -285,11 +285,6 @@ a:not(.u-unstyledLink):not(.AABQAC-wnd-Link--external).leaflet-control-zoom-out 
         position: relative;
         bottom: 2px;
     }
-}
-
-
-.children-container [class*='TabContent'].entity-summary-tab {
-    padding: 8px 16px;
 }
 
 .alert-warning {

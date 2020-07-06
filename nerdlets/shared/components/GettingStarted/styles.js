@@ -1,8 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StepsList = styled.ul`
+export const StepsList = styled.ul`
   display: flex;
   justify-content: center;
   padding: 24px 0;
@@ -10,7 +8,7 @@ const StepsList = styled.ul`
   border-bottom: 1px dotted #e3e4e4;
 `;
 
-const StepItem = styled.li`
+export const StepItem = styled.li`
   display: inline;
   position: relative;
   padding: 10px 14px 8px;
@@ -105,47 +103,3 @@ const StepItem = styled.li`
     font-size: 14px;
   }
 `;
-
-const Step = function({ title, isActive, onClick, isCompleted }) {
-  const label = !isActive ? title : `${title}`;
-
-  return (
-    <StepItem onClick={onClick} isCompleted={isCompleted} isActive={isActive}>
-      <span>{label}</span>
-    </StepItem>
-  );
-};
-
-Step.propTypes = {
-  title: PropTypes.string,
-  isActive: PropTypes.bool,
-  onClick: PropTypes.func,
-  isCompleted: PropTypes.bool
-};
-
-const GettingStartedSteps = ({ steps, activeStep, tempNavigation }) => (
-  <StepsList>
-    {steps.map((s, index) => (
-      <Step
-        key={index}
-        title={s.title}
-        isActive={s.order === activeStep.order}
-        isCompleted={s.order < activeStep.order}
-        onClick={() => tempNavigation(s.order)}
-      />
-    ))}
-  </StepsList>
-);
-
-const StepPropType = PropTypes.shape({
-  order: PropTypes.number,
-  title: PropTypes.string
-});
-
-GettingStartedSteps.propTypes = {
-  steps: PropTypes.arrayOf(StepPropType),
-  activeStep: StepPropType,
-  tempNavigation: PropTypes.func
-};
-
-export default GettingStartedSteps;

@@ -11,11 +11,12 @@
 // Main (UI/View) pages
 @import './CreateMap.scss';
 @import './ViewMap/ViewMap.scss';
+@import './ViewMap/LocationMetadata.scss';
 
 // Shared components
-@import '../shared/components/JsonSchemaForm.scss';
-@import '../shared/components/MapLocationTable.scss';
-@import '../shared/components/DetailPanel.scss';
+@import '../shared/components/JsonSchemaForm/JsonSchemaForm.scss';
+@import '../shared/components/MapLocationTable/MapLocationTable.scss';
+@import '../shared/components/DetailPanel/DetailPanel.scss';
 
 // ==============================================================
 // Uitility Classes
