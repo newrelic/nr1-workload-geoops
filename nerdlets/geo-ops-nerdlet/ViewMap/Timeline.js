@@ -6,6 +6,9 @@ import { kebabCase, lowerCase } from 'lodash';
 import { PACKAGE_UUID } from '../../shared/constants';
 
 const Timeline = ({ activeMapLocation }) => {
+  if (!activeMapLocation)
+    return <div className="timeline-container mini-timeline" />;
+
   const iconType = alertSeverity => {
     switch (alertSeverity) {
       case 'CRITICAL':
