@@ -13,6 +13,7 @@
     "eslint-fix": "eslint nerdlets/ --fix"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.10.4",
     "@newrelic/nr1-community": "^1.2.0",
     "ajv": "^6.12.2",
     "date-fns": "^2.14.0",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@newrelic/eslint-plugin-newrelic": "^0.3.0",
@@ -58,7 +60,13 @@
       "nerdlets"
     ],
     "moduleFileExtensions": [
-      "js", "json", "jsx", "ts", "tsx", "node", "json"
+      "js",
+      "json",
+      "jsx",
+      "ts",
+      "tsx",
+      "node",
+      "json"
     ]
   },
   "browserslist": [
