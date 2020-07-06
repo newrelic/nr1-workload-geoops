@@ -6,21 +6,21 @@ import {
   GettingStarted,
   JsonSchemaForm,
   AccountDropdown
-} from '../shared/components';
-import DefineLocations from './DefineLocations/DefineLocations';
-import MapLocationData from './MapLocationData/MapLocationData';
-import GeoMap from './GeoMap';
+} from '../../shared/components';
+import DefineLocations from '../DefineLocations/DefineLocations';
+import MapLocationData from '../MapLocationData/MapLocationData';
+import GeoMap from '../GeoMap';
 
-import { nerdStorageRequest } from '../shared/utils';
+import { nerdStorageRequest } from '../../shared/utils';
 
 import {
   MAP_UI_SCHEMA,
   MAP_JSON_SCHEMA,
   MAP_DEFAULTS
-} from '../shared/constants';
+} from '../../shared/constants';
 
-import { getMap, writeMap } from '../shared/services/map';
-import { getMapLocations } from '../shared/services/map-location';
+import { getMap, writeMap } from '../../shared/services/map';
+import { getMapLocations } from '../../shared/services/map-location';
 
 const STEPS = [
   { order: 1, title: '1. Create a map' },

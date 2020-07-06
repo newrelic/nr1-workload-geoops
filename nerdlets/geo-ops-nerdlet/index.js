@@ -5,7 +5,7 @@ import { navigation, NerdletStateContext, Spinner } from 'nr1';
 import cloneDeep from 'lodash.clonedeep';
 
 import EmptyState from './EmptyState/EmptyState';
-import CreateMap from './CreateMap';
+import CreateMap from './CreateMap/CreateMap';
 import ViewMap from './ViewMap/ViewMap';
 import MapList from './MapList/MapList';
 
