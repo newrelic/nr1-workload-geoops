@@ -11,10 +11,8 @@ import {
   MAP_LOCATION_DEFAULTS
 } from '../shared/constants';
 
-import JsonSchemaForm from '../shared/components/JsonSchemaForm';
-
+import { JsonSchemaForm, LocationTable } from '../shared/components';
 import { writeMapLocation } from '../shared/services/map-location';
-import LocationTable from '../shared/components/LocationTable';
 
 const FileUploadContainer = styled.div`
   text-align: center;

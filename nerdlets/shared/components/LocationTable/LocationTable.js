@@ -1,33 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import { Icon } from 'nr1';
 
-const StatusColor = styled.div`
-  width: 8px;
-  height: calc(100% + 1px);
+import { StatusColor } from './styles';
 
-  .status-ok & {
-    background-color: #11a600;
-  }
-
-  .status-warning & {
-    background-color: #ffd966;
-  }
-
-  .status-critical & {
-    background-color: #bf0016;
-  }
-
-  .status-not-reporting & {
-    background-color: #8e9494;
-  }
-`;
-
-export default class MapLocationTable extends Component {
+export default class LocationTable extends Component {
   static propTypes = {
     mapLocations: PropTypes.array
   };

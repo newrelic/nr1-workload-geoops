@@ -26,10 +26,13 @@ import { get, lowerCase, startCase } from 'lodash';
 
 import ViewMapQuery from './ViewMapQuery';
 import GeoMap from '../GeoMap';
-import { ToolbarWrapper } from '../../shared/components/Toolbar';
-import DetailPanel from '../../shared/components/DetailPanel';
-import MapLocationTable from '../../shared/components/MapLocationTable';
-import FilteredMapLocations from '../../shared/components/FilteredMapLocations';
+import {
+  ToolbarWrapper,
+  DetailPanel,
+  MapLocationTable,
+  FilteredMapLocations
+} from '../../shared/components';
+
 import LocationMetadata from './LocationMetadata';
 import composeEntitySummary from './EntitySummary';
 

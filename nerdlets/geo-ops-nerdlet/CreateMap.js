@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
-import GettingStartedSteps from '../shared/components/GettingStartedSteps';
-import JsonSchemaForm from '../shared/components/JsonSchemaForm';
+import {
+  GettingStarted,
+  JsonSchemaForm,
+  AccountDropdown
+} from '../shared/components';
 import DefineLocations from './DefineLocations';
 import MapLocationData from './MapLocationData';
 import GeoMap from './GeoMap';
@@ -18,8 +21,6 @@ import {
 
 import { getMap, writeMap } from '../shared/services/map';
 import { getMapLocations } from '../shared/services/map-location';
-
-import AccountDropdown from '../shared/components/AccountDropdown';
 
 const STEPS = [
   { order: 1, title: '1. Create a map' },
@@ -286,7 +287,7 @@ export default class CreateMap extends React.PureComponent {
             className="locations-table-grid-item"
             collapseGapAfter
           >
-            <GettingStartedSteps
+            <GettingStarted
               steps={STEPS}
               activeStep={activeStep}
               tempNavigation={step => this.changeActiveStep(step)}

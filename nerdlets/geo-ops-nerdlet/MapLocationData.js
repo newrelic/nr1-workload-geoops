@@ -5,9 +5,8 @@ import { cloneDeep, findIndex } from 'lodash';
 import { Stack, StackItem, Icon } from 'nr1';
 import styled from 'styled-components';
 
-import JsonSchemaForm from '../shared/components/JsonSchemaForm';
+import { JsonSchemaForm, EntityTypeAhead } from '../shared/components';
 import { FloatInput } from '../shared/components/react-jsonschema-form';
-import EntityTypeAhead from '../shared/components/EntityTypeAhead';
 
 import {
   MAP_LOCATION_UI_SCHEMA,
