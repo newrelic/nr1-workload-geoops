@@ -27,12 +27,12 @@ td[class*='status-'] {
       padding: 0;
     }
   }
-  
+
 
   .ic-Icon {
     position: relative;
     bottom: 4px;
-  } 
+  }
 
   thead {
     position: sticky;
@@ -54,7 +54,7 @@ td[class*='status-'] {
       cursor: pointer;
       background-color: #fafbfb;
     }
-    
+
     &:nth-child(2) {
       padding-right: 0;
       width: 40px;
@@ -75,7 +75,7 @@ td[class*='status-'] {
     background-repeat: no-repeat;
 
   }
-  
+
   .dropup span.caret {
     transform: rotate(180deg);
   }
@@ -87,7 +87,7 @@ td[class*='status-'] {
     display: inline-block;
     height: 25px;
     margin-left: 5px;
-    
+
     .dropdown {
       position: absolute;
       bottom: -9px;
@@ -104,27 +104,6 @@ td[class*='status-'] {
   .react-bootstrap-table-sort-order .caret {
     position: absolute;
     bottom: 2px;
-  }
-}
-
-.status-color-fill {
-  width: 8px;
-  height: calc(100% + 1px);
-
-  .status-ok & {
-    background-color: #11a600;
-  }
-
-  .status-warning & {
-    background-color: #ffd966;
-  }
-
-  .status-critical & {
-    background-color: #bf0016;
-  }
-
-  .status-not-reporting & {
-    background-color: #8E9494;
   }
 }
 
@@ -173,13 +152,13 @@ label.search-label {
 
     &:hover {
       box-shadow: 0 1px 0 0 #e3e4e4;
-      
+
       input:not(.u-unstyledInput):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(.AABKAC-wnd-TextField-input)::placeholder {
         color: #464e4e;
       }
     }
   }
-  
+
   input:not(.u-unstyledInput):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not(.AABKAC-wnd-TextField-input)::placeholder {
     color: #8e9494;
   }

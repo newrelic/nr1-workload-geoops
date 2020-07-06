@@ -134,7 +134,7 @@ export default class MapLocationFilesUpload extends React.Component {
 
             const data = get(bodyAsJson, pathToLocations, []);
 
-            // TO DO - loop through and validate every row
+            // TODO: loop through and validate every row
             // We can display these in a separate area/table or
             // add a column to display ones with errors for easy investigation/fixing by the user
             const first = data[0];

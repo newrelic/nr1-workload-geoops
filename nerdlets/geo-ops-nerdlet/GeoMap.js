@@ -222,7 +222,7 @@ export default class GeoMap extends Component {
               return null;
             }
 
-            // TO DO - Why are some strings and others numbers?
+            // TODO: Why are some strings and others numbers?
             // We need to sync-up and ensure we're appropriately converting these before they get to this component...
             if (typeof lat === 'string' || typeof lng === 'string') {
               lat = parseFloat(lat);

@@ -62,8 +62,7 @@ export default class MapLocationDistiller extends React.PureComponent {
     let mostCriticalEntity;
 
     if (mapLocationEntities.length > 0) {
-      // TO DO
-      // Does 'some' convert the object to an array first? If so, we should find a more performant way to check for values
+      // TODO: Does 'some' convert the object to an array first? If so, we should find a more performant way to check for values
       // Maybe we don't pass the mapped entities down and just an array
       // and we let this component build the map
       if (some(mapLocationEntities)) {

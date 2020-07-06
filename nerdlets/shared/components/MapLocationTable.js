@@ -1,9 +1,31 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import { Icon, Link } from 'nr1';
+
+const StatusColor = styled.div`
+  width: 8px;
+  height: calc(100% + 1px);
+
+  .status-ok & {
+    background-color: #11a600;
+  }
+
+  .status-warning & {
+    background-color: #ffd966;
+  }
+
+  .status-critical & {
+    background-color: #bf0016;
+  }
+
+  .status-not-reporting & {
+    background-color: #8e9494;
+  }
+`;
 
 export default class MapLocationTable extends PureComponent {
   static propTypes = {
@@ -16,7 +38,7 @@ export default class MapLocationTable extends PureComponent {
   };
 
   statusFormatter() {
-    return <div className="status-color-fill" />;
+    return <StatusColor />;
   }
 
   favoriteSortValue = (cell, row) => {

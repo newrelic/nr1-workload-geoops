@@ -31,8 +31,7 @@ const STEPS = [
  * Usage:
  * <CreateMap map={map} onMapChange={this.onMapChange} />
  *
- * TO DO:
- *   - A prop for where to pick-up at, i.e. - "startingStep={'create-map'}"
+ * TODO: A prop for where to pick-up at, i.e. - "startingStep={'create-map'}"
  */
 export default class CreateMap extends React.PureComponent {
   static propTypes = {
@@ -135,7 +134,7 @@ export default class CreateMap extends React.PureComponent {
   onAddEditMap = ({ data }) => {
     const { document } = data;
 
-    // TO DO - Expose error about adding/editing
+    // TODO: Expose error about adding/editing
 
     this.setState({ map: document }, () => {
       this.props.onMapChange({ map: document });
@@ -144,7 +143,7 @@ export default class CreateMap extends React.PureComponent {
   };
 
   onMapLocationWrite = ({ mapLocation }) => {
-    // TO DO - Handle errors from updating each
+    // TODO: Handle errors from updating each
     this.addOrUpdate({
       collectionName: 'mapLocations',
       item: mapLocation.data
@@ -230,7 +229,7 @@ export default class CreateMap extends React.PureComponent {
     if (nextStep) {
       this.setState({ activeStep: nextStep });
     } else {
-      // TO DO: Final? Change/bump state to viewing the map?
+      // TODO: Final? Change/bump state to viewing the map?
     }
   };
 

@@ -157,7 +157,7 @@ export default class ViewMapQuery extends React.PureComponent {
                                           );
                                         }
                                         /*
-                                          TO DO - When clicking on a map marker, AlertsReducer says 'entities' has changed
+                                          TODO: When clicking on a map marker, AlertsReducer says 'entities' has changed
                                           This causes a cascading re-render of everything below it
                                           How does 'entities' change without re-running any queries?
                                           Temporarily we're storing a copy in local state in AlertsReducer which "fixes" this

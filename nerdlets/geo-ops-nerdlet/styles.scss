@@ -15,8 +15,6 @@
 // Shared components
 @import '../shared/components/JsonSchemaForm.scss';
 @import '../shared/components/MapLocationTable.scss';
-@import '../shared/components/GettingStartedSteps.scss';
-@import '../shared/components/MapItem.scss';
 @import '../shared/components/DetailPanel.scss';
 
 // ==============================================================
@@ -126,4 +124,27 @@ p {
 
 [class*='style_empty-state'] {
   height: calc(100% - 32px);
+}
+
+[class*='wnd-InnerModal'] {
+  height: 100%;
+  background-color: #fff;
+}
+
+[class*='InnerModal-content'] {
+  [class*='Text--type-heading'] {
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000d0d;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  button {
+    margin-right: 8px;
+  }
 }

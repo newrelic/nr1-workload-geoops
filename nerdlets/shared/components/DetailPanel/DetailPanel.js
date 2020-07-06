@@ -15,7 +15,7 @@ import {
   Tooltip
 } from 'nr1';
 
-import { statusColor } from '../utils';
+import { statusColor } from '../../utils';
 
 const FeaturedChart = function({ map, mapLocation, openChartBuilder }) {
   const accountId = map.accountId;
@@ -24,7 +24,7 @@ const FeaturedChart = function({ map, mapLocation, openChartBuilder }) {
 
   return (
     <>
-      {/* TO DO - We don't have this data. We built the data fetching into <GeoMap> so it only queries for those points that are visible */}
+      {/* TODO: - We don't have this data. We built the data fetching into <GeoMap> so it only queries for those points that are visible */}
       {/* We would need to re-excute the query for _this_ MapLocation, or pull up the data fetching out of <GeoMap> */}
       {/* <Stack fullWidth className="detail-panel-featured-chart-header-container">
         <StackItem grow>
@@ -252,7 +252,7 @@ export default class DetailPanel extends React.PureComponent {
    Related Entities:
 
    Can look like:
-   
+
    {
       __typename: "DashboardEntity"
       accountId: 630060

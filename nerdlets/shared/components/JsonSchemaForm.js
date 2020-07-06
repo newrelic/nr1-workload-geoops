@@ -71,12 +71,7 @@ export default class JsonSchemaForm extends React.PureComponent {
       errors: []
     };
 
-    this.handleOnChange = this.handleOnChange.bind(this);
-    this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.handleOnError = this.handleOnError.bind(this);
-
     this.form = React.createRef();
-    this.submit = this.submit.bind(this);
   }
 
   async componentDidMount() {
@@ -138,7 +133,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     });
   }
 
-  handleOnChange({ formData }) {
+  handleOnChange = ({ formData }) => {
     const { onChange } = this.props;
 
     this.setState({ document: formData });
@@ -146,16 +141,16 @@ export default class JsonSchemaForm extends React.PureComponent {
     if (this.isFunc(onChange)) {
       onChange({ formData });
     }
-  }
+  };
 
-  async handleOnSubmit({ formData }) {
+  handleOnSubmit = async ({ formData }) => {
     const { writeDocument, defaultValues } = this.props;
 
     const { data, error } = await writeDocument({
       formData
     });
 
-    // TO DO - Can we rely on the response from the mutation to always be in data.nerdStorageWriteDocument?
+    // TODO: Can we rely on the response from the mutation to always be in data.nerdStorageWriteDocument?
 
     // Note: The mutation response from NerdStorage is different than fetching from NerdStorage
     // We wrap the response in document so that we gain some consistency in the way we access
@@ -170,19 +165,19 @@ export default class JsonSchemaForm extends React.PureComponent {
     this.setState({
       document: this.initializeForm({ defaultValues })
     });
-  }
+  };
 
-  handleOnError(errors) {
+  handleOnError = errors => {
     const { onError } = this.props;
 
     if (this.isFunc(onError)) {
       onError(errors);
     }
-  }
+  };
 
-  submit() {
+  submit = () => {
     this.form.current.submit();
-  }
+  };
 
   render() {
     const { children, schema, uiSchema, className } = this.props;
