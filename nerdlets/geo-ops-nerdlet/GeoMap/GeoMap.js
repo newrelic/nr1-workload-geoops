@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Stack, StackItem, Link, Icon, navigation } from 'nr1';
+import { Stack, Link, Icon, navigation } from 'nr1';
 import get from 'lodash.get';
 
-import { BatchNrql } from '../shared/components';
-import { generateIcon, statusColor } from '../shared/utils';
+import { BatchNrql } from '../../shared/components';
+import { generateIcon, statusColor } from '../../shared/utils';
+
+import {
+  MarkerPopupHeader,
+  StatusDotContainer,
+  TitleContainer,
+  ComparisonContainer,
+  PopupDescription
+} from './styles';
 
 export default class GeoMap extends Component {
   static propTypes = {
@@ -164,7 +172,7 @@ export default class GeoMap extends Component {
     });
 
     return (
-      <Link to={location} className="view-workload-button detail-pane-cta">
+      <Link to={location} className="view-workload-button">
         View in Workloads
         <Icon
           type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__SIZE_8}
@@ -243,40 +251,33 @@ export default class GeoMap extends Component {
                     }}
                     onMouseLeave={this.handlePopupMouseOut}
                   >
-                    <Stack
-                      className="marker-popup-header"
+                    <MarkerPopupHeader
                       directionType={Stack.DIRECTION_TYPE.HORIZONTAL}
                       fullWidth
                     >
-                      <StackItem className="marker-popup-status-dot-container">
+                      <StatusDotContainer>
                         <span
-                          className="marker-popup-status-dot"
                           style={{
                             backgroundColor: statusColor(mapLocation)
                           }}
                         />
-                      </StackItem>
-                      <StackItem className="marker-popup-title-container" grow>
-                        {/* <span className="marker-popup-title-label">
-                          Store:
-                        </span>{' '} */}
-                        <span className="marker-popup-title">
-                          {mapLocation.title}
-                        </span>
-                      </StackItem>{' '}
-                      <StackItem className="marker-popup-comparison-container">
-                        <span className="marker-popup-comparison">
+                      </StatusDotContainer>
+                      <TitleContainer grow>
+                        <span>{mapLocation.title}</span>
+                      </TitleContainer>{' '}
+                      <ComparisonContainer>
+                        <span>
                           {typeof markerComparisonNumber === 'number'
                             ? `${markerComparisonNumber.toFixed(2)}%`
                             : markerComparisonNumber}
                         </span>
-                      </StackItem>
-                    </Stack>
-                    <p className="marker-popup-description">
+                      </ComparisonContainer>
+                    </MarkerPopupHeader>
+                    <PopupDescription>
                       {mapLocation.location.description
                         ? mapLocation.location.description
                         : 'No description.'}
-                    </p>
+                    </PopupDescription>
                     {mapLocation && this.renderEntityLink(mapLocation)}
                   </div>
                 </Popup>

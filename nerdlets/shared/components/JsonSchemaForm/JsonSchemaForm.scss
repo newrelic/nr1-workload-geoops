@@ -61,6 +61,10 @@ form .form-group legend {
   position: relative;
 }
 
+.form-group #root {
+  background-color: transparent;
+}
+
 .get-started-step-contents-form-container {
   div[class*="-fillContainer"] {
     height: auto;

@@ -51,10 +51,7 @@ export default class Header extends React.PureComponent {
     });
 
     return (
-      <Link
-        to={location}
-        className="detail-pane-view-workload-button detail-pane-cta"
-      >
+      <Link to={location} className="detail-pane-view-workload-button">
         <Icon color="#007e8a" type={Icon.TYPE.INTERFACE__OPERATIONS__SHOW} />
         View in Workloads
       </Link>

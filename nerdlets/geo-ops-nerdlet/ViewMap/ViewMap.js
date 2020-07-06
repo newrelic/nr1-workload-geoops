@@ -25,7 +25,7 @@ import { EmptyState, Timeline } from '@newrelic/nr1-community';
 import { get, lowerCase, startCase } from 'lodash';
 
 import ViewMapQuery from './ViewMapQuery';
-import GeoMap from '../GeoMap';
+import GeoMap from '../GeoMap/GeoMap';
 import {
   ToolbarWrapper,
   DetailPanel,
@@ -33,7 +33,7 @@ import {
   FilteredMapLocations
 } from '../../shared/components';
 
-import LocationMetadata from './LocationMetadata';
+import LocationMetadata from './LocationMetadata/LocationMetadata';
 import composeEntitySummary from './EntitySummary';
 
 export default class ViewMap extends React.PureComponent {

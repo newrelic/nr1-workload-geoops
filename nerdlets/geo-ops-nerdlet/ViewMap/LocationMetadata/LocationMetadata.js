@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Stack, StackItem } from 'nr1';
+import { Stack } from 'nr1';
+
+import {
+  MetadataItemContainer,
+  MetadataItemKey,
+  MetadataItemValue
+} from './styles';
 
 const LocationMetadata = ({ activeMapLocation }) => {
   if (!activeMapLocation) return '';
@@ -10,43 +16,33 @@ const LocationMetadata = ({ activeMapLocation }) => {
   const items = keys.map(key => {
     if (typeof activeMapLocation[key] !== 'object') {
       return (
-        <li key={key} className="detail-panel-metadata-item">
+        <MetadataItemContainer key={key}>
           <Stack fullWidth>
-            <StackItem className="detail-panel-metadata-item-key" title={key}>
-              {key}
-            </StackItem>
-            <StackItem
-              grow
-              className="detail-panel-metadata-item-value"
-              title={activeMapLocation[key]}
-            >
+            <MetadataItemKey title={key}>{key}</MetadataItemKey>
+            <MetadataItemValue grow title={activeMapLocation[key]}>
               {activeMapLocation[key]}
-            </StackItem>
+            </MetadataItemValue>
           </Stack>
-        </li>
+        </MetadataItemContainer>
       );
     } else if (key === 'location') {
       const locationKeys = Object.keys(activeMapLocation[key]);
 
       return locationKeys.map(locationKey => {
         return (
-          <li key={locationKey} className="detail-panel-metadata-item">
+          <MetadataItemContainer key={locationKey}>
             <Stack fullWidth>
-              <StackItem
-                className="detail-panel-metadata-item-key"
-                title={locationKey}
-              >
+              <MetadataItemKey title={locationKey}>
                 {locationKey}
-              </StackItem>
-              <StackItem
+              </MetadataItemKey>
+              <MetadataItemValue
                 grow
-                className="detail-panel-metadata-item-value"
                 title={activeMapLocation[key][locationKey]}
               >
                 {activeMapLocation[key][locationKey]}
-              </StackItem>
+              </MetadataItemValue>
             </Stack>
-          </li>
+          </MetadataItemContainer>
         );
       });
     } else {

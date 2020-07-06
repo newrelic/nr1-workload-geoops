@@ -9,14 +9,12 @@
 @import './nrds.scss';
 
 // Main (UI/View) pages
-@import './CreateMap/CreateMap.scss';
 @import './ViewMap/ViewMap.scss';
-@import './ViewMap/LocationMetadata.scss';
+@import './ViewMap/Timeline.scss';
 
 // Shared components
 @import '../shared/components/JsonSchemaForm/JsonSchemaForm.scss';
 @import '../shared/components/MapLocationTable/MapLocationTable.scss';
-@import '../shared/components/DetailPanel/DetailPanel.scss';
 
 // ==============================================================
 // Uitility Classes

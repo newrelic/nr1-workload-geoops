@@ -19,7 +19,8 @@ import {
   LabelGray,
   Label,
   Description,
-  ButtonsContainer
+  ButtonsContainer,
+  Input
 } from './styles';
 
 export default class MapLocationFilesUpload extends React.Component {

@@ -5,7 +5,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import { Icon } from 'nr1';
 
-import { StatusColor } from './styles';
+import { StatusColor, LocationTableContainer } from './styles';
 
 export default class LocationTable extends Component {
   static propTypes = {
@@ -93,10 +93,10 @@ export default class LocationTable extends Component {
             search
           >
             {props => (
-              <div className="location-table">
+              <LocationTableContainer>
                 <SearchBar {...props.searchProps} />
                 <BootstrapTable {...props.baseProps} bordered={false} />
-              </div>
+              </LocationTableContainer>
             )}
           </ToolkitProvider>
         )}

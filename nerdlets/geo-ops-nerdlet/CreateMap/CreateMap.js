@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Grid, GridItem, Stack, StackItem } from 'nr1';
+import { Button, Grid, Stack, StackItem } from 'nr1';
 import {
   GettingStarted,
   JsonSchemaForm,
@@ -9,7 +9,7 @@ import {
 } from '../../shared/components';
 import DefineLocations from '../DefineLocations/DefineLocations';
 import MapLocationData from '../MapLocationData/MapLocationData';
-import GeoMap from '../GeoMap';
+import GeoMap from '../GeoMap/GeoMap';
 
 import { nerdStorageRequest } from '../../shared/utils';
 
@@ -21,6 +21,18 @@ import {
 
 import { getMap, writeMap } from '../../shared/services/map';
 import { getMapLocations } from '../../shared/services/map-location';
+
+import {
+  StyledGrid,
+  AllMapsButton,
+  LocationsTable,
+  MapContainer,
+  StepContainer,
+  FormContainer,
+  FooterContainer,
+  FooterButtonsContainer,
+  StyledButton
+} from './styles';
 
 const STEPS = [
   { order: 1, title: '1. Create a map' },
@@ -268,25 +280,19 @@ export default class CreateMap extends React.PureComponent {
     return (
       <>
         {maps.length > 0 && (
-          <Button
+          <AllMapsButton
+            className="u-unstyledButton"
             onClick={() => navigation.router({ to: 'mapList' })}
             type={Button.TYPE.PRIMARY}
             iconType={Button.ICON_TYPE.INTERFACE__OPERATIONS__GROUP}
-            className="temporary-all-maps-btn"
           >
             View all maps
-          </Button>
+          </AllMapsButton>
         )}
-        <Grid
-          className="primary-grid getting-started-primary-grid"
+        <StyledGrid
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
-          <GridItem
-            columnSpan={6}
-            fullHeight
-            className="locations-table-grid-item"
-            collapseGapAfter
-          >
+          <LocationsTable columnSpan={6} fullHeight collapseGapAfter>
             <GettingStarted
               steps={STEPS}
               activeStep={activeStep}
@@ -294,16 +300,14 @@ export default class CreateMap extends React.PureComponent {
             />
 
             {activeStep.order === 1 && (
-              <Stack
+              <StepContainer
                 verticalType={Stack.HORIZONTAL_TYPE.CENTER}
-                className="get-started-step-contents create-map"
+                className="create-map"
               >
-                <StackItem className="get-started-step-contents-header-container">
-                  <h1 className="get-started-step-contents-header">
-                    Create a map
-                  </h1>
+                <StackItem>
+                  <h1>Create a map</h1>
                 </StackItem>
-                <StackItem className="get-started-step-contents-form-container">
+                <FormContainer>
                   <JsonSchemaForm
                     ref={this.createMapForm}
                     schema={MAP_JSON_SCHEMA}
@@ -319,7 +323,6 @@ export default class CreateMap extends React.PureComponent {
                       })
                     }
                     onWrite={this.onAddEditMap}
-                    // onError={errors => console.log('Form errors: ', errors)}
                     onChange={({ formData }) => {
                       if (formData.zoom) {
                         this.setState({ mapZoomLevel: formData.zoom });
@@ -330,11 +333,10 @@ export default class CreateMap extends React.PureComponent {
                       }
                     }}
                   />
-                </StackItem>
-                <StackItem className="get-started-step-contents-CTA-container">
-                  <Stack
+                </FormContainer>
+                <FooterContainer>
+                  <FooterButtonsContainer
                     verticalType={Stack.VERTICAL_TYPE.CENTER}
-                    className="get-started-step-contents-CTAs"
                   >
                     <StackItem>
                       <Button
@@ -346,34 +348,28 @@ export default class CreateMap extends React.PureComponent {
                       </Button>
                     </StackItem>
                     <StackItem>
-                      <Button
+                      <StyledButton
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
                         onClick={() => this.createMapForm.current.submit()}
                         iconType={
                           Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT
                         }
-                        className="getting-started-continue-button"
                       >
                         Continue
-                      </Button>
+                      </StyledButton>
                     </StackItem>
-                  </Stack>
-                </StackItem>
-              </Stack>
+                  </FooterButtonsContainer>
+                </FooterContainer>
+              </StepContainer>
             )}
 
             {activeStep.order === 2 && map && (
-              <Stack
-                verticalType={Stack.HORIZONTAL_TYPE.CENTER}
-                className="get-started-step-contents step-define-locations"
-              >
-                <StackItem className="get-started-step-contents-header-container">
-                  <h1 className="get-started-step-contents-header">
-                    Define Locations
-                  </h1>
+              <StepContainer verticalType={Stack.HORIZONTAL_TYPE.CENTER}>
+                <StackItem>
+                  <h1>Define Locations</h1>
                 </StackItem>
-                <StackItem className="get-started-step-contents-form-container">
+                <FormContainer>
                   <DefineLocations
                     map={map}
                     onMapLocationWrite={this.onMapLocationWrite}
@@ -382,11 +378,10 @@ export default class CreateMap extends React.PureComponent {
                     mapLocationsLoadingErrors={mapLocationsLoadingErrors}
                     selectedLatLng={selectedLatLng}
                   />
-                </StackItem>
-                <StackItem className="get-started-step-contents-CTA-container">
-                  <Stack
+                </FormContainer>
+                <FooterContainer>
+                  <FooterButtonsContainer
                     verticalType={Stack.VERTICAL_TYPE.CENTER}
-                    className="get-started-step-contents-CTAs"
                   >
                     <StackItem>
                       <Button
@@ -401,34 +396,28 @@ export default class CreateMap extends React.PureComponent {
                       </Button>
                     </StackItem>
                     <StackItem>
-                      <Button
+                      <StyledButton
                         sizeType={Button.SIZE_TYPE.LARGE}
                         type={Button.TYPE.PRIMARY}
                         onClick={this.nextStep}
                         iconType={
                           Button.ICON_TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT
                         }
-                        className="getting-started-continue-button"
                       >
                         Continue
-                      </Button>
+                      </StyledButton>
                     </StackItem>
-                  </Stack>
-                </StackItem>
-              </Stack>
+                  </FooterButtonsContainer>
+                </FooterContainer>
+              </StepContainer>
             )}
 
             {activeStep.order === 3 && (
-              <Stack
-                verticalType={Stack.HORIZONTAL_TYPE.CENTER}
-                className="get-started-step-contents"
-              >
-                <StackItem className="get-started-step-contents-header-container">
-                  <h1 className="get-started-step-contents-header">
-                    Map entities to locations
-                  </h1>
+              <StepContainer verticalType={Stack.HORIZONTAL_TYPE.CENTER}>
+                <StackItem>
+                  <h1>Map entities to locations</h1>
                 </StackItem>
-                <StackItem className="get-started-step-contents-form-container">
+                <FormContainer>
                   <MapLocationData
                     accountId={accountId}
                     map={map}
@@ -437,11 +426,10 @@ export default class CreateMap extends React.PureComponent {
                     mapLocationsLoadingErrors={mapLocationsLoadingErrors}
                     onMapLocationWrite={this.onMapLocationWrite}
                   />
-                </StackItem>
-                <StackItem className="get-started-step-contents-CTA-container">
-                  <Stack
+                </FormContainer>
+                <FooterContainer>
+                  <FooterButtonsContainer
                     verticalType={Stack.VERTICAL_TYPE.CENTER}
-                    className="get-started-step-contents-CTAs"
                   >
                     <StackItem>
                       <Button
@@ -469,12 +457,12 @@ export default class CreateMap extends React.PureComponent {
                         View Map
                       </Button>
                     </StackItem>
-                  </Stack>
-                </StackItem>
-              </Stack>
+                  </FooterButtonsContainer>
+                </FooterContainer>
+              </StepContainer>
             )}
-          </GridItem>
-          <GridItem className="primary-content-container" columnSpan={6}>
+          </LocationsTable>
+          <MapContainer columnSpan={6}>
             <GeoMap
               map={map}
               mapLocations={mapLocations}
@@ -484,8 +472,8 @@ export default class CreateMap extends React.PureComponent {
               center={mapCenter}
               zoom={mapZoomLevel}
             />
-          </GridItem>
-        </Grid>
+          </MapContainer>
+        </StyledGrid>
       </>
     );
   }

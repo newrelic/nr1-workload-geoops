@@ -31,7 +31,8 @@ import {
   EntityCheck,
   EntityDescription,
   Button,
-  StyledJsonSchemaForm
+  StyledJsonSchemaForm,
+  MapEntitiesContainer
 } from './styles';
 
 export default class MapLocationData extends React.Component {
@@ -82,8 +83,6 @@ export default class MapLocationData extends React.Component {
       schema,
       uiSchema
     };
-
-    this.onWrite = this.onWrite.bind(this);
   }
 
   componentDidMount() {
@@ -201,7 +200,7 @@ export default class MapLocationData extends React.Component {
           </p>
         </Description>
 
-        <div>
+        <MapEntitiesContainer>
           <MapEntitiesHeader fullHeight>
             <ProgressBarContainer>
               <ProgressBar>
@@ -300,7 +299,7 @@ export default class MapLocationData extends React.Component {
               onWrite={this.onWrite}
             />
           )}
-        </div>
+        </MapEntitiesContainer>
       </>
     );
   }

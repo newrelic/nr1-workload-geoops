@@ -11,6 +11,7 @@ export const FileUploadContainer = styled.div`
 `;
 
 export const ManualDescription = styled.div`
+  width: 100%;
   h4 {
     text-align: center;
     margin-bottom: 4px;
@@ -31,6 +32,7 @@ export const OrLine = styled.div`
   border: none;
   overflow: visible;
   border-top: 1px solid #e3e4e4;
+  width: 100%;
 
   &:before {
     content: 'or';

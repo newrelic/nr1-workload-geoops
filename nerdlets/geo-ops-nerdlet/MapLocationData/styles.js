@@ -4,6 +4,7 @@ import { Stack, StackItem } from 'nr1';
 import { JsonSchemaForm } from '../../shared/components';
 
 export const Description = styled.div`
+  width: 100%;
   h4 {
     text-align: center;
     margin-bottom: 4px;
@@ -15,9 +16,14 @@ export const Description = styled.div`
   }
 `;
 
+export const MapEntitiesContainer = styled.div`
+  width: 100%;
+`;
+
 export const MapEntitiesHeader = styled(Stack)`
   display: flex;
   justify-content: space-between !important;
+  align-items: normal !important;
   background-color: #f4f5f5;
   border-radius: 4px 4px 0 0;
   width: 100%;
