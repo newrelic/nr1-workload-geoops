@@ -3,6 +3,10 @@ import { StackItem } from 'nr1';
 
 export const MetadataItemContainer = styled.li`
   margin: 0;
+  display: block;
+  border-bottom: 1px dotted #edeeee;
+  padding: 8px 16px;
+  list-style-type: none;
 `;
 
 export const MetadataItemKey = styled(StackItem)`
