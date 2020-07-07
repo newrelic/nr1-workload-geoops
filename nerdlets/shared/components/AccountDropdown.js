@@ -17,8 +17,6 @@ export default class AccountDropdown extends React.Component {
       accounts: null,
       selected: null
     };
-
-    this.select = this.select.bind(this);
   }
 
   async componentDidMount() {
@@ -67,8 +65,7 @@ export default class AccountDropdown extends React.Component {
       const account = accounts.find(i => i.id === accountId);
 
       if (!account) {
-        // TO DO
-        // Set a default that warns about "This map is associated to an unknown account"
+        // TODO: Set a default that warns about "This map is associated to an unknown account"
       }
 
       if (account) {
@@ -82,7 +79,7 @@ export default class AccountDropdown extends React.Component {
     this.handleLoadAccountsResponse({ accounts, errors });
   }
 
-  select(account) {
+  select = account => {
     this.setState(state => {
       if (!state.selected || state.selected.id !== account.id) {
         return {
@@ -93,7 +90,7 @@ export default class AccountDropdown extends React.Component {
 
       return {};
     });
-  }
+  };
 
   render() {
     const { className, style } = this.props;

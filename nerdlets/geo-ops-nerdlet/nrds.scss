@@ -318,8 +318,7 @@ h3:not(.u-unstyledH3),
   line-height: 28px;
 }
 
-h4:not(.u-unstyledH4),
-[class*="Text--type-heading-4"] {
+h4:not(.u-unstyledH4) {
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -353,7 +352,7 @@ small {
   font-weight: 600;
 }
 
-p:not(.u-unstyledP) {
+p {
     font-size: 14px;
     line-height: 20px;
     color: #464E4E;

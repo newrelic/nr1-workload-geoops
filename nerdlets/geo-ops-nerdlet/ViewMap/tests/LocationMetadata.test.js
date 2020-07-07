@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Stack, StackItem } from 'nr1';
-import LocationMetadata from '../LocationMetadata';
+import LocationMetadata from '../LocationMetadata/LocationMetadata';
 import { locationExample } from './mocks';
 import '../../../setupTests';
 
