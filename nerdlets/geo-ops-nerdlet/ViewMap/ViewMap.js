@@ -20,8 +20,9 @@ import {
 
 import RightToolbar from './Toolbars/RightToolbar';
 import LeftToolbar from './Toolbars/LeftToolbar';
+import Timeline from './Timeline';
 
-import { EmptyState, Timeline } from '@newrelic/nr1-community';
+import { EmptyState } from '@newrelic/nr1-community';
 import { get, lowerCase, startCase } from 'lodash';
 
 import ViewMapQuery from './ViewMapQuery';
@@ -331,11 +332,8 @@ export default class ViewMap extends React.PureComponent {
                             label="Recent incidents"
                             className="no-padding"
                           >
-                            {activeMapLocation ? (
-                              <Timeline activeMapLocation={activeMapLocation} />
-                            ) : (
-                              <></>
-                            )}
+                            {console.log('ok')}
+                            <Timeline activeMapLocation={activeMapLocation} />
                           </TabsItem>
                           <TabsItem
                             value="tab-2"
