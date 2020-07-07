@@ -9,7 +9,7 @@ import { NerdGraphError } from '@newrelic/nr1-community';
 import { LIST_ENTITY_TYPES, ENTITY_SEARCH_BY_TYPE } from '../services/queries';
 
 /*
- * TO DO - Turn entity selection dropdown into a searchable multi-select
+ * TODO: Turn entity selection dropdown into a searchable multi-select
  */
 export default class EntitySearchFormInput extends React.PureComponent {
   static propTypes = {
@@ -37,9 +37,6 @@ export default class EntitySearchFormInput extends React.PureComponent {
       loadingEntities: false,
       loadingEntitiesErrors: null
     };
-
-    this.onSelectEntityType = this.onSelectEntityType.bind(this);
-    this.onSelectEntity = this.onSelectEntity.bind(this);
   }
 
   componentDidMount() {
@@ -122,7 +119,7 @@ export default class EntitySearchFormInput extends React.PureComponent {
     );
   }
 
-  onSelectEntityType(e) {
+  onSelectEntityType = e => {
     const { entityTypes } = this.state;
     const value = e.target.value;
 
@@ -131,12 +128,12 @@ export default class EntitySearchFormInput extends React.PureComponent {
     );
 
     this.setState({ selectedEntityType });
-  }
+  };
 
-  onSelectEntity(e) {
+  onSelectEntity = e => {
     const selectedEntityGuid = e.target.value;
     this.onChange({ selectedEntityGuid });
-  }
+  };
 
   render() {
     const {

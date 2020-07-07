@@ -6,14 +6,6 @@ import { Icon, NerdletStateContext } from 'nr1';
 // https://docs.newrelic.com/docs/new-relic-programmable-platform-introduction
 
 export default class RecentIncidentsNerdlet extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      //
-    };
-  }
-
   iconType(alertSeverity) {
     switch (alertSeverity) {
       case 'CRITICAL':

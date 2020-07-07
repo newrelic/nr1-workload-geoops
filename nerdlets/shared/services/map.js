@@ -8,7 +8,7 @@ import { deleteMapLocationCollection } from './map-location';
 import { MAP_COLLECTION_ID } from '../constants';
 
 /*
- * TO DO:
+ * TODO:
  *  1. Detect a lot of accounts, greater than... 50, and do something different in the UI
  *  2. Add accountId to map object
  */
@@ -59,8 +59,7 @@ export const writeMap = ({ accountId, documentId, document }) => {
 
   document.accountId = accountId;
 
-  // TO DO
-  // Add method to validate the contents of the map object
+  // TODO: Add method to validate the contents of the map object
 
   return AccountStorageMutation.mutate({
     accountId,

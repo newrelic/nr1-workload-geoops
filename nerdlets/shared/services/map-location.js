@@ -76,8 +76,7 @@ export const writeMapLocation = ({ accountId, document }) => {
     document.guid = uuid();
   }
 
-  // TO DO
-  // Add method to validate the contents of the MapLocation object
+  // TODO: Add method to validate the contents of the MapLocation object
 
   return AccountStorageMutation.mutate({
     accountId,

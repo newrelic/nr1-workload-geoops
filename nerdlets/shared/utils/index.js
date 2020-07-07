@@ -4,7 +4,7 @@ import L from 'leaflet';
 import get from 'lodash.get';
 
 /*
- * TO DO - This pattern of making a request per account to NerdStorage is likely
+ * TODO: This pattern of making a request per account to NerdStorage is likely
  * common in 1st party apps, we should look at how they do it and if we can utilize similar methodology.
  */
 export const nerdStorageRequest = async function({ service, params }) {
