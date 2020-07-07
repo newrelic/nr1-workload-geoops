@@ -31,7 +31,6 @@ export const LocationsTable = styled(GridItem)`
 `;
 
 export const MapContainer = styled(GridItem)`
-  /* width: 500px; */
   width: 100%;
   height: 100%;
 `;
