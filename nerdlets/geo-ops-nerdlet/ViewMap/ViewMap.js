@@ -29,8 +29,7 @@ import {
   ToolbarWrapper,
   DetailPanel,
   MapLocationTable,
-  FilteredMapLocations,
-  DetailPanelItem
+  FilteredMapLocations
 } from '../../shared/components';
 
 import LocationMetadata from './LocationMetadata/LocationMetadata';
@@ -41,7 +40,8 @@ import {
   DetailsPanelContainer,
   PrimaryContentContainer,
   LocationsTableContainer,
-  AlertWarning
+  AlertWarning,
+  DetailPanelItem
 } from './styles';
 
 export default class ViewMap extends React.PureComponent {
