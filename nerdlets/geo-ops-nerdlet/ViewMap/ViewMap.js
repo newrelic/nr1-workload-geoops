@@ -15,7 +15,8 @@ import {
   TableRowCell,
   EntityTitleTableRowCell,
   AccountStorageMutation,
-  AccountStorageQuery
+  AccountStorageQuery,
+  Spinner
 } from 'nr1';
 
 import RightToolbar from './Toolbars/RightToolbar';
@@ -196,11 +197,10 @@ export default class ViewMap extends React.PureComponent {
       <>
         {map && (
           <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
-            {({ mapLocations, entities }) => {
+            {({ mapLocations, entities, loading }) => {
               const hasMapLocations = mapLocations && mapLocations.length > 0;
               const hasEntities = entities && entities.length > 0;
-
-              if (!hasMapLocations) {
+              if (!hasMapLocations && !loading) {
                 return (
                   <EmptyState
                     heading="No map locations found"
@@ -214,6 +214,10 @@ export default class ViewMap extends React.PureComponent {
                     }}
                   />
                 );
+              }
+
+              if (loading) {
+                return <Spinner />;
               }
 
               return (
@@ -332,7 +336,6 @@ export default class ViewMap extends React.PureComponent {
                             label="Recent incidents"
                             className="no-padding"
                           >
-                            {console.log('ok')}
                             <Timeline activeMapLocation={activeMapLocation} />
                           </TabsItem>
                           <TabsItem

@@ -16,7 +16,8 @@ export default class MapLocationDistiller extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      mapLocations: []
+      mapLocations: [],
+      loading: true
     };
   }
 
@@ -124,13 +125,6 @@ export default class MapLocationDistiller extends React.PureComponent {
         return previousValue;
       }
 
-      // if (!document.guid) {
-      //   console.warn('Map Location missing guid');
-      //   console.debug(document);
-      //   return previousValue;
-      // }
-
-      // Last incident is actually the entity that has the current worst alertSeverity
       const mostCriticalEntity = this.entityReducer(document);
       let mostRecentAlertViolation = null;
       let lastIncidentTime = 'N/A';
@@ -152,12 +146,16 @@ export default class MapLocationDistiller extends React.PureComponent {
       return previousValue;
     }, []);
     this.setState({ mapLocations: transformed });
+
+    if (this.state.mapLocations.length > 0) {
+      this.setState({ loading: false });
+    }
   }
 
   render() {
     const { children } = this.props;
-    const { mapLocations } = this.state;
+    const { mapLocations, loading } = this.state;
 
-    return children({ data: mapLocations });
+    return children({ data: mapLocations, loading });
   }
 }
