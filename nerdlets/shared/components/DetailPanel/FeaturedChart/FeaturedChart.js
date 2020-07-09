@@ -3,9 +3,15 @@ import React from 'react';
 
 import get from 'lodash.get';
 
-import { SparklineChart, Stack, StackItem } from 'nr1';
+import { StackItem } from 'nr1';
 
-import { H6, StyledTooltip } from './styles';
+import {
+  H6,
+  StyledTooltip,
+  StyledStack,
+  StyledSparklineChart,
+  ChartStack
+} from './styles';
 
 const FeaturedChart = ({ map, mapLocation, openChartBuilder }) => {
   const accountId = map.accountId;
@@ -31,7 +37,7 @@ const FeaturedChart = ({ map, mapLocation, openChartBuilder }) => {
       </Stack> */}
       {accountId && query && (
         <>
-          <Stack fullWidth>
+          <StyledStack fullWidth>
             <StackItem grow>
               <H6>Location query</H6>
             </StackItem>
@@ -43,8 +49,12 @@ const FeaturedChart = ({ map, mapLocation, openChartBuilder }) => {
                 </span>
               </StyledTooltip>
             </StackItem>
-          </Stack>
-          <SparklineChart accountId={accountId} query={query} />
+          </StyledStack>
+          <ChartStack fullWidth>
+            <StackItem>
+              <StyledSparklineChart accountId={accountId} query={query} />
+            </StackItem>
+          </ChartStack>
         </>
       )}
     </>
