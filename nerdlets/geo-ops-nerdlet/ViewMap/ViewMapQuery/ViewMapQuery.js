@@ -98,7 +98,6 @@ export default class ViewMapQuery extends React.PureComponent {
                        * Until that exists, we load _ALL_ workloads for a given Account
                        * and then filter down to the set we care about
                        */
-
                       // 3. Workloads and associated entities
                       return (
                         <NerdGraphQuery
@@ -145,16 +144,11 @@ export default class ViewMapQuery extends React.PureComponent {
                                       begin_time={begin_time}
                                       end_time={end_time}
                                     >
-                                      {({ loading, error, data: entities }) => {
-                                        if (loading) {
-                                          return (
-                                            <>
-                                              {/* <h2>Loading entity Alerts</h2> */}
-                                              <Spinner />
-                                            </>
-                                          );
-                                        }
-
+                                      {({
+                                        loading,
+                                        error,
+                                        data: entities = []
+                                      }) => {
                                         if (error) {
                                           return (
                                             <NerdGraphError error={error} />
@@ -166,6 +160,7 @@ export default class ViewMapQuery extends React.PureComponent {
                                           How does 'entities' change without re-running any queries?
                                           Temporarily we're storing a copy in local state in AlertsReducer which "fixes" this
                                         */
+
                                         return (
                                           <AlertsReducer
                                             mapLocations={mapLocations}
@@ -173,6 +168,7 @@ export default class ViewMapQuery extends React.PureComponent {
                                             workloadToEntityGuidsLookup={
                                               workloadToEntityGuidsLookup
                                             }
+                                            loading={loading}
                                           >
                                             {({
                                               mapLocations,
@@ -190,13 +186,14 @@ export default class ViewMapQuery extends React.PureComponent {
                                                   >
                                                     {/* Note: we have multiple variables named mapLocations scoped differently */}
                                                     {({
-                                                      data: mapLocations
+                                                      data: mapLocations,
+                                                      loading
                                                     }) => {
-                                                      // console.log(mapLocations);
                                                       return children({
                                                         mapLocations,
                                                         entities,
-                                                        workloadToEntityGuidsLookup
+                                                        workloadToEntityGuidsLookup,
+                                                        loading
                                                       });
                                                     }}
                                                   </MapLocationDistiller>

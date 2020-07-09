@@ -14,13 +14,15 @@ import {
   TableRowCell,
   EntityTitleTableRowCell,
   AccountStorageMutation,
-  AccountStorageQuery
+  AccountStorageQuery,
+  Spinner
 } from 'nr1';
 
 import RightToolbar from './Toolbars/RightToolbar';
 import LeftToolbar from './Toolbars/LeftToolbar';
+import Timeline from './Timeline/Timeline';
 
-import { EmptyState, Timeline } from '@newrelic/nr1-community';
+import { EmptyState } from '@newrelic/nr1-community';
 import { get, lowerCase, startCase } from 'lodash';
 
 import ViewMapQuery from './ViewMapQuery/ViewMapQuery';
@@ -206,11 +208,10 @@ export default class ViewMap extends React.PureComponent {
       <>
         {map && (
           <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
-            {({ mapLocations, entities }) => {
+            {({ mapLocations, entities, loading }) => {
               const hasMapLocations = mapLocations && mapLocations.length > 0;
               const hasEntities = entities && entities.length > 0;
-
-              if (!hasMapLocations) {
+              if (!hasMapLocations && !loading) {
                 return (
                   <EmptyState
                     heading="No map locations found"
@@ -224,6 +225,10 @@ export default class ViewMap extends React.PureComponent {
                     }}
                   />
                 );
+              }
+
+              if (loading) {
+                return <Spinner />;
               }
 
               return (
@@ -338,11 +343,7 @@ export default class ViewMap extends React.PureComponent {
                             label="Recent incidents"
                             className="no-padding"
                           >
-                            {activeMapLocation ? (
-                              <Timeline activeMapLocation={activeMapLocation} />
-                            ) : (
-                              <></>
-                            )}
+                            <Timeline activeMapLocation={activeMapLocation} />
                           </TabsItem>
                           <TabsItem
                             value="tab-2"

@@ -126,6 +126,7 @@ export default class AlertableEntitiesByGuidsQuery extends React.PureComponent {
                 //   'User did not supply a begin/end time via the Time Picker'
                 // );
               }
+
               const query = getEntitiesByGuidsQuery(variables);
 
               return (

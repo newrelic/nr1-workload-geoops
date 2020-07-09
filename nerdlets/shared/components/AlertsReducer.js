@@ -9,7 +9,8 @@ export default class AlertsReducer extends React.PureComponent {
     children: PropTypes.func,
     mapLocations: PropTypes.array,
     entities: PropTypes.array,
-    workloadToEntityGuidsLookup: PropTypes.object
+    workloadToEntityGuidsLookup: PropTypes.object,
+    loading: PropTypes.bool
   };
 
   constructor(props) {
@@ -21,11 +22,17 @@ export default class AlertsReducer extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.reduce();
+    if (!this.props.loading) {
+      this.reduce();
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.mapLocations !== this.props.mapLocations) {
+    if (
+      (prevProps.mapLocations !== this.props.mapLocations ||
+        prevProps.entities !== this.props.entities) &&
+      !this.props.loading
+    ) {
       this.reduce();
     }
   }
@@ -86,13 +93,11 @@ export default class AlertsReducer extends React.PureComponent {
             const workloadEntityGuids =
               workloadToEntityGuidsLookup[currentValue.guid];
 
-            // console.log(workloadEntityGuids);
             if (workloadEntityGuids) {
               // For each entity on a workload, pull back the entity
               const workloadEntities = workloadEntityGuids
                 .map(guid => {
                   const entity = entitiesMap[guid];
-
                   if (!entity) {
                     /* eslint-disable no-console */
                     console.warn(
