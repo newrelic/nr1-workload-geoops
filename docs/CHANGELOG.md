@@ -1,3 +1,31 @@
+# [1.4.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.3.0...v1.4.0) (2020-07-09)
+
+
+### Bug Fixes
+
+* chart size fixed ([78ffd10](https://github.com/newrelic/nr1-workload-geoops/commit/78ffd10f675fd498b8b5d4d198159fa1199d21ac))
+* react versions reverted ([03485e2](https://github.com/newrelic/nr1-workload-geoops/commit/03485e2290203fb5154aef2ee1563180b74cb9e6))
+* release workflow ([c77cc58](https://github.com/newrelic/nr1-workload-geoops/commit/c77cc587e9f4e6f16497526f9c635954e014c42d))
+* resolve release error ([519c5f6](https://github.com/newrelic/nr1-workload-geoops/commit/519c5f680eddd617d8a477c6c935ed98aab62bbf))
+* sample-data-west reverted ([68816d3](https://github.com/newrelic/nr1-workload-geoops/commit/68816d32e0937d2f1c1fa7fb45d39208393da9d4))
+* Trigger release and changelog generation (via GH Actions) ([791ed49](https://github.com/newrelic/nr1-workload-geoops/commit/791ed4993b4df4215125407dadb42ecf0a1f6ee0))
+* wrong import fixed ([40c1a38](https://github.com/newrelic/nr1-workload-geoops/commit/40c1a38c43310d5be2f3f50db14169bc07440fcb))
+
+
+### Features
+
+* components and css refactor ([30de2e1](https://github.com/newrelic/nr1-workload-geoops/commit/30de2e1cebc2bee034e3f56b251d5a6e57db79fc))
+* components and css refactor ([b143f54](https://github.com/newrelic/nr1-workload-geoops/commit/b143f54f1afed8378bcf787376de157fb5e15e48))
+* components and css refactor ([0cf0368](https://github.com/newrelic/nr1-workload-geoops/commit/0cf036848054096c3c979224fd36410528aa7043))
+* components and css refactor ([6e40cc2](https://github.com/newrelic/nr1-workload-geoops/commit/6e40cc217b65bdcc62af47e737645b27933a2b34))
+* components and css refactor ([1ecd4a0](https://github.com/newrelic/nr1-workload-geoops/commit/1ecd4a0cd37b5c4b7984137ddd8a842b2d6f207c))
+* components and css refactor ([8f7f0d3](https://github.com/newrelic/nr1-workload-geoops/commit/8f7f0d3ab74c4639b81d3bc06b7cd257f19dee54))
+* components and css refactor ([a2b2f19](https://github.com/newrelic/nr1-workload-geoops/commit/a2b2f19f7d8181a7c43431e330259fbfc949492d))
+* components and css refactor ([f1b511b](https://github.com/newrelic/nr1-workload-geoops/commit/f1b511ba30ab355d49b3795a18e3b9d7447a2947))
+* components and css refactor ([6f502ad](https://github.com/newrelic/nr1-workload-geoops/commit/6f502adcb8c0a857099c2421886388b7619911ab))
+* components and css refactor ([9758829](https://github.com/newrelic/nr1-workload-geoops/commit/9758829356cb28a17b7d4de0c185248d325e9062))
+* styled-components introduced ([e8fe1a7](https://github.com/newrelic/nr1-workload-geoops/commit/e8fe1a7a2a8246bb66c069fcab3d8861296adc82))
+
 # [1.3.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.2.1...v1.3.0) (2020-07-06)
 
 
