@@ -80,7 +80,7 @@ export default class BatchNrql extends React.PureComponent {
     chunks.forEach(chunk => {
       const queries = chunk.join('\n');
 
-      // TO DO - Somewhere in here we have an opportunity to create a unique list of queries
+      // TODO: Somewhere in here we have an opportunity to create a unique list of queries
       // so we don't duplicate requests, we'll just need to map the results back to the guids
 
       const query = NG_QUERY({ accountId, queries });
@@ -98,8 +98,8 @@ export default class BatchNrql extends React.PureComponent {
 
     const newResults = Object.entries(results).reduce(
       (previousValue, [key, value]) => {
-        // TO DO - Add a default, maybe we need to let the user define this?
-        // TO DO - Do we need to mandate they provide a NRQL Query with an alias, so we know how to get the result value?
+        // TODO: Add a default, maybe we need to let the user define this?
+        // TODO: Do we need to mandate they provide a NRQL Query with an alias, so we know how to get the result value?
 
         const result = get(value, "totalResult['average.duration']");
 

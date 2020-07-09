@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'nr1';
 
-import { Button, StackItem } from 'nr1';
+import { ToolbarItem } from '../../../shared/components';
 
 const RightToolbar = ({ navigation }) => {
   return (
     <>
-      <StackItem className="toolbar-item has-separator">
+      <ToolbarItem hasSeparator>
         <Button
           type={Button.TYPE.NORMAL}
           onClick={() => navigation.router({ to: 'createMap' })}
@@ -14,8 +15,8 @@ const RightToolbar = ({ navigation }) => {
         >
           New Map
         </Button>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      </ToolbarItem>
+      <ToolbarItem>
         <Button
           type={Button.TYPE.NORMAL}
           onClick={() => navigation.router({ to: 'mapList' })}
@@ -23,7 +24,7 @@ const RightToolbar = ({ navigation }) => {
         >
           View all maps
         </Button>
-      </StackItem>
+      </ToolbarItem>
     </>
   );
 };
