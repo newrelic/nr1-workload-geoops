@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown, DropdownItem, StackItem } from 'nr1';
+import { Dropdown, DropdownItem } from 'nr1';
 import { groupBy } from 'lodash';
+
+import { ToolbarItem } from '../../../shared/components';
+import { StyledToolbarItem } from './styles';
 
 const LeftToolbar = ({
   map,
@@ -39,11 +42,11 @@ const LeftToolbar = ({
 
   return (
     <>
-      <StackItem className="toolbar-item has-separator title-toolbar-item">
-        <span className="page-title-label">Current Map</span>
-        <h4 className="page-title">{map.title}</h4>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      <StyledToolbarItem hasSeparator>
+        <span>Current Map</span>
+        <h4>{map.title}</h4>
+      </StyledToolbarItem>
+      <ToolbarItem>
         <Dropdown label="Regions" title={regionFilter || 'Filter by Region'}>
           <DropdownItem
             key={0}
@@ -70,8 +73,8 @@ const LeftToolbar = ({
             );
           })}
         </Dropdown>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      </ToolbarItem>
+      <ToolbarItem>
         <Dropdown label="Favorites" title={selectedFavorite.name}>
           {favoriteOptions.map(r => {
             return (
@@ -88,8 +91,8 @@ const LeftToolbar = ({
             );
           })}
         </Dropdown>
-      </StackItem>
-      <StackItem className="toolbar-item">
+      </ToolbarItem>
+      <ToolbarItem>
         <Dropdown label="Alerting Status" title={selectedAlertStatus.name}>
           {alertStatusOptions.map(r => {
             return (
@@ -106,7 +109,7 @@ const LeftToolbar = ({
             );
           })}
         </Dropdown>
-      </StackItem>
+      </ToolbarItem>
     </>
   );
 };

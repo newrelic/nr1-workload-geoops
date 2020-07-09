@@ -1,7 +1,7 @@
 import { nerdGraphQuery } from '../utils';
 import { LIST_WORKLOADS, SINGLE_WORKLOAD } from './queries';
 
-// TO DO - Is it going to be "id" or "guid"? Awaiting response from the Workloads team.
+// TODO: Is it going to be "id" or "guid"? Awaiting response from the Workloads team.
 // eslint-disable-next-line no-unused-vars
 export const getWorkload = ({ accountId, id, guid, fixtureData = false }) => {
   if (fixtureData) {
@@ -34,7 +34,7 @@ export const getWorkloads = ({ accountId }) => {
 };
 
 // const accountId = this.state.accountId;
-// // TO DO - Move this into the <GeoMap> component, this should get loaded by looking at each MapLocation's "related entities"
+// // TODO: Move this into the <GeoMap> component, this should get loaded by looking at each MapLocation's "related entities"
 // const { data, errors } = await getWorkloads({ accountId });
 // const workloads = proxyGetWorkloadsResponse(data);
 

@@ -4,10 +4,10 @@ import { navigation, NerdletStateContext, Spinner } from 'nr1';
 
 import cloneDeep from 'lodash.clonedeep';
 
-import EmptyState from './EmptyState';
-import CreateMap from './CreateMap';
+import EmptyState from './EmptyState/EmptyState';
+import CreateMap from './CreateMap/CreateMap';
 import ViewMap from './ViewMap/ViewMap';
-import MapList from './MapList';
+import MapList from './MapList/MapList';
 
 import { nerdStorageRequest } from '../shared/utils';
 import { getMaps } from '../shared/services/map';
@@ -39,10 +39,6 @@ export default class index extends PureComponent {
       maps: [],
       mapsLoading: true
     };
-
-    this.onMapDelete = this.onMapDelete.bind(this);
-    this.onMapChange = this.onMapChange.bind(this);
-    this.router = this.router.bind(this);
   }
 
   async componentDidMount() {
@@ -68,7 +64,7 @@ export default class index extends PureComponent {
     });
   }
 
-  onMapChange({ map }) {
+  onMapChange = ({ map }) => {
     const { maps } = this.state;
 
     const mapObject = { guid: map.guid, document: map };
@@ -89,9 +85,9 @@ export default class index extends PureComponent {
         };
       });
     }
-  }
+  };
 
-  onMapDelete({ map }) {
+  onMapDelete = ({ map }) => {
     this.setState(prevState => {
       const filteredMaps = prevState.maps.filter(
         m => map.guid !== m.document.guid
@@ -112,9 +108,9 @@ export default class index extends PureComponent {
         }
       };
     });
-  }
+  };
 
-  router({ to, state }) {
+  router = ({ to, state }) => {
     const next = { ...initialPages };
     next[to] = true;
 
@@ -129,7 +125,7 @@ export default class index extends PureComponent {
     }
 
     this.setState({ pages: next, ...newState });
-  }
+  };
 
   /*
    * Notes:

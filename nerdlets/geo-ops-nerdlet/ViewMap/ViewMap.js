@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import {
   Stack,
-  StackItem,
   Tabs,
   TabsItem,
   Icon,
@@ -15,23 +14,37 @@ import {
   TableRowCell,
   EntityTitleTableRowCell,
   AccountStorageMutation,
-  AccountStorageQuery
+  AccountStorageQuery,
+  Spinner
 } from 'nr1';
 
 import RightToolbar from './Toolbars/RightToolbar';
 import LeftToolbar from './Toolbars/LeftToolbar';
+import Timeline from './Timeline/Timeline';
 
-import { EmptyState, Timeline } from '@newrelic/nr1-community';
+import { EmptyState } from '@newrelic/nr1-community';
 import { get, lowerCase, startCase } from 'lodash';
 
-import ViewMapQuery from './ViewMapQuery';
-import GeoMap from '../GeoMap';
-import Toolbar from '../../shared/components/Toolbar';
-import DetailPanel from '../../shared/components/DetailPanel';
-import MapLocationTable from '../../shared/components/MapLocationTable';
-import FilteredMapLocations from '../../shared/components/FilteredMapLocations';
-import LocationMetadata from './LocationMetadata';
+import ViewMapQuery from './ViewMapQuery/ViewMapQuery';
+import GeoMap from '../GeoMap/GeoMap';
+import {
+  ToolbarWrapper,
+  DetailPanel,
+  MapLocationTable,
+  FilteredMapLocations
+} from '../../shared/components';
+
+import LocationMetadata from './LocationMetadata/LocationMetadata';
 import composeEntitySummary from './EntitySummary';
+
+import {
+  MapContainer,
+  DetailsPanelContainer,
+  PrimaryContentContainer,
+  LocationsTableContainer,
+  AlertWarning,
+  DetailPanelItem
+} from './styles';
 
 export default class ViewMap extends React.PureComponent {
   static propTypes = {
@@ -157,10 +170,10 @@ export default class ViewMap extends React.PureComponent {
 
     const items = activeMapLocation.tags.map((tag, index) => {
       return (
-        <div key={index} className="detail-panel-metadata-item">
+        <DetailPanelItem key={index}>
           <span className="tag-key">{tag.key}:</span>
           <span className="tag-value">{tag.value}</span>
-        </div>
+        </DetailPanelItem>
       );
     });
 
@@ -195,11 +208,10 @@ export default class ViewMap extends React.PureComponent {
       <>
         {map && (
           <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
-            {({ mapLocations, entities }) => {
+            {({ mapLocations, entities, loading }) => {
               const hasMapLocations = mapLocations && mapLocations.length > 0;
               const hasEntities = entities && entities.length > 0;
-
-              if (!hasMapLocations) {
+              if (!hasMapLocations && !loading) {
                 return (
                   <EmptyState
                     heading="No map locations found"
@@ -215,10 +227,13 @@ export default class ViewMap extends React.PureComponent {
                 );
               }
 
+              if (loading) {
+                return <Spinner />;
+              }
+
               return (
                 <>
-                  <Toolbar
-                    className="view-map-toolbar"
+                  <ToolbarWrapper
                     left={
                       <LeftToolbar
                         navigation={navigation}
@@ -233,15 +248,12 @@ export default class ViewMap extends React.PureComponent {
                     }
                     right={<RightToolbar navigation={navigation} />}
                   />
-                  <Stack
+                  <MapContainer
                     fullWidth
                     gapType={Stack.GAP_TYPE.NONE}
-                    className="primary-grid view-map-primary-grid"
+                    className="view-map-primary-grid"
                   >
-                    <StackItem
-                      fullHeight
-                      className="locations-table-stack-item"
-                    >
+                    <LocationsTableContainer fullHeight>
                       {hasMapLocations && hasEntities && (
                         <MapLocationTable
                           data={mapLocations}
@@ -254,8 +266,7 @@ export default class ViewMap extends React.PureComponent {
                       )}
                       {hasMapLocations && !hasEntities && (
                         <>
-                          <div
-                            className="alert-warning"
+                          <AlertWarning
                             onClick={() =>
                               navigation.router({
                                 to: 'createMap',
@@ -274,7 +285,7 @@ export default class ViewMap extends React.PureComponent {
                               Your map locations have not yet been associated
                               with entities. <a href="#">Resolve this</a>
                             </p>
-                          </div>
+                          </AlertWarning>
                           <MapLocationTable
                             data={mapLocations}
                             map={map}
@@ -284,8 +295,8 @@ export default class ViewMap extends React.PureComponent {
                         </>
                       )}
                       {!hasMapLocations && this.renderEmptyState()}
-                    </StackItem>
-                    <StackItem grow className="primary-content-container">
+                    </LocationsTableContainer>
+                    <PrimaryContentContainer grow>
                       {hasMapLocations && (
                         <FilteredMapLocations
                           mapLocations={mapLocations}
@@ -311,12 +322,13 @@ export default class ViewMap extends React.PureComponent {
                           description=""
                         />
                       )}
-                    </StackItem>
-                    <StackItem
+                    </PrimaryContentContainer>
+                    <DetailsPanelContainer
                       fullHeight
-                      className={`detail-panel-stack-item ${
-                        detailPanelClosed ? 'closed' : ''
-                      } ${detailPanelMinimized ? 'minimized' : ''}`}
+                      isClosed={detailPanelClosed}
+                      isMinimized={detailPanelMinimized}
+                      className={`${detailPanelClosed &&
+                        'closed'} ${detailPanelMinimized && 'minimized'}`}
                     >
                       <DetailPanel
                         map={map}
@@ -331,11 +343,7 @@ export default class ViewMap extends React.PureComponent {
                             label="Recent incidents"
                             className="no-padding"
                           >
-                            {activeMapLocation ? (
-                              <Timeline activeMapLocation={activeMapLocation} />
-                            ) : (
-                              <></>
-                            )}
+                            <Timeline activeMapLocation={activeMapLocation} />
                           </TabsItem>
                           <TabsItem
                             value="tab-2"
@@ -391,8 +399,8 @@ export default class ViewMap extends React.PureComponent {
                           </TabsItem>
                         </Tabs>
                       </DetailPanel>
-                    </StackItem>
-                  </Stack>
+                    </DetailsPanelContainer>
+                  </MapContainer>
                 </>
               );
             }}
