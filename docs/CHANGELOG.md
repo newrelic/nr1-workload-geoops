@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.0...v1.4.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* updating to latest version of semantic release plugins ([877482a](https://github.com/newrelic/nr1-workload-geoops/commit/877482a426bd3e6e83a4ce76c2753ca49e49c957))
+
 # [1.4.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.3.0...v1.4.0) (2020-07-09)
 
 
