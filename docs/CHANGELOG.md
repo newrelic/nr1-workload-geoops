@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.1...v1.4.2) (2020-07-13)
+
+
+### Bug Fixes
+
+* form alignment fixed in create map ([36d57e3](https://github.com/newrelic/nr1-workload-geoops/commit/36d57e35a284d2bd0c51d6ad1ec90df6081fede6))
+
 ## [1.4.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.0...v1.4.1) (2020-07-10)
 
 
