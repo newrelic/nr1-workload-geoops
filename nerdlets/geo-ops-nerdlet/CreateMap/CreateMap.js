@@ -307,7 +307,7 @@ export default class CreateMap extends React.PureComponent {
                 <StackItem>
                   <h1>Create a map</h1>
                 </StackItem>
-                <FormContainer>
+                <FormContainer verticalType={Stack.HORIZONTAL_TYPE.CENTER}>
                   <JsonSchemaForm
                     ref={this.createMapForm}
                     schema={MAP_JSON_SCHEMA}
@@ -369,7 +369,7 @@ export default class CreateMap extends React.PureComponent {
                 <StackItem>
                   <h1>Define Locations</h1>
                 </StackItem>
-                <FormContainer>
+                <FormContainer verticalType={Stack.HORIZONTAL_TYPE.CENTER}>
                   <DefineLocations
                     map={map}
                     onMapLocationWrite={this.onMapLocationWrite}
@@ -417,7 +417,7 @@ export default class CreateMap extends React.PureComponent {
                 <StackItem>
                   <h1>Map entities to locations</h1>
                 </StackItem>
-                <FormContainer>
+                <FormContainer verticalType={Stack.HORIZONTAL_TYPE.CENTER}>
                   <MapLocationData
                     accountId={accountId}
                     map={map}
