@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.2...v1.4.3) (2020-07-24)
+
+
+### Bug Fixes
+
+* package.json & package-lock.json to reduce vulnerabilities ([6928674](https://github.com/newrelic/nr1-workload-geoops/commit/6928674d49a76fbdf3ff768d2e22447704c2967d))
+
 ## [1.4.2](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.1...v1.4.2) (2020-07-13)
 
 
