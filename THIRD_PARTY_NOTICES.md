@@ -302,7 +302,7 @@ This product includes source derived from [@newrelic/nr1-community](https://gith
 
 ### ajv
 
-This product includes source derived from [ajv](https://github.com/epoberezkin/ajv) ([v6.12.2](https://github.com/epoberezkin/ajv/tree/v6.12.2)), distributed under the [MIT License](https://github.com/epoberezkin/ajv/blob/v6.12.2/LICENSE):
+This product includes source derived from [ajv](https://github.com/ajv-validator/ajv) ([v6.12.3](https://github.com/ajv-validator/ajv/tree/v6.12.3)), distributed under the [MIT License](https://github.com/ajv-validator/ajv/blob/v6.12.3/LICENSE):
 
 ```
 The MIT License (MIT)
