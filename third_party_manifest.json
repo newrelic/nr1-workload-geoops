@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Fri Jul 24 2020 03:01:49 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Fri Aug 07 2020 14:48:51 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-workload-geoops",
   "projectUrl": "https://github.com/newrelic/nr1-workload-geoops",
   "includeDev": true,
@@ -52,26 +52,26 @@
       "licenseUrl": "https://github.com/date-fns/date-fns/blob/v2.14.0/LICENSE.md",
       "licenseTextSource": "file"
     },
-    "graphql-tag@2.10.3": {
+    "graphql-tag@2.10.4": {
       "name": "graphql-tag",
-      "version": "2.10.3",
-      "range": "^2.10.1",
+      "version": "2.10.4",
+      "range": "^2.10.4",
       "licenses": "MIT",
       "repoUrl": "https://github.com/apollographql/graphql-tag",
-      "versionedRepoUrl": "https://github.com/apollographql/graphql-tag/tree/v2.10.3",
+      "versionedRepoUrl": "https://github.com/apollographql/graphql-tag/tree/v2.10.4",
       "licenseFile": "node_modules/graphql-tag/LICENSE",
-      "licenseUrl": "https://github.com/apollographql/graphql-tag/blob/v2.10.3/LICENSE",
+      "licenseUrl": "https://github.com/apollographql/graphql-tag/blob/v2.10.4/LICENSE",
       "licenseTextSource": "file"
     },
-    "graphql@14.6.0": {
+    "graphql@14.7.0": {
       "name": "graphql",
-      "version": "14.6.0",
-      "range": "^14.5.4",
+      "version": "14.7.0",
+      "range": "^14.7.0",
       "licenses": "MIT",
       "repoUrl": "https://github.com/graphql/graphql-js",
-      "versionedRepoUrl": "https://github.com/graphql/graphql-js/tree/v14.6.0",
+      "versionedRepoUrl": "https://github.com/graphql/graphql-js/tree/v14.7.0",
       "licenseFile": "node_modules/graphql/LICENSE",
-      "licenseUrl": "https://github.com/graphql/graphql-js/blob/v14.6.0/LICENSE",
+      "licenseUrl": "https://github.com/graphql/graphql-js/blob/v14.7.0/LICENSE",
       "licenseTextSource": "file"
     },
     "leaflet@1.6.0": {
