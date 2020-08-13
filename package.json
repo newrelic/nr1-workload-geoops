@@ -5,7 +5,7 @@
     "email": "opensource+nr1-workload-geoops@newrelic.com"
   },
   "description": "New Relic One application aligning Workloads and Entities to geographic data (ex. Point of Sale monitoring).",
-  "version": "1.4.3",
+  "version": "1.4.5",
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "test": "jest",
@@ -16,9 +16,9 @@
     "@babel/polyfill": "^7.10.4",
     "@newrelic/nr1-community": "^1.2.0",
     "ajv": "^6.12.3",
-    "date-fns": "^2.14.0",
-    "graphql": "^14.5.4",
-    "graphql-tag": "^2.10.1",
+    "date-fns": "^2.15.0",
+    "graphql-tag": "^2.10.4",
+    "graphql": "^14.7.0",
     "leaflet": "^1.5.1",
     "lodash.chunk": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
