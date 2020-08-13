@@ -13,5 +13,5 @@
       "url": "https://discuss.newrelic.com/t/workload-geoops-nerdpack/99478"
     }
   },
-  "whatsNew": "\n-Feat: Geographic mapping of Workloads and Entities\n-Feat: Programmatic alerting rollup of underlying Entities\n-Feat: Custom KPI measurement per location\n-Feat: Empty-state edit workflow\n-Feat: JSON file upload format\n-Feat: Published (in open source docs) guide to automating configuration using the newrelic-cli"
+  "whatsNew": "\n-Fix: Maps now function with workloads that contain > 25 entities\n-Fix: Multiple usability issues have been addressed for multi-account environments\n-Feat: map refreshes on a 15s. interval"
 }

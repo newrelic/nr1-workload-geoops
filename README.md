@@ -1,4 +1,4 @@
-[![New Relic One Catalog Project header](https://github.com/newrelic/open-source-office/raw/master/examples/categories/images/New_Relic_One_Catalog_Project.png)](https://github.com/newrelic/open-source-office/blob/master/examples/categories/index.md#category-new-relic-one-catalog-project)
+[![New Relic One Catalog Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/New_Relic_One_Catalog_Project.png)](https://opensource.newrelic.com/oss-category/#new-relic-one-catalog-project)
 
 <p align="center">
 	<img src="assets/documentation-images/docs-header.svg" />
@@ -8,8 +8,8 @@
 
 <p align="center">
 <img src="https://img.shields.io/github/v/release/newrelic/nr1-workload-geoops?include_prereleases&sort=semver" title="GitHub release (latest SemVer including pre-releases)">
-<img src="https://img.shields.io/appveyor/ci/newrelic/nr1-workload-geoops" title="AppVeyor">
-<img src="https://snyk.io/test/github/newrelic/nr1-workload-geoops" title="Snyk">
+<img src="https://github.com/newrelic/nr1-workload-geoops/workflows/CI/badge.svg" title="CI">
+<img src="https://img.shields.io/snyk/vulnerabilities/github/newrelic/nr1-workload-geoops" title="Snyk">
 </p>
 
 ------

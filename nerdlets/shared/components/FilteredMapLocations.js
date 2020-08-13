@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';
 
-// TO DO - Define a construct for a "filter" and a common methodology for applying an array of these "filters" to the dataset
+// TODO: Define a construct for a "filter" and a common methodology for applying an array of these "filters" to the dataset
 // For MVP - just pass a region/favorites filters as props
 
 export default class FilteredMapLocations extends React.PureComponent {
