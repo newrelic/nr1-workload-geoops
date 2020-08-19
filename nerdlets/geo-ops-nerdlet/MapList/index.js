@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid, GridItem } from 'nr1';
 import styled from 'styled-components';
 
-import { ToolbarWrapper, MapItem } from '../../shared/components';
+import { ToolbarWrapper, MapItem } from '../components';
 import RightToolbar from './Toolbars/RightToolbar';
 import LeftToolbar from './Toolbars/LeftToolbar';
 
