@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button, Grid, Stack, StackItem } from 'nr1';
-import {
-  GettingStarted,
-  JsonSchemaForm,
-  AccountDropdown
-} from '../../shared/components';
-import DefineLocations from '../DefineLocations/DefineLocations';
-import MapLocationData from '../MapLocationData/MapLocationData';
-import GeoMap from '../GeoMap/GeoMap';
+import { GettingStarted, JsonSchemaForm, AccountDropdown } from '../components';
+import DefineLocations from '../DefineLocations';
+import MapLocationData from '../MapLocationData';
+import GeoMap from '../GeoMap';
 
 import { nerdStorageRequest } from '../../shared/utils';
 
