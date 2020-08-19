@@ -5,7 +5,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Stack, Link, Icon, navigation } from 'nr1';
 import get from 'lodash.get';
 
-import { BatchNrql } from '../../shared/components';
+import { BatchNrql } from '../components';
 import { generateIcon, statusColor } from '../../shared/utils';
 
 import {
