@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { cloneDeep, findIndex } from 'lodash';
 import { Stack, StackItem, Icon } from 'nr1';
 
-import { EntityTypeAhead } from '../../shared/components';
-import { FloatInput } from '../../shared/components/react-jsonschema-form';
+import { EntityTypeAhead } from '../components';
+import { FloatInput } from '../components/react-jsonschema-form';
 
 import {
   MAP_LOCATION_UI_SCHEMA,
@@ -130,14 +130,12 @@ export default class MapLocationData extends React.Component {
     });
   };
 
-  // TODO: How do we want to define isCompleted? Do we want to give users the ability to select this as part of a Map config?
-  /* eslint-disable no-unused-vars */
   isCompleted(mapLocationObject) {
     const { document: ml } = mapLocationObject;
-
-    // return ml.entities.length > 0 || ml.query !== '';
+    return (
+      (ml.entities && ml.entities.length > 0) || (ml.query && ml.query !== '')
+    );
   }
-  /* eslint-enable */
 
   selectLocationViaArrowNav = e => {
     const { selectedMapLocation } = this.state;
