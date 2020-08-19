@@ -18,38 +18,41 @@ import {
  *   - the most urgent open violation (if any) for a mapLocation
  */
 export default class MapQuery extends React.PureComponent {
-
- /**
-  * Distill the `mostCriticalEntity` (including a list of `alertViolations`) for each `mapLocation`
-  * @param {Array} mapLocations
-  * @param {Array} entities
-  * @returns {Array} of mapLocations, each with a `mostCriticalEntity` attribute
-  */
- static _distillMostCriticalEntity(mapLocations, entities) {
-   // console.debug("mapLocations", mapLocations);
-   return mapLocations.map(mapLocation => {
-     mapLocation.orderedEntities = entities
-       .filter(entity => {
-         return (
-           mapLocation.entities &&
-           mapLocation.entities.find(e => e.guid === entity.guid)
-         );
-       })
-       .sort(sortEntitiesByAlertSeverity);
-     mapLocation.mostCriticalEntity = mapLocation.orderedEntities
-       ? mapLocation.orderedEntities[0]
-       : null;
-     mapLocation.mostCriticalEntity.alertSeverityWeight = weightToAlertSeverity(
-       mapLocation.mostCriticalEntity.alertSeverity
-     );
-     mapLocation.entities = mapLocation.orderedEntities;
-     return mapLocation;
-   });
+  /**
+   * Distill the `mostCriticalEntity` (including a list of `alertViolations`) for each `mapLocation`
+   * @param {Array} mapLocations
+   * @param {Array} entities
+   * @returns {Array} of mapLocations, each with a `mostCriticalEntity` attribute
+   */
+  static _distillMostCriticalEntity(mapLocations, entities) {
+    // console.debug("mapLocations", mapLocations);
+    return mapLocations.map(mapLocation => {
+      mapLocation.orderedEntities = entities
+        .filter(entity => {
+          return (
+            mapLocation.entities &&
+            mapLocation.entities.find(e => e.guid === entity.guid)
+          );
+        })
+        .sort(sortEntitiesByAlertSeverity);
+      mapLocation.mostCriticalEntity = mapLocation.orderedEntities
+        ? mapLocation.orderedEntities[0]
+        : null;
+      mapLocation.mostCriticalEntity.alertSeverityWeight = weightToAlertSeverity(
+        mapLocation.mostCriticalEntity.alertSeverity
+      );
+      mapLocation.entities = mapLocation.orderedEntities;
+      return mapLocation;
+    });
   }
 
   static async query({ map, begin_time, end_time }) {
     // STEP 1: Locations retrieved from Account-scoped NerdStorage
-    const { mapLocations, entityGuids, errors: mapLocationErrors } = await MapLocationQuery.query({
+    const {
+      mapLocations,
+      entityGuids,
+      errors: mapLocationErrors
+    } = await MapLocationQuery.query({
       map
     });
     // console.debug("entityGuids", { mapLocations, entityGuids } );
@@ -66,7 +69,10 @@ export default class MapQuery extends React.PureComponent {
     }
 
     // STEP 2: Entities, alerting status, and alert violations for each entity in the mapLocations
-    const { entities, errors: mapLocationEntityErrors } = await MapLocationEntityQuery.query({
+    const {
+      entities,
+      errors: mapLocationEntityErrors
+    } = await MapLocationEntityQuery.query({
       begin_time,
       end_time,
       entityGuids
@@ -75,7 +81,7 @@ export default class MapQuery extends React.PureComponent {
     if (mapLocationEntityErrors) {
       return {
         errors: mapLocationEntityErrors
-      }
+      };
     }
 
     // STEP 3: distill the most critical entity into a new attribute
@@ -83,7 +89,7 @@ export default class MapQuery extends React.PureComponent {
       errors: null,
       mapLocations: MapQuery._distillMostCriticalEntity(mapLocations, entities),
       hasEntities: true
-    }
+    };
   }
 
   static propTypes = {
@@ -144,7 +150,11 @@ export default class MapQuery extends React.PureComponent {
     }
     const { map, begin_time, end_time } = this.props;
 
-    const { errors, mapLocations, hasEntities } = await MapQuery.query({ map, begin_time, end_time });
+    const { errors, mapLocations, hasEntities } = await MapQuery.query({
+      map,
+      begin_time,
+      end_time
+    });
     this.setState({
       loading: false,
       errors,

@@ -26,9 +26,13 @@ import Header from './Header';
 import DetailPanelQuery from '../DetailPanelQuery';
 import { DetailPanelContainer, ChildrenContainer } from './styles';
 
-const findTooComplexQueryError = (error) => {
-  return error.message.indexOf('Your query was too complex and could not be resolved.') > -1;
-}
+const findTooComplexQueryError = error => {
+  return (
+    error.message.indexOf(
+      'Your query was too complex and could not be resolved.'
+    ) > -1
+  );
+};
 
 export default class DetailPanel extends React.PureComponent {
   static propTypes = {
@@ -115,15 +119,21 @@ export default class DetailPanel extends React.PureComponent {
               if (loading) {
                 return <Spinner />;
               }
-              const tooComplexWorkloadError = errors && errors.find(findTooComplexQueryError);
+              const tooComplexWorkloadError =
+                errors && errors.find(findTooComplexQueryError);
               if (errors && !tooComplexWorkloadError) {
                 return (
                   <>
-                    {errors.map((error, i) => {
+                    {errors.map(error => {
                       if (error.graphQLErrors) {
-                        return <NerdGraphError error={error} />
+                        return <NerdGraphError error={error} />;
                       } else {
-                        return <GenericError error={`An error occurred.`} errorDescription={error.message} />
+                        return (
+                          <GenericError
+                            error="An error occurred."
+                            errorDescription={error.message}
+                          />
+                        );
                       }
                     })}
                   </>
@@ -140,9 +150,16 @@ export default class DetailPanel extends React.PureComponent {
                     label="Recent incidents"
                     className="no-padding"
                   >
-                    {tooComplexWorkloadError ? <GenericError error={`Unable to retrieve Location alerts`} errorDescription={errors.find(findTooComplexQueryError).message} />
-                    : <Timeline activeMapLocation={mapLocation} />}
-
+                    {tooComplexWorkloadError ? (
+                      <GenericError
+                        error="Unable to retrieve Location alerts"
+                        errorDescription={
+                          errors.find(findTooComplexQueryError).message
+                        }
+                      />
+                    ) : (
+                      <Timeline activeMapLocation={mapLocation} />
+                    )}
                   </TabsItem>
                   <TabsItem
                     value="tab-2"

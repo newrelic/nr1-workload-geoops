@@ -40,57 +40,62 @@ const Timeline = ({ activeMapLocation }) => {
   };
 
   let timelineItems = null;
-  if (activeMapLocation.recentAlertViolations && activeMapLocation.recentAlertViolations.length > 0) {
+  if (
+    activeMapLocation.recentAlertViolations &&
+    activeMapLocation.recentAlertViolations.length > 0
+  ) {
     timelineItems = activeMapLocation.recentAlertViolations.map(violation => {
-        return (
-          <div
-            className={`timeline-item impact-${kebabCase(
-              violation.alertSeverity
-            )}`}
-            key={violation.violationId}
-            onClick={() => {
-              navigation.openStackedNerdlet({
-                id: `${PACKAGE_UUID}.recent-incidents`,
-                urlState: {
-                  recentViolations: activeMapLocation.recentAlertViolations,
-                  clickedViolation: violation
-                }
-              });
-            }}
-          >
-            <div className="timeline-item-timestamp">
-              <span className="timeline-timestamp-date">
-                {format(violation.openedAt, 'MM/dd/yy')}
-              </span>
-              <span className="timeline-timestamp-time">
-                {format(violation.openedAt, 'p')}
-              </span>
-            </div>
-            <div className="timeline-item-dot" />
-            <div className="timeline-item-body">
-              <div className="timeline-item-body-header">
-                <div
-                  className="timeline-item-symbol"
-                  title={`Impact: ${lowerCase(violation.alertSeverity)}`}
-                >
-                  <Icon
-                    type={iconType(violation.alertSeverity)}
-                    color={iconColor(violation.alertSeverity)}
-                  />
-                </div>
-                <div className="timeline-item-title">{violation.label}</div>
+      return (
+        <div
+          className={`timeline-item impact-${kebabCase(
+            violation.alertSeverity
+          )}`}
+          key={violation.violationId}
+          onClick={() => {
+            navigation.openStackedNerdlet({
+              id: `${PACKAGE_UUID}.recent-incidents`,
+              urlState: {
+                recentViolations: activeMapLocation.recentAlertViolations,
+                clickedViolation: violation
+              }
+            });
+          }}
+        >
+          <div className="timeline-item-timestamp">
+            <span className="timeline-timestamp-date">
+              {format(violation.openedAt, 'MM/dd/yy')}
+            </span>
+            <span className="timeline-timestamp-time">
+              {format(violation.openedAt, 'p')}
+            </span>
+          </div>
+          <div className="timeline-item-dot" />
+          <div className="timeline-item-body">
+            <div className="timeline-item-body-header">
+              <div
+                className="timeline-item-symbol"
+                title={`Impact: ${lowerCase(violation.alertSeverity)}`}
+              >
+                <Icon
+                  type={iconType(violation.alertSeverity)}
+                  color={iconColor(violation.alertSeverity)}
+                />
               </div>
+              <div className="timeline-item-title">{violation.label}</div>
             </div>
           </div>
-        );
-      });
-    } else {
-      timelineItems = <EmptyState
+        </div>
+      );
+    });
+  } else {
+    timelineItems = (
+      <EmptyState
         heading="No Recent Alerts"
         description="None of the Entities that are assigned to this location have experienced any recent alerts."
         buttonText=""
-      />;
-    }
+      />
+    );
+  }
   return (
     <div className="timeline-container mini-timeline">{timelineItems}</div>
   );

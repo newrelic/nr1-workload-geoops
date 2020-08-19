@@ -89,7 +89,7 @@ export default class MapLocationTable extends PureComponent {
           }
         }
       },
-      /*{
+      /* {
         dataField: 'externalId',
         text: 'ExID',
         sort: true

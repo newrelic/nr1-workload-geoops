@@ -189,7 +189,6 @@ export default class ViewMap extends React.PureComponent {
         {map && (
           <MapQuery map={map} begin_time={begin_time} end_time={end_time}>
             {({ mapLocations, hasEntities, errors, loading }) => {
-
               if (loading) {
                 return (
                   <GeoOpsContainer>
@@ -208,7 +207,7 @@ export default class ViewMap extends React.PureComponent {
                 );
               }
 
-              console.debug({ mapLocations, hasEntities, errors, loading });
+              // console.debug({ mapLocations, hasEntities, errors, loading });
               const hasMapLocations = mapLocations && mapLocations.length > 0;
               if (!hasMapLocations) {
                 return (

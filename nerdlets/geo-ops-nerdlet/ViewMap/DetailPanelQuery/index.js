@@ -44,7 +44,8 @@ export default class DetailPanelQuery extends React.PureComponent {
       errors: workEntitySearchQueryErrors
     } = await NerdGraphQuery.query({ query: workloadEntitySearchQuery });
     if (workEntitySearchQueryErrors) {
-      console.debug("Return error for query", workloadEntitySearchQuery);
+      // eslint-disable-next-line no-console
+      console.debug('Return error for query', workloadEntitySearchQuery);
       return { errors: workEntitySearchQueryErrors };
     }
 
@@ -66,7 +67,8 @@ export default class DetailPanelQuery extends React.PureComponent {
       errors: workloadEntityGuidsErrors
     } = await NerdGraphQuery.query({ query: workloadEntityGuidsQuery });
     if (workloadEntityGuidsErrors) {
-      console.debug("Return error for query", workloadEntityGuidsQuery);
+      // eslint-disable-next-line no-console
+      console.debug('Return error for query', workloadEntityGuidsQuery);
       return { errors: workloadEntityGuidsErrors };
     }
 
@@ -103,7 +105,8 @@ export default class DetailPanelQuery extends React.PureComponent {
       variables
     });
     if (entityErrors) {
-      console.debug("Return error for query", entityQuery);
+      // eslint-disable-next-line no-console
+      console.debug('Return error for query', entityQuery);
       return { errors: entityErrors };
     }
 

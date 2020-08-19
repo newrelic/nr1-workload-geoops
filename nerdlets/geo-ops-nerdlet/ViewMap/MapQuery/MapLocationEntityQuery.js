@@ -26,7 +26,7 @@ export default class MapLocationEntityQuery extends React.PureComponent {
     if (errors) {
       return { errors, entities: null };
     }
-    console.debug("MapLocationEntityQuery.query", data);
+    // console.debug('MapLocationEntityQuery.query', data);
     const { actor } = data;
     let entities = [];
     if (actor) {
