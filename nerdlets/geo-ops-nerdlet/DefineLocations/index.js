@@ -10,7 +10,7 @@ import {
   MAP_LOCATION_DEFAULTS
 } from '../../shared/constants';
 
-import { LocationTable } from '../../shared/components';
+import { LocationTable } from '../components';
 import { writeMapLocation } from '../../shared/services/map-location';
 
 import {
