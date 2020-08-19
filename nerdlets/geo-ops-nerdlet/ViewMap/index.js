@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 
 import {
   Stack,
-  Tabs,
-  TabsItem,
   Icon,
-  navigation,
-  Table,
-  TableHeader,
-  TableHeaderCell,
-  TableRow,
-  TableRowCell,
-  EntityTitleTableRowCell,
   AccountStorageMutation,
   AccountStorageQuery,
   Spinner
@@ -20,24 +11,17 @@ import {
 
 import RightToolbar from './Toolbars/RightToolbar';
 import LeftToolbar from './Toolbars/LeftToolbar';
-import Timeline from './Timeline/Timeline';
 
-import { EmptyState } from '@newrelic/nr1-community';
-import { get, lowerCase, startCase } from 'lodash';
+import { EmptyState, NerdGraphError } from '@newrelic/nr1-community';
 
-import ViewMapQuery from './ViewMapQuery/ViewMapQuery';
-import GeoMap from '../GeoMap/GeoMap';
-import {
-  ToolbarWrapper,
-  DetailPanel,
-  MapLocationTable,
-  FilteredMapLocations
-} from '../../shared/components';
-
-import LocationMetadata from './LocationMetadata/LocationMetadata';
-import composeEntitySummary from './EntitySummary';
+import MapQuery from './MapQuery';
+import GeoMap from '../GeoMap';
+import DetailPanel from './DetailPanel';
+import FilteredMapLocations from './FilteredMapLocations';
+import { ToolbarWrapper, MapLocationTable } from '../components';
 
 import {
+  GeoOpsContainer,
   MapContainer,
   DetailsPanelContainer,
   PrimaryContentContainer,
@@ -187,10 +171,6 @@ export default class ViewMap extends React.PureComponent {
     });
   };
 
-  openStackedEntity(guid) {
-    navigation.openStackedEntity(guid);
-  }
-
   render() {
     const { maps, map, navigation } = this.props;
     const {
@@ -207,11 +187,30 @@ export default class ViewMap extends React.PureComponent {
     return (
       <>
         {map && (
-          <ViewMapQuery map={map} begin_time={begin_time} end_time={end_time}>
-            {({ mapLocations, entities, loading }) => {
+          <MapQuery map={map} begin_time={begin_time} end_time={end_time}>
+            {({ mapLocations, hasEntities, errors, loading }) => {
+
+              if (loading) {
+                return (
+                  <GeoOpsContainer>
+                    <Spinner />
+                  </GeoOpsContainer>
+                );
+              }
+
+              if (errors) {
+                return (
+                  <GeoOpsContainer>
+                    {errors.map((error, i) => (
+                      <NerdGraphError key={i} error={error} />
+                    ))}
+                  </GeoOpsContainer>
+                );
+              }
+
+              console.debug({ mapLocations, hasEntities, errors, loading });
               const hasMapLocations = mapLocations && mapLocations.length > 0;
-              const hasEntities = entities && entities.length > 0;
-              if (!hasMapLocations && !loading) {
+              if (!hasMapLocations) {
                 return (
                   <EmptyState
                     heading="No map locations found"
@@ -225,10 +224,6 @@ export default class ViewMap extends React.PureComponent {
                     }}
                   />
                 );
-              }
-
-              if (loading) {
-                return <Spinner />;
               }
 
               return (
@@ -323,88 +318,29 @@ export default class ViewMap extends React.PureComponent {
                         />
                       )}
                     </PrimaryContentContainer>
-                    <DetailsPanelContainer
-                      fullHeight
-                      isClosed={detailPanelClosed}
-                      isMinimized={detailPanelMinimized}
-                      className={`${detailPanelClosed &&
-                        'closed'} ${detailPanelMinimized && 'minimized'}`}
-                    >
-                      <DetailPanel
-                        map={map}
-                        onClose={this.handleDetailPanelCloseButton}
-                        onMinimize={this.handleDetailPanelMinimizeButton}
-                        data={activeMapLocation}
-                        relatedEntities={get(activeMapLocation, 'entities', [])}
+                    {activeMapLocation && (
+                      <DetailsPanelContainer
+                        fullHeight
+                        isClosed={detailPanelClosed}
+                        isMinimized={detailPanelMinimized}
+                        className={`${detailPanelClosed &&
+                          'closed'} ${detailPanelMinimized && 'minimized'}`}
                       >
-                        <Tabs>
-                          <TabsItem
-                            value="tab-1"
-                            label="Recent incidents"
-                            className="no-padding"
-                          >
-                            <Timeline activeMapLocation={activeMapLocation} />
-                          </TabsItem>
-                          <TabsItem
-                            value="tab-2"
-                            label="Metadata"
-                            className="no-padding"
-                          >
-                            {activeMapLocation ? (
-                              <LocationMetadata
-                                activeMapLocation={activeMapLocation}
-                              />
-                            ) : (
-                              <></>
-                            )}
-                          </TabsItem>
-                          <TabsItem
-                            value="tab-3"
-                            label={`Entity summary (${
-                              get(activeMapLocation, 'entities', []).length
-                            })`}
-                            className="entity-summary-tab"
-                          >
-                            <Table
-                              spacingType={[
-                                Table.SPACING_TYPE.NONE,
-                                Table.SPACING_TYPE.NONE
-                              ]}
-                              items={composeEntitySummary(
-                                activeMapLocation
-                                  ? activeMapLocation.entities
-                                  : []
-                              )}
-                            >
-                              <TableHeader>
-                                <TableHeaderCell width="65%">
-                                  Name
-                                </TableHeaderCell>
-                                <TableHeaderCell>Type</TableHeaderCell>
-                              </TableHeader>
-
-                              {({ item }) => (
-                                <TableRow
-                                  onClick={() =>
-                                    this.openStackedEntity(item.guid)
-                                  }
-                                >
-                                  <EntityTitleTableRowCell value={item} />
-                                  <TableRowCell>
-                                    {startCase(lowerCase(item.type))}
-                                  </TableRowCell>
-                                </TableRow>
-                              )}
-                            </Table>
-                          </TabsItem>
-                        </Tabs>
-                      </DetailPanel>
-                    </DetailsPanelContainer>
+                        <DetailPanel
+                          map={map}
+                          onClose={this.handleDetailPanelCloseButton}
+                          onMinimize={this.handleDetailPanelMinimizeButton}
+                          mapLocation={activeMapLocation}
+                          begin_time={begin_time}
+                          end_time={end_time}
+                        />
+                      </DetailsPanelContainer>
+                    )}
                   </MapContainer>
                 </>
               );
             }}
-          </ViewMapQuery>
+          </MapQuery>
         )}
       </>
     );
