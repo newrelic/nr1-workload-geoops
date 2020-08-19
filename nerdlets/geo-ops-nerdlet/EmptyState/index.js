@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid, Stack, Button } from 'nr1';
 import { Map, TileLayer } from 'react-leaflet';
 import { EmptyState } from '@newrelic/nr1-community';
-import { ToolbarWrapper } from '../../shared/components';
+import { ToolbarWrapper } from '../components';
 
 import {
   StyledToolbarItem,
