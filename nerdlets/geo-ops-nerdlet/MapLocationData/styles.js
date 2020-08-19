@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Stack, StackItem } from 'nr1';
 
-import { JsonSchemaForm } from '../../shared/components';
+import { JsonSchemaForm } from '../components';
 
 export const Description = styled.div`
   width: 100%;

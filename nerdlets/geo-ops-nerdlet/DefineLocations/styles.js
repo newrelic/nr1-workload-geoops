@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { JsonSchemaForm } from '../../shared/components';
+import { JsonSchemaForm } from '../components';
 
 export const FileUploadContainer = styled.div`
   text-align: center;
