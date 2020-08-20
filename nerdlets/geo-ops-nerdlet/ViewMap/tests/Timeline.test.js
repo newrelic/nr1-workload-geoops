@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import '../../../setupTests';
 import Timeline from '../Timeline';
 import { locationExample } from './mocks';
-import '../../../setupTests';
 
 const wrapper = shallow(<Timeline />);
 
