@@ -332,9 +332,11 @@ SOFTWARE.
 
 ### date-fns
 
-This product includes source derived from [date-fns](https://github.com/date-fns/date-fns) ([v2.14.0](https://github.com/date-fns/date-fns/tree/v2.14.0)), distributed under the [MIT License](https://github.com/date-fns/date-fns/blob/v2.14.0/LICENSE.md):
+This product includes source derived from [date-fns](https://github.com/date-fns/date-fns) ([v2.15.0](https://github.com/date-fns/date-fns/tree/v2.15.0)), distributed under the [MIT License](https://github.com/date-fns/date-fns/blob/v2.15.0/LICENSE.md):
 
 ```
+Copyright (C) 2020 Sasha Koss and Lesha Koss
+
 # License
 
 date-fns is licensed under the [MIT license](http://kossnocorp.mit-license.org).
@@ -344,7 +346,7 @@ Read more about MIT at [TLDRLegal](https://tldrlegal.com/license/mit-license).
 
 ### graphql-tag
 
-This product includes source derived from [graphql-tag](https://github.com/apollographql/graphql-tag) ([v2.10.4](https://github.com/apollographql/graphql-tag/tree/v2.10.4)), distributed under the [MIT License](https://github.com/apollographql/graphql-tag/blob/v2.10.4/LICENSE):
+This product includes source derived from [graphql-tag](https://github.com/apollographql/graphql-tag) ([v2.11.0](https://github.com/apollographql/graphql-tag/tree/v2.11.0)), distributed under the [MIT License](https://github.com/apollographql/graphql-tag/blob/v2.11.0/LICENSE):
 
 ```
 The MIT License (MIT)
