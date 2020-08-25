@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import { Icon, Link } from 'nr1';
+import orderBy from 'lodash.orderby';
 
 import { StatusColor } from './styles';
 
@@ -23,15 +24,14 @@ export default class MapLocationTable extends PureComponent {
 
   favoriteSortValue = (cell, row) => {
     const { favoriteLocations } = this.props;
-
-    return (favoriteLocations && favoriteLocations[row.externalId]) || false;
+    return (favoriteLocations && favoriteLocations[row.guid]) || false;
   };
 
   favoriteFormatter = (cell, row) => {
     const { favoriteLocations } = this.props;
 
     const favoriteStatus =
-      (favoriteLocations && favoriteLocations[row.externalId]) || false;
+      (favoriteLocations && favoriteLocations[row.guid]) || false;
     return (
       <Icon
         className="favorite-button"
@@ -81,7 +81,6 @@ export default class MapLocationTable extends PureComponent {
         text: '',
         sort: true,
         formatter: this.favoriteFormatter,
-        sortValue: this.favoriteSortValue,
         events: {
           onClick: (e, column, columnIndex, row) => {
             e.preventDefault();
@@ -89,14 +88,9 @@ export default class MapLocationTable extends PureComponent {
           }
         }
       },
-      /* {
-        dataField: 'externalId',
-        text: 'ExID',
-        sort: true
-      },*/
       {
         dataField: 'title',
-        text: 'title',
+        text: 'Title',
         sort: true
       },
       {
@@ -124,7 +118,7 @@ export default class MapLocationTable extends PureComponent {
           }, false);
 
           if (alertViolations && violation) {
-            return <Link to={violation.agentUrl}>{row.lastIncidentTime}</Link>;
+            return <Link to={violation.violationUrl}>{row.lastIncidentTime}</Link>;
           }
 
           return row.lastIncidentTime;
@@ -148,12 +142,16 @@ export default class MapLocationTable extends PureComponent {
 
   render() {
     const { SearchBar } = Search;
-    const { data } = this.props;
-
+    const { data, favoriteLocations } = this.props;
+    let dataWithFavorites = data.map(location => {
+      location.favorite = favoriteLocations && favoriteLocations[location.guid];
+      return location;
+    });
+    const sortedData = orderBy(dataWithFavorites, ['favorite', 'title'], ['asc', 'asc']);
     return (
       <ToolkitProvider
-        keyField="guid"
-        data={data}
+        keyField="favorite"
+        data={sortedData}
         columns={this.columns()}
         search
       >

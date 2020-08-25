@@ -44,13 +44,13 @@ const Timeline = ({ activeMapLocation }) => {
     activeMapLocation.recentAlertViolations &&
     activeMapLocation.recentAlertViolations.length > 0
   ) {
-    timelineItems = activeMapLocation.recentAlertViolations.map(violation => {
+    timelineItems = activeMapLocation.recentAlertViolations.map((violation, i) => {
       return (
         <div
           className={`timeline-item impact-${kebabCase(
             violation.alertSeverity
           )}`}
-          key={violation.violationId}
+          key={i}
           onClick={() => {
             navigation.openStackedNerdlet({
               id: `${PACKAGE_UUID}.recent-incidents`,

@@ -142,6 +142,11 @@ export const getEntitiesByGuidsQuery = variables => {
           ...AlertInfo
         }
       }
+      ... on WorkloadEntity {
+        workloadStatus {
+          statusValue
+        }
+      }
     }
 
     fragment EntityTags on Entity {
@@ -156,7 +161,6 @@ export const getEntitiesByGuidsQuery = variables => {
       closedAt
       label
       openedAt
-      violationId
       violationUrl
     }
   `;

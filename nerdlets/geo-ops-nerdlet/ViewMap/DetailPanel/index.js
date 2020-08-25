@@ -124,12 +124,12 @@ export default class DetailPanel extends React.PureComponent {
               if (errors && !tooComplexWorkloadError) {
                 return (
                   <>
-                    {errors.map(error => {
+                    {errors.map((error, i) => {
                       if (error.graphQLErrors) {
-                        return <NerdGraphError error={error} />;
+                        return <NerdGraphError key={i} error={error} />;
                       } else {
                         return (
-                          <GenericError
+                          <GenericError key={i}
                             error="An error occurred."
                             errorDescription={error.message}
                           />

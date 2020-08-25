@@ -90,6 +90,7 @@ export default class ViewMap extends React.PureComponent {
       collection: 'workloadsGeoopsFavorites',
       documentId: guid
     }).then(({ data }) => {
+      console.debug("workloadsGeoopsFavorites", data);
       if (data) {
         this.setState({ favoriteLocations: data });
       }
@@ -98,6 +99,7 @@ export default class ViewMap extends React.PureComponent {
 
   handleFavoriteClick = (e, column, row) => {
     const { accountId, guid } = this.props.map;
+    console.debug("handleFavoriteClick", [e, column, row]);
 
     AccountStorageQuery.query({
       accountId: parseInt(accountId, 10),
@@ -107,10 +109,10 @@ export default class ViewMap extends React.PureComponent {
       const document = { ...data };
 
       if (data) {
-        if (document[row.externalId]) {
-          delete document[row.externalId];
+        if (document[row.guid]) {
+          delete document[row.guid];
         } else {
-          document[row.externalId] = true;
+          document[row.guid] = true;
         }
       }
 

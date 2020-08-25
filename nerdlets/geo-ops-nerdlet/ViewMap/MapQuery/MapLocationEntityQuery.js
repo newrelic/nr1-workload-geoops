@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getEntitiesByGuidsQuery } from '../../../shared/services/queries';
+import { mapWorkloadStatusValueToAlertSeverity } from '../../../shared/utils';
 import { NerdGraphQuery } from 'nr1';
 
 export default class MapLocationEntityQuery extends React.PureComponent {
@@ -35,6 +36,7 @@ export default class MapLocationEntityQuery extends React.PureComponent {
           entities = [...entities, ...actor[query]];
         }
       });
+      entities = entities.map(mapWorkloadStatusValueToAlertSeverity);
     }
     return { entities, errors: null };
   }
