@@ -59,9 +59,7 @@ export default class FilteredMapLocations extends React.PureComponent {
 
     if (favoriteFilter !== null) {
       filtered = filtered.filter(m =>
-        favoriteFilter
-          ? favoriteLocations[m.externalId]
-          : !favoriteLocations[m.externalId]
+        favoriteFilter ? favoriteLocations[m.guid] : !favoriteLocations[m.guid]
       );
     }
 

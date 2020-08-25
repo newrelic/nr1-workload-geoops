@@ -118,7 +118,9 @@ export default class MapLocationTable extends PureComponent {
           }, false);
 
           if (alertViolations && violation) {
-            return <Link to={violation.violationUrl}>{row.lastIncidentTime}</Link>;
+            return (
+              <Link to={violation.violationUrl}>{row.lastIncidentTime}</Link>
+            );
           }
 
           return row.lastIncidentTime;
@@ -143,11 +145,15 @@ export default class MapLocationTable extends PureComponent {
   render() {
     const { SearchBar } = Search;
     const { data, favoriteLocations } = this.props;
-    let dataWithFavorites = data.map(location => {
+    const dataWithFavorites = data.map(location => {
       location.favorite = favoriteLocations && favoriteLocations[location.guid];
       return location;
     });
-    const sortedData = orderBy(dataWithFavorites, ['favorite', 'title'], ['asc', 'asc']);
+    const sortedData = orderBy(
+      dataWithFavorites,
+      ['favorite', 'title'],
+      ['asc', 'asc']
+    );
     return (
       <ToolkitProvider
         keyField="favorite"

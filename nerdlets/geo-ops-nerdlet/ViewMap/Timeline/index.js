@@ -44,49 +44,51 @@ const Timeline = ({ activeMapLocation }) => {
     activeMapLocation.recentAlertViolations &&
     activeMapLocation.recentAlertViolations.length > 0
   ) {
-    timelineItems = activeMapLocation.recentAlertViolations.map((violation, i) => {
-      return (
-        <div
-          className={`timeline-item impact-${kebabCase(
-            violation.alertSeverity
-          )}`}
-          key={i}
-          onClick={() => {
-            navigation.openStackedNerdlet({
-              id: `${PACKAGE_UUID}.recent-incidents`,
-              urlState: {
-                recentViolations: activeMapLocation.recentAlertViolations,
-                clickedViolation: violation
-              }
-            });
-          }}
-        >
-          <div className="timeline-item-timestamp">
-            <span className="timeline-timestamp-date">
-              {format(violation.openedAt, 'MM/dd/yy')}
-            </span>
-            <span className="timeline-timestamp-time">
-              {format(violation.openedAt, 'p')}
-            </span>
-          </div>
-          <div className="timeline-item-dot" />
-          <div className="timeline-item-body">
-            <div className="timeline-item-body-header">
-              <div
-                className="timeline-item-symbol"
-                title={`Impact: ${lowerCase(violation.alertSeverity)}`}
-              >
-                <Icon
-                  type={iconType(violation.alertSeverity)}
-                  color={iconColor(violation.alertSeverity)}
-                />
+    timelineItems = activeMapLocation.recentAlertViolations.map(
+      (violation, i) => {
+        return (
+          <div
+            className={`timeline-item impact-${kebabCase(
+              violation.alertSeverity
+            )}`}
+            key={i}
+            onClick={() => {
+              navigation.openStackedNerdlet({
+                id: `${PACKAGE_UUID}.recent-incidents`,
+                urlState: {
+                  recentViolations: activeMapLocation.recentAlertViolations,
+                  clickedViolation: violation
+                }
+              });
+            }}
+          >
+            <div className="timeline-item-timestamp">
+              <span className="timeline-timestamp-date">
+                {format(violation.openedAt, 'MM/dd/yy')}
+              </span>
+              <span className="timeline-timestamp-time">
+                {format(violation.openedAt, 'p')}
+              </span>
+            </div>
+            <div className="timeline-item-dot" />
+            <div className="timeline-item-body">
+              <div className="timeline-item-body-header">
+                <div
+                  className="timeline-item-symbol"
+                  title={`Impact: ${lowerCase(violation.alertSeverity)}`}
+                >
+                  <Icon
+                    type={iconType(violation.alertSeverity)}
+                    color={iconColor(violation.alertSeverity)}
+                  />
+                </div>
+                <div className="timeline-item-title">{violation.label}</div>
               </div>
-              <div className="timeline-item-title">{violation.label}</div>
             </div>
           </div>
-        </div>
-      );
-    });
+        );
+      }
+    );
   } else {
     timelineItems = (
       <EmptyState

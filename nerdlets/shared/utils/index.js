@@ -72,28 +72,29 @@ export const mapByGuid = ({ data }) => {
 };
 
 const _WORKLOAD_STATUS_TO_ALERT_SEVERITY = {
-  'DEGRADED': 'WARNING',
-  'DISRUPTED': 'CRITICAL',
-  'OPERATIONAL': 'NOT_ALERTING',
-  'UNKNOWN': 'NOT_CONFIGURED',
-}
+  DEGRADED: 'WARNING',
+  DISRUPTED: 'CRITICAL',
+  OPERATIONAL: 'NOT_ALERTING',
+  UNKNOWN: 'NOT_CONFIGURED'
+};
 
 /**
  * nerdlets/shared/services/queries/getEntitiesByGuidsQuery includes a reference to `workloadStatus > statusValue`. If this entity has that value and does not have an alertSeverity, set the alertSeverity based on a
  * @param {*} entity
  */
-export const mapWorkloadStatusValueToAlertSeverity = (entity) => {
-  const alertSeverity = get(entity, 'alertSeverity');
+export const mapWorkloadStatusValueToAlertSeverity = entity => {
+  let alertSeverity = get(entity, 'alertSeverity');
   const reporting = get(entity, 'reporting');
   const workloadStatusValue = get(entity, 'workloadStatus.statusValue');
   if (!alertSeverity && workloadStatusValue) {
-    entity.alertSeverity = _WORKLOAD_STATUS_TO_ALERT_SEVERITY[workloadStatusValue];
+    entity.alertSeverity =
+      _WORKLOAD_STATUS_TO_ALERT_SEVERITY[workloadStatusValue];
   } else if (!alertSeverity && reporting) {
     alertSeverity = 'NOT_ALERTING';
   }
-  console.debug(entity);
+  // console.debug(entity);
   return entity;
-}
+};
 
 export const statusColor = mapLocation => {
   const colors = {

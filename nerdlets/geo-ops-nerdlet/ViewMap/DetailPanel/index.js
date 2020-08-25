@@ -129,7 +129,8 @@ export default class DetailPanel extends React.PureComponent {
                         return <NerdGraphError key={i} error={error} />;
                       } else {
                         return (
-                          <GenericError key={i}
+                          <GenericError
+                            key={i}
                             error="An error occurred."
                             errorDescription={error.message}
                           />
