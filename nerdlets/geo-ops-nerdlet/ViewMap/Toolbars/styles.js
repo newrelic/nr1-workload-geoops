@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ToolbarItem } from '../../../shared/components';
+import { ToolbarItem } from '../../components';
 
 export const StyledToolbarItem = styled(ToolbarItem)`
   flex-direction: column;

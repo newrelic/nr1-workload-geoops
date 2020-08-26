@@ -71,6 +71,34 @@ export const mapByGuid = ({ data }) => {
   return map;
 };
 
+const _WORKLOAD_STATUS_TO_ALERT_SEVERITY = {
+  DEGRADED: 'WARNING',
+  DISRUPTED: 'CRITICAL',
+  OPERATIONAL: 'NOT_ALERTING',
+  UNKNOWN: 'NOT_CONFIGURED'
+};
+
+/**
+ * nerdlets/shared/services/queries/getEntitiesByGuidsQuery includes a reference to `workloadStatus > statusValue`. If this entity has that value and does not have an alertSeverity, set the alertSeverity based on a
+ * @param {*} entity
+ */
+export const mapWorkloadStatusValueToAlertSeverity = entity => {
+  let alertSeverity = get(entity, 'alertSeverity');
+  const reporting = get(entity, 'reporting');
+  const workloadStatusValue = get(entity, 'workloadStatus.statusValue');
+  /* console.debug(
+    `For ${entity.name} alertSeverity is ${alertSeverity}, reporting is ${reporting}, and workload Status Value is ${workloadStatusValue} `
+  );*/
+  if (!alertSeverity && workloadStatusValue) {
+    entity.alertSeverity =
+      _WORKLOAD_STATUS_TO_ALERT_SEVERITY[workloadStatusValue];
+  } else if (!alertSeverity && reporting) {
+    alertSeverity = 'NOT_ALERTING';
+  }
+  // console.debug(entity);
+  return entity;
+};
+
 export const statusColor = mapLocation => {
   const colors = {
     green: '#13BA00',
@@ -103,6 +131,50 @@ export const statusColor = mapLocation => {
   } else {
     return colors.darkGreen;
   }
+};
+
+const severityWeight = {
+  CRITICAL: 1,
+  WARNING: 2,
+  NOT_ALERTING: 3,
+  NOT_CONFIGURED: 4
+};
+
+export const alertSeverityToWeight = value => {
+  return severityWeight[value] || 5;
+};
+
+const _weightToAlertSeverity = {
+  1: 'CRITICAL',
+  2: 'WARNING',
+  3: 'NOT_ALERTING',
+  4: 'NOT_CONFIGURED'
+};
+
+export const weightToAlertSeverity = value => {
+  return _weightToAlertSeverity[value] || '';
+};
+
+export const sortEntitiesByAlertSeverity = (a, b) => {
+  const aWeight = alertSeverityToWeight(a.alertSeverity);
+  const bWeight = alertSeverityToWeight(b.alertSeverity);
+  if (aWeight < bWeight) {
+    return -1;
+  } else if (bWeight < aWeight) {
+    return 1;
+  }
+  return 0;
+};
+
+export const sortAlertViolations = (a, b) => {
+  const aClosedAt = a.closedAt;
+  const bClosedAt = b.closedAt;
+  if (!aClosedAt || aClosedAt > bClosedAt) {
+    return -1;
+  } else if (!bClosedAt || bClosedAt < aClosedAt) {
+    return 1;
+  }
+  return 0;
 };
 
 export const generateIcon = (mapLocation, isSelectedIcon) => {

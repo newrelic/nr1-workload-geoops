@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Timeline from '../Timeline/Timeline';
-import { locationExample } from './mocks';
 import '../../../setupTests';
+import Timeline from '../Timeline';
+import { locationExample } from './mocks';
 
 const wrapper = shallow(<Timeline />);
 
-describe('#LocationMetadata', () => {
+describe('#Timeline', () => {
   test('should render component without errors if no params are passed', () => {
     expect(!!wrapper).toBe(true);
   });

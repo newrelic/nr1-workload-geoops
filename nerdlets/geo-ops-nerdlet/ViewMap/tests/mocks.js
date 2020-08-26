@@ -220,7 +220,7 @@ export const locationExample = {
     'https://docs.google.com/document/d/1NOWVNqJ9G8Ks5jIf2HVRj2CLP0Mjui1FsaIqs7kXy-Y/edit',
   title: '7171 Ikea Dr',
   alertViolations: [],
-  recentViolations: [
+  recentAlertViolations: [
     {
       __typename: 'EntityAlertViolation',
       agentUrl:
