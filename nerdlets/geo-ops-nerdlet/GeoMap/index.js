@@ -163,23 +163,43 @@ export default class GeoMap extends Component {
       return null;
     }
 
-    const location = navigation.getOpenStackedNerdletLocation({
-      id: 'workloads.home',
-      urlState: {
-        nerdletId: 'workloads.overview',
-        entityId: firstWorkloadEntity.guid
-      }
-    });
+    if (firstWorkloadEntity.alertSeverity === 'NOT_CONFIGURED') {
+      const location = navigation.getOpenStackedNerdletLocation({
+        id: 'workloads.status-rollup-settings',
+        urlState: {
+          nerdletId: 'workloads.status-rollup-settings',
+          entityId: firstWorkloadEntity.guid
+        }
+      });
 
-    return (
-      <Link to={location} className="view-workload-button">
-        View in Workloads
-        <Icon
-          type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__SIZE_8}
-          color="#0079bf"
-        />
-      </Link>
-    );
+      return (
+        <Link to={location} className="view-workload-button">
+          Configure Workload Status
+          <Icon
+            type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__SIZE_8}
+            color="#0079bf"
+          />
+        </Link>
+      );
+    } else {
+      const location = navigation.getOpenStackedNerdletLocation({
+        id: 'workloads.home',
+        urlState: {
+          nerdletId: 'workloads.overview',
+          entityId: firstWorkloadEntity.guid
+        }
+      });
+
+      return (
+        <Link to={location} className="view-workload-button">
+          View {firstWorkloadEntity.name} Workload
+          <Icon
+            type={Icon.TYPE.INTERFACE__CHEVRON__CHEVRON_RIGHT__SIZE_8}
+            color="#0079bf"
+          />
+        </Link>
+      );
+    }
   }
 
   renderMarkers() {
