@@ -86,7 +86,9 @@ export const mapWorkloadStatusValueToAlertSeverity = entity => {
   let alertSeverity = get(entity, 'alertSeverity');
   const reporting = get(entity, 'reporting');
   const workloadStatusValue = get(entity, 'workloadStatus.statusValue');
-  console.debug(`For ${entity.name} alertSeverity is ${alertSeverity}, reporting is ${reporting}, and workload Status Value is ${workloadStatusValue} `);
+  /* console.debug(
+    `For ${entity.name} alertSeverity is ${alertSeverity}, reporting is ${reporting}, and workload Status Value is ${workloadStatusValue} `
+  );*/
   if (!alertSeverity && workloadStatusValue) {
     entity.alertSeverity =
       _WORKLOAD_STATUS_TO_ALERT_SEVERITY[workloadStatusValue];
