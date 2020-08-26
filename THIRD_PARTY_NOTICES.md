@@ -24,6 +24,7 @@ code, the source code can be found at [https://github.com/newrelic/nr1-workload-
 * [lodash.chunk](#lodashchunk)
 * [lodash.clonedeep](#lodashclonedeep)
 * [lodash.get](#lodashget)
+* [lodash.orderby](#lodashorderby)
 * [lodash.some](#lodashsome)
 * [lodash.uniq](#lodashuniq)
 * [prop-types](#prop-types)
@@ -302,7 +303,7 @@ This product includes source derived from [@newrelic/nr1-community](https://gith
 
 ### ajv
 
-This product includes source derived from [ajv](https://github.com/ajv-validator/ajv) ([v6.12.3](https://github.com/ajv-validator/ajv/tree/v6.12.3)), distributed under the [MIT License](https://github.com/ajv-validator/ajv/blob/v6.12.3/LICENSE):
+This product includes source derived from [ajv](https://github.com/ajv-validator/ajv) ([v6.12.4](https://github.com/ajv-validator/ajv/tree/v6.12.4)), distributed under the [MIT License](https://github.com/ajv-validator/ajv/blob/v6.12.4/LICENSE):
 
 ```
 The MIT License (MIT)
@@ -546,6 +547,61 @@ terms above.
 ### lodash.get
 
 This product includes source derived from [lodash.get](https://github.com/lodash/lodash) ([v4.4.2](https://github.com/lodash/lodash/tree/v4.4.2)), distributed under the [MIT License](https://github.com/lodash/lodash/blob/v4.4.2/LICENSE):
+
+```
+Copyright jQuery Foundation and other contributors <https://jquery.org/>
+
+Based on Underscore.js, copyright Jeremy Ashkenas,
+DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
+
+This software consists of voluntary contributions made by many
+individuals. For exact contribution history, see the revision history
+available at https://github.com/lodash/lodash
+
+The following license applies to all parts of this software except as
+documented below:
+
+====
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+====
+
+Copyright and related rights for sample code are waived via CC0. Sample
+code is defined as all source code displayed within the prose of the
+documentation.
+
+CC0: http://creativecommons.org/publicdomain/zero/1.0/
+
+====
+
+Files located in the node_modules and vendor directories are externally
+maintained libraries used by this software which have their own
+licenses; we recommend you read them, as their terms may differ from the
+terms above.
+
+```
+
+### lodash.orderby
+
+This product includes source derived from [lodash.orderby](https://github.com/lodash/lodash) ([v4.6.0](https://github.com/lodash/lodash/tree/v4.6.0)), distributed under the [MIT License](https://github.com/lodash/lodash/blob/v4.6.0/LICENSE):
 
 ```
 Copyright jQuery Foundation and other contributors <https://jquery.org/>
@@ -1153,7 +1209,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### @babel/plugin-transform-runtime
 
-This product includes source derived from [@babel/plugin-transform-runtime](https://github.com/babel/babel) ([v7.10.4](https://github.com/babel/babel/tree/v7.10.4)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.10.4/LICENSE):
+This product includes source derived from [@babel/plugin-transform-runtime](https://github.com/babel/babel) ([v7.11.0](https://github.com/babel/babel/tree/v7.11.0)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.11.0/LICENSE):
 
 ```
 MIT License
@@ -1183,7 +1239,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### @babel/preset-env
 
-This product includes source derived from [@babel/preset-env](https://github.com/babel/babel) ([v7.10.4](https://github.com/babel/babel/tree/v7.10.4)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.10.4/LICENSE):
+This product includes source derived from [@babel/preset-env](https://github.com/babel/babel) ([v7.11.0](https://github.com/babel/babel/tree/v7.11.0)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.11.0/LICENSE):
 
 ```
 MIT License
@@ -1243,7 +1299,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### @newrelic/eslint-plugin-newrelic
 
-This product includes source derived from [@newrelic/eslint-plugin-newrelic](https://github.com/NewRelic/eslint-plugin-newrelic) ([v0.3.0](https://github.com/NewRelic/eslint-plugin-newrelic/tree/v0.3.0)), distributed under the [Apache-2.0 License](https://github.com/NewRelic/eslint-plugin-newrelic/blob/v0.3.0/LICENSE):
+This product includes source derived from [@newrelic/eslint-plugin-newrelic](https://github.com/NewRelic/eslint-plugin-newrelic) ([v0.3.1](https://github.com/NewRelic/eslint-plugin-newrelic/tree/v0.3.1)), distributed under the [Apache-2.0 License](https://github.com/NewRelic/eslint-plugin-newrelic/blob/v0.3.1/LICENSE):
 
 ```
                                  Apache License
@@ -1510,7 +1566,7 @@ SOFTWARE.
 
 ### babel-jest
 
-This product includes source derived from [babel-jest](https://github.com/facebook/jest) ([v26.1.0](https://github.com/facebook/jest/tree/v26.1.0)), distributed under the [MIT License](https://github.com/facebook/jest/blob/v26.1.0/LICENSE):
+This product includes source derived from [babel-jest](https://github.com/facebook/jest) ([v26.3.0](https://github.com/facebook/jest/tree/v26.3.0)), distributed under the [MIT License](https://github.com/facebook/jest/blob/v26.3.0/LICENSE):
 
 ```
 MIT License
@@ -1539,7 +1595,7 @@ SOFTWARE.
 
 ### babel-plugin-styled-components
 
-This product includes source derived from [babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components) ([v1.10.7](https://github.com/styled-components/babel-plugin-styled-components/tree/v1.10.7)), distributed under the [MIT License](https://github.com/styled-components/babel-plugin-styled-components/blob/v1.10.7/LICENSE.md):
+This product includes source derived from [babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components) ([v1.11.1](https://github.com/styled-components/babel-plugin-styled-components/tree/v1.11.1)), distributed under the [MIT License](https://github.com/styled-components/babel-plugin-styled-components/blob/v1.11.1/LICENSE.md):
 
 ```
 MIT License
@@ -1597,13 +1653,13 @@ SOFTWARE.
 
 ### enzyme-adapter-react-16
 
-This product includes source derived from [enzyme-adapter-react-16](https://github.com/airbnb/enzyme) ([v1.15.2](https://github.com/airbnb/enzyme/tree/v1.15.2)), distributed under the [MIT License](https://github.com/airbnb/enzyme/blob/v1.15.2/LICENSE.md):
+This product includes source derived from [enzyme-adapter-react-16](https://github.com/enzymejs/enzyme) ([v1.15.3](https://github.com/enzymejs/enzyme/tree/v1.15.3)), distributed under the [MIT License](https://github.com/enzymejs/enzyme/blob/v1.15.3/LICENSE.md):
 
 ```
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Airbnb, Inc.
+Copyright (c) 2015 Airbnb, Inc. and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1712,7 +1768,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### jest
 
-This product includes source derived from [jest](https://github.com/facebook/jest) ([v26.1.0](https://github.com/facebook/jest/tree/v26.1.0)), distributed under the [MIT License](https://github.com/facebook/jest/blob/v26.1.0/LICENSE):
+This product includes source derived from [jest](https://github.com/facebook/jest) ([v26.4.2](https://github.com/facebook/jest/tree/v26.4.2)), distributed under the [MIT License](https://github.com/facebook/jest/blob/v26.4.2/LICENSE):
 
 ```
 MIT License
@@ -1785,7 +1841,7 @@ SOFTWARE.
 
 ### sinon
 
-This product includes source derived from [sinon](https://github.com/sinonjs/sinon) ([v9.0.2](https://github.com/sinonjs/sinon/tree/v9.0.2)), distributed under the [BSD-3-Clause License](https://github.com/sinonjs/sinon/blob/v9.0.2/LICENSE):
+This product includes source derived from [sinon](https://github.com/sinonjs/sinon) ([v9.0.3](https://github.com/sinonjs/sinon/tree/v9.0.3)), distributed under the [BSD-3-Clause License](https://github.com/sinonjs/sinon/blob/v9.0.3/LICENSE):
 
 ```
 (The BSD License)

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Thu Aug 20 2020 14:52:19 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Wed Aug 26 2020 19:41:11 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-workload-geoops",
   "projectUrl": "https://github.com/newrelic/nr1-workload-geoops",
   "includeDev": true,
@@ -29,15 +29,15 @@
       "licenseTextSource": "file",
       "publisher": "newrelic"
     },
-    "ajv@6.12.3": {
+    "ajv@6.12.4": {
       "name": "ajv",
-      "version": "6.12.3",
-      "range": "^6.12.3",
+      "version": "6.12.4",
+      "range": "^6.12.4",
       "licenses": "MIT",
       "repoUrl": "https://github.com/ajv-validator/ajv",
-      "versionedRepoUrl": "https://github.com/ajv-validator/ajv/tree/v6.12.3",
+      "versionedRepoUrl": "https://github.com/ajv-validator/ajv/tree/v6.12.4",
       "licenseFile": "node_modules/ajv/LICENSE",
-      "licenseUrl": "https://github.com/ajv-validator/ajv/blob/v6.12.3/LICENSE",
+      "licenseUrl": "https://github.com/ajv-validator/ajv/blob/v6.12.4/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Evgeny Poberezkin"
     },
@@ -122,6 +122,20 @@
       "versionedRepoUrl": "https://github.com/lodash/lodash/tree/v4.4.2",
       "licenseFile": "node_modules/lodash.get/LICENSE",
       "licenseUrl": "https://github.com/lodash/lodash/blob/v4.4.2/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "John-David Dalton",
+      "email": "john.david.dalton@gmail.com",
+      "url": "http://allyoucanleet.com/"
+    },
+    "lodash.orderby@4.6.0": {
+      "name": "lodash.orderby",
+      "version": "4.6.0",
+      "range": "^4.6.0",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/lodash/lodash",
+      "versionedRepoUrl": "https://github.com/lodash/lodash/tree/v4.6.0",
+      "licenseFile": "node_modules/lodash.orderby/LICENSE",
+      "licenseUrl": "https://github.com/lodash/lodash/blob/v4.6.0/LICENSE",
       "licenseTextSource": "file",
       "publisher": "John-David Dalton",
       "email": "john.david.dalton@gmail.com",
@@ -286,26 +300,26 @@
       "licenseUrl": "https://github.com/babel/babel/blob/v7.10.4/LICENSE",
       "licenseTextSource": "file"
     },
-    "@babel/plugin-transform-runtime@7.10.4": {
+    "@babel/plugin-transform-runtime@7.11.0": {
       "name": "@babel/plugin-transform-runtime",
-      "version": "7.10.4",
-      "range": "^7.10.4",
+      "version": "7.11.0",
+      "range": "^7.11.0",
       "licenses": "MIT",
       "repoUrl": "https://github.com/babel/babel",
-      "versionedRepoUrl": "https://github.com/babel/babel/tree/v7.10.4",
+      "versionedRepoUrl": "https://github.com/babel/babel/tree/v7.11.0",
       "licenseFile": "node_modules/@babel/plugin-transform-runtime/LICENSE",
-      "licenseUrl": "https://github.com/babel/babel/blob/v7.10.4/LICENSE",
+      "licenseUrl": "https://github.com/babel/babel/blob/v7.11.0/LICENSE",
       "licenseTextSource": "file"
     },
-    "@babel/preset-env@7.10.4": {
+    "@babel/preset-env@7.11.0": {
       "name": "@babel/preset-env",
-      "version": "7.10.4",
-      "range": "^7.10.4",
+      "version": "7.11.0",
+      "range": "^7.11.0",
       "licenses": "MIT",
       "repoUrl": "https://github.com/babel/babel",
-      "versionedRepoUrl": "https://github.com/babel/babel/tree/v7.10.4",
+      "versionedRepoUrl": "https://github.com/babel/babel/tree/v7.11.0",
       "licenseFile": "node_modules/@babel/preset-env/LICENSE",
-      "licenseUrl": "https://github.com/babel/babel/blob/v7.10.4/LICENSE",
+      "licenseUrl": "https://github.com/babel/babel/blob/v7.11.0/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Henry Zhu",
       "email": "hi@henryzoo.com"
@@ -323,15 +337,15 @@
       "publisher": "Sebastian McKenzie",
       "email": "sebmck@gmail.com"
     },
-    "@newrelic/eslint-plugin-newrelic@0.3.0": {
+    "@newrelic/eslint-plugin-newrelic@0.3.1": {
       "name": "@newrelic/eslint-plugin-newrelic",
-      "version": "0.3.0",
-      "range": "^0.3.0",
+      "version": "0.3.1",
+      "range": "^0.3.1",
       "licenses": "Apache-2.0",
       "repoUrl": "https://github.com/NewRelic/eslint-plugin-newrelic",
-      "versionedRepoUrl": "https://github.com/NewRelic/eslint-plugin-newrelic/tree/v0.3.0",
+      "versionedRepoUrl": "https://github.com/NewRelic/eslint-plugin-newrelic/tree/v0.3.1",
       "licenseFile": "node_modules/@newrelic/eslint-plugin-newrelic/LICENSE",
-      "licenseUrl": "https://github.com/NewRelic/eslint-plugin-newrelic/blob/v0.3.0/LICENSE",
+      "licenseUrl": "https://github.com/NewRelic/eslint-plugin-newrelic/blob/v0.3.1/LICENSE",
       "licenseTextSource": "file",
       "publisher": "New Relic"
     },
@@ -361,26 +375,26 @@
       "publisher": "Pierre Vanduynslager",
       "url": "https://github.com/pvdlg"
     },
-    "babel-jest@26.1.0": {
+    "babel-jest@26.3.0": {
       "name": "babel-jest",
-      "version": "26.1.0",
-      "range": "^26.1.0",
+      "version": "26.3.0",
+      "range": "^26.3.0",
       "licenses": "MIT",
       "repoUrl": "https://github.com/facebook/jest",
-      "versionedRepoUrl": "https://github.com/facebook/jest/tree/v26.1.0",
+      "versionedRepoUrl": "https://github.com/facebook/jest/tree/v26.3.0",
       "licenseFile": "node_modules/babel-jest/LICENSE",
-      "licenseUrl": "https://github.com/facebook/jest/blob/v26.1.0/LICENSE",
+      "licenseUrl": "https://github.com/facebook/jest/blob/v26.3.0/LICENSE",
       "licenseTextSource": "file"
     },
-    "babel-plugin-styled-components@1.10.7": {
+    "babel-plugin-styled-components@1.11.1": {
       "name": "babel-plugin-styled-components",
-      "version": "1.10.7",
-      "range": "^1.10.7",
+      "version": "1.11.1",
+      "range": "^1.11.1",
       "licenses": "MIT",
       "repoUrl": "https://github.com/styled-components/babel-plugin-styled-components",
-      "versionedRepoUrl": "https://github.com/styled-components/babel-plugin-styled-components/tree/v1.10.7",
+      "versionedRepoUrl": "https://github.com/styled-components/babel-plugin-styled-components/tree/v1.11.1",
       "licenseFile": "node_modules/babel-plugin-styled-components/LICENSE.md",
-      "licenseUrl": "https://github.com/styled-components/babel-plugin-styled-components/blob/v1.10.7/LICENSE.md",
+      "licenseUrl": "https://github.com/styled-components/babel-plugin-styled-components/blob/v1.11.1/LICENSE.md",
       "licenseTextSource": "file"
     },
     "chai@4.2.0": {
@@ -396,18 +410,18 @@
       "publisher": "Jake Luer",
       "email": "jake@alogicalparadox.com"
     },
-    "enzyme-adapter-react-16@1.15.2": {
+    "enzyme-adapter-react-16@1.15.3": {
       "name": "enzyme-adapter-react-16",
-      "version": "1.15.2",
-      "range": "^1.15.2",
+      "version": "1.15.3",
+      "range": "^1.15.3",
       "licenses": "MIT",
-      "repoUrl": "https://github.com/airbnb/enzyme",
-      "versionedRepoUrl": "https://github.com/airbnb/enzyme/tree/v1.15.2",
+      "repoUrl": "https://github.com/enzymejs/enzyme",
+      "versionedRepoUrl": "https://github.com/enzymejs/enzyme/tree/v1.15.3",
       "licenseFile": "node_modules/enzyme-adapter-react-16/LICENSE.md",
-      "licenseUrl": "https://github.com/airbnb/enzyme/blob/v1.15.2/LICENSE.md",
+      "licenseUrl": "https://github.com/enzymejs/enzyme/blob/v1.15.3/LICENSE.md",
       "licenseTextSource": "file",
-      "publisher": "Leland Richardson",
-      "email": "leland.richardson@airbnb.com"
+      "publisher": "Jordan Harband",
+      "email": "ljharb@gmail.com"
     },
     "enzyme@3.11.0": {
       "name": "enzyme",
@@ -447,15 +461,15 @@
       "licenseTextSource": "file",
       "publisher": "Tobias Koppers @sokra"
     },
-    "jest@26.1.0": {
+    "jest@26.4.2": {
       "name": "jest",
-      "version": "26.1.0",
-      "range": "^26.1.0",
+      "version": "26.4.2",
+      "range": "^26.4.2",
       "licenses": "MIT",
       "repoUrl": "https://github.com/facebook/jest",
-      "versionedRepoUrl": "https://github.com/facebook/jest/tree/v26.1.0",
+      "versionedRepoUrl": "https://github.com/facebook/jest/tree/v26.4.2",
       "licenseFile": "node_modules/jest/LICENSE",
-      "licenseUrl": "https://github.com/facebook/jest/blob/v26.1.0/LICENSE",
+      "licenseUrl": "https://github.com/facebook/jest/blob/v26.4.2/LICENSE",
       "licenseTextSource": "file"
     },
     "prettier@1.19.1": {
@@ -481,15 +495,15 @@
       "licenseUrl": "https://github.com/facebook/react/blob/v16.13.1/LICENSE",
       "licenseTextSource": "file"
     },
-    "sinon@9.0.2": {
+    "sinon@9.0.3": {
       "name": "sinon",
-      "version": "9.0.2",
-      "range": "^9.0.2",
+      "version": "9.0.3",
+      "range": "^9.0.3",
       "licenses": "BSD-3-Clause",
       "repoUrl": "https://github.com/sinonjs/sinon",
-      "versionedRepoUrl": "https://github.com/sinonjs/sinon/tree/v9.0.2",
+      "versionedRepoUrl": "https://github.com/sinonjs/sinon/tree/v9.0.3",
       "licenseFile": "node_modules/sinon/LICENSE",
-      "licenseUrl": "https://github.com/sinonjs/sinon/blob/v9.0.2/LICENSE",
+      "licenseUrl": "https://github.com/sinonjs/sinon/blob/v9.0.3/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Christian Johansen"
     }
