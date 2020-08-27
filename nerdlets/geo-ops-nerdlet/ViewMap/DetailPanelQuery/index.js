@@ -90,6 +90,9 @@ export default class DetailPanelQuery extends React.PureComponent {
     otherEntities.forEach(entity => {
       entityGuids.push(entity.guid);
     });
+    workloads.forEach(workload => {
+      entityGuids.push(workload.guid);
+    });
 
     // STEP 5: Build and execute a NerdGraph request that queries for a list of entities and their 10 most recent alert violations
     const variables = {
