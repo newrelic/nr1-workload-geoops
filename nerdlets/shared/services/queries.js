@@ -1,53 +1,3 @@
-export const LIST_WORKLOADS = `
-query ($accountId: Int!) {
-  actor {
-    __typename
-    account(id: $accountId) {
-      workload {
-        collections {
-          id
-          guid
-          entities {
-            guid
-          }
-          entitySearchQueries {
-            id
-            query
-            updatedAt
-            createdAt
-          }
-          entitySearchQuery
-          name
-          permalink
-          scopeAccounts {
-            accountIds
-          }
-          updatedAt
-          createdAt
-        }
-      }
-    }
-  }
-}
-`;
-
-export const SINGLE_WORKLOAD = `
-query ($accountId: Int!, $id: Int!) {
-  actor {
-    __typename
-    account(id: $accountId) {
-      workload {
-        collection(id: $id) {
-          id
-          name
-          guid
-        }
-      }
-    }
-  }
-}
-`;
-
 /*
  * Sample response:
  [
@@ -139,80 +89,139 @@ query($query: String!) {
   },
 */
 
-export const _generateChunks = guids => {
+/**
+ * Because the entities endpoint in NerdGraph has a limit of 25 entities (if you use the `guids` input), we need to chunk the list.
+ */
+const _generateChunks = list => {
   const chunks = [];
-  const n = guids.length;
+  const n = list.length;
   let i = 0;
 
   while (i < n) {
-    chunks.push(guids.slice(i, (i += 25)));
+    chunks.push(list.slice(i, (i += 25)));
   }
 
   return chunks;
 };
 
+const _generateEntitiesQuery = (entityGuids, index) => {
+  return `
+    query${index}: entities(guids: ${JSON.stringify(entityGuids)}) {
+      ...EntityInfo
+      ...EntityTags @include(if: $includeTags)
+    }
+  `;
+};
+
 export const getEntitiesByGuidsQuery = variables => {
   const { entityGuids = [] } = variables;
 
-  const _generateQuery = (entityGuids, index) => {
-    return `
-      query${index}: entities(guids: ${JSON.stringify(entityGuids)}) {
-        ...EntityInfo
-        ...EntityTags @include(if: $includeTags)
-      }
-    `;
-  };
-
   const fullQuery = _generateChunks(entityGuids).map((chunk, index) => {
-    return _generateQuery(chunk, index);
+    return _generateEntitiesQuery(chunk, index);
   });
 
   return `
-    query EntityDetails($includeTags: Boolean = false, $includeAlertViolations: Boolean = true, $begin_time: EpochMilliseconds = 0, $end_time: EpochMilliseconds = 0) {
+    query EntityDetails($includeTags: Boolean = false, $includeAlertViolations: Boolean = true, $includeRecentAlertViolations: Boolean = false, $begin_time: EpochMilliseconds = 0, $end_time: EpochMilliseconds = 0) {
       actor {
         ${fullQuery.join(',\n')}
       }
     }
-    
+
     fragment EntityInfo on Entity {
       guid
       accountId
-      domain
       type
       name
       reporting
       ... on AlertableEntity {
         alertSeverity
-          alertViolations(endTime: $end_time, startTime: $begin_time) @include(if: $includeAlertViolations) {
-            ...AlertInfo
-          }
-    
-          recentAlertViolations(count: 10) @include(if: $includeAlertViolations) {
-            ...AlertInfo
-          }
-        __typename
+        alertViolations(endTime: $end_time, startTime: $begin_time) @include(if: $includeAlertViolations) {
+          ...AlertInfo
+        }
+        recentAlertViolations(count: 10) @include(if: $includeRecentAlertViolations) {
+          ...AlertInfo
+        }
       }
-      __typename
+      ... on WorkloadEntity {
+        workloadStatus {
+          statusValue
+        }
+      }
     }
-    
+
     fragment EntityTags on Entity {
       tags {
         key
         values
-        __typename
       }
-      __typename
     }
-    
+
     fragment AlertInfo on EntityAlertViolation {
-      agentUrl
       alertSeverity
       closedAt
       label
-      level
       openedAt
-      violationId
       violationUrl
+    }
+  `;
+};
+
+/**
+ * Generate a segment of a GraphQL query to retrieve the account > workload > collection > entitySearchQuery
+ */
+export const getWorkloadEntitySearchQuery = variables => {
+  // debugger;
+  const { workloads = [] } = variables;
+
+  const _entitySearchQuery = workload => {
+    return `
+    ${workload.guid}: account(id: ${workload.accountId}) {
+      workload {
+        collection(guid: "${workload.guid}") {
+          entitySearchQuery
+        }
+      }
+    }
+    `;
+  };
+
+  if (workloads.length === 0) {
+    return ``;
+  }
+  const queries = workloads.map((workload, index) =>
+    _entitySearchQuery(workload, index)
+  );
+  return `{
+    actor {
+      ${queries.join(',\n')}
+    }
+  }`;
+};
+
+/**
+ * Generate a NerdGraph request that includes entity searches and lists of guids.
+ * Our objective is to create a request to retrieve the entity alongside its alertSeverity AND the 10 most recent alert violations.
+ */
+export const getWorkloadEntityGuidsQuery = variables => {
+  const { entitySearchQueries } = variables;
+  const workloadQueries = entitySearchQueries.map(
+    (entitySearchQuery, index) => {
+      return `
+      workloadQuery${index}: entitySearch(query: "${entitySearchQuery}") {
+        results {
+          entities {
+            guid
+          }
+        }
+      }
+    `;
+    }
+  );
+
+  return `{
+      actor {
+        ${workloadQueries.join(',\n')}
+      }
     }
   `;
 };

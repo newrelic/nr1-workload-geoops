@@ -1,6 +1,6 @@
 import { Grid, GridItem, Stack, StackItem } from 'nr1';
 import styled from 'styled-components';
-import { ToolbarItem } from '../../shared/components';
+import { ToolbarItem } from '../components';
 
 export const StyledToolbarItem = styled(ToolbarItem)`
   font-size: 1.25em;

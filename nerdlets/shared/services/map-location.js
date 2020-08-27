@@ -2,6 +2,7 @@ import { AccountStorageQuery, AccountStorageMutation } from 'nr1';
 
 import uuid from 'uuid/v4';
 import { mapLocationCollection } from '../constants';
+import uniq from 'lodash.uniq';
 
 /*
  * NerdStorage is a document store, and only stores values as strings
@@ -35,6 +36,29 @@ export const formatMapLocation = mapLocation => {
   };
 
   return formatted;
+};
+
+/**
+ *
+ *
+ * @param { string | int } accountId
+ * @param { Object } map
+ */
+export const getMapLocationsAndEntities = async ({ accountId, map }) => {
+  const { data: mapLocations } = await getMapLocations({
+    accountId: parseInt(accountId, 10),
+    document: map
+  });
+  const allEntities = mapLocations.reduce((previousValue, currentValue) => {
+    const entities = currentValue.document.entities || [];
+    previousValue.push(...entities);
+    return previousValue;
+  }, []);
+  const entityGuids = uniq(allEntities.map(e => e.guid));
+  return {
+    entityGuids,
+    mapLocations
+  };
 };
 
 // Fetch all MapLocations

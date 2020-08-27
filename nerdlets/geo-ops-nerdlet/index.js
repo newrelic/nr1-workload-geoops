@@ -4,10 +4,10 @@ import { navigation, NerdletStateContext, Spinner } from 'nr1';
 
 import cloneDeep from 'lodash.clonedeep';
 
-import EmptyState from './EmptyState/EmptyState';
-import CreateMap from './CreateMap/CreateMap';
-import ViewMap from './ViewMap/ViewMap';
-import MapList from './MapList/MapList';
+import EmptyState from './EmptyState';
+import CreateMap from './CreateMap';
+import ViewMap from './ViewMap';
+import MapList from './MapList';
 
 import { nerdStorageRequest } from '../shared/utils';
 import { getMaps } from '../shared/services/map';

@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { Stack, StackItem } from 'nr1';
 
+export const GeoOpsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+`;
+
 export const DetailPanelItem = styled.div`
   display: block;
   border-bottom: 1px dotted #edeeee;

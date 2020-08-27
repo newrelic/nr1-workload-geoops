@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ToolbarItem } from '../../../shared/components/Toolbar';
+import { ToolbarItem } from '../../components/Toolbar';
 
 const StyledToolbarItem = styled(ToolbarItem)`
   h4 {

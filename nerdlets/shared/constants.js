@@ -10,7 +10,7 @@
 
 import cloneDeep from "lodash.clonedeep";
 import uuid from "uuid/v4";
-import { FormInputFullWidth, FormInputTwoColumn, FormInputThreeColumn } from "./components/react-jsonschema-form";
+import { FormInputFullWidth, FormInputTwoColumn, FormInputThreeColumn } from "../geo-ops-nerdlet/components/react-jsonschema-form";
 
 const nr1json =  require("../../nr1.json");
 

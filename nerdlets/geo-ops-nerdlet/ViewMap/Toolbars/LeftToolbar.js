@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Dropdown, DropdownItem } from 'nr1';
 import { groupBy } from 'lodash';
 
-import { ToolbarItem } from '../../../shared/components';
+import { ToolbarItem } from '../../components';
 import { StyledToolbarItem } from './styles';
 
 const LeftToolbar = ({

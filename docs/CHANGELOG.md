@@ -1,3 +1,26 @@
+# [1.5.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.6...v1.5.0) (2020-08-26)
+
+
+### Bug Fixes
+
+* eslint errors ([554e6f0](https://github.com/newrelic/nr1-workload-geoops/commit/554e6f04c822361b950a760702a785143b3693df))
+* eslint fixes ([a260662](https://github.com/newrelic/nr1-workload-geoops/commit/a2606623c966fa115fe5318303916c9038870de0))
+* eslint fixes ([5aa64c2](https://github.com/newrelic/nr1-workload-geoops/commit/5aa64c2bb6beb7b8bed378501630cf10537fb368))
+* resolve favoriting issues and implement workload status ([c34e01d](https://github.com/newrelic/nr1-workload-geoops/commit/c34e01d231888665baea955ece9df2795f313217))
+
+
+### Features
+
+* greatly improved error handling and data fetch efficiency based on Workload entity advancements ([d20b82b](https://github.com/newrelic/nr1-workload-geoops/commit/d20b82b30b4e7c6bb61ef114ccf721fe40c57f8b))
+* if a workload isn't configured, link to that screen ([2cbf79d](https://github.com/newrelic/nr1-workload-geoops/commit/2cbf79df5bfa0a03688cf4969dae91638e0dc03f))
+
+## [1.4.6](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.5...v1.4.6) (2020-08-20)
+
+
+### Bug Fixes
+
+* upgrade graphql-tag from 2.10.4 to 2.11.0 ([ed01463](https://github.com/newrelic/nr1-workload-geoops/commit/ed014635cb63dfcb7fb9fd8d9042927e550c8a4b))
+
 ## [1.4.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.4...v1.4.5) (2020-08-07)
 
 
