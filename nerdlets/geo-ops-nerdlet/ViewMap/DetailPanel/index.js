@@ -186,7 +186,11 @@ export default class DetailPanel extends React.PureComponent {
                         Table.SPACING_TYPE.NONE
                       ]}
                       items={composeEntitySummary(
-                        mapLocation ? mapLocation.entities : []
+                        mapLocation && mapLocation.entities
+                          ? mapLocation.entities.filter(
+                              e => e.type !== 'WORKLOAD'
+                            )
+                          : []
                       )}
                     >
                       <TableHeader>
