@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.0...v1.5.1) (2020-08-27)
+
+
+### Bug Fixes
+
+* workload was disappearing in the detail panel ([66c05c7](https://github.com/newrelic/nr1-workload-geoops/commit/66c05c7e6c190dd0b664495590095f97e7385256))
+
 # [1.5.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.4.6...v1.5.0) (2020-08-26)
 
 
