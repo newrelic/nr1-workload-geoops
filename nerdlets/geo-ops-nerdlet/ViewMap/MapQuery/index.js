@@ -38,9 +38,11 @@ export default class MapQuery extends React.PureComponent {
       mapLocation.mostCriticalEntity = mapLocation.orderedEntities
         ? mapLocation.orderedEntities[0]
         : null;
-      mapLocation.mostCriticalEntity.alertSeverityWeight = weightToAlertSeverity(
-        mapLocation.mostCriticalEntity.alertSeverity
-      );
+      if (mapLocation.mostCriticalEntity) {
+        mapLocation.mostCriticalEntity.alertSeverityWeight = weightToAlertSeverity(
+          mapLocation.mostCriticalEntity.alertSeverity
+        );
+      }
       mapLocation.entities = mapLocation.orderedEntities;
       return mapLocation;
     });
