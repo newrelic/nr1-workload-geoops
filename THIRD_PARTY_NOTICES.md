@@ -30,11 +30,9 @@ code, the source code can be found at [https://github.com/newrelic/nr1-workload-
 * [prop-types](#prop-types)
 * [react-bootstrap-table-next](#react-bootstrap-table-next)
 * [react-bootstrap-table2-toolkit](#react-bootstrap-table2-toolkit)
-* [react-dom](#react-dom)
 * [react-jsonschema-form](#react-jsonschema-form)
 * [react-leaflet](#react-leaflet)
 * [react-select](#react-select)
-* [react](#react)
 * [styled-components](#styled-components)
 * [uuid](#uuid)
 
@@ -56,7 +54,9 @@ code, the source code can be found at [https://github.com/newrelic/nr1-workload-
 * [file-loader](#file-loader)
 * [jest](#jest)
 * [prettier](#prettier)
+* [react-dom](#react-dom)
 * [react-test-renderer](#react-test-renderer)
+* [react](#react)
 * [sinon](#sinon)
 
 
@@ -64,7 +64,7 @@ code, the source code can be found at [https://github.com/newrelic/nr1-workload-
 
 ### @babel/polyfill
 
-This product includes source derived from [@babel/polyfill](https://github.com/babel/babel) ([v7.10.4](https://github.com/babel/babel/tree/v7.10.4)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.10.4/LICENSE):
+This product includes source derived from [@babel/polyfill](https://github.com/babel/babel) ([v7.11.5](https://github.com/babel/babel/tree/v7.11.5)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.11.5/LICENSE):
 
 ```
 MIT License
@@ -333,7 +333,7 @@ SOFTWARE.
 
 ### date-fns
 
-This product includes source derived from [date-fns](https://github.com/date-fns/date-fns) ([v2.15.0](https://github.com/date-fns/date-fns/tree/v2.15.0)), distributed under the [MIT License](https://github.com/date-fns/date-fns/blob/v2.15.0/LICENSE.md):
+This product includes source derived from [date-fns](https://github.com/date-fns/date-fns) ([v2.16.1](https://github.com/date-fns/date-fns/tree/v2.16.1)), distributed under the [MIT License](https://github.com/date-fns/date-fns/blob/v2.16.1/LICENSE.md):
 
 ```
 Copyright (C) 2020 Sasha Koss and Lesha Koss
@@ -821,35 +821,6 @@ The above copyright notice and this permission notice (including the next paragr
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-### react-dom
-
-This product includes source derived from [react-dom](https://github.com/facebook/react) ([v16.6.3](https://github.com/facebook/react/tree/v16.6.3)), distributed under the [MIT License](https://github.com/facebook/react/blob/v16.6.3/LICENSE):
-
-```
-MIT License
-
-Copyright (c) Facebook, Inc. and its affiliates.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-```
-
 ### react-jsonschema-form
 
 This product includes source derived from [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form) ([v1.8.1](https://github.com/mozilla-services/react-jsonschema-form/tree/v1.8.1)), distributed under the [Apache-2.0 License](https://github.com/mozilla-services/react-jsonschema-form/blob/v1.8.1/LICENSE.md):
@@ -1102,35 +1073,6 @@ The above copyright notice and this permission notice (including the next paragr
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-### react
-
-This product includes source derived from [react](https://github.com/facebook/react) ([v16.6.3](https://github.com/facebook/react/tree/v16.6.3)), distributed under the [MIT License](https://github.com/facebook/react/blob/v16.6.3/LICENSE):
-
-```
-MIT License
-
-Copyright (c) Facebook, Inc. and its affiliates.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-```
-
 ### styled-components
 
 This product includes source derived from [styled-components](https://github.com/styled-components/styled-components) ([v4.4.1](https://github.com/styled-components/styled-components/tree/v4.4.1)), distributed under the [MIT License](https://github.com/styled-components/styled-components/blob/v4.4.1/README.md):
@@ -1209,7 +1151,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### @babel/plugin-transform-runtime
 
-This product includes source derived from [@babel/plugin-transform-runtime](https://github.com/babel/babel) ([v7.11.0](https://github.com/babel/babel/tree/v7.11.0)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.11.0/LICENSE):
+This product includes source derived from [@babel/plugin-transform-runtime](https://github.com/babel/babel) ([v7.11.5](https://github.com/babel/babel/tree/v7.11.5)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.11.5/LICENSE):
 
 ```
 MIT License
@@ -1239,7 +1181,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### @babel/preset-env
 
-This product includes source derived from [@babel/preset-env](https://github.com/babel/babel) ([v7.11.0](https://github.com/babel/babel/tree/v7.11.0)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.11.0/LICENSE):
+This product includes source derived from [@babel/preset-env](https://github.com/babel/babel) ([v7.11.5](https://github.com/babel/babel/tree/v7.11.5)), distributed under the [MIT License](https://github.com/babel/babel/blob/v7.11.5/LICENSE):
 
 ```
 MIT License
@@ -1653,7 +1595,7 @@ SOFTWARE.
 
 ### enzyme-adapter-react-16
 
-This product includes source derived from [enzyme-adapter-react-16](https://github.com/enzymejs/enzyme) ([v1.15.3](https://github.com/enzymejs/enzyme/tree/v1.15.3)), distributed under the [MIT License](https://github.com/enzymejs/enzyme/blob/v1.15.3/LICENSE.md):
+This product includes source derived from [enzyme-adapter-react-16](https://github.com/enzymejs/enzyme) ([v1.15.4](https://github.com/enzymejs/enzyme/tree/v1.15.4)), distributed under the [MIT License](https://github.com/enzymejs/enzyme/blob/v1.15.4/LICENSE.md):
 
 ```
 
@@ -1810,9 +1752,67 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ```
 
+### react-dom
+
+This product includes source derived from [react-dom](https://github.com/facebook/react) ([v16.6.3](https://github.com/facebook/react/tree/v16.6.3)), distributed under the [MIT License](https://github.com/facebook/react/blob/v16.6.3/LICENSE):
+
+```
+MIT License
+
+Copyright (c) Facebook, Inc. and its affiliates.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
 ### react-test-renderer
 
 This product includes source derived from [react-test-renderer](https://github.com/facebook/react) ([v16.13.1](https://github.com/facebook/react/tree/v16.13.1)), distributed under the [MIT License](https://github.com/facebook/react/blob/v16.13.1/LICENSE):
+
+```
+MIT License
+
+Copyright (c) Facebook, Inc. and its affiliates.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
+### react
+
+This product includes source derived from [react](https://github.com/facebook/react) ([v16.6.3](https://github.com/facebook/react/tree/v16.6.3)), distributed under the [MIT License](https://github.com/facebook/react/blob/v16.6.3/LICENSE):
 
 ```
 MIT License
