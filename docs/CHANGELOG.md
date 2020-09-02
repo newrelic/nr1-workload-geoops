@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.1...v1.5.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* Trigger release and changelog generation (via GH Actions) ([10e4208](https://github.com/newrelic/nr1-workload-geoops/commit/10e42089dae2708e2f0a15878bd6520331bf0d24))
+
 ## [1.5.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.0...v1.5.1) (2020-08-27)
 
 
