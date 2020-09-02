@@ -339,7 +339,7 @@ export default class MapLocationFilesUpload extends React.Component {
             <Description>
               JSON file formatted to{' '}
               <a
-                href="https://github.com/newrelic/nr1-workload-geoops/blob/master/docs/data-dictionary.md"
+                href="https://github.com/newrelic/nr1-workload-geoops/blob/main/docs/data-dictionary.md"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -347,7 +347,7 @@ export default class MapLocationFilesUpload extends React.Component {
               </a>{' '}
               or{' '}
               <a
-                href="https://github.com/newrelic/nr1-workload-geoops/tree/master/examples"
+                href="https://github.com/newrelic/nr1-workload-geoops/tree/main/examples"
                 target="_blank"
                 rel="noopener noreferrer"
               >
