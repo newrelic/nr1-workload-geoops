@@ -8,12 +8,19 @@ import RightToolbar from './Toolbars/RightToolbar';
 import LeftToolbar from './Toolbars/LeftToolbar';
 
 const StyledGrid = styled(Grid)`
+  width: 100%;
   padding: 24px;
   background-color: #f4f5f5;
   height: calc(100% - 74px);
+  overflow: scroll;
 
   div.map-grid {
     grid-gap: 16px;
+  }
+
+  .map-grid-container {
+    padding-bottom: 20px;
+    overflow: visible;
   }
 `;
 
@@ -100,7 +107,7 @@ export default class MapList extends PureComponent {
         <StyledGrid
           spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
         >
-          <GridItem columnSpan={12} fullHeight>
+          <GridItem columnSpan={12} fullHeight className="map-grid-container">
             <Grid className="map-grid">
               {mapGridItems}
               <GridItem columnSpan={3}>
