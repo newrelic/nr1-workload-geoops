@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.2...v1.5.3) (2020-11-03)
+
+
+### Bug Fixes
+
+* map list scrolling issue fixed ([#1](https://github.com/newrelic/nr1-workload-geoops/issues/1)) ([45be1f7](https://github.com/newrelic/nr1-workload-geoops/commit/45be1f7d89c221e5088e55e8deaaa0f038fd7851)), closes [newrelic#134](https://github.com/newrelic/issues/134)
+
 ## [1.5.2](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.1...v1.5.2) (2020-09-02)
 
 
