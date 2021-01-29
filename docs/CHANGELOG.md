@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.3...v1.5.4) (2021-01-29)
+
+
+### Bug Fixes
+
+* **LeftToolbar:** Remove label prop from Dropdown components ([3ff3ee9](https://github.com/newrelic/nr1-workload-geoops/commit/3ff3ee95a3d4dc31cc215613ebaa8c4d7f0f9f9c))
+
 ## [1.5.3](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.2...v1.5.3) (2020-11-03)
 
 
