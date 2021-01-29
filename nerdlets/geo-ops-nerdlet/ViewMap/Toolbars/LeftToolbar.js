@@ -47,7 +47,7 @@ const LeftToolbar = ({
         <h4>{map.title}</h4>
       </StyledToolbarItem>
       <ToolbarItem>
-        <Dropdown label="Regions" title={regionFilter || 'Filter by Region'}>
+        <Dropdown title={regionFilter || 'Filter by Region'}>
           <DropdownItem
             key={0}
             onClick={() => {
@@ -75,7 +75,7 @@ const LeftToolbar = ({
         </Dropdown>
       </ToolbarItem>
       <ToolbarItem>
-        <Dropdown label="Favorites" title={selectedFavorite.name}>
+        <Dropdown title={selectedFavorite.name || 'Favorites'}>
           {favoriteOptions.map(r => {
             return (
               <DropdownItem
@@ -93,7 +93,7 @@ const LeftToolbar = ({
         </Dropdown>
       </ToolbarItem>
       <ToolbarItem>
-        <Dropdown label="Alerting Status" title={selectedAlertStatus.name}>
+        <Dropdown title={selectedAlertStatus.name || 'Alerting Status'}>
           {alertStatusOptions.map(r => {
             return (
               <DropdownItem
