@@ -61,6 +61,14 @@ export default class RecentIncidentsNerdlet extends React.Component {
                     <ul className="timeline-item-contents">
                       {timeline.map((attr, i) => {
                         if (event[attr]) {
+							console.debug("Convert openedAt and closedAt from epoch integer to date string");
+							var value = "";
+							if ((attr == "openedAt") || (attr == "closedAt")) {
+								value = new Date(event[attr]);
+								value = value.toString();
+							} else {
+								value = event[attr];
+							}
                           return (
                             <li key={i} className="timeline-item-contents-item">
                               <span className="key">{attr}: </span>
