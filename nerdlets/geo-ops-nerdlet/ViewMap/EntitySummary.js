@@ -1,11 +1,16 @@
+import set from 'lodash.set';
+
 const composeEntitySummary = (activeLocationEntities = []) => {
   if (activeLocationEntities.length > 0) {
     return activeLocationEntities.map(entity => {
+			console.debug("If no alertSeverity, set to NOT_CONFIGURED");
+			if (entity.alertSeverity == null) set(entity, 'alertSeverity', 'NOT_CONFIGURED');
       return {
         name: entity.name,
-        alertSeverity: entity.alertSeverity || 'NOT_CONFIGURED',
+				alertSeverity: entity.alertSeverity,
         type: entity.type,
-        guid: entity.guid
+				guid: entity.guid,
+				reporting: entity.reporting
       };
     });
   } else {
