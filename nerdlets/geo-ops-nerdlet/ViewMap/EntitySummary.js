@@ -2,7 +2,7 @@ import set from 'lodash.set';
 
 const composeEntitySummary = (activeLocationEntities = []) => {
   if (activeLocationEntities.length > 0) {
-    return activeLocationEntities.map(entity => {
+    return activeLocationEntities.map((entity) => {
       //      console.debug('If no alertSeverity, set to NOT_CONFIGURED');
       if (entity.alertSeverity == null)
         set(entity, 'alertSeverity', 'NOT_CONFIGURED');
@@ -11,7 +11,7 @@ const composeEntitySummary = (activeLocationEntities = []) => {
         alertSeverity: entity.alertSeverity,
         type: entity.type,
         guid: entity.guid,
-        reporting: entity.reporting
+        reporting: entity.reporting,
       };
     });
   } else {
@@ -19,8 +19,8 @@ const composeEntitySummary = (activeLocationEntities = []) => {
       {
         name: 'hi',
         alertSeverity: 'NOT_ALERTING',
-        type: 'APPLICATION'
-      }
+        type: 'APPLICATION',
+      },
     ];
   }
 };
