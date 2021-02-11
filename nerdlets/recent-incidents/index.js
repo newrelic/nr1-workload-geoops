@@ -37,7 +37,7 @@ export default class RecentIncidentsNerdlet extends React.Component {
   render() {
     return (
       <NerdletStateContext.Consumer>
-        {(nerdletState) => {
+        {nerdletState => {
           const { recentViolations } = nerdletState;
           if (recentViolations) {
             return (
@@ -47,10 +47,10 @@ export default class RecentIncidentsNerdlet extends React.Component {
                 dateFormat="MM/dd/yyyy"
                 timestampFormat="h:mm:ss a"
                 labelField="label"
-                iconType={(data) => {
+                iconType={data => {
                   return {
                     icon: this.iconType(data.event.alertSeverity),
-                    color: this.iconColor(data.event.alertSeverity),
+                    color: this.iconColor(data.event.alertSeverity)
                   };
                 }}
                 eventContent={({ event }) => {
@@ -60,8 +60,7 @@ export default class RecentIncidentsNerdlet extends React.Component {
                     <ul className="timeline-item-contents">
                       {timeline.map((attr, i) => {
                         if (event[attr]) {
-                          //console.debug("Display event details");
-                          var value = '';
+                          let value = '';
                           if (attr === 'openedAt' || attr === 'closedAt') {
                             value = new Date(event[attr]);
                             value = value.toString();
