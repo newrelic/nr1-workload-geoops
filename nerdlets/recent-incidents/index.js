@@ -39,7 +39,6 @@ export default class RecentIncidentsNerdlet extends React.Component {
       <NerdletStateContext.Consumer>
         {nerdletState => {
           const { recentViolations } = nerdletState;
-
           if (recentViolations) {
             return (
               <Timeline
@@ -61,10 +60,18 @@ export default class RecentIncidentsNerdlet extends React.Component {
                     <ul className="timeline-item-contents">
                       {timeline.map((attr, i) => {
                         if (event[attr]) {
+                          let value = '';
+                          if (attr === 'openedAt' || attr === 'closedAt') {
+                            value = new Date(event[attr]);
+                            value = value.toString();
+                          } else {
+                            value = event[attr];
+                          }
+
                           return (
                             <li key={i} className="timeline-item-contents-item">
                               <span className="key">{attr}: </span>
-                              <span className="value">{event[attr]}</span>
+                              <span className="value">{value}</span>
                             </li>
                           );
                         }

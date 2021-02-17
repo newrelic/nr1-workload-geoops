@@ -26,13 +26,15 @@ describe('#EntitySummary', () => {
         name: 'NERDSTORE_DEV',
         alertSeverity: 'NOT_ALERTING',
         type: 'APPLICATION',
-        guid: 'R4DeKDYwfMAd3cKI1dTRVJ8QVBQTElDQVRJT058MzA1NjA5MDQ4'
+        guid: 'R4DeKDYwfMAd3cKI1dTRVJ8QVBQTElDQVRJT058MzA1NjA5MDQ4',
+        reporting: true
       },
       {
         name: 'EXAMPLE_DEV',
         alertSeverity: 'ALERTING',
         type: 'HOST',
-        guid: 'wfMAd3cKI1dTRVJ8QVBQTElDQVRJT058MzAR4DeKDY'
+        guid: 'wfMAd3cKI1dTRVJ8QVBQTElDQVRJT058MzAR4DeKDY',
+        reporting: true
       }
     ]);
   });
