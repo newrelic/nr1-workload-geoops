@@ -3,7 +3,6 @@ import set from 'lodash.set';
 const composeEntitySummary = (activeLocationEntities = []) => {
   if (activeLocationEntities.length > 0) {
     return activeLocationEntities.map(entity => {
-      //      console.debug('If no alertSeverity, set to NOT_CONFIGURED');
       if (entity.alertSeverity == null)
         set(entity, 'alertSeverity', 'NOT_CONFIGURED');
       return {
