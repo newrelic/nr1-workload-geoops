@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Form from 'react-jsonschema-form';
+import Form from '@rjsf/core';
 
 import { Spinner } from 'nr1';
 
@@ -176,7 +176,7 @@ export default class JsonSchemaForm extends React.PureComponent {
   };
 
   submit = () => {
-    this.form.current.submit();
+    this.form.current.click();
   };
 
   render() {
@@ -199,8 +199,8 @@ export default class JsonSchemaForm extends React.PureComponent {
           onSubmit={this.handleOnSubmit}
           onError={this.handleOnError}
           className={className}
-          ref={this.form}
         >
+          <button ref={this.form} type="submit" style={{ display: 'none' }} />
           {children}
         </Form>
       </>
