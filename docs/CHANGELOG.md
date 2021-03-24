@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.4...v1.5.5) (2021-03-24)
+
+
+### Bug Fixes
+
+* bumps app version ([f324f44](https://github.com/newrelic/nr1-workload-geoops/commit/f324f446217ac43956e22ebed44b934be25eee9d))
+
 ## [1.5.4](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.3...v1.5.4) (2021-01-29)
 
 
