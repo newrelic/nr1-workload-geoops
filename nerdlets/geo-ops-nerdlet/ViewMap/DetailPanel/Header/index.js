@@ -77,13 +77,10 @@ export default class Header extends React.PureComponent {
     if (!mapLocation) {
       return null;
     }
-    console.log(`Map Location Runbook URL is safe: ${isUrlSafe(mapLocation.runbookUrl)}`);
-    console.log(`Map Runbook URL is safe: ${isUrlSafe(map.runbookUrl)}`);
-    const runbookUrl = (isUrlSafe(mapLocation.runbookUrl) ? mapLocation.runbookUrl : false) 
-                        || 
-                        (isUrlSafe(map.runbookUrl) ? map.runbookUrl : false) 
-                        || 
-                        false;
+    const runbookUrl =
+      (isUrlSafe(mapLocation.runbookUrl) ? mapLocation.runbookUrl : false) ||
+      (isUrlSafe(map.runbookUrl) ? map.runbookUrl : false) ||
+      false;
     const contactEmail = mapLocation.contactEmail || map.contactEmail || false;
 
     return (
