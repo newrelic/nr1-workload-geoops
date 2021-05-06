@@ -1,3 +1,10 @@
+## [1.5.6](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.5...v1.5.6) (2021-05-06)
+
+
+### Bug Fixes
+
+* Remove XSS Vulnerability in runbookUrl ([c4c2de8](https://github.com/newrelic/nr1-workload-geoops/commit/c4c2de8bd450020fa87fac9bbc604d0168af6eaf))
+
 ## [1.5.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.4...v1.5.5) (2021-03-24)
 
 
