@@ -1,3 +1,10 @@
+## [1.5.8](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.7...v1.5.8) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade graphql-tag from 2.11.0 to 2.12.1 ([0e0688d](https://github.com/newrelic/nr1-workload-geoops/commit/0e0688dc935f61edd62b7425646d5d4971cbc433))
+
 ## [1.5.7](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.6...v1.5.7) (2021-05-07)
 
 
