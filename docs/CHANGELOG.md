@@ -1,3 +1,10 @@
+## [1.5.10](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.9...v1.5.10) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade leaflet from 1.6.0 to 1.7.1 ([06e50a0](https://github.com/newrelic/nr1-workload-geoops/commit/06e50a005ab5ad726c3f15137c492352e701effa))
+
 ## [1.5.9](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.8...v1.5.9) (2021-05-07)
 
 
