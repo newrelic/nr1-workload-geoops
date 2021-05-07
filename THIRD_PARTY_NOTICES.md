@@ -557,12 +557,12 @@ Read more about MIT at [TLDRLegal](https://tldrlegal.com/license/mit-license).
 
 ### graphql-tag
 
-This product includes source derived from [graphql-tag](https://github.com/apollographql/graphql-tag) ([v2.11.0](https://github.com/apollographql/graphql-tag/tree/v2.11.0)), distributed under the [MIT License](https://github.com/apollographql/graphql-tag/blob/v2.11.0/LICENSE):
+This product includes source derived from [graphql-tag](https://github.com/apollographql/graphql-tag) ([v2.12.1](https://github.com/apollographql/graphql-tag/tree/v2.12.1)), distributed under the [MIT License](https://github.com/apollographql/graphql-tag/blob/v2.12.1/LICENSE):
 
 ```
 The MIT License (MIT)
 
-Copyright (c) 2020 Meteor Development Group, Inc.
+Copyright (c) 2021 Apollo Graph, Inc. (Formerly Meteor Development Group, Inc.)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Fri May 07 2021 17:21:42 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Fri May 07 2021 18:03:16 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-workload-geoops",
   "projectUrl": "https://github.com/newrelic/nr1-workload-geoops",
   "includeDev": true,
@@ -65,15 +65,15 @@
       "licenseUrl": "https://github.com/date-fns/date-fns/blob/v2.19.0/LICENSE.md",
       "licenseTextSource": "file"
     },
-    "graphql-tag@2.11.0": {
+    "graphql-tag@2.12.1": {
       "name": "graphql-tag",
-      "version": "2.11.0",
-      "range": "^2.11.0",
+      "version": "2.12.1",
+      "range": "^2.12.1",
       "licenses": "MIT",
       "repoUrl": "https://github.com/apollographql/graphql-tag",
-      "versionedRepoUrl": "https://github.com/apollographql/graphql-tag/tree/v2.11.0",
+      "versionedRepoUrl": "https://github.com/apollographql/graphql-tag/tree/v2.12.1",
       "licenseFile": "node_modules/graphql-tag/LICENSE",
-      "licenseUrl": "https://github.com/apollographql/graphql-tag/blob/v2.11.0/LICENSE",
+      "licenseUrl": "https://github.com/apollographql/graphql-tag/blob/v2.12.1/LICENSE",
       "licenseTextSource": "file"
     },
     "graphql@14.7.0": {
