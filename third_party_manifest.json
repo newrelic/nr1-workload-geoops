@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Fri May 07 2021 18:07:49 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Fri May 07 2021 18:12:14 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-workload-geoops",
   "projectUrl": "https://github.com/newrelic/nr1-workload-geoops",
   "includeDev": true,
@@ -87,15 +87,15 @@
       "licenseUrl": "https://github.com/graphql/graphql-js/blob/v14.7.0/LICENSE",
       "licenseTextSource": "file"
     },
-    "leaflet@1.6.0": {
+    "leaflet@1.7.1": {
       "name": "leaflet",
-      "version": "1.6.0",
+      "version": "1.7.1",
       "range": "^1.5.1",
       "licenses": "BSD-2-Clause",
       "repoUrl": "https://github.com/Leaflet/Leaflet",
-      "versionedRepoUrl": "https://github.com/Leaflet/Leaflet/tree/v1.6.0",
+      "versionedRepoUrl": "https://github.com/Leaflet/Leaflet/tree/v1.7.1",
       "licenseFile": "node_modules/leaflet/LICENSE",
-      "licenseUrl": "https://github.com/Leaflet/Leaflet/blob/v1.6.0/LICENSE",
+      "licenseUrl": "https://github.com/Leaflet/Leaflet/blob/v1.7.1/LICENSE",
       "licenseTextSource": "file"
     },
     "lodash.chunk@4.2.0": {

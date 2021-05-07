@@ -615,7 +615,7 @@ SOFTWARE.
 
 ### leaflet
 
-This product includes source derived from [leaflet](https://github.com/Leaflet/Leaflet) ([v1.6.0](https://github.com/Leaflet/Leaflet/tree/v1.6.0)), distributed under the [BSD-2-Clause License](https://github.com/Leaflet/Leaflet/blob/v1.6.0/LICENSE):
+This product includes source derived from [leaflet](https://github.com/Leaflet/Leaflet) ([v1.7.1](https://github.com/Leaflet/Leaflet/tree/v1.7.1)), distributed under the [BSD-2-Clause License](https://github.com/Leaflet/Leaflet/blob/v1.7.1/LICENSE):
 
 ```
 Copyright (c) 2010-2019, Vladimir Agafonkin
