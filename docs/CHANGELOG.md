@@ -1,3 +1,17 @@
+## [1.5.7](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.6...v1.5.7) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade date-fns from 2.16.1 to 2.19.0 ([c5f8cbb](https://github.com/newrelic/nr1-workload-geoops/commit/c5f8cbb1e2973cf8e89fab7adc422ccba1907daa))
+
+## [1.5.6](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.5...v1.5.6) (2021-05-06)
+
+
+### Bug Fixes
+
+* Remove XSS Vulnerability in runbookUrl ([c4c2de8](https://github.com/newrelic/nr1-workload-geoops/commit/c4c2de8bd450020fa87fac9bbc604d0168af6eaf))
+
 ## [1.5.5](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.4...v1.5.5) (2021-03-24)
 
 
