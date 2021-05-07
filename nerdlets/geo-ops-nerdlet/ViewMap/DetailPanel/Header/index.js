@@ -18,7 +18,7 @@ import {
   ChartContainer
 } from './styles';
 
-import { statusColor } from '../../../../shared/utils';
+import { statusColor, isUrlSafe } from '../../../../shared/utils';
 
 export default class Header extends React.PureComponent {
   static propTypes = {
@@ -77,8 +77,8 @@ export default class Header extends React.PureComponent {
     if (!mapLocation) {
       return null;
     }
-
-    const runbookUrl = mapLocation.runbookUrl || map.runbookUrl || false;
+    const rawUrl = mapLocation.runbookUrl || map.runbookUrl || '';
+    const runbookUrl = isUrlSafe(rawUrl) && rawUrl;
     const contactEmail = mapLocation.contactEmail || map.contactEmail || false;
 
     return (
