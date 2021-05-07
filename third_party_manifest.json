@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Fri May 07 2021 18:03:16 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Fri May 07 2021 18:07:49 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-workload-geoops",
   "projectUrl": "https://github.com/newrelic/nr1-workload-geoops",
   "includeDev": true,
@@ -42,15 +42,15 @@
       "publisher": "Nicolas Perriault",
       "email": "nperriault@mozilla.com"
     },
-    "ajv@6.12.4": {
+    "ajv@6.12.6": {
       "name": "ajv",
-      "version": "6.12.4",
-      "range": "^6.12.4",
+      "version": "6.12.6",
+      "range": "^6.12.6",
       "licenses": "MIT",
       "repoUrl": "https://github.com/ajv-validator/ajv",
-      "versionedRepoUrl": "https://github.com/ajv-validator/ajv/tree/v6.12.4",
+      "versionedRepoUrl": "https://github.com/ajv-validator/ajv/tree/v6.12.6",
       "licenseFile": "node_modules/ajv/LICENSE",
-      "licenseUrl": "https://github.com/ajv-validator/ajv/blob/v6.12.4/LICENSE",
+      "licenseUrl": "https://github.com/ajv-validator/ajv/blob/v6.12.6/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Evgeny Poberezkin"
     },
@@ -244,15 +244,15 @@
       "publisher": "Paul Le Cam",
       "email": "paul@ulem.net"
     },
-    "react-select@3.1.0": {
+    "react-select@3.2.0": {
       "name": "react-select",
-      "version": "3.1.0",
-      "range": "^3.1.0",
+      "version": "3.2.0",
+      "range": "^3.2.0",
       "licenses": "MIT",
-      "repoUrl": "https://github.com/JedWatson/react-select",
-      "versionedRepoUrl": "https://github.com/JedWatson/react-select/tree/v3.1.0",
+      "repoUrl": "https://github.com/JedWatson/react-select/tree/master/packages/react-select",
+      "versionedRepoUrl": "https://github.com/JedWatson/react-select/tree/master/packages/react-select/tree/v3.2.0",
       "licenseFile": "node_modules/react-select/README.md",
-      "licenseUrl": "https://github.com/JedWatson/react-select/blob/v3.1.0/README.md",
+      "licenseUrl": "https://github.com/JedWatson/react-select/tree/master/packages/react-select/blob/v3.2.0/README.md",
       "licenseTextSource": "spdx",
       "publisher": "Jed Watson"
     },
