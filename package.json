@@ -18,7 +18,7 @@
     "@newrelic/nr1-community": "^1.2.0",
     "@rjsf/core": "^2.5.1",
     "ajv": "^6.12.4",
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.19.0",
     "graphql": "^14.7.0",
     "graphql-tag": "^2.11.0",
     "leaflet": "^1.5.1",
