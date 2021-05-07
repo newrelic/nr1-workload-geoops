@@ -1,3 +1,11 @@
+## [1.5.9](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.8...v1.5.9) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade ajv from 6.12.4 to 6.12.6 ([b16e254](https://github.com/newrelic/nr1-workload-geoops/commit/b16e25410d660ca1c234a91fb2d19788e1b26972))
+* upgrade react-select from 3.1.0 to 3.2.0 ([04555c6](https://github.com/newrelic/nr1-workload-geoops/commit/04555c692e4178ed7ba38d8d29705c346d3aa3be))
+
 ## [1.5.8](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.7...v1.5.8) (2021-05-07)
 
 
