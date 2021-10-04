@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.10...v1.6.0) (2021-10-04)
+
+
+### Features
+
+* update semantic release with node ([dac3382](https://github.com/newrelic/nr1-workload-geoops/commit/dac338231fa289bf2b8439d33950cf2f51f81c7b))
+
 ## [1.5.10](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.9...v1.5.10) (2021-05-07)
 
 
