@@ -47,7 +47,7 @@ export default class Header extends React.PureComponent {
       <>
         {workloadEntities.map((workload, i) => {
           const location = navigation.getOpenStackedNerdletLocation({
-            id: 'workloads.home',
+            id: 'workloads.launcher',
             urlState: {
               nerdletId: 'workloads.overview',
               entityId: workload.guid
