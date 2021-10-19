@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.6.0...v1.6.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* deprecated platform parameters ([63cf61b](https://github.com/newrelic/nr1-workload-geoops/commit/63cf61b8184a0979b132ffb6cf409f8ab5019a4d))
+
 # [1.6.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.5.10...v1.6.0) (2021-10-04)
 
 
