@@ -183,7 +183,7 @@ export default class GeoMap extends Component {
       );
     } else {
       const location = navigation.getOpenStackedNerdletLocation({
-        id: 'workloads.home',
+        id: 'workloads.launcher',
         urlState: {
           nerdletId: 'workloads.overview',
           entityId: firstWorkloadEntity.guid
