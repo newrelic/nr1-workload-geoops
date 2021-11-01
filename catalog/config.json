@@ -2,6 +2,8 @@
   "tagline": "Map your workloads & entities",
   "repository": "https://github.com/newrelic/nr1-workload-geoops.git",
   "details": "Describe, consume, and manage Workloads and Entities in a geographic model that supports location-specific KPI's, custom metadata, drill-down navigation into Entities and Workloads, real-time configuration, and configuration via automation using the newrelic-cli.",
+  "categoryTerms": ["language agent", "infrastructure"],
+  "keywords": ["apm", "infrastructure", "workloads"],
   "support": {
     "issues": {
       "url": "https://github.com/newrelic/nr1-workload-geoops/issues"
