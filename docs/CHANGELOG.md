@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.6.1...v1.7.0) (2021-11-05)
+
+
+### Features
+
+* add catalog keywords and categoryTerms ([f8bd821](https://github.com/newrelic/nr1-workload-geoops/commit/f8bd82182d95fe49b4973999ba19acdc2e1f0a6b))
+
 ## [1.6.1](https://github.com/newrelic/nr1-workload-geoops/compare/v1.6.0...v1.6.1) (2021-10-19)
 
 
