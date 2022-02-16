@@ -50,7 +50,7 @@ export default class Header extends React.PureComponent {
             id: 'workloads.launcher',
             urlState: {
               nerdletId: 'workloads.overview',
-              entityId: workload.guid
+              entityGuid: workload.guid
             }
           });
           return (

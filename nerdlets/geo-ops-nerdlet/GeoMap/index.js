@@ -168,7 +168,7 @@ export default class GeoMap extends Component {
         id: 'workloads.status-rollup-settings',
         urlState: {
           nerdletId: 'workloads.status-rollup-settings',
-          entityId: firstWorkloadEntity.guid
+          entityGuid: firstWorkloadEntity.guid
         }
       });
 
@@ -186,7 +186,7 @@ export default class GeoMap extends Component {
         id: 'workloads.launcher',
         urlState: {
           nerdletId: 'workloads.overview',
-          entityId: firstWorkloadEntity.guid
+          entityGuid: firstWorkloadEntity.guid
         }
       });
 
