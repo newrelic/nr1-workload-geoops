@@ -112,7 +112,7 @@ export default class DetailPanel extends React.PureComponent {
           <DetailPanelQuery mapLocation={mapLocation}>
             {({
               loading,
-              errors,
+              error,
               recentAlertViolations,
               entities: distilledEntities
             }) => {
@@ -120,11 +120,11 @@ export default class DetailPanel extends React.PureComponent {
                 return <Spinner />;
               }
               const tooComplexWorkloadError =
-                errors && errors.find(findTooComplexQueryError);
-              if (errors && !tooComplexWorkloadError) {
+                error && error.find(findTooComplexQueryError);
+              if (error && !tooComplexWorkloadError) {
                 return (
                   <>
-                    {errors.map((error, i) => {
+                    {error.map((error, i) => {
                       if (error.graphQLErrors) {
                         return <NerdGraphError key={i} error={error} />;
                       } else {
@@ -140,7 +140,7 @@ export default class DetailPanel extends React.PureComponent {
                   </>
                 );
               }
-              if (!errors) {
+              if (!error) {
                 mapLocation.recentAlertViolations = recentAlertViolations;
                 mapLocation.entities = distilledEntities;
               }
@@ -155,7 +155,7 @@ export default class DetailPanel extends React.PureComponent {
                       <GenericError
                         error="Unable to retrieve Location alerts"
                         errorDescription={
-                          errors.find(findTooComplexQueryError).message
+                          error.find(findTooComplexQueryError).message
                         }
                       />
                     ) : (

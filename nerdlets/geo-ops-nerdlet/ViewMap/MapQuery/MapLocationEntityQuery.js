@@ -19,13 +19,13 @@ export default class MapLocationEntityQuery extends React.PureComponent {
     const variables = { begin_time, end_time, entityGuids };
     const query = getEntitiesByGuidsQuery(variables);
     // console.debug('MapLocationEntityQuery', query);
-    const { errors, data } = await NerdGraphQuery.query({
+    const { error, data } = await NerdGraphQuery.query({
       query,
       variables,
       fetchPolicyType
     });
-    if (errors) {
-      return { errors, entities: null };
+    if (error) {
+      return { error, entities: null };
     }
     // console.debug('MapLocationEntityQuery.query', data);
     const { actor } = data;
@@ -38,7 +38,7 @@ export default class MapLocationEntityQuery extends React.PureComponent {
       });
       entities = entities.map(mapWorkloadStatusValueToAlertSeverity);
     }
-    return { entities, errors: null };
+    return { entities, error: null };
   }
 
   static propTypes = {
@@ -53,7 +53,7 @@ export default class MapLocationEntityQuery extends React.PureComponent {
     super(props);
     this.state = {
       loading: true,
-      errors: null,
+      error: null,
       entities: null
     };
   }
@@ -89,24 +89,24 @@ export default class MapLocationEntityQuery extends React.PureComponent {
   async load() {
     this.setState({ loading: true });
 
-    const { entities, errors } = await MapLocationEntityQuery.query({
+    const { entities, error } = await MapLocationEntityQuery.query({
       entityGuids: this.props.entityGuids
     });
 
     this.setState({
       loading: false,
       entities,
-      errors
+      error
     });
   }
 
   render() {
-    const { entities, loading, errors } = this.state;
+    const { entities, loading, error } = this.state;
     const { children } = this.props;
     return children({
       loading,
       entities,
-      errors
+      error
     });
   }
 }

@@ -31,7 +31,7 @@ export default class GeoMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      errors: [],
+      error: [],
       mapReady: false,
       queries: [],
       selectedLocation: '',
@@ -311,8 +311,8 @@ export default class GeoMap extends Component {
 
   render() {
     const { map, mapLocations, zoom } = this.props;
-    const { mapReady, errors } = this.state;
-    const hasErrors = (errors && errors.length > 0) || false;
+    const { mapReady, error } = this.state;
+    const hasErrors = (error && error.length > 0) || false;
 
     const startingCenter = this.calculateCenter();
     const startingZoom = zoom || map.zoom || 3;
@@ -323,7 +323,7 @@ export default class GeoMap extends Component {
       <>
         {/* <h1>{map.title}</h1> */}
         <div className="leaflet-wrapper">
-          {hasErrors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
+          {hasErrors && <pre>{JSON.stringify(error, null, 2)}</pre>}
           {!hasErrors && (
             <Map
               ref={this.mapRef}

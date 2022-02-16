@@ -21,10 +21,10 @@ export const getMaps = ({ accountId }) => {
     });
   }
 
-  return getAccounts().then(({ data, errors }) => {
-    if (errors && errors.length > 0) {
-      // return { data, errors };
-      return Promise.resolve({ data, errors });
+  return getAccounts().then(({ data, error }) => {
+    if (error && error.length > 0) {
+      // return { data, error };
+      return Promise.resolve({ data, error });
     }
 
     const accounts = get(data, 'actor.accounts', []);

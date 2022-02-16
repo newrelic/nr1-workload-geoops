@@ -68,7 +68,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     this.state = {
       isLoading: false,
       document: this.initializeForm({ defaultValues: props.defaultValues }),
-      errors: []
+      error: []
     };
 
     this.form = React.createRef();
@@ -120,7 +120,7 @@ export default class JsonSchemaForm extends React.PureComponent {
     }
 
     this.setState({ isLoading: true });
-    const { data, errors } = await fetchDocument();
+    const { data, error } = await fetchDocument();
     this.setState({ isLoading: false });
 
     const formattedDocument = this.isFunc(formatDocument)
@@ -129,7 +129,7 @@ export default class JsonSchemaForm extends React.PureComponent {
 
     this.setState({
       document: formattedDocument,
-      errors
+      error
     });
   }
 
@@ -167,11 +167,11 @@ export default class JsonSchemaForm extends React.PureComponent {
     });
   };
 
-  handleOnError = errors => {
+  handleOnError = error => {
     const { onError } = this.props;
 
     if (this.isFunc(onError)) {
-      onError(errors);
+      onError(error);
     }
   };
 
@@ -181,14 +181,14 @@ export default class JsonSchemaForm extends React.PureComponent {
 
   render() {
     const { children, schema, uiSchema, className } = this.props;
-    const { document, errors, isLoading } = this.state;
+    const { document, error, isLoading } = this.state;
 
     return (
       <>
         {isLoading && <Spinner />}
 
-        {errors && errors.length > 0 && (
-          <pre>{JSON.stringify(errors, null, 2)}</pre>
+        {error && error.length > 0 && (
+          <pre>{JSON.stringify(error, null, 2)}</pre>
         )}
 
         <Form

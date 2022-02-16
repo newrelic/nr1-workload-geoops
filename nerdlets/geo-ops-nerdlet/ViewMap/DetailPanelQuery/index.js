@@ -41,12 +41,12 @@ export default class DetailPanelQuery extends React.PureComponent {
     });
     const {
       data: workloadEntitySearchQueryData,
-      errors: workEntitySearchQueryErrors
+      error: workEntitySearchQueryErrors
     } = await NerdGraphQuery.query({ query: workloadEntitySearchQuery });
     if (workEntitySearchQueryErrors) {
       // eslint-disable-next-line no-console
       console.debug('Return error for query', workloadEntitySearchQuery);
-      return { errors: workEntitySearchQueryErrors };
+      return { error: workEntitySearchQueryErrors };
     }
 
     // STEP 3: Retrieve the entity guids for all the entities in all the workloads
@@ -64,12 +64,12 @@ export default class DetailPanelQuery extends React.PureComponent {
     });
     const {
       data: workloadEntityGuidsData,
-      errors: workloadEntityGuidsErrors
+      error: workloadEntityGuidsErrors
     } = await NerdGraphQuery.query({ query: workloadEntityGuidsQuery });
     if (workloadEntityGuidsErrors) {
       // eslint-disable-next-line no-console
       console.debug('Return error for query', workloadEntityGuidsQuery);
-      return { errors: workloadEntityGuidsErrors };
+      return { error: workloadEntityGuidsErrors };
     }
 
     // STEP 4: Build one list of entity guids
@@ -102,7 +102,7 @@ export default class DetailPanelQuery extends React.PureComponent {
     const entityQuery = getEntitiesByGuidsQuery({ entityGuids });
     const {
       data: entityData,
-      errors: entityErrors
+      error: entityErrors
     } = await NerdGraphQuery.query({
       query: entityQuery,
       variables
@@ -110,7 +110,7 @@ export default class DetailPanelQuery extends React.PureComponent {
     if (entityErrors) {
       // eslint-disable-next-line no-console
       console.debug('Return error for query', entityQuery);
-      return { errors: entityErrors };
+      return { error: entityErrors };
     }
 
     // STEP 6: Reduce both down to ordered lists
@@ -158,7 +158,7 @@ export default class DetailPanelQuery extends React.PureComponent {
       loading: true,
       recentAlertViolations: null,
       entities: null,
-      errors: null
+      error: null
     };
   }
 
@@ -199,11 +199,11 @@ export default class DetailPanelQuery extends React.PureComponent {
     const {
       entities,
       recentAlertViolations,
-      errors
+      error
     } = await DetailPanelQuery.query({ mapLocation });
     this.setState({
       loading: false,
-      errors,
+      error,
       recentAlertViolations,
       entities
     });
@@ -211,7 +211,7 @@ export default class DetailPanelQuery extends React.PureComponent {
 
   render() {
     const { children } = this.props;
-    const { loading, recentAlertViolations, entities, errors } = this.state;
-    return children({ loading, recentAlertViolations, entities, errors });
+    const { loading, recentAlertViolations, entities, error } = this.state;
+    return children({ loading, recentAlertViolations, entities, error });
   }
 }

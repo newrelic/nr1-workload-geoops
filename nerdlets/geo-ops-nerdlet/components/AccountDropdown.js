@@ -75,8 +75,8 @@ export default class AccountDropdown extends React.Component {
   }
 
   async loadAccountsWithAccountsQuery() {
-    const { data: accounts = [], errors } = await AccountsQuery.query();
-    this.handleLoadAccountsResponse({ accounts, errors });
+    const { data: accounts = [], error } = await AccountsQuery.query();
+    this.handleLoadAccountsResponse({ accounts, error });
   }
 
   select = account => {

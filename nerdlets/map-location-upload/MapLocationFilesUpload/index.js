@@ -87,13 +87,13 @@ export default class MapLocationFilesUpload extends React.Component {
 
             // TODO: loop through and validate every row
             // We can display these in a separate area/table or
-            // add a column to display ones with errors for easy investigation/fixing by the user
+            // add a column to display ones with error for easy investigation/fixing by the user
             const first = data[0];
             //
 
             const {
               success: schemaValidated,
-              errors: schemaErrors
+              error: schemaErrors
             } = this.jsonFileIsValid({
               schema,
               data: first
@@ -104,11 +104,11 @@ export default class MapLocationFilesUpload extends React.Component {
               reject({
                 success: false,
                 result: [],
-                errors: schemaErrors
+                error: schemaErrors
               });
             }
 
-            resolve({ success: true, result: data, errors: null });
+            resolve({ success: true, result: data, error: null });
           };
 
           reader.readAsText(file);
@@ -140,10 +140,10 @@ export default class MapLocationFilesUpload extends React.Component {
     const valid = ajv.validate(schema, data);
 
     if (!valid) {
-      return { success: false, errors: ajv.errors };
+      return { success: false, error: ajv.error };
     }
 
-    return { success: true, errors: null };
+    return { success: true, error: null };
   }
 
   /*
@@ -229,7 +229,7 @@ export default class MapLocationFilesUpload extends React.Component {
   onMapLocationWrite({ mapLocation }) {
     const { data, error } = mapLocation;
 
-    // Add to errors
+    // Add to error
     if (error) {
       this.addOrUpdate({
         collectionName: 'mapLocationErrors',
@@ -302,10 +302,10 @@ export default class MapLocationFilesUpload extends React.Component {
     return columns;
   }
 
-  renderFileErrors(errors) {
+  renderFileErrors(error) {
     return (
       <>
-        {errors.map((err, index) => (
+        {error.map((err, index) => (
           <pre key={index}>{JSON.stringify(err, null, 2)}</pre>
         ))}
       </>
