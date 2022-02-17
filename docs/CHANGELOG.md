@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.7.0...v1.8.0) (2022-02-17)
+
+
+### Bug Fixes
+
+* deprecation fixes for 'errors' ([2653692](https://github.com/newrelic/nr1-workload-geoops/commit/2653692235a80acdc76a45aec3eccadba2dca0aa))
+
+
+### Features
+
+* update node to version 16 ([1e19755](https://github.com/newrelic/nr1-workload-geoops/commit/1e19755dd8f8a5b3c0fd71a8367f302cf3bd1575))
+
 # [1.7.0](https://github.com/newrelic/nr1-workload-geoops/compare/v1.6.1...v1.7.0) (2021-11-05)
 
 
