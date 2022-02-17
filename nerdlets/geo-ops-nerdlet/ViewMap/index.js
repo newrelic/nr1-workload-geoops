@@ -190,7 +190,7 @@ export default class ViewMap extends React.PureComponent {
       <>
         {map && (
           <MapQuery map={map} begin_time={begin_time} end_time={end_time}>
-            {({ mapLocations, hasEntities, errors, loading }) => {
+            {({ mapLocations, hasEntities, error, loading }) => {
               if (loading) {
                 return (
                   <GeoOpsContainer>
@@ -199,17 +199,17 @@ export default class ViewMap extends React.PureComponent {
                 );
               }
 
-              if (errors) {
+              if (error) {
                 return (
                   <GeoOpsContainer>
-                    {errors.map((error, i) => (
+                    {error.map((error, i) => (
                       <NerdGraphError key={i} error={error} />
                     ))}
                   </GeoOpsContainer>
                 );
               }
 
-              // console.debug({ mapLocations, hasEntities, errors, loading });
+              // console.debug({ mapLocations, hasEntities, error, loading });
               const hasMapLocations = mapLocations && mapLocations.length > 0;
               if (!hasMapLocations) {
                 return (

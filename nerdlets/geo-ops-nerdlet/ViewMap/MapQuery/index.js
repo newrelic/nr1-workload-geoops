@@ -53,18 +53,18 @@ export default class MapQuery extends React.PureComponent {
     const {
       mapLocations,
       entityGuids,
-      errors: mapLocationErrors
+      error: mapLocationErrors
     } = await MapLocationQuery.query({
       map
     });
     // console.debug("entityGuids", { mapLocations, entityGuids } );
     if (mapLocationErrors) {
-      return { errors: mapLocationErrors };
+      return { error: mapLocationErrors };
     }
     if (!mapLocations || !entityGuids || entityGuids.length === 0) {
       // if we have no entities or no locations
       return {
-        errors: null,
+        error: null,
         mapLocations,
         hasEntities: entityGuids && entityGuids.length > 0
       };
@@ -73,7 +73,7 @@ export default class MapQuery extends React.PureComponent {
     // STEP 2: Entities, alerting status, and alert violations for each entity in the mapLocations
     const {
       entities,
-      errors: mapLocationEntityErrors
+      error: mapLocationEntityErrors
     } = await MapLocationEntityQuery.query({
       begin_time,
       end_time,
@@ -82,13 +82,13 @@ export default class MapQuery extends React.PureComponent {
 
     if (mapLocationEntityErrors) {
       return {
-        errors: mapLocationEntityErrors
+        error: mapLocationEntityErrors
       };
     }
 
     // STEP 3: distill the most critical entity into a new attribute
     return {
-      errors: null,
+      error: null,
       mapLocations: MapQuery._distillMostCriticalEntity(mapLocations, entities),
       hasEntities: true
     };
@@ -105,7 +105,7 @@ export default class MapQuery extends React.PureComponent {
     super(props);
     this.state = {
       loading: true,
-      errors: null,
+      error: null,
       mapLocations: null,
       hasEntities: false
     };
@@ -145,32 +145,32 @@ export default class MapQuery extends React.PureComponent {
     if (resetFlag) {
       this.setState({
         loading: true,
-        errors: null,
+        error: null,
         mapLocations: null,
         hasEntities: false
       });
     }
     const { map, begin_time, end_time } = this.props;
 
-    const { errors, mapLocations, hasEntities } = await MapQuery.query({
+    const { error, mapLocations, hasEntities } = await MapQuery.query({
       map,
       begin_time,
       end_time
     });
     this.setState({
       loading: false,
-      errors,
+      error,
       mapLocations,
       hasEntities
     });
   }
 
   render() {
-    const { loading, errors, mapLocations, hasEntities } = this.state;
+    const { loading, error, mapLocations, hasEntities } = this.state;
     const { children } = this.props;
     return children({
       loading,
-      errors,
+      error,
       mapLocations,
       hasEntities
     });

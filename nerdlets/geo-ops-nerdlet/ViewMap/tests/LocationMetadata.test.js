@@ -8,11 +8,11 @@ import '../../../setupTests';
 const wrapper = shallow(<LocationMetadata />);
 
 describe('#LocationMetadata', () => {
-  test('should render component without errors if no params are passed', () => {
+  test('should render component without error if no params are passed', () => {
     expect(!!wrapper).toBe(true);
   });
 
-  test('should render component without errors valid location data has been passed', () => {
+  test('should render component without error valid location data has been passed', () => {
     wrapper.setProps({ activeMapLocation: locationExample });
     expect(!!wrapper).toBe(true);
   });

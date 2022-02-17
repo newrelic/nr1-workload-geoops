@@ -122,7 +122,7 @@ export default class CreateMap extends React.PureComponent {
 
     const {
       data: mapLocations,
-      errors: mapLocationsLoadingErrors
+      error: mapLocationsLoadingErrors
     } = await nerdStorageRequest({
       service: getMapLocations,
       params: { accountId, document: map }
@@ -152,7 +152,7 @@ export default class CreateMap extends React.PureComponent {
   };
 
   onMapLocationWrite = ({ mapLocation }) => {
-    // TODO: Handle errors from updating each
+    // TODO: Handle error from updating each
     this.addOrUpdate({
       collectionName: 'mapLocations',
       item: mapLocation.data

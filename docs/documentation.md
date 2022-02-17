@@ -24,7 +24,7 @@ To begin using this New Relic One Application to analyze `Entities` at your loca
 4. Define your locations by uploading a JSON file (recommended) or by manually adding them one by one. Then click **Continue** at the bottom of the screen.<p><img src="../assets/documentation-images/define-locations.png" width="500px" /></p>
 	1. Click **Upload JSON file**
 	2. Click **Choose a file** in the slide-out window that appears <p><img src="../assets/documentation-images/file-upload.png" width="500px" /></p>
-	3. Select a JSON file from your files that follows our [specification](data-dictonary.md) or review one of our [example files](../examples).
+	3. Select a JSON file from your files that follows our [specification](data-dictionary.md) or review one of our [example files](../examples).
 	4. Review the data that you've uploaded, and if you're satisfied with it click **Save and continue**. (If you're not satisfied with your data, you can **Choose a different file**)<p><img src="../assets/documentation-images/review-data.png" width="500px" /></p>
 5. Map each of your locations to one or more entities, then click **View map**. <p><img src="../assets/documentation-images/no-locations-mapped.png" width="500px" /></p>
 	- This is done by clicking on each of your locations one at a time and choosing an entity and/or workload as well as a NRQL query in the form below.

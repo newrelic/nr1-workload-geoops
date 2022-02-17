@@ -24,12 +24,12 @@ export default class MapLocationQuery extends React.PureComponent {
    * Returns object with three attributes:
    * - `mapLocations` the list of locations
    * - `entityGuids` reduced list of all entityGuids from all locations
-   * - `errors` if the query generated errors, return those
+   * - `error` if the query generated error, return those
    */
   static async query({ map }) {
     const { accountId } = map;
 
-    const { data: mapLocations, errors } = await nerdStorageRequest({
+    const { data: mapLocations, error } = await nerdStorageRequest({
       service: getMapLocations,
       params: { accountId: parseInt(accountId, 10), document: map }
     });
@@ -40,7 +40,7 @@ export default class MapLocationQuery extends React.PureComponent {
     return {
       mapLocations: mapLocations.map(m => m.document),
       entityGuids,
-      errors
+      error
     };
   }
 
@@ -54,7 +54,7 @@ export default class MapLocationQuery extends React.PureComponent {
     this.state = {
       data: [],
       loading: true,
-      errors: []
+      error: []
     };
   }
 
@@ -80,24 +80,24 @@ export default class MapLocationQuery extends React.PureComponent {
   async load() {
     this.setState({ loading: true });
 
-    const { mapLocations, entityGuids, errors } = await MapLocationQuery.query({
+    const { mapLocations, entityGuids, error } = await MapLocationQuery.query({
       map: this.props.map
     });
 
     this.setState({
       loading: false,
       data: { mapLocations, entityGuids },
-      errors
+      error
     });
   }
 
   render() {
-    const { data, loading, errors } = this.state;
+    const { data, loading, error } = this.state;
     const { children } = this.props;
     return children({
       loading,
       data,
-      errors
+      error
     });
   }
 }

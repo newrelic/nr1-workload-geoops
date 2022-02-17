@@ -55,7 +55,7 @@ export default class EntitySearchFormInput extends React.PureComponent {
 
     const {
       data: entityTypes,
-      errors: loadingEntityTypesErrors
+      error: loadingEntityTypesErrors
     } = await this.fetchEntityTypes();
 
     // Default to workload if possible
@@ -73,11 +73,11 @@ export default class EntitySearchFormInput extends React.PureComponent {
   }
 
   async fetchEntityTypes() {
-    const { data, errors } = await NerdGraphQuery.query({
+    const { data, error } = await NerdGraphQuery.query({
       query: LIST_ENTITY_TYPES
     });
     const items = get(data, 'actor.entitySearch.types', []);
-    return { data: items, errors };
+    return { data: items, error };
   }
 
   entitySearchQueryVariables() {

@@ -12,28 +12,28 @@ export const nerdStorageRequest = async function({ service, params }) {
 
   let response;
 
-  // Aggregate errors and data from multiple requests
+  // Aggregate error and data from multiple requests
   if (Array.isArray(result)) {
     response = result.reduce(
       (finalValue, currentValue) => {
         const data = currentValue.data;
-        const errors = Array.isArray(currentValue.errors)
-          ? currentValue.errors
+        const error = Array.isArray(currentValue.error)
+          ? currentValue.error
           : [];
         return {
           // data: [...finalValue.data, currentValue.data],
           data: finalValue.data.concat(data),
-          errors: finalValue.errors.concat(errors)
+          error: finalValue.error.concat(error)
         };
       },
       {
         data: [],
-        errors: []
+        error: []
       }
     );
     response = {
       data: response.data,
-      errors: response.errors.length > 0 ? response.errors : null
+      error: response.error.length > 0 ? response.error : null
     };
   } else {
     response = result;
